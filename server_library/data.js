@@ -9,11 +9,11 @@
 var core = require('./core');
 
 var Datastore = require('nedb'),
-    server = new Datastore({ filename: 'server_library/database/server.db', autoload: true }),
-    member = new Datastore({ filename: 'server_library/database/member.db', autoload: true }),
-    connect = new Datastore({ filename: 'server_library/database/connect.db', autoload: true }),
-    channels = new Datastore({ filename: 'server_library/database/channels.db', autoload: true }),
-    users = new Datastore({ filename: 'server_library/database/users.db', autoload: true });
+    server = new Datastore({ filename: 'stats_record/server.db', autoload: true }),
+    member = new Datastore({ filename: 'stats_record/member.db', autoload: true }),
+    connect = new Datastore({ filename: 'stats_record/connect.db', autoload: true }),
+    channels = new Datastore({ filename: 'stats_record/channels.db', autoload: true }),
+    users = new Datastore({ filename: 'stats_record/users.db', autoload: true });
 
 var stats = {};
     stats.initDate = new Date().toLocaleString();
