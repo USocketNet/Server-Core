@@ -1,2 +1,6 @@
+
+# Node modules, just run NPM install to download all dependencies.
 node_modules/
+
+# Console logs are for USocketNet custom logging as files which we dont need.
 console_logs/
