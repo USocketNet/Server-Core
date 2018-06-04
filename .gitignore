@@ -5,5 +5,3 @@ node_modules/
 # Console logs are for USocketNet custom logging as files which we dont need.
 console_logs/
 
-# For the filed database server, dont include crucial local data.
-*.db
