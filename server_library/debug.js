@@ -18,7 +18,7 @@ module.exports =
     {
 		var curLogDate = new Date();
 		var curLogName = type + '@' + curLogDate.getFullYear();
-		var pathFile = 'server_library/text_logs/' + curLogName + '.txt';
+		var pathFile = 'console_logs/' + curLogName + '.txt';
 
 		if (fs.existsSync(pathFile))
 		{

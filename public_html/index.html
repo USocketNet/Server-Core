@@ -1,80 +1,28 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Socket and Redis in Node.js</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <title>USocketNet Discussion</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="username">
-    <input type="text" name="usernameTxt" /> 
-    <input type="button" name="setUsername" value="Set Username" />
-</div>
-<div id="createroom" style="display:none;">>
-    <input type="text" name="roomNameTxt" /> 
-    <input type="button" name="setRooomName" value="Set Room Name" />
-    <input type="button" name="joinRooomName" value="Join" />
-</div>
-<div id="sendChat" style="display:none;">
-    <input type="text" name="chatTxt" /> 
-    <input type="button" name="sendBtn" value="Send" />
-</div>
-<br />
-<div id="content"></div>
-<script>    
-    $(document).ready(function() {
-        var username = "anonymous";
-        var roomname = "anonymous";
-        $('input[name=setUsername]').click(function(){
-            if($('input[name=usernameTxt]').val() != ""){
-                username = $('input[name=usernameTxt]').val();
-                //var msg = {type:'setUsername',user:username};
-                socket.emit('setUsername',{user:username});
-            }
-            $('#username').slideUp("slow",function(){
-                $('#createroom').slideDown("slow");
-            });
-        });
-        $('input[name=setRooomName]').click(function(){
-            if($('input[name=roomNameTxt]').val() != ""){
-                roomname = $('input[name=roomNameTxt]').val();
-                socket.emit('createRoom',{user:username,room:roomname});
-            }
-            $('#createroom').slideUp("slow",function(){
-                $('#sendChat').slideDown("slow");
-            });
-        });
-        $('input[name=joinRooomName]').click(function(){
-            if($('input[name=roomNameTxt]').val() != ""){
-                roomname = $('input[name=roomNameTxt]').val();
-                socket.emit('joinRooom',{room:roomname});
-            }
-            $('#createroom').slideUp("slow",function(){
-                $('#sendChat').slideDown("slow");
-            });
-        });
+  <ul class="pages">
+    <li class="chat page">
+      <div class="chatArea">
+        <ul class="messages"></ul>
+      </div>
+      <input class="inputMessage" placeholder="Type here..."/>
+    </li>
+    <li class="login page">
+      <div class="form">
+        <h3 class="title">What's your name?</h3>
+        <input class="usernameInput" type="text" maxlength="14" />
+      </div>
+    </li>
+  </ul>
 
-        var socket = new io.connect('http://localhost:8088');
-        var content = $('#content');
-
-        socket.on('connect', function() {
-            console.log("Connected");
-        });
-
-        socket.on('message', function(message){
-            //alert('received msg=' + message);
-            content.append(message + '<br />');
-        }) ;
-
-        socket.on('disconnect', function() {
-            console.log('disconnected');
-            content.html("<b>Disconnected!</b>");
-        });
-
-        $("input[name=sendBtn]").click(function(){
-            var msg = {user:username,room:roomname,msg:$("input[name=chatTxt]").val()}
-            socket.emit('sendMessage',msg);
-            $("input[name=chatTxt]").val("");
-        });
-    });
-</script>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
 </body>
+</html>

@@ -21,11 +21,11 @@
 		exports.package = pkg;
 		
 	//Contains server options in running USocketNet.
-	const adm = require('./configs/admin.json');
+	const adm = require('../server_configs/admin.json');
 		exports.admin = adm;
 
 	//Contains debug log list of USocketNet.
-	const log = require('./configs/debug.json');
+	const log = require('../server_configs/debug.json');
 		exports.logs = log;
 
 	//File data server with NedDB, a json structured.

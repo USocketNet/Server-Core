@@ -17,14 +17,13 @@ var bodyParser = require('body-parser'); //accept html post, etc.
 var instance = express(); //init express framework.
     instance.use(cors()); //init cors in var instance.
     instance.use(swagstats.getMiddleware({})); // Enable swagger-stats middleware in express app, passing swagger specification as option 
-    instance.use(express.static(require('path').join(__dirname, 'public'))); //sample chat app.
+    instance.use(express.static( __dirname + '/../public_html')); //sample chat app.
 
 var server = require('http').Server(instance); //init web protocol with var app.    
     
     instance.get('*', function (request, response)
 	{
-        //response.sendFile(__dirname + '/index.html');
-        response.redirect('http://usocket.bytes-crafter.com');
+        response.sendFile(express.static( __dirname + '/../public_html'));
 		response.end();
     });
     
@@ -43,14 +42,14 @@ var server = require('http').Server(instance); //init web protocol with var app.
 
             else
             {
-				response.redirect('maintainance/index.html');
+				response.redirect('http://usocket.bytes-crafter.com');
                 response.end();
             }
         }
 
         else
         {
-            response.redirect('maintainance/index.html');
+            response.redirect('http://usocket.bytes-crafter.com');
             response.end();
         }
     });
@@ -93,14 +92,14 @@ var server = require('http').Server(instance); //init web protocol with var app.
 
             else
             {
-				response.redirect('maintainance/index.html');
+				response.redirect('http://usocket.bytes-crafter.com');
                 response.end();
             }
         }
 
         else
         {
-            response.redirect('maintainance/index.html');
+            response.redirect('http://usocket.bytes-crafter.com');
             response.end();
         }
     });
