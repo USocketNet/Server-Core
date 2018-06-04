@@ -1,0 +1,22 @@
+[
+    {
+        "title": "MYSQL-INIT-ERR",
+        "info": "MYSQL Server initial connect failed. Code: "
+    },
+    {
+        "title": "MYSQL-INIT-SUC",
+        "info": "MySQL Server initial connect success. Thread Id: "
+    },
+    {
+        "title": "USNET-INIT-SUC",
+        "info": "Successfully initialized server on "
+    },
+    {
+        "title": "USNDB-INIT-SUC",
+        "info": "Nested database connection check was a success."
+    },
+    {
+        "title": "USNDB-INIT-ERR",
+        "info": "Nested database connection check failed."
+    }
+]

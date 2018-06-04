@@ -1,0 +1,22 @@
+{
+    "serverHost": "192.168.1.2",
+    "serverPort": 3005,
+    "clusterCpu": 2,
+    "authKey": "SeCuReHaSkEy123",
+    
+
+
+    
+    "allowedDomain": ["www.bytes-crafter.com"],
+    
+
+
+    "singleUser": false,
+
+    "mysql": {
+        "hostname": "localhost",
+        "username": "usocketnet",
+        "password": "292469101291+",
+        "database": "usocketnet_demo"
+    }
+}
