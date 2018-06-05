@@ -57,28 +57,37 @@
 	process.on("beforeExit", () => debug.log('BeforeExit', 'Received warning that the node server application is trying to shutdown!', 'red', 'Server'));
 	process.on("exit", () => debug.log('Exitting', 'Node server application was shutdown for some reason!', 'red', 'Server'));
 
-	//Clustering mechanism
-	if (clt.isMaster)
+	if(adm.cluster)
 	{
-		//#region CONSOLE HEADER.
-			console.log
-			(
-				'\x1b[36m%s\x1b[0m',
-				'////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////' + '\n' +
-				'//                                                                                                                        //' + '\n' +
-				'//         USocketNet Server ' + pkg.version + ' by Bytes Crafter @ Copyrights 2018 : Server running as of ' + new Date().toLocaleString() + '          //' + '\n' +
-				'//                                                                                                                        //' + '\n' +
-				'////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////' + '\n'
-			);
-		//#endregion
+		//Clustering mechanism
+		if (clt.isMaster)
+		{
+			//#region CONSOLE HEADER.
+				console.log
+				(
+					'\x1b[36m%s\x1b[0m',
+					'////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////' + '\n' +
+					'//                                                                                                                        //' + '\n' +
+					'//         USocketNet Server ' + pkg.version + ' by Bytes Crafter @ Copyrights 2018 : Server running as of ' + new Date().toLocaleString() + '          //' + '\n' +
+					'//                                                                                                                        //' + '\n' +
+					'////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////' + '\n'
+				);
+			//#endregion
+			
+			const socket = require('./clusters/master');
+		}
 		
-		const socket = require('./clusters/master');
+		else
+		{
+			const socket = require('./clusters/worker');
+		}
 	}
-	  
+
 	else
 	{
 		const socket = require('./clusters/worker');
 	}
+	
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //																																//

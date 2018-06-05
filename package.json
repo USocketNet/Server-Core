@@ -1,10 +1,10 @@
 {
   "name": "usocketnet",
-  "version": "v0.8.5",
+  "version": "v0.9.0",
   "description": "www.bytes-crafter.com",
   "main": "core.js",
   "scripts": {
-    "start": "node usocketnet/core.js",
+    "start": "node server_library/core.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Caezar V. De Castro II",

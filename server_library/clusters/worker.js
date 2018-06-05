@@ -15,7 +15,7 @@ const io = require('socket.io')(core.web.server);
     
     io.on('connection', function(socket)
     {
-        core.debug.log('OnConnection', ' Connected to client to cpu worker: ' + core.cluster.worker.id + '.', 'white', 'Connect'); //Debugging!
+		//core.debug.log('OnConnection', ' Connected to client to cpu worker: ' + core.cluster.worker.id + '.', 'white', 'Connect'); //Debugging!
 
         //#region CREATE SOCKET INSTANCE.
             var curUser = {};

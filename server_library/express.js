@@ -136,8 +136,17 @@ module.exports =
     {
         server.listen(process.env.PORT || core.admin.serverPort, core.admin.serverHost, function()
         {
-            core.debug.log('Clustering', 'Master fork on and is now listening on worker ' + worker.id + ' at port ' 
-                + server.address().address + ':' + server.address().port, 'green', 'Server');
+            if(core.admin.cluster)
+            {
+                core.debug.log('Initialization', 'Master fork on and is now listening on worker ' + worker.id + ' at ' 
+                    + server.address().address + ':' + server.address().port, 'green', 'Server');
+            }
+
+            else
+            {
+                core.debug.log('Initialization', 'USocketNet ' + core.package.version + ' has been initialized. Listening: ' 
+                    + server.address().address + ':' + server.address().port, 'green', 'Server');
+            }
         });
     },
     instance,
