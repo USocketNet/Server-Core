@@ -1,6 +1,6 @@
 {
   "name": "usocketnet",
-  "version": "v0.9.0",
+  "version": "v0.9.5",
   "description": "www.bytes-crafter.com",
   "main": "core.js",
   "scripts": {
@@ -12,19 +12,20 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
-    "crc": "^3.5.0",
+    "crc": "^3.7.0",
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.3",
     "mysql": "^2.15.0",
     "nedb": "^1.8.0",
-    "nodemailer": "^4.6.5",
+    "nodemailer": "^4.6.7",
+    "npm-gui": "^0.3.1",
     "redis": "^2.8.0",
     "socket.io": "^2.1.1",
     "socket.io-redis": "^5.2.0",
-    "swagger-stats": "^0.95.5"
+    "swagger-stats": "^0.95.6"
   },
   "repository": {
     "type": "git",
-    "url": "http://git.bytes-crafter.com/Bonobo.Git.Server/USocketNet-Server.git"
+    "url": "http://git.bytes-crafter.com/Administrator/Server-USocketNet.git"
   }
 }

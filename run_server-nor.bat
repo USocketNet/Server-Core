@@ -12,10 +12,10 @@ IF ERRORLEVEL 1060 GOTO MISSING
 
 SC QUERYEX "%SvcName%" | FIND "STATE" | FIND /v "RUNNING" > NUL && (
     redis-server --service-start
-    node server_library/core.js
+    node server.js
     PAUSE
 ) || (
-    node server_library/core.js
+    node server.js
     PAUSE
 )
 
@@ -27,6 +27,6 @@ cd C:\Program Files\Redis
 redis-server --service-install redis.windows-service.conf --loglevel verbose
 redis-server --service-start
 cd %usnet%
-node server_library/core.js
+node server.js
 PAUSE
 :END
