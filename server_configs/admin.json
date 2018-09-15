@@ -4,7 +4,7 @@
     "authKey": "SeCuReHaSkEy123",
 
     "clusterCpu": 2,
-    "cluster": false,
+    "cluster": true,
 
     
     "allowedDomain": ["www.bytes-crafter.com"],

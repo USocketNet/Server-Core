@@ -138,13 +138,13 @@ module.exports =
         {
             if(core.admin.cluster)
             {
-                core.debug.log('Initialization', 'Master fork on and is now listening on worker ' + worker.id + ' at ' 
-                    + server.address().address + ':' + server.address().port, 'green', 'Server');
+                core.debug.log('Initialization', 'USocketNet ' + core.package.version + ' running on cluster with id: '  + worker.id 
+                    + ' and listens on ' + server.address().address + ':' + server.address().port, 'green', 'Server');
             }
 
             else
             {
-                core.debug.log('Initialization', 'USocketNet ' + core.package.version + ' has been initialized. Listening: ' 
+                core.debug.log('Initialization', 'USocketNet ' + core.package.version + ' microservice is now listening: ' 
                     + server.address().address + ':' + server.address().port, 'green', 'Server');
             }
         });

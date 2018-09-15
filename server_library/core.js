@@ -63,14 +63,10 @@
 		if (clt.isMaster)
 		{
 			//#region CONSOLE HEADER.
-				console.log
+				debug.log
 				(
-					'\x1b[36m%s\x1b[0m',
-					'////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////' + '\n' +
-					'//                                                                                                                        //' + '\n' +
-					'//         USocketNet Server ' + pkg.version + ' by Bytes Crafter @ Copyrights 2018 : Server running as of ' + new Date().toLocaleString() + '          //' + '\n' +
-					'//                                                                                                                        //' + '\n' +
-					'////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////' + '\n'
+					'Initialization', 'USocketNet Server ' + pkg.version + ' by Bytes Crafter : Running since ' + 
+					new Date().toLocaleString() + '.', 'white', 'Server'
 				);
 			//#endregion
 			
