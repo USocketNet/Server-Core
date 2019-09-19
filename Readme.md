@@ -19,14 +19,14 @@ USocketNet enables real-time bidirectional event-based communication. It consist
 
 ## Requirements
 
-- [Redis Server - In Memory Database](https://redis.io/)
-- [Nginx Server - Load Balancing](https://www.nginx.com/)
-- [MySQL - Disk Database](https://dev.mysql.com/downloads/mysql/)
+- [WordPress - Frontend & Backend Interface](https://www.nginx.com/)
+- [Redis - In Memory Database](https://redis.io/)
+- [Nginx - Web Serving & Load Balancing(Optional)](https://www.wordpress.org/)
+- [MySQL - Regular Database](https://dev.mysql.com/downloads/mysql/)
 
 NPM packages on Global:
 
 - [pm2 - v2.10.4](https://www.npmjs.com/package/pm2)
-- [npm-gui - v0.3.1](https://www.npmjs.com/package/npm-gui)
 
 NPM packages on USE:
 
