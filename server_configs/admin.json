@@ -1,13 +1,12 @@
 {
     "serverHost": "localhost",
-    "serverPort": 8080,
+    "serverPort": 3001,
     "authKey": "SeCuReHaSkEy123",
 
     "clusterCpu": 2,
     "cluster": true,
-
     
-    "allowedDomain": ["localhost", "www.bytes-crafter.com"],
+    "allowedDomain": ["localhost"],
     "singleUser": false,
     "mysql": {
         "hostname": "localhost",

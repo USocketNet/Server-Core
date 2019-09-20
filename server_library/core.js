@@ -9,24 +9,24 @@
 //#region INITIALIZED NPM INCLUDED MODULES. Done!
 
 	//Access current system information such as os, cpu, ram, etc.
-	const sys = require('os');
-		exports.system = sys;
+	const system = require('os');
+		exports.system = system;
 
 	//Includes clustering library to take advantage of cpu count.
-    const clt = require('cluster');
-		exports.cluster = clt;
+    const cluster = require('cluster');
+		exports.cluster = cluster;
 
 	//Contains the primary information of USocketNet.
-    const pkg = require('../package.json');
-		exports.package = pkg;
+    const package = require('../package.json');
+		exports.package = package;
 		
 	//Contains server options in running USocketNet.
-	const adm = require('../server_configs/admin.json');
-		exports.admin = adm;
+	const admin = require('../server_configs/admin.json');
+		exports.admin = admin;
 
 	//Contains debug log list of USocketNet.
 	const log = require('../server_configs/debug.json');
-		exports.logs = log;
+		exports.log = log;
 
 	//File data server with NedDB, a json structured.
 	const data = require('./data');
@@ -57,15 +57,15 @@
 	process.on("beforeExit", () => debug.log('BeforeExit', 'Received warning that the node server application is trying to shutdown!', 'red', 'Server'));
 	process.on("exit", () => debug.log('Exitting', 'Node server application was shutdown for some reason!', 'red', 'Server'));
 
-	if(adm.cluster)
+	if(admin.cluster)
 	{
 		//Clustering mechanism
-		if (clt.isMaster)
+		if (cluster.isMaster)
 		{
 			//#region CONSOLE HEADER.
 				debug.log
 				(
-					'Initialization', 'USocketNet Server ' + pkg.version + ' by Bytes Crafter : Running since ' + 
+					'Initialization', 'USocketNet Server ' + package.version + ' by Bytes Crafter : Running since ' + 
 					new Date().toLocaleString() + '.', 'white', 'Server'
 				);
 			//#endregion

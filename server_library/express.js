@@ -17,15 +17,9 @@ var bodyParser = require('body-parser'); //accept html post, etc.
 var instance = express(); //init express framework.
     instance.use(cors()); //init cors in var instance.
     instance.use(swagstats.getMiddleware({})); // Enable swagger-stats middleware in express app, passing swagger specification as option 
-    instance.use(express.static( __dirname + '/../public_html')); //sample chat app.
+    instance.use(express.static( __dirname + '/../public_html')); //Set static or root public directory.
 
 var server = require('http').Server(instance); //init web protocol with var app.    
-    
-    instance.get('*', function (request, response)
-	{
-        response.sendFile(express.static( __dirname + '/../public_html'));
-		response.end();
-    });
     
     instance.post('/ping', urlEncoder, function (request, response)
     {

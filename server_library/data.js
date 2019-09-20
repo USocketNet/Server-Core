@@ -67,7 +67,7 @@ module.exports =
         {
             if(errm)
             {
-                core.alert.log(core.logs[4].title, core.logs[4].info + 'Error: ' + err, 'red', 'Server');
+                core.alert.log(core.log[4].title, core.log[4].info + 'Error: ' + err, 'red', 'Server');
             }
 
             else
@@ -78,12 +78,12 @@ module.exports =
                     {
                         if(err)
                         {
-                            core.alert.log(core.logs[4].title, core.logs[4].info + 'Error: ' + err, 'red', 'Server');
+                            core.alert.log(core.log[4].title, core.log[4].info + 'Error: ' + err, 'red', 'Server');
                         }
 
                         else
                         {
-                            core.alert.log(core.logs[3].title, core.logs[3].info, 'green', 'Server');
+                            core.alert.log(core.log[3].title, core.log[3].info, 'green', 'Server');
                         }                        
                     });
                 }
@@ -94,12 +94,12 @@ module.exports =
                     {
                         if(err)
                         {
-                            core.alert.log(core.logs[4].title, core.logs[4].info + 'Error: ' + err, 'red', 'Server');
+                            core.alert.log(core.log[4].title, core.log[4].info + 'Error: ' + err, 'red', 'Server');
                         }
 
                         else
                         {
-                            core.alert.log(core.logs[3].title, core.logs[3].info, 'green', 'Server');
+                            core.alert.log(core.log[3].title, core.log[3].info, 'green', 'Server');
                         } 
                     });
                 }
@@ -120,7 +120,7 @@ module.exports =
             if(errm)
             {
                 callback('error');
-                alert.log(core.logs[3].title, core.logs[3].info + 'Error: ' + errm)
+                alert.log(core.log[3].title, core.log[3].info + 'Error: ' + errm)
             }
 
             else
@@ -132,7 +132,7 @@ module.exports =
                         if(errs)
                         {
                             callback('error');
-                            alert.log(core.logs[3].title, core.logs[3].info + 'Error: ' + errs)
+                            alert.log(core.log[3].title, core.log[3].info + 'Error: ' + errs)
                         }
 
                         else
@@ -144,7 +144,7 @@ module.exports =
                                     if(err)
                                     {
                                         callback('error');
-                                        alert.log(core.logs[3].title, core.logs[3].info + 'Error: ' + err)
+                                        alert.log(core.log[3].title, core.log[3].info + 'Error: ' + err)
                                     }
                 
                                     else
@@ -180,7 +180,7 @@ module.exports =
             if(err)
             {
                 callback('error');
-                alert.log(core.logs[3].title, core.logs[3].info + 'Error: ' + err)
+                alert.log(core.log[3].title, core.log[3].info + 'Error: ' + err)
             }
 
             else
