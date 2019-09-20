@@ -2,12 +2,12 @@
   "name": "usocketnet",
   "version": "v0.9.5",
   "description": "www.bytes-crafter.com",
-  "main": "core.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node server_library/core.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Caezar V. De Castro II",
+  "author": "Bytes Crafter",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -23,9 +23,5 @@
     "socket.io": "^2.1.1",
     "socket.io-redis": "^5.2.0",
     "swagger-stats": "^0.95.6"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://git.bytes-crafter.com/Administrator/Server-USocketNet.git"
   }
 }
