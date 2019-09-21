@@ -7,6 +7,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var core = require('./core');
+exports.core = core;
 
 var express = require('express'); //web app framework.
 var cors = require('cors') //cross domain resource sharing.
@@ -16,8 +17,20 @@ var bodyParser = require('body-parser'); //accept html post, etc.
 
 var instance = express(); //init express framework.
     instance.use(cors()); //init cors in var instance.
-    instance.use(swagstats.getMiddleware({})); // Enable swagger-stats middleware in express app, passing swagger specification as option 
+    instance.use(swagstats.getMiddleware({})); // Enable swagger-stats middleware in express app, passing swagger specification as option
+
+    instance.use(express.urlencoded()); // Parse URL-encoded bodies (as sent by HTML forms)
+    instance.use(express.json()); // Parse JSON bodies (as sent by API clients)
+
+        //instance.set('view engine', 'ejs');
+        //instance.set('views', __dirname + "/views");
+        //instance.set("view options", {layout: false});  
+        //instance.engine('html', require('ejs').renderFile); 
+
     instance.use(express.static( __dirname + '/../public_html')); //Set static or root public directory.
+
+    exports.instance = instance;
+var demoguy = require('./demoguy/index');
 
 var server = require('http').Server(instance); //init web protocol with var app.    
     
