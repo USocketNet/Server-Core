@@ -1,15 +1,24 @@
-# simple-socketio-load-test.yaml
+# Sample load test. $ artillery run artillery.yaml
 config:
-  target: "http://localhost:8080"
+  target: "http://localhost:19090/demo"
   phases:
     - duration: 600
-      arrivalRate: 5
+      arrivalRate: 10
 scenarios:
-  - name: "Connect and debug a bunch of messages"
+  - name: "Name Here!"
+    weight: 10
+    engine: "socketio"
     flow:
+      - get:
+          url: "/"
+      - emit:
+          channel: "connected"
+          data: "chatty-{{ $randomString() }}"
       - loop:
           - emit:
-              channel: "debuged"
+              channel: "hello"
               data: "hello world!"
           - think: 1
-        count: 50
+        count: 100
+      - think: 1
+      

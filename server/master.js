@@ -11,8 +11,10 @@ var conn = server.listen( process.env.PORT || 19091, 'localhost', function(err) 
         core.debug.log('Master Server Init', 'Server is now running...', 'green', 'master');
     }
 });
-
+var conns = 0;
 socketio.on('connection', (socket) => {
+    conns = conns + 1;
+    console.log('Connection: ' + conns + ' @ port ' + conn.address().port);
     //Check socket.id of this connection.
     console.log('Connected! ' + socket.id);
   
