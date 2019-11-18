@@ -3,37 +3,115 @@
 All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
 
-### SEMANTIC VERSION: Example: v1.2.3-alpha/beta
+## SEMANTIC VERSION: Example: v1.2.3-alpha/beta
 - 1 - Major version and may result to incompatibilities from previous major release.
 - 2 - Minor version is when you add functionaly on the project. When you increase this, reset patch version.
 - 3 - Patch version, meaning this is used mainly on change and fixing.
 - alpha - An alpha release usually means a website or application is working but some functionality is likely to be missing and a number of known and unknown bugs are likely to surface.
 - beta -  A pre-release of software that is given out to a large group of users to try under real conditions. Beta versions have gone through alpha testing inhouse and are generally fairly close in look, feel and function to the final product; however, design changes often occur as a result.
 
-### MILESTONE PLAN / VERSION DIAFLOW
-- v1.0.0 - All funtionaly of wordpress theme is working.
-- v0.9.0 - 
-- v0.8.0 - 
-- v0.7.0 - 
-- v0.6.0 - 
-- v0.5.0 - 
-- v0.4.0 - 
-- v0.3.0 - 
-- v0.2.0 - Frontend like Home, Blog, Contact, About, 404.
-- v0.1.0 - Working Demo for the Project!
-
 ## [v1.2.3] - 2017-03-14 > TEMPLATE VERSION ITEM
 
 Here we would have the update steps for 1.2.4 for people to follow.
 
-### Added
-- [Link Tag](http://example.com/submenu/target)
+**Added:** 
+    - [Link Tag](http://example.com/submenu/target)
     Added something on the project.
 
-### Changed
-- [Link Tag](http://example.com/submenu/target)
+**Changed:** 
+    - [Link Tag](http://example.com/submenu/target)
     Change the speed of bar on foo.
 
-### Fixed
-- [Link Tag](http://example.com/submenu/target)
+**Fixed:** 
+    - [Link Tag](http://example.com/submenu/target)
     Fix module foo tests.
+
+### COPY BELOW FOR NEW ENTRY:
+
+```
+## v1.2.3 TITLE HERE ALL CAPS.
+**Added:**
+    - You can add multiple item here.
+**Changed:**
+    - You can add multiple item here.
+**Fixed:**
+    - You can add multiple item here.
+```
+
+# MILESTONE PLAN / VERSION DIAFLOW
+- Add NEW Change log entry here:
+
+## (ONGOING) v1.0.0 PRODUCTION GRADE RELEASE OF THE PROJECT.
+**Added:**
+    - ONGOING
+**Changed:**
+    - ONGOING
+**Fixed:**
+    - ONGOING
+
+---
+
+## (CURRENT) v0.9.8 WORKING DEMO OF REDIS AND SHARED VARIABLE.
+**Added:**
+    - 
+**Changed:**
+    - 
+**Fixed:**
+    - 
+
+---
+
+## v0.9.7 CHANGE AND FIXES FOR THE PROJECT WORKFLOW. (September 21, 2019 4:00PM)
+**Added:** 
+    - Make a new redis demo to nginx public html.
+    - Make a folder for experimental like this redis-demo.
+    - Added not-tested load test script.
+    - Added nginx demo to the project.
+**Changed:**
+    - Updated the nginx config to several load balancers.
+    - Updated the redis demo server to new nginx html.
+    - Updated the nginx index.html default nginx.
+    - Remove demo on node public html.
+    - Updated Readme and package json.
+    - Initially modified package and readme.
+    - Remove other package mysql and php.
+
+---
+
+## v0.9.6 CHANGE AND FIXES FOR THE PROJECT WORKFLOW. (September 21, 2019 4:00PM)
+**Added:** 
+    - Backup of September 2019.
+    - Added Manok Roleta to the game.
+**Changed:**
+    - Edit package.json to target server.js
+    - Updated readme initially as of 2019.
+    - Make the server default address to localhost:8080
+    - Updated ndoe modules and usocketnet to v0.9.5
+    - Deleted all the custom windows batch file.
+    - Deleted unecessary files and added required git 2019.
+**Fixed:**
+    - Just fix the initial fix setup 2019.
+    
+---
+
+## v0.9.5 - PREPARING FOR MICROSERVICE FEATURE (SEPTEMBER 15, 2018 1:57AM)
+**Added:**
+    - Make the json database not included on push to git server.
+    - Preparation for web chat support features for v0.9.5
+**Changed:**
+    - Submit first the initial .db files on stats_record.
+    - An update to LICENCE.md and Readme.md.
+**Fixed:**
+    - Stabilized project for pm2 with nginx server used.
+    - Fixes on initialization crowded logs on cluster and micro mode.
+
+---
+
+## v0.8.5 - WORKING DEMO WITH MONOLITHIC DESIGN (June 4, 2018 6:45AM)
+**Added:** 
+    - Finalized the documentation of the project.
+    - Added readme and license file on the project file.
+    - Remove the now ignored directory node_modules.
+    - Initial Backup of USocketNet Server as of v0.8.5 which focus on default node js cluster.
+**Fixed:** 
+    - Organized the folder structure and added .gitignore for modules and logs.
