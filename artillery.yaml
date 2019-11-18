@@ -1,0 +1,15 @@
+# simple-socketio-load-test.yaml
+config:
+  target: "http://localhost:8080"
+  phases:
+    - duration: 600
+      arrivalRate: 5
+scenarios:
+  - name: "Connect and debug a bunch of messages"
+    flow:
+      - loop:
+          - emit:
+              channel: "debuged"
+              data: "hello world!"
+          - think: 1
+        count: 50
