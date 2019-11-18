@@ -8,33 +8,33 @@
 
 //#region INITIALIZED NPM INCLUDED MODULES. Done!
 
-	//Access current system information such as os, cpu, ram, etc.
-	const system = require('os');
-		exports.system = system;
+	// //Access current system information such as os, cpu, ram, etc.
+	// const system = require('os');
+	// 	exports.system = system;
 
-	//Includes clustering library to take advantage of cpu count.
-    const cluster = require('cluster');
-		exports.cluster = cluster;
+	// //Includes clustering library to take advantage of cpu count.
+    // const cluster = require('cluster');
+	// 	exports.cluster = cluster;
 
-	//Contains the primary information of USocketNet.
-    const package = require('../package.json');
-		exports.package = package;
+	// //Contains the primary information of USocketNet.
+    // const package = require('../package.json');
+	// 	exports.package = package;
 		
-	//Contains server options in running USocketNet.
-	const admin = require('../server_configs/admin.json');
-		exports.admin = admin;
+	// //Contains server options in running USocketNet.
+	// const admin = require('../server_configs/admin.json');
+	// 	exports.admin = admin;
 
-	//Contains debug log list of USocketNet.
-	const log = require('../server_configs/debug.json');
-		exports.log = log;
+	// //Contains debug log list of USocketNet.
+	// const log = require('../server_configs/debug.json');
+	// 	exports.log = log;
 
-	//File data server with NedDB, a json structured.
-	const data = require('./data');
-		exports.data = data;
+	// //File data server with NedDB, a json structured.
+	// const data = require('./data');
+	// 	exports.data = data;
 
-	//Require logging via console and file.
-	const debug = require('./debug');
-		exports.debug = debug;
+	// //Require logging via console and file.
+	// const debug = require('./debug');
+	// 	exports.debug = debug;
 
 	var web = require('./express');
 		exports.web = web;
@@ -48,14 +48,14 @@
 	var find = require('./finder');
 		exports.find = find;
 
-	//Server process debugging.
-	process.on('uncaughtException', function (uerror) //Show a warning about the uncaught exceptions.
-	{
-		debug.log('UncaughtException', uerror.stack + ' @ ' + uerror, 'red', 'Server');
-	});
-	process.stdin.resume(); //Instead of exiting or close server, resume.
-	process.on("beforeExit", () => debug.log('BeforeExit', 'Received warning that the node server application is trying to shutdown!', 'red', 'Server'));
-	process.on("exit", () => debug.log('Exitting', 'Node server application was shutdown for some reason!', 'red', 'Server'));
+	// //Server process debugging.
+	// process.on('uncaughtException', function (uerror) //Show a warning about the uncaught exceptions.
+	// {
+	// 	debug.log('UncaughtException', uerror.stack + ' @ ' + uerror, 'red', 'Server');
+	// });
+	// process.stdin.resume(); //Instead of exiting or close server, resume.
+	// process.on("beforeExit", () => debug.log('BeforeExit', 'Received warning that the node server application is trying to shutdown!', 'red', 'Server'));
+	// process.on("exit", () => debug.log('Exitting', 'Node server application was shutdown for some reason!', 'red', 'Server'));
 
 	if(admin.cluster)
 	{

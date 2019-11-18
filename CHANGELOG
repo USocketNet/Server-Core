@@ -51,12 +51,14 @@ Here we would have the update steps for 1.2.4 for people to follow.
 
 ---
 
-## (CURRENT) v0.9.8 CHANGE OF REDIS MEDDLEWARES.
+## (CURRENT) v0.9.8 WORKING MICROSERVICE DESIGN.
 **Added:**
     - Added NPM ioredis to the modules.
 **Changed:**
     - Removed the NPM redis from the modules.
     - Change experimental to test folder for unit test.
+**Fix:**
+    - Restructure project folder and have a working micro design.
 
 ---
 
