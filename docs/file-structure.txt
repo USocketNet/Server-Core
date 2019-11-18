@@ -1,6 +1,4 @@
 root
-  |-
-  |
   |-config/
   |--master.json
   |--chat.json
@@ -14,7 +12,9 @@ root
   |--game.txt
   |
   |-server/
-  |--
+  |--controllers
+  |--models
+  |--views
   |
   |-test/
   |--micro/
