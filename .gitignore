@@ -1,5 +1,4 @@
 # Logs
-logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -90,6 +89,3 @@ public
 
 # DynamoDB Local files
 .dynamodb/
-
-# Custom to this Project.
-console_logs/
