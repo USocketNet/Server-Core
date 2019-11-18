@@ -63,31 +63,31 @@ master.on('hello', (data) => {
 
 // //#region GAME SERVER CONNECTION
 
-var game = io(
-    'http://localhost:9090?token=demoguy', 
-    { 
-        autoConnect: false,
-        forceNew: false,
-        transports: ['polling', 'websocket']
-    }
-); game.connect();
+// var game = io(
+//     'http://localhost:9090?token=demoguy', 
+//     { 
+//         autoConnect: false,
+//         forceNew: false,
+//         transports: ['polling', 'websocket']
+//     }
+// ); game.connect();
 
-var user = {
-    name: 'demoguy'
-};
+// var user = {
+//     name: 'demoguy'
+// };
 
-game.on('connect', () => {
-    console.log('Connected: ' + game.connected + '. Im ' + game.id);
+// game.on('connect', () => {
+//     console.log('Connected: ' + game.connected + '. Im ' + game.id);
 
-    var data = { message: 'Hello from Client Connection!' };
-    game.emit( 'connected', data, (returnee) => {
-         console.log('Connection callback from server: ' + returnee);
-         game.emit('hello', 'New Connection! Hello from ' + game.id);
-    });
-});
+//     var data = { message: 'Hello from Client Connection!' };
+//     game.emit( 'connected', data, (returnee) => {
+//          console.log('Connection callback from server: ' + returnee);
+//          game.emit('hello', 'New Connection! Hello from ' + game.id);
+//     });
+// });
 
-game.on('hello', (data) => {
-    console.log('Message: ' + data); // true
-});
+// game.on('hello', (data) => {
+//     console.log('Message: ' + data); // true
+// });
 
-//#endregion
+// //#endregion
