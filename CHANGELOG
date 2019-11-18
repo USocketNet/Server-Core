@@ -51,13 +51,12 @@ Here we would have the update steps for 1.2.4 for people to follow.
 
 ---
 
-## (CURRENT) v0.9.8 WORKING DEMO OF REDIS AND SHARED VARIABLE.
+## (CURRENT) v0.9.8 CHANGE OF REDIS MEDDLEWARES.
 **Added:**
-    - 
+    - Added NPM ioredis to the modules.
 **Changed:**
-    - 
-**Fixed:**
-    - 
+    - Removed the NPM redis from the modules.
+    - Change experimental to test folder for unit test.
 
 ---
 
