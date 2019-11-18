@@ -1,0 +1,4 @@
+1. Added working native Nginx public html folder.
+2. Added 19090 for master server load balancer.
+3. Added 6060 for chat server load balancer.
+4. Added 9090 for game server load balancer.
