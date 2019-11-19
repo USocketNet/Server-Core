@@ -2,3 +2,10 @@
 2. Added 19090 for master server load balancer.
 3. Added 6060 for chat server load balancer.
 4. Added 9090 for game server load balancer.
+5. Added phpMyAdmin on public_html.
+6. Added php cgi engine.
+7. Added mysql database.
+* MYSQL ACCOUNTS:
+- UN: root PW: root
+- UN: admin PW: admin
+8. Working Nginx, PHP, phpMyAdmin, and Mysql.
