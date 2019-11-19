@@ -64,6 +64,9 @@ Redis is an in-memory data structure project implementing a distributed, in-memo
 * PM2
 PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
 
+* Artillery
+Artillery is a modern, powerful & easy-to-use load testing and functional testing toolkit. Use it to ship scalable applications that stay performant & resilient under high load.
+
 ### Installing
 
 STEP 1 - SETUP NGINX LOAD BALANCER.
@@ -113,8 +116,6 @@ STEP 3 - LAUNCH THE INSTANCES.
     $ pm2 delete id/index //Delete abrupty the current instance of the Node JS app.
     $ pm2 delete all //Delete all instance of process in the current machine.
   ```
-
-
 
 ## Deployment
 
