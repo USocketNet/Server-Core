@@ -1,6 +1,6 @@
 # Sample load test. $ artillery run artillery.yaml
 config:
-  target: "http://localhost:19090/demo"
+  target: "http://localhost:19090?token=demoguy&seckey=HashKey123"
   phases:
     - duration: 600
       arrivalRate: 10
@@ -19,6 +19,6 @@ scenarios:
               channel: "hello"
               data: "hello world!"
           - think: 1
-        count: 100
+        count: 5
       - think: 1
       

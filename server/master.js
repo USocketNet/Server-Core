@@ -8,7 +8,7 @@ var socketio = require('./controllers/socketio');
 
 
 
-  
+
 var conns = 0;
 sio.on('connection', (socket) => {
     conns = conns + 1;
@@ -19,7 +19,9 @@ sio.on('connection', (socket) => {
     //Called by client that its connected.
     socket.on('connected', (data, cback) => {
       console.log(data);
-      cback('Im from port ' + con.address().port + '. REDIS: ');
+      if(typeof cback === 'function') {
+        cback('Im from port ' + con.address().port + '. REDIS: ');
+      }
     });
   
     socket.on('hello', (data) => {
