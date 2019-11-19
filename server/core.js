@@ -1,3 +1,4 @@
+
 // This script will be usable to all types of server.
 // Add modules that should be shared only.
 
@@ -9,18 +10,27 @@ const system = require('os');
 //const cluster = require('cluster');
 //    exports.cluster = cluster;
 
-//Contains the primary information of USocketNet.
-const package = require('../package.json');
-    exports.package = package;
-
 //Contains server options in running server.
 var config = {};
+    config.package = require('../package.json');
     config.admin = require('../config/admin.json');
     config.debug = require('../config/debug.json');
     config.master = require('../config/master.json');
     config.chat = require('../config/chat.json');
     config.game = require('../config/game.json');
     exports.config = config;
+
+exports.configof = function(servertype) {
+    if(servertype == 'master') {
+        return config.master;
+    } else if (servertype == 'chat') {
+        return config.chat;
+    } else if (servertype == 'game') {
+        return config.game;
+    } else {
+        return null;
+    }
+}
 
 //Require logging via console and file.
 const debug = require('./controllers/debug');

@@ -2,7 +2,7 @@
 //#region MASTER SERVER CONNECTION
 
 var master = io(
-    'http://localhost:19090?token=demoguy', 
+    'http://localhost:19090?token=demoguy&seckey=HashKey123', 
     { 
         autoConnect: false,
         forceNew: false,
