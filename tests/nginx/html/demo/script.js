@@ -1,31 +1,44 @@
 
 //#region MASTER SERVER CONNECTION
 
-var master = io(
-    'http://localhost:19090?token=demoguy&seckey=HashKey123', 
-    { 
-        autoConnect: false,
-        forceNew: false,
-        transports: ['polling', 'websocket']
-    }
-); master.connect();
+$(function () {
 
-var user = {
-    name: 'demoguy'
-};
+    var master = io(
+        'http://localhost:19090?token=demoguy&seckey=HashKey123', 
+        { 
+            autoConnect: false,
+            forceNew: false,
+            transports: ['websocket', 'polling']
+        }
+    ); master.connect();
 
-master.on('connect', () => {
-    console.log('Connected: ' + master.connected + '. Im ' + master.id);
 
-    var data = { message: 'Hello from Client Connection!' };
-    master.emit( 'connected', data, (returnee) => {
-         console.log('Connection callback from server: ' + returnee);
-         master.emit('hello', 'New Connection! Hello from ' + master.id);
+
+    $('form').submit(function(e){
+        e.preventDefault(); // prevents page reloading
+        master.emit('chat', $('#m').val());
+    $('#m').val('');
+    return false;
     });
-});
+    master.on('chat', function(msg){
+        $('#messages').append($('<li>').text(msg));
+    });
 
-master.on('hello', (data) => {
-    console.log('Message: ' + data); // true
+
+    master.on('connect', () => {
+        console.log('Connected: ' + master.connected + '. Im ' + master.id);
+
+        var data = { message: 'Hello from Client Connection!' };
+        master.emit( 'connected', data, (returnee) => {
+            console.log('Connection callback from server: ' + returnee);
+            master.emit('hello', 'New Connection! Hello from ' + master.id);
+        });
+    });
+
+    master.on('hello', (data) => {
+        console.log('Message: ' + data); // true
+    });
+
 });
 
 //#endregion

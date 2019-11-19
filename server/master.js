@@ -3,7 +3,7 @@ var core = require('./core');
 var server = require('./controllers/express')(core);
 var redis = require('./controllers/redis')(core, 7);
 var socketio = require('./controllers/socketio');
-  var sio = socketio.init(server);
+  var sio = socketio.init(server, 'master');
   var con = socketio.conn(core, server, sio, 'master');
 
 
@@ -27,5 +27,9 @@ sio.on('connection', (socket) => {
     socket.on('hello', (data) => {
       console.log(data);
       socket.broadcast.emit('hello', 'Hello from server by ' + socket.id);
+    });
+
+    socket.on('chat', function(msg){
+      sio.emit('chat', msg);
     });
 });

@@ -12,7 +12,7 @@ module.exports = function(core) {
         instance.use(express.json()); // Parse JSON bodies (as sent by API clients)
         //instance.use(express.static( __dirname + '/server/views')); //Set static or root public directory.
     
-    var server = require('http').Server(instance); //init web protocol with var app. 
+    var server = require('http').Server(instance); //init web protocol with var intance. 
 
     return server; //Return the instance of http server with express.
 

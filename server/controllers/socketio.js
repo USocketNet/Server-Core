@@ -1,10 +1,11 @@
 
 module.exports = {
 
-    init: function(server) {
+    init: function(server, nsp) {
         const socketio = require('socket.io').listen(server);
         const redisAdapter = require('socket.io-redis');
             socketio.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
+            //const namespace = socketio.of( '/' + nsp );
         return socketio;
     },
 
