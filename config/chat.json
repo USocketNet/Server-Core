@@ -1,3 +1,5 @@
 {
-    
+    "type": "chat",
+    "host": "localhost",
+    "port": 6061
 }

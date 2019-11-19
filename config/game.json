@@ -1,3 +1,5 @@
 {
-    
+    "type": "game",
+    "host": "localhost",
+    "port": 9091
 }

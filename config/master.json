@@ -1,3 +1,5 @@
 {
-    
+    "type": "master",
+    "host": "localhost",
+    "port": 19091
 }
