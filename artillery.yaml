@@ -2,7 +2,7 @@
 config:
   target: "http://localhost:19090?token=demoguy&seckey=HashKey123"
   phases:
-    - duration: 600
+    - duration: 60
       arrivalRate: 10
 scenarios:
   - name: "Name Here!"
@@ -13,12 +13,12 @@ scenarios:
           url: "/"
       - emit:
           channel: "connected"
-          data: "chatty-{{ $randomString() }}"
+          data: "user-{{ $randomString() }}"
       - loop:
           - emit:
               channel: "hello"
-              data: "hello world!"
+              data: "The code is {{ $randomString() }}!"
           - think: 1
-        count: 5
+        count: 10
       - think: 1
       
