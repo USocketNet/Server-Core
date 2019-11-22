@@ -20,16 +20,12 @@ sio.on('connection', (socket) => {
     socket.on('connected', (data, cback) => {
       console.log(data);
       if(typeof cback === 'function') {
-        cback('Im from port ' + con.address().port + '. REDIS: ');
+        cback( con.address().port );
       }
     });
   
     socket.on('hello', (data) => {
       console.log(data);
-      socket.broadcast.emit('hello', 'Hello from server by ' + socket.id);
-    });
-
-    socket.on('chat', function(msg){
-      sio.emit('chat', msg);
+      socket.broadcast.emit('hello', 'Hello from master server by ' + socket.id);
     });
 });

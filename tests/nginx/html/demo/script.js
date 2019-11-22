@@ -13,94 +13,87 @@ $(function () {
     ); master.connect();
 
 
-
-    $('form').submit(function(e){
-        e.preventDefault(); // prevents page reloading
-        master.emit('chat', $('#m').val());
-    $('#m').val('');
-    return false;
-    });
-    master.on('chat', function(msg){
-        $('#messages').append($('<li>').text(msg));
-    });
-
-
     master.on('connect', () => {
-        console.log('Connected: ' + master.connected + '. Im ' + master.id);
+        console.log('Connected: ' + master.connected + '. Im ' + master.id + ' from master server.');
 
-        var data = { message: 'Hello from Client Connection!' };
+        var data = { message: 'Hello from Client!' };
         master.emit( 'connected', data, (returnee) => {
-            console.log('Connection callback from server: ' + returnee);
+            console.log('Connected to master server on port ' + returnee);
             master.emit('hello', 'New Connection! Hello from ' + master.id);
         });
     });
 
     master.on('hello', (data) => {
-        console.log('Message: ' + data); // true
+        console.log('Master Client: ' + data); // true
     });
 
 });
 
 //#endregion
 
-// //#region CHAT SERVER CONNECTION
+//#region CHAT SERVER CONNECTION
 
-// var chat = io(
-//     'http://localhost:6060?token=demoguy', 
-//     { 
-//         autoConnect: false,
-//         forceNew: false,
-//         transports: ['polling', 'websocket']
-//     }
-// ); chat.connect();
+var chat = io(
+    'http://localhost:6060?token=demoguy&seckey=HashKey123', 
+    { 
+        autoConnect: false,
+        forceNew: false,
+        transports: ['websocket', 'polling']
+    }
+); chat.connect();
 
-// var user = {
-//     name: 'demoguy'
-// };
 
-// chat.on('connect', () => {
-//     console.log('Connected: ' + chat.connected + '. Im ' + chat.id);
+$('form').submit(function(e){
+    e.preventDefault(); // prevents page reloading
+    chat.emit('chat', $('#m').val());
+$('#m').val('');
+return false;
+});
+chat.on('chat', function(msg){
+    $('#messages').append($('<li>').text(msg));
+});
 
-//     var data = { message: 'Hello from Client Connection!' };
-//     chat.emit( 'connected', data, (returnee) => {
-//          console.log('Connection callback from server: ' + returnee);
-//          chat.emit('hello', 'New Connection! Hello from ' + chat.id);
-//     });
-// });
 
-// chat.on('hello', (data) => {
-//     console.log('Message: ' + data); // true
-// });
+chat.on('connect', () => {
+    console.log('Connected: ' + chat.connected + '. Im ' + chat.id + ' from chat server.');
 
-// //#endregion
+    var data = { message: 'Hello from Client Connection!' };
+    chat.emit( 'connected', data, (returnee) => {
+        console.log('Connected to chat server on port ' + returnee);
+         chat.emit('hello', 'New Connection! Hello from ' + chat.id);
+    });
+});
 
-// //#region GAME SERVER CONNECTION
+chat.on('hello', (data) => {
+    console.log('Chat Client: : ' + data); // true
+});
 
-// var game = io(
-//     'http://localhost:9090?token=demoguy', 
-//     { 
-//         autoConnect: false,
-//         forceNew: false,
-//         transports: ['polling', 'websocket']
-//     }
-// ); game.connect();
+//#endregion
 
-// var user = {
-//     name: 'demoguy'
-// };
+//#region GAME SERVER CONNECTION
 
-// game.on('connect', () => {
-//     console.log('Connected: ' + game.connected + '. Im ' + game.id);
+var game = io(
+    'http://localhost:9090?token=demoguy&seckey=HashKey123', 
+    { 
+        autoConnect: false,
+        forceNew: false,
+        transports: ['websocket', 'polling']
+    }
+); game.connect();
 
-//     var data = { message: 'Hello from Client Connection!' };
-//     game.emit( 'connected', data, (returnee) => {
-//          console.log('Connection callback from server: ' + returnee);
-//          game.emit('hello', 'New Connection! Hello from ' + game.id);
-//     });
-// });
 
-// game.on('hello', (data) => {
-//     console.log('Message: ' + data); // true
-// });
+game.on('connect', () => {
+    console.log('Connected: ' + game.connected + '. Im ' + game.id + ' from game server.');
 
-// //#endregion
+    var data = { message: 'Hello from Client Connection!' };
+    game.emit( 'connected', data, (returnee) => {
+        console.log('Connected to game server on port ' + returnee);
+         game.emit('hello', 'New Connection! Hello from ' + game.id);
+    });
+});
+
+game.on('hello', (data) => {
+    console.log('Game Client: : ' + data); // true
+});
+
+//#endregion
