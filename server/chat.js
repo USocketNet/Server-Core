@@ -27,9 +27,13 @@ var socketio = require('./controllers/socketio');
         socket.broadcast.emit('hello', 'Hello from chat server by ' + socket.id);
       });
   
-      socket.on('chat', function(msg){
+      socket.on('chat', (msg, cback) => {
         console.log('chat here');
-        sio.emit('chat', msg);
+        var sending = {};
+          sending.id = socket.id;
+          sending.msg = msg;
+        cback('success');
+        socket.broadcast.emit('chat', sending);
       });
 
   });

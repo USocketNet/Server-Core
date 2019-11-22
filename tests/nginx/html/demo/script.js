@@ -44,18 +44,22 @@ var chat = io(
 
 
 $('form').submit(function(e){
-    e.preventDefault(); // prevents page reloading
-    chat.emit('chat', $('#m').val());
-$('#m').val('');
-return false;
+    if( $('#m').val() ) {
+        e.preventDefault(); // prevents page reloading
+        var msg = $('#m').val();
+        chat.emit('chat', $('#m').val(), (returnee) => {
+            $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + msg ));
+        });
+        $('#m').val('');
+    } return false;
 });
-chat.on('chat', function(msg){
-    $('#messages').append($('<li>').text(msg));
+chat.on('chat', function(receiving){
+    $('#messages').append($('<li>').text('['+receiving.id+']: ' + receiving.msg));
 });
 
 
 chat.on('connect', () => {
-    console.log('Connected: ' + chat.connected + '. Im ' + chat.id + ' from chat server.');
+    $('#messages').append($('<li style="text-align: center;">').text( 'Conneted: '+chat.connected+'! My ID is' + chat.id ));
 
     var data = { message: 'Hello from Client Connection!' };
     chat.emit( 'connected', data, (returnee) => {
