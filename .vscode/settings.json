@@ -1,0 +1,11 @@
+{
+    "favorites.resources": [
+        "tests\\nginx\\html\\wordpress\\wp-content\\plugins\\bytescrafter-usocketnet",
+        "tests\\nginx\\html\\wordpress\\wp-content\\themes\\bytescrafter-usocketnet",
+        "tests\\nginx\\conf\\nginx.conf",
+        "server",
+        "docs\\file-structure.txt",
+        "library",
+        "tests\\nginx\\html\\demo"
+    ]
+}
