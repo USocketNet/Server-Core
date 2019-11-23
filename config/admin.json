@@ -8,10 +8,11 @@
     
     "allowedDomain": ["localhost"],
     "singleUser": false,
+    
     "mysql": {
         "hostname": "localhost",
-        "username": "usocketnet",
-        "password": "292469101291+",
-        "database": "usocketnet_demo"
+        "username": "admin",
+        "password": "admin",
+        "database": "usocketnet"
     }
 }
