@@ -18,19 +18,13 @@
 
     //Get the user session token string and if nothing, create and return one.
     function get_user_session_data( $user_id ) {
-        $session_now = [];
+        //Grab WP_Session_Token from wordpress.
+        $wp_session_token = WP_Session_Tokens::get_instance($user_id);
 
-        //Get the array of all browser session in any methods.
-        $session_now = get_user_meta($user_id, "session_tokens", true);
+        //Create a session entry unto the session tokens of user with X expiry.
+        $expiration = time() + apply_filters('auth_cookie_expiration', 1 * DAY_IN_SECONDS, $user_id, true);
+        $session_now = $wp_session_token->create($expiration);
 
-        if (!is_array($session_now)) {
-            wp_set_auth_cookie( $user_id );
-            $session_now = get_user_meta($user_id, "session_tokens", true);
-            $session_now = array_keys($session_now)[count($session_now)-1];
-            return $session_now;
-        }
-        
-        $session_now = array_keys($session_now)[count($session_now)-1];
         return $session_now;
     }
 
@@ -73,16 +67,15 @@
         $user_id = $_POST["wpid"];
         $session_token = $_POST["snid"];
 
-        //Get the array of all browser session in any methods.
-        $session_now = get_user_meta($user_id, "session_tokens", true);
+        //Grab WP_Session_Token from wordpress.
+        $wp_session_token = WP_Session_Tokens::get_instance($user_id);
 
-        //Initialzied user object to be return to client.
         $user_data = [];
 
-        if (!is_array($session_now)) {
-            $user_data["status"] = "expired";
-        } else {
-            if( array_key_exists($session_token, $session_now) ) {
+        if( $wp_session_token->verify( $session_token ) ) {
+            $wp_session = $wp_session_token->get( $session_token );
+            if( $wp_session['expiration'] >= time() ) {
+                //Our client primary status report as success.
                 $user_data["status"] = "success";
 
                 //Feed $user_data object with the user data need.
@@ -95,12 +88,14 @@
                 $user_data["session"] = $session_token;
                 $user_data["regdate"] = $wp_user->data->user_registered;
 
-            } else {
-                $user_data["status"] = "notfound";
+                //Return a with primary key, status[error, success].
+                return rest_ensure_response( $user_data );
             }
         }
 
-        //Return a with primary key, status[error, success].
+        //Our client primary status report as failed.
+        $user_data["status"] = "failed";
+
         return rest_ensure_response( $user_data );
     }
 
