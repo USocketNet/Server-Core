@@ -2,11 +2,10 @@
 //#region MASTER SERVER CONNECTION
 
 $(function () {
-    console.log('Connecting... ' + 'http://localhost:19090?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']);
 
     if( localStorage['wpid'] != 'undefined' && localStorage['snid'] != 'undefined' ) { 
         var master = io(
-            'http://localhost:19090?wpid=3&snid=Z61rArdz6ByVcqfGO815Z0p6jI4fXx1LEeCHjTIT55O', 
+            'http://localhost:19090?wpid='+localStorage['wpid']+'&snid='+localStorage['snid'], 
             { 
                 autoConnect: false,
                 forceNew: false,
