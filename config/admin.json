@@ -1,18 +1,10 @@
 {
-    "serverHost": "localhost",
-    "serverPort": 3001,
-    "authKey": "SeCuReHaSkEy123",
-
-    "clusterCpu": 2,
-    "cluster": true,
-    
     "allowedDomain": ["localhost"],
-    "singleUser": false,
-    
+
     "mysql": {
-        "hostname": "localhost",
-        "username": "admin",
-        "password": "admin",
-        "database": "usocketnet"
+        "host": "localhost",
+        "uname": "admin",
+        "pword": "admin",
+        "dbase": "usocketnet"
     }
 }
