@@ -21,8 +21,7 @@ sio.on('connection', (socket) => {
       }
     });
   
-    socket.on('hello', (data) => {
-      console.log(data);
-      socket.broadcast.emit('hello', 'Hello from master server by ' + socket.id);
+    socket.on('disconnect', () => {
+      console.log( 'Master Disconnected: ' + socket.id );
     });
 });

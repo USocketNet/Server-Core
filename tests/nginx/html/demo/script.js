@@ -2,35 +2,47 @@
 //#region MASTER SERVER CONNECTION
 
 $(function () {
+    console.log('Connecting... ' + 'http://localhost:19090?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']);
 
-    var master = io(
-        'http://localhost:19090?wpid=3&snid=0cHfBETzwwDmTZfXrk4cogt6VErw4SmpwAOaPktCh7t', 
-        { 
-            autoConnect: false,
-            forceNew: false,
-            transports: ['websocket', 'polling']
-        }
-    ); master.connect();
+    if( localStorage['wpid'] != 'undefined' && localStorage['snid'] != 'undefined' ) { 
+        var master = io(
+            'http://localhost:19090?wpid=3&snid=Z61rArdz6ByVcqfGO815Z0p6jI4fXx1LEeCHjTIT55O', 
+            { 
+                autoConnect: false,
+                forceNew: false,
+                transports: ['websocket', 'polling']
+            }
+        ); master.connect();
 
-
-    master.on('connect', () => {
-        console.log('Connected: ' + master.connected + '. Im ' + master.id + ' from master server.');
-
-        var data = { message: 'Hello from Client!' };
-        master.emit( 'connected', data, (returnee) => {
-            console.log('Connected to master server on port ' + returnee);
-            master.emit('hello', 'New Connection! Hello from ' + master.id);
+        master.on('connect', () => {
+            console.log('Connected: ' + master.connected + '. Im ' + master.id + ' from master server.');
+    
+            var data = { message: 'Hello from Client!' };
+            master.emit( 'connected', data, (returnee) => {
+                console.log('Connected to master server on port ' + returnee);
+            });
         });
-    });
+    
+        master.on('hello', (data) => {
+            console.log('Master Client: ' + data); // true
+        });
+    
+        master.on('error', (data) => {
+            console.log('Master Client: ' + data); // true
+        });
+    } 
 
-    master.on('hello', (data) => {
-        console.log('Master Client: ' + data); // true
-    });
+    $('form').submit(function(e){
+        if( $('#m').val() == 'logout' ) {
+            e.preventDefault(); // prevents page reloading
+            
+            localStorage['wpid'] = 'undefined';
+            localStorage['snid'] = 'undefined';
+            window.location.replace("http://localhost/demo");
 
-    master.on('error', (data) => {
-        console.log('Master Client: ' + data); // true
+            $('#m').val('');
+        } return false;
     });
-
 });
 
 //#endregion

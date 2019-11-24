@@ -8,7 +8,7 @@ function post(cred, core, cback)
         { form: { wpid: cred.wpid, snid: cred.snid } },
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                cback(body);
+                cback( { status: 'success', data: body } );
             } else {
                 cback( { status: 'error'} );
             }

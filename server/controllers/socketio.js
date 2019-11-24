@@ -11,9 +11,9 @@ function init(core, server, nsp) {
             var data = {};
                 data.wpid = packet.handshake.query.wpid;
                 data.snid = packet.handshake.query.snid;
-        
+                        
             core.restapi.post(data, core, (returnee) => {
-                var resultee = JSON.parse(returnee);
+                var resultee = returnee;
                 if( resultee.status == 'success' ) {
                     return next();
                 } else {
