@@ -14,7 +14,6 @@ const system = require('os');
 var config = {};
     config.package = require('../package.json');
     config.admin = require('../config/admin.json');
-    config.debug = require('../config/debug.json');
     config.master = require('../config/master.json');
     config.chat = require('../config/chat.json');
     config.game = require('../config/game.json');
@@ -40,5 +39,7 @@ const debug = require('./controllers/debug');
 const cipher = require('./controllers/cipher');
     exports.cipher = cipher;
 
-//Include this to debug server errors.
-require('./controllers/process')(debug);
+//Filter unwanted process error info.
+if( config.admin.production ) {
+    require('./controllers/process')(debug);
+}
