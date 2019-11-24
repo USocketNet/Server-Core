@@ -6,15 +6,12 @@ var socketio = require('./controllers/socketio');
   var sio = socketio.init(server, 'master');
   var con = socketio.conn(core, server, sio, 'master');
 
-
-
-
 var conns = 0;
 sio.on('connection', (socket) => {
     conns = conns + 1;
-    console.log('Connection: ' + conns + ' @ port ' + con.address().port);
+    console.log('Master Connection: ' + conns + ' @ port ' + con.address().port);
     //Check socket.id of this connection.
-    console.log('Connected! ' + socket.id);
+    console.log('Master Connected! ' + socket.id);
   
     //Called by client that its connected.
     socket.on('connected', (data, cback) => {

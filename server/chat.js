@@ -10,9 +10,9 @@ var socketio = require('./controllers/socketio');
   sio.on('connection', (socket) => {
 
       conns = conns + 1;
-      console.log('Connection: ' + conns + ' @ port ' + con.address().port);
+      console.log('Chat Connection: ' + conns + ' @ port ' + con.address().port);
       //Check socket.id of this connection.
-      console.log('Connected! ' + socket.id);
+      console.log('Chat Connected! ' + socket.id);
     
       //Called by client that its connected.
       socket.on('connected', (data, cback) => {

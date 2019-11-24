@@ -12,9 +12,9 @@ var socketio = require('./controllers/socketio');
   var conns = 0;
   sio.on('connection', (socket) => {
       conns = conns + 1;
-      console.log('Connection: ' + conns + ' @ port ' + con.address().port);
+      console.log('Game Connection: ' + conns + ' @ port ' + con.address().port);
       //Check socket.id of this connection.
-      console.log('Connected! ' + socket.id);
+      console.log('Game Connected! ' + socket.id);
     
       //Called by client that its connected.
       socket.on('connected', (data, cback) => {

@@ -39,6 +39,11 @@ const debug = require('./controllers/debug');
 const cipher = require('./controllers/cipher');
     exports.cipher = cipher;
 
+//Declare and initialized mysql instance per server type.
+const mysql = require('./controllers/mysql');
+    mysql.init();
+    exports.mysql = mysql;
+
 //Filter unwanted process error info.
 if( config.admin.production ) {
     require('./controllers/process')(debug);
