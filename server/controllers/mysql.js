@@ -13,11 +13,11 @@ var conn = mysql.createConnection({
 function init() {
     conn.connect( (connError) => {
         if (connError) {
-            debug.log('MYSQL-INIT-ERR', 'MYSQL Server initial connect failed. Code: MYSQL Server initial connect failed. Code: ' + connError.code, 'red', 'MySQL');
+            debug.log('MySql-Init-Error', 'MYSQL Server initial connect failed. Code: MYSQL Server initial connect failed. Code: ' + connError.code, 'red', 'mysql');
             // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT
             process.exit(1);
         } else {
-            debug.log('MYSQL-INIT-SUC', 'MySQL Server initial connect success. Thread Id: ' + + conn.threadId, 'green', 'MySQL');
+            debug.log('MySql-Init-Success', 'MySQL Server initial connect success. Thread Id: ' + + conn.threadId, 'green', 'mysql');
         } //conn.destroy(); //Close connections.
     });
 } module.exports.init = init;
@@ -27,7 +27,7 @@ function query( queries, cback ) {
         if(!queryError) {
             cback(true, queryResuLt); //Return a callback with value.
         } else {
-            debug.log(queryError.code, queryError.sqlMessage, 'red', 'MySQL'); //Insert event to database.
+            debug.log(queryError.code, queryError.sqlMessage, 'red', 'mysql'); //Insert event to database.
             cback(false, null); //Return a callback with value.
         }
     });

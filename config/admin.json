@@ -3,6 +3,10 @@
     
     "allowedDomain": ["localhost"],
 
+    "wpress": {
+        "host": "localhost/wordpress"
+    },
+
     "mysql": {
         "host": "localhost",
         "uname": "admin",

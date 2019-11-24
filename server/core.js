@@ -39,6 +39,10 @@ const debug = require('./controllers/debug');
 const cipher = require('./controllers/cipher');
     exports.cipher = cipher;
 
+//Declare and initialized http as our rest api instance.
+const restapi = require('./controllers/restapi');
+    exports.restapi = restapi;
+
 //Declare and initialized mysql instance per server type.
 const mysql = require('./controllers/mysql');
     mysql.init();

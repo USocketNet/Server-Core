@@ -3,7 +3,7 @@ var core = require('./core');
 var server = require('./controllers/express')(core);
 var redis = require('./controllers/redis')(core, 7);
 var socketio = require('./controllers/socketio');
-  var sio = socketio.init(server, 'chat');
+  var sio = socketio.init(core, server, 'chat');
   var con = socketio.conn(core, server, sio, 'chat');
 
   var conns = 0;
