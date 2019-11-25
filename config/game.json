@@ -1,5 +1,8 @@
 {
     "type": "game",
     "host": "localhost",
-    "port": 9091
+    "port": 9091,
+    "redis": {
+        "db": 3
+    }
 }

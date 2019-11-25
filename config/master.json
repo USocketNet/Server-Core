@@ -1,5 +1,8 @@
 {
     "type": "master",
     "host": "localhost",
-    "port": 19091
+    "port": 19091,
+    "redis": {
+        "db": 1
+    }
 }
