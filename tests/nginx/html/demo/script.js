@@ -4,31 +4,35 @@
 $(function () {
 
     if( localStorage['wpid'] != 'undefined' && localStorage['snid'] != 'undefined' ) { 
-        var master = io(
-            'http://localhost:19090?wpid='+localStorage['wpid']+'&snid='+localStorage['snid'], 
-            { 
-                autoConnect: false,
-                forceNew: false,
-                transports: ['websocket', 'polling']
-            }
-        ); master.connect();
 
-        master.on('connect', () => {
-            console.log('Connected: ' + master.connected + '. Im ' + master.id + ' from master server.');
-    
-            var data = { message: 'Hello from Client!' };
-            master.emit( 'connected', data, (returnee) => {
-                console.log('Connected to master server on port ' + returnee);
+        //#region Master Connection.
+            //Master Initialized and Connect.
+            var master = io(
+                'http://localhost:19090?wpid='+localStorage['wpid']+'&snid='+localStorage['snid'], 
+                { 
+                    autoConnect: false,
+                    forceNew: false,
+                    transports: ['websocket', 'polling']
+                }
+            ); master.connect();
+
+            //Client listen for connect. 
+            master.on('connect', () => {                
+                //Send to master for further server verification.
+                master.emit( 'connected', { data: 'Abc123' }, (returnee) => {
+                    console.log('Connected: ' + master.connected + '. Im ' + master.id + ' from master server on port: ' + returnee);
+                });
             });
-        });
     
-        master.on('hello', (data) => {
-            console.log('Master Client: ' + data); // true
-        });
-    
-        master.on('error', (data) => {
-            console.log('Master Client: ' + data); // true
-        });
+            //Listens form any server error.
+            master.on('error', (data) => {
+                console.log('Master Error: ' + data); // true
+            });
+        //#endregion
+
+        //#region Chat Connection.
+
+        //#endregion
     } 
 
     $('form').submit(function(e){

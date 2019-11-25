@@ -8,10 +8,8 @@ var socketio = require('./controllers/socketio');
 
 var conns = 0;
 sio.on('connection', (socket) => {
-    conns = conns + 1;
-    console.log('Master Connection: ' + conns + ' @ port ' + con.address().port);
-    //Check socket.id of this connection.
-    console.log('Master Connected! ' + socket.id);
+    conns = conns + 1; //Just a sample code to count connection.
+    console.log('Master - Connection# ' + conns + ' @ port ' + con.address().port + ' with sid of ' + socket.id);
   
     //Called by client that its connected.
     socket.on('connected', (data, cback) => {
@@ -21,6 +19,7 @@ sio.on('connection', (socket) => {
       }
     });
   
+    //Listens for any server-client disconnection
     socket.on('disconnect', () => {
       console.log( 'Master Disconnected: ' + socket.id );
     });

@@ -62,7 +62,7 @@
     }
 
     //If user has a token and user id, authenticate using it.
-    function bytescrafter_usocketnet_api_auth_token() {
+    function bytescrafter_usocketnet_api_auth_token() {='+localStorage['snid']
         //Listen for this POST parameters push by client.
         $user_id = $_POST["wpid"];
         $session_token = $_POST["snid"];
