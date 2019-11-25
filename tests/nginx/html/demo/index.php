@@ -47,7 +47,7 @@
     <script>
       $(document).ready(function() {
 
-        if( localStorage['wpid'] != 'undefined' && localStorage['snid'] != 'undefined') {
+        if( localStorage.getItem("wpid") !== null && localStorage.getItem("snid") !== null ) {
           $.ajax({
             type: "POST",
             url: 'http://localhost/wordpress/wp-json/usocketnet/v1/auth/token',

@@ -8,11 +8,8 @@ var socketio = require('./controllers/socketio');
 
   var conns = 0;
   sio.on('connection', (socket) => {
-
       conns = conns + 1;
-      console.log('Chat Connection: ' + conns + ' @ port ' + con.address().port);
-      //Check socket.id of this connection.
-      console.log('Chat Connected! ' + socket.id);
+      console.log('Chat - Connection# ' + conns + ' @ port ' + con.address().port + ' with sid of ' + socket.id);
     
       //Called by client that its connected.
       socket.on('connected', (data, cback) => {
@@ -21,19 +18,15 @@ var socketio = require('./controllers/socketio');
           cback( con.address().port );
         }
       });
-    
-      socket.on('hello', (data) => {
-        console.log(data);
-        socket.broadcast.emit('hello', 'Hello from chat server by ' + socket.id);
-      });
   
       socket.on('chat', (msg, cback) => {
-        console.log('chat here');
-        var sending = {};
-          sending.id = socket.id;
-          sending.msg = msg;
-        cback('success');
-        socket.broadcast.emit('chat', sending);
+        console.log(' Chat Here: '+msg);
+        cback('returnee');
+        socket.broadcast.emit('chat', { id: socket.id, msg: msg });
       });
 
+      //Listens for any server-client disconnection
+    socket.on('disconnect', () => {
+      console.log( 'Chat Disconnected: ' + socket.id );
+    });
   });
