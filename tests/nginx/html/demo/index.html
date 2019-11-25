@@ -1,11 +1,3 @@
-<?php
-  if ( isset($_SESSION['wpid']) && isset($_SESSION['snid']) )
-  {
-    echo " <script> console.log('LOGGED IN'); </script>";
-    header( "Location: chat.php" );
-    exit ;
-  }
-?>
 
 <!doctype html>
 <html>
@@ -55,7 +47,7 @@
             dataType: 'json',
             success: function(data) {
               if( data.status == 'success' ) {
-                window.location.replace("http://localhost/demo/chat.php");
+                window.location.replace("http://localhost/demo/chat.html");
               } else {
                 console.log( 'USocketNet: Failed to login using token!' );
               }
@@ -74,9 +66,9 @@
           dataType: 'json',
           success: function(data) {
             if( data.status == 'success' ) {
-              localStorage['wpid'] = data.uid;
+              localStorage['wpid'] = data.wpid;
               localStorage['snid'] = data.session;
-              window.location.replace("http://localhost/demo/chat.php");
+              window.location.replace("http://localhost/demo/chat.html");
             } else {
               console.log( 'USocketNet: Failed to login!' );
             }

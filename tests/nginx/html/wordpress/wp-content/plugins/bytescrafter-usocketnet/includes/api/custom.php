@@ -48,7 +48,7 @@
             $returnee["status"] = "success";
 
             //Preparing data which to be return to user.
-            $returnee["uid"] = $auth->ID;
+            $returnee["wpid"] = $auth->ID;
             $returnee["uname"] = $auth->data->user_nicename;
             $returnee["dname"] = $auth->data->display_name;
             $returnee["email"] = $auth->data->user_email;
@@ -80,7 +80,7 @@
 
                 //Feed $user_data object with the user data need.
                 $wp_user = get_user_by('id', $user_id);
-                $user_data["uid"] = $user_id;
+                $user_data["wpid"] = $user_id;
                 $user_data["uname"] = $wp_user->data->user_nicename;
                 $user_data["dname"] = $wp_user->data->display_name;
                 $user_data["email"] = $wp_user->data->user_email;

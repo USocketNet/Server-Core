@@ -84,10 +84,6 @@ $(function () {
                 }
             ); chat.connect();
 
-            chat.on('chat', function(receiving){
-                $('#messages').append($('<li>').text('['+receiving.id+']: ' + receiving.msg));
-            });
-            
             chat.on('connect', () => {
                 $('#messages').append($('<li style="text-align: center;">').text( 'Conneted: '+chat.connected+'! My ID is' + chat.id ));
             
@@ -101,20 +97,19 @@ $(function () {
                     $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + msg ));
                 });
             }
+
+            chat.on('chat', function(receiving) {
+                $('#messages').append($('<li>').text( receiving.nme  + '['+receiving.id+']: ' + receiving.msg));
+            });
+
         //#endregion
+
+
     } 
 
-
-    
 });
 
 //#endregion
-
-// //#region CHAT SERVER CONNECTION
-
-
-
-// //#endregion
 
 // //#region GAME SERVER CONNECTION
 
