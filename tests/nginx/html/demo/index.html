@@ -47,6 +47,7 @@
             dataType: 'json',
             success: function(data) {
               if( data.status == 'success' ) {
+                localStorage['user'] = JSON.stringify(data);
                 window.location.replace("http://localhost/demo/chat.html");
               } else {
                 console.log( 'USocketNet: Failed to login using token!' );
@@ -68,6 +69,7 @@
             if( data.status == 'success' ) {
               localStorage['wpid'] = data.wpid;
               localStorage['snid'] = data.session;
+              localStorage['user'] = JSON.stringify(data);
               window.location.replace("http://localhost/demo/chat.html");
             } else {
               console.log( 'USocketNet: Failed to login!' );
