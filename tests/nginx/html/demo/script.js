@@ -23,6 +23,8 @@ $(function () {
 
     if( localStorage['wpid'] != 'undefined' && localStorage['snid'] != 'undefined' ) { 
 
+        var curUser = JSON.parse(localStorage['user']);
+
         //#region Master Connection.
             //Master Initialized and Connect.
             var master = io(
@@ -37,7 +39,8 @@ $(function () {
             //Client listen for connect. 
             master.on('connect', () => {                
                 //Send to master for further server verification.
-                master.emit( 'connected', { data: 'Abc123' }, (returnee) => {
+                master.emit( 'connected', localStorage['user'], (returnee) => {
+                    $('#messages').append($('<li style="text-align: center;">').text( 'Master: '+master.connected+'! ID# ' + master.id ));
                     console.log('Master Connected: ' + master.connected + '. Im ' + master.id + ' from master server on port: ' + returnee);
                 });
             });
@@ -85,10 +88,10 @@ $(function () {
             ); chat.connect();
 
             chat.on('connect', () => {
-                $('#messages').append($('<li style="text-align: center;">').text( 'Conneted: '+chat.connected+'! My ID is' + chat.id ));
+                $('#messages').append($('<li style="text-align: center;">').text( 'Chat: '+chat.connected+'! ID# ' + chat.id ));
             
-                chat.emit( 'connected', { data: 'Abc123' }, (returnee) => {
-                    console.log('Chat Connected: ' + master.connected + '. Im ' + master.id + ' from master server on port: ' + returnee);
+                chat.emit( 'connected', { data: 'Abc123' }, (user) => {
+                    $('#messages').append($('<li style="text-align: center;">').text( 'Welcome! ' + curUser.dname + '[' +curUser.email+ ']' ));
                 });
             });
 
@@ -99,7 +102,11 @@ $(function () {
             }
 
             chat.on('chat', function(receiving) {
-                $('#messages').append($('<li>').text( receiving.nme  + '['+receiving.id+']: ' + receiving.msg));
+                if( curUser.wpid == receiving.wpid ) {
+                    $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + receiving.msg ));
+                } else {
+                    $('#messages').append($('<li>').text( curUser.dname  + '['+receiving.sid+']: ' + receiving.msg));
+                }
             });
 
         //#endregion
