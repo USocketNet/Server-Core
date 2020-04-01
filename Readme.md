@@ -67,6 +67,27 @@ PM2 is a production process manager for Node.js applications with a built-in loa
 * Artillery
 Artillery is a modern, powerful & easy-to-use load testing and functional testing toolkit. Use it to ship scalable applications that stay performant & resilient under high load.
 
+### Default Public HTML
+
+This project includes built-in http server for WordPress which is nginx, SQL database using MySql, PHP version 7 as cgi engine. On windows, you can easily start or stop this said server on /test.
+
+- http://localhost/demo - Available if core server is running.
+- http://localhost/wordpress
+- http://localhost/phpMyAdmin
+
+### Credentials
+
+This are the default credentials that we use during development. This credential should be replace with much stronger phrase on production.
+
+* MySQL root users
+- UN: root  PW: root
+- UN: admin PW: admin
+
+* WordPress users
+- UN: admin PW: admin TP: admin
+- UN: demo  PW: demo  TP: subscribers
+- UN: test  PW: test  TP: subscribers
+
 ### Installing
 
 STEP 1 - SETUP NGINX LOAD BALANCER.
