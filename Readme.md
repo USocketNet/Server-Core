@@ -182,4 +182,4 @@ This project is licensed under the GNU GPL License - see the [LICENSE](LICENSE) 
 ## Acknowledgments
 
 * Bytes Crafter
-* Copyright 2019
+* Copyright 2020

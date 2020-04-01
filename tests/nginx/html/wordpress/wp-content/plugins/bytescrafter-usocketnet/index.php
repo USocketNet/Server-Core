@@ -5,7 +5,7 @@
         * @package      bytescrafter-usocketnet-backend
         * @author       Bytes Crafter
 
-        * @copyright    2019 Bytes Crafter
+        * @copyright    2020 Bytes Crafter
         * @version      0.1.0
 
         * @wordpress-plugin
@@ -13,11 +13,11 @@
         * WC tested up to: 5.0.3
 
         Plugin Name: USocketNet Backend
-        Plugin URI: http://www.bytes-crafter.com/projects/usocketnet
+        Plugin URI: http://www.bytescrafter.net/projects/usocketnet
         Description: USocketNet backend using the WordPress framework.
         Version: 0.1.0
         Author: Bytes Crafter
-        Author URI:   https://www.bytes-crafter.com/about-us
+        Author URI:   https://www.bytescrafter.net/about-us
         Text Domain:  bytescrafter-usocketnet-backend
     */
 
