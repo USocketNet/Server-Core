@@ -4,80 +4,115 @@
   <head>
     <title>USocketNet - Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    
+    <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript"> var pname = 'home'; </script>
+    <script src="js/socket.io.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
   </head>
   <body>
 
-    <h2>WELCOME!</h2>
-    <p>This is only a demo of the project USocketNet.</p>
-
-    <form id="login_form" method="post">
-      <div class="imgcontainer">
-        <img src="logo.png" alt="Avatar" class="avatar">
-      </div>
-    
-      <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input id="uname" type="text" placeholder="Enter Username" name="uname" required>
-    
-        <label for="pword"><b>Password</b></label>
-        <input id="pword" type="password" placeholder="Enter Password" name="pword" required>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="panel panel-login">
             
-        <button type="submit">Login</button>
-        <!-- <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label> -->
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-112">
+                  <div class="login-logo-div">
+                    <img src="img/logo.png" alt="Avatar" class="login-logo-img">
+                    <p>This is only a demo of the project USocketNet.</p>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <a href="#" class="active" id="login-form-link">LOGIN</a>
+                </div>
+                <div class="col-xs-6">
+                  <a href="#" id="register-form-link">REGISTER</a>
+                </div>
+              </div>
+              <hr>
+            </div>
+            
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-lg-12">
+
+                  <form id="login_form" onsubmit="onLoginNow()" action="#" role="form" style="display: block;">
+                    <div class="form-group">
+                      <input type="text" name="signin-uname" id="signin-uname" tabindex="1" class="form-control" placeholder="Username" value="">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="signin-pword" id="signin-pword" tabindex="2" class="form-control" placeholder="Password">
+                    </div>
+                    
+                    <div class="form-group text-center">
+                      <div class="alert alert-success" id="signin-success-alert">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>Success! </strong> You are now authenticated.
+                      </div>
+                      <div class="alert alert-danger" id="signin-error-alert">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>Error! </strong> Something went wrong!
+                      </div>
+                    </div>
+
+                    <div class="form-group text-center">
+                      <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                      <label for="remember"> Remember Me</label>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                          <input id="signin-submit" type="submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="text-center">
+                            <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  
+                  <form id="register_form" onsubmit="onRegister()" action="#" role="form" style="display: none;">
+                    <div class="form-group">
+                      <input type="text" name="signup-uname" id="signup-uname" tabindex="1" class="form-control" placeholder="Username" value="">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" name="signup-email" id="signup-email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="signup-pword" id="signup-pword" tabindex="2" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="signup-confirm-pword" id="signup-confirm-pword" tabindex="2" class="form-control" placeholder="Confirm Password">
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                          <input type="submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
       </div>
-    
-      <!-- <div class="container" style="background-color:#f1f1f1">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <span class="pword">Forgot <a href="#">password?</a></span>
-      </div> -->
-    </form>
+    </div>
 
-    <script src="jquery-1.11.1.js"></script>
-    <script>
-      $(document).ready(function() {
-
-        if( localStorage.getItem("wpid") !== null && localStorage.getItem("snid") !== null ) {
-          $.ajax({
-            type: "POST",
-            url: 'http://localhost/wordpress/wp-json/usocketnet/v1/auth/token',
-            data: { wpid: localStorage['wpid'], snid: localStorage['snid']},
-            dataType: 'json',
-            success: function(data) {
-              if( data.status == 'success' ) {
-                localStorage['user'] = JSON.stringify(data);
-                window.location.replace("http://localhost/demo/chat.html");
-              } else {
-                console.log( 'USocketNet: Failed to login using token!' );
-              }
-            }
-          }); event.preventDefault();
-        }
-
-      });
-
-      $( "#login_form" ).submit(function( event ) {
-
-        $.ajax({
-          type: "POST",
-          url: 'http://localhost/wordpress/wp-json/usocketnet/v1/auth',
-          data: $('#login_form').serialize(),
-          dataType: 'json',
-          success: function(data) {
-            if( data.status == 'success' ) {
-              localStorage['wpid'] = data.wpid;
-              localStorage['snid'] = data.session;
-              localStorage['user'] = JSON.stringify(data);
-              window.location.replace("http://localhost/demo/chat.html");
-            } else {
-              console.log( 'USocketNet: Failed to login!' );
-            }
-          }
-        }); event.preventDefault();
-
-      });
-    </script>
   </body>
 </html>
