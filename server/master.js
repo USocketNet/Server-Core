@@ -6,38 +6,30 @@ var socketio = require('./controllers/socketio');
   var sio = socketio.init(core, server, 'master');
   var con = socketio.conn(core, server, sio, 'master');
 
-var conns = 0;
 sio.on('connection', (socket) => {
   
-    conns = conns + 1; //Just a sample code to count connection.
-    console.log('Master - Connection# ' + conns + ' @ port ' + con.address().port + ' with sid of ' + socket.id);
+  //Server logging about the connection on Master Server.
+  core.debug.log('Connection on Master', 'User connect @ port ' + con.address().port + ' with sid of ' + socket.id, 'white', 'connect');
   
-    //Add or Update redis user entry @mib.
-    redis.newConn({ wpid: sio.wpid, mib: socket.id }, (res) => {
+  //Add or Update redis user entry @mid.
+  redis.entry({ wpid: sio.wpid, mid: socket.id }, (res) => {
 
-    });
-
-    
+  });
 
     //Called by client that its connected.
     socket.on('connected', (data, cback) => {
-      var user = JSON.parse(data);
-        user.mid = socket.id;
-      // redis.addUser( user, ( result ) => {
-      //   if( result.status == 'success' ) {
-
-      //   } else {
-          
-      //   }
-      // });
-      
       if(typeof cback === 'function') {
         cback( con.address().port );
       }
     });
   
-    //Listens for any server-client disconnection
-    socket.on('disconnect', () => {
-      console.log( 'Master Disconnected: ' + socket.id );
+  //Listens for any server-client disconnection
+  socket.on('disconnect', () => {
+    //Server logging about the disconnection on Master Server.
+    core.debug.log('Disconnection on Master', 'User disconnect @ port ' + con.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
+
+    redis.entry({ wpid: sio.wpid, mid: 'undefine' }, (res) => {
+      //Make to make the mid undefine on redis to check if user is currently connected.
     });
+  });
 });

@@ -1,5 +1,5 @@
 
-//#region MASTER SERVER CONNECTION
+//#region SERVER CONNECTION
 
 $(function () {
 
@@ -163,31 +163,3 @@ $(function () {
 });
 
 //#endregion
-
-// //#region GAME SERVER CONNECTION
-
-// var game = io(
-//     'http://localhost:19090?wpid=3&snid=0cHfBETzwwDmTZfXrk4cogt6VErw4SmpwAOaPktCh7t', 
-//     { 
-//         autoConnect: false,
-//         forceNew: false,
-//         transports: ['websocket', 'polling']
-//     }
-// ); game.connect();
-
-
-// game.on('connect', () => {
-//     console.log('Connected: ' + game.connected + '. Im ' + game.id + ' from game server.');
-
-//     var data = { message: 'Hello from Client Connection!' };
-//     game.emit( 'connected', data, (returnee) => {
-//         console.log('Connected to game server on port ' + returnee);
-//          game.emit('hello', 'New Connection! Hello from ' + game.id);
-//     });
-// });
-
-// game.on('hello', (data) => {
-//     console.log('Game Client: : ' + data); // true
-// });
-
-// //#endregion

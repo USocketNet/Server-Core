@@ -66,7 +66,7 @@ function updateUser( user, cback ) {
     });
 } module.exports.updateUser = updateUser;
 
-function newConn( user, cback ) {
+function entry( user, cback ) {
     getUser(user.wpid, (res) => {
         if( res.status == 'success' ) {
 
@@ -90,7 +90,7 @@ function newConn( user, cback ) {
 
         }
     }); 
-} module.exports.newConn = newConn;
+} module.exports.entry = entry;
 
 
 function test() {

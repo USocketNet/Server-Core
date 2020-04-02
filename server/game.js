@@ -6,26 +6,23 @@ var socketio = require('./controllers/socketio');
   var sio = socketio.init(core, server, 'game');
   var con = socketio.conn(core, server, sio, 'game');
   
-  var conns = 0;
   sio.on('connection', (socket) => {
-      conns = conns + 1;
-      console.log('Game - Connection# ' + conns + ' @ port ' + con.address().port + ' with sid of ' + socket.id);
 
-      //Add or Update redis user entry @gib.
-      redis.newConn({ wpid: sio.wpid, gib: socket.id }, (res) => {
+    //Server logging about the connection on Game Server.
+    core.debug.log('Connection on Game', 'User connect @ port ' + con.address().port + ' with sid of ' + socket.id, 'white', 'connect');
+      
+    //Add or Update redis user entry @gid.
+    redis.entry({ wpid: sio.wpid, gid: socket.id }, (res) => {
 
+    });
+
+    //Listens for any server-client disconnection
+    socket.on('disconnect', () => {
+      //Server logging about the disconnection on Game Server.
+      core.debug.log('Disconnection on Game', 'User disconnect @ port ' + con.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
+
+      redis.entry({ wpid: sio.wpid, gid: 'undefine' }, (res) => {
+        //Make to make the gib undefine on redis to check if user is currently connected.
       });
-    
-      //Called by client that its connected.
-      socket.on('connected', (data, cback) => {
-        console.log(data);
-        if(typeof cback === 'function') {
-          cback( con.address().port );
-        }
-      });
-    
-      socket.on('hello', (data) => {
-        console.log(data);
-        socket.broadcast.emit('hello', 'Hello from game server by ' + socket.id);
-      });
+    });
   });
