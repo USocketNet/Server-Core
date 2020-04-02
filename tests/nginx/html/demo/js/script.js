@@ -79,7 +79,7 @@ function onLoginNow() {
             localStorage['uname'] = data.data.dname;
             localStorage['snid'] = data.data.session;
             localStorage['cookie'] = data.data.cookie;
-            localStorage['user'] = JSON.stringify(data);
+            localStorage['user'] = JSON.stringify(data.data);
             window.location.replace(site_url + '/profile.html');
 
           } else {
