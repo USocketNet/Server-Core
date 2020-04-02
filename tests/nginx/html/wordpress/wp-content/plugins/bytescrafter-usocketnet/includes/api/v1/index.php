@@ -21,12 +21,12 @@ function bytescrafter_usocketnet_route()
 
     register_rest_route( 'usocketnet/v1', 'auth', array(
         'methods' => 'POST',
-        'callback' => 'auth_callback',
+        'callback' => array('BC_USocketNet_WP','bc_usn_authenticate'),
     ));
 
     register_rest_route( 'usocketnet/v1', 'token', array(
         'methods' => 'POST',
-        'callback' => array('BC_USocketNet','auth_token'),
+        'callback' => array('BC_USocketNet','bc_usn_verify_token'),
     ));
 }
 add_action( 'rest_api_init', 'bytescrafter_usocketnet_route' );

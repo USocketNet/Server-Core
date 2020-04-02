@@ -12,7 +12,7 @@
 <?php
 	class BC_USocketNet {
 
-		public function auth_token() {
+		public function bc_usn_verify_token() {
 			//Listen for this POST parameters push by client.
 			$user_id = $_POST["wpid"];
 			$session_token = $_POST["snid"];

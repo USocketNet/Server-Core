@@ -11,6 +11,8 @@ function init(core, server, nsp) {
             var data = {};
                 data.wpid = packet.handshake.query.wpid;
                 data.snid = packet.handshake.query.snid;
+
+                socketio.wpid = data.wpid;
                         
             core.restapi.post(data, core, (returnee) => {
                 var resultee = returnee;

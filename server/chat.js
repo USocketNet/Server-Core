@@ -12,8 +12,8 @@ var socketio = require('./controllers/socketio');
       console.log('Chat - Connection# ' + conns + ' @ port ' + con.address().port + ' with sid of ' + socket.id);
     
       //Get the user reference.
-      var curUser = {};
-      redis.getUser(socket.handshake.query.wpid, (res) => {
+      var curUser = { wpid: sio.wpid };
+      redis.getUser(curUser.wpid, (res) => {
         if( res.status == 'success' ) {
           curUser = res.data;
         }
@@ -22,7 +22,7 @@ var socketio = require('./controllers/socketio');
       //Called by client that its connected.
       socket.on('connected', (data, cback) => {
         redis.addUser( curUser, ( result ) => {
-          console.log( '++++' + JSON.stringify(result) );
+          
           if( result.status == 'success' ) {
 
           } else {
