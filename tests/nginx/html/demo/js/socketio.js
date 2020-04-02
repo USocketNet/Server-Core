@@ -3,9 +3,11 @@
 
 $(function () {
 
+    
     function forceDisconnect(log) {
-        localStorage.clear();
-        window.location.replace("http://localhost/demo");
+        //localStorage.clear();
+        console.error('Client Error: ');
+        //window.location.replace("http://localhost/demo");
     }
 
     $('form').submit(function(e) {

@@ -67,7 +67,8 @@
         }
     #endregion
 
-    include_once ( plugin_dir_path( __FILE__ ) . '/includes/api/custom.php' );
-    include_once ( plugin_dir_path( __FILE__ ) . '/includes/api/basic-auth.php' );
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/index.php' );
+
+    //Include the REST API of USocketNet to be accessible.
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/api/index.php' );
 ?>

@@ -49,7 +49,7 @@ function onLoginNow() {
     //We try to get element value by id to create new object.
     var signinUname = document.getElementById('signin-uname').value;
     var signinPword = document.getElementById('signin-pword').value;
-    var signinData = { uname: signinUname, pword: signinPword };
+    var signinData = { "UN": signinUname, "PW": signinPword };
     
     //Make sure to hide existing alert dialog.
     $("#signin-success-alert").hide();
@@ -66,18 +66,19 @@ function onLoginNow() {
         dataType: 'json',
         success: function(data) {
             console.log(JSON.stringify(data));
+            
             $("#signin-submit").prop('disabled', false);
 
-          if( data.status == 'success' ) {
+          if( data.code == 'auth_success' ) {
 
             $("#signin-success-alert").fadeTo(7000, 500).slideUp(500, function() {
                 $("#signin-success-alert").slideUp(500);
             });
 
-            localStorage['wpid'] = data.wpid;
-            localStorage['uname'] = data.uname;
-            localStorage['email'] = data.email;
-            localStorage['session'] = data.session;
+            localStorage['wpid'] = data.data.id;
+            localStorage['uname'] = data.data.dname;
+            localStorage['snid'] = data.data.session;
+            localStorage['cookie'] = data.data.cookie;
             localStorage['user'] = JSON.stringify(data);
             window.location.replace(site_url + '/profile.html');
 
