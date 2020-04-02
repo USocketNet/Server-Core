@@ -26,7 +26,7 @@
 		}
 
 		//Authenticate user via Rest Api.
-		public function bc_usn_authenticate() {
+		public static function bc_usn_authenticate() {
         
 			//Listens for POST values.
 			$username = $_POST["UN"];
