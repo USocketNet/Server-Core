@@ -3,7 +3,6 @@
 
 $(function () {
 
-    
     function forceDisconnect(log) {
         localStorage.clear();
         console.error('Client Error: ');
@@ -42,7 +41,11 @@ $(function () {
             master.on('connect', () => {                
                 //Send to master for further server verification.
                 master.emit( 'connected', localStorage['user'], (returnee) => {
+                    chat.emit( 'connected', { data: 'Abc123' }, (user) => {
+                        $('#messages').append($('<li style="text-align: center;">').text( 'Welcome! ' + curUser.dname + '[' +curUser.email+ ']' ));
+                    });
                     $('#messages').append($('<li style="text-align: center;">').text( 'Master: '+master.connected+'! ID# ' + master.id ));
+                    
                     console.log('Master Connected: ' + master.connected + '. Im ' + master.id + ' from master server on port: ' + returnee);
                 });
             });
@@ -91,10 +94,6 @@ $(function () {
 
             chat.on('connect', () => {
                 $('#messages').append($('<li style="text-align: center;">').text( 'Chat: '+chat.connected+'! ID# ' + chat.id ));
-            
-                chat.emit( 'connected', { data: 'Abc123' }, (user) => {
-                    $('#messages').append($('<li style="text-align: center;">').text( 'Welcome! ' + curUser.dname + '[' +curUser.email+ ']' ));
-                });
             });
 
             function sendChatMessage(msg) {
@@ -113,7 +112,52 @@ $(function () {
 
         //#endregion
 
+        //#region Game Connection.
 
+            var game = io(
+                'http://localhost:9091?wpid='+localStorage['wpid']+'&snid='+localStorage['snid'], 
+                { 
+                    autoConnect: false,
+                    forceNew: false,
+                    transports: ['websocket', 'polling']
+                }
+            ); game.connect();
+
+            game.on('connect', () => {
+                $('#messages').append($('<li style="text-align: center;">').text( 'Game: '+game.connected+'! ID# ' + game.id ));
+            });
+
+            //Client listen for disconnect. 
+            game.on('disconnect', (data) => {
+                forceDisconnect('Game Disconnected: ' + data);
+            });
+
+            //Client listen for disconnect. 
+            game.on('connect_error', (data) => {
+                forceDisconnect('Game Connect Error: ' + data);
+            });
+
+            //Client listen for disconnect. 
+            game.on('connect_timeout', (data) => {
+                forceDisconnect('Game Connect Timeout: ' + data);
+            });
+
+            //Client listen for disconnect. 
+            game.on('reconnect_error ', (data) => {
+                forceDisconnect('Game Reconnect Error : ' + data);
+            });
+
+            //Client listen for disconnect. 
+            game.on('reconnect_failed', (data) => {
+                forceDisconnect('Game Reconnect Failed: ' + data);
+            });
+    
+            //Listens form any server error.
+            game.on('error', (data) => {
+                forceDisconnect('Game Error: ' + data);
+            });
+
+        //#endregion
     } 
 
 });

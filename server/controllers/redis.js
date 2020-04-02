@@ -56,6 +56,43 @@ function addUser( user, cback ) {
     });
 } module.exports.addUser = addUser;
 
+function updateUser( user, cback ) {
+    conn.hmset( getUserKey(user.wpid), user, function (err, res) {
+        if( err ) {
+            cback( { status: 'error', info: 'Error add user to redis: ' + res } );
+        } else {
+            cback( { status: 'success', info: 'Updated information: ' + res } );
+        }
+    });
+} module.exports.updateUser = updateUser;
+
+function newConn( user, cback ) {
+    getUser(user.wpid, (res) => {
+        if( res.status == 'success' ) {
+
+          updateUser( user, ( result ) => {
+            if( result.status == 'success' ) {
+                cback( result );
+            } else {
+                cback( result );
+            }
+          });
+
+        } else if( res.status == 'notfound' ) {
+
+          addUser( user, ( result ) => {
+            if( result.status == 'success' ) {
+                cback( result );
+            } else {
+                cback( result );
+            }
+          });
+
+        }
+    }); 
+} module.exports.newConn = newConn;
+
+
 function test() {
     //Get the rows key inside hashset.
     // conn.hkeys('wpid_3',  function (err, replies) {

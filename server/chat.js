@@ -11,27 +11,24 @@ var socketio = require('./controllers/socketio');
       conns = conns + 1;
       console.log('Chat - Connection# ' + conns + ' @ port ' + con.address().port + ' with sid of ' + socket.id);
     
-      //Get the user reference.
-      var curUser = { wpid: sio.wpid };
-      redis.getUser(curUser.wpid, (res) => {
-        if( res.status == 'success' ) {
-          curUser = res.data;
-        }
-      }); curUser.cid = socket.id;
+      //Add or Update redis user entry @cib.
+      redis.newConn({ wpid: sio.wpid, cib: socket.id }, (res) => {
+
+      });
 
       //Called by client that its connected.
       socket.on('connected', (data, cback) => {
-        redis.addUser( curUser, ( result ) => {
+        // redis.addUser( curUser, ( result ) => {
           
-          if( result.status == 'success' ) {
+        //   if( result.status == 'success' ) {
 
-          } else {
+        //   } else {
             
-          }
-        });
-        if(typeof cback === 'function') {
-          cback( curUser );
-        }
+        //   }
+        // });
+        // if(typeof cback === 'function') {
+        //   cback( curUser );
+        // }
       });
   
       socket.on('chat', (msg, cback) => {
