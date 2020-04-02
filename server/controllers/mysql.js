@@ -2,7 +2,6 @@
 var mysql = require('mysql'); //database engine.
 var core = require('../core');
     var config = core.config.admin.mysql;
-var debug = core.debug;
 var conn = mysql.createConnection({
     host: config.host,
     user: config.uname,
@@ -13,11 +12,11 @@ var conn = mysql.createConnection({
 function init() {
     conn.connect( (connError) => {
         if (connError) {
-            debug.log('MySql-Init-Error', 'MYSQL Server initial connect failed. Code: MYSQL Server initial connect failed. Code: ' + connError.code, 'red', 'mysql');
+            core.debug.log('MySql-Init-Error', 'MySQL Server connection check return error. Code: ' + connError.code, 'red', 'mysql');
             // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT
             process.exit(1);
         } else {
-            debug.log('MySql-Init-Success', 'MySQL Server initial connect success. Thread Id: ' + + conn.threadId, 'green', 'mysql');
+            core.debug.log('MySql-Init-Success', 'MySQL Server connection check was successful on Thread Id: ' + + conn.threadId, 'green', 'mysql');
         } //conn.destroy(); //Close connections.
     });
 } module.exports.init = init;
@@ -27,7 +26,7 @@ function query( queries, cback ) {
         if(!queryError) {
             cback(true, queryResuLt); //Return a callback with value.
         } else {
-            debug.log(queryError.code, queryError.sqlMessage, 'red', 'mysql'); //Insert event to database.
+            core.debug.log(queryError.code, queryError.sqlMessage, 'red', 'mysql'); //Insert event to database.
             cback(false, null); //Return a callback with value.
         }
     });
