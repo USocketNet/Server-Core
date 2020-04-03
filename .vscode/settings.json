@@ -7,5 +7,21 @@
         "docs\\file-structure.txt",
         "library",
         "tests\\nginx\\html\\demo"
-    ]
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "**/nginx/contrib": true,
+        "**/nginx/docs": true,
+        "**/nginx/logs": true,
+        "**/nginx/mysql": true,
+        "**/nginx/php": true,
+        "**/nginx/temp": true,
+        "**/nginx/tmp": true,
+        "**/nginx/tools": true
+    }
 }
