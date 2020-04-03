@@ -1,5 +1,5 @@
 
-function init(core, server, nsp) {
+function init(core, server, redis, nsp) {
     const socketio = require('socket.io').listen(server);
     const redisAdapter = require('socket.io-redis');
         socketio.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
@@ -9,15 +9,39 @@ function init(core, server, nsp) {
         socketio.use((packet, next) => {
 
             var data = {};
+                data.nsp = nsp;
                 data.wpid = packet.handshake.query.wpid;
                 data.snid = packet.handshake.query.snid;
+     
+            core.restapi.post(data, core, (result) => {
 
-                socketio.wpid = data.wpid;
-                        
-            core.restapi.post(data, core, (returnee) => {
-                var resultee = returnee;
-                if( resultee.status == 'success' ) {
-                    return next();
+                if( result.status == 'success' ) {
+                    
+                    redis.exist(data, (connected) => {
+
+                        socketio.wpid = data.wpid;
+                        var entry = 'undefined'
+                            switch( nsp ) {
+                                case 'master':
+                                    entry = JSON.parse(result.data);
+                                    entry.mid = packet.id;
+                                    delete entry.status;
+                                    break;
+                                case 'chat':
+                                    entry.cid = packet.id;
+                                    break;
+                                case 'game':
+                                    entry.gid = packet.id;
+                                    break;
+                                default:
+                            }
+                            entry.wpid = data.wpid;
+
+                        redis.entry(entry, (res) => {
+
+                        });
+                        return next();
+                    });
                 } else {
                     var msg = 'Token used for ' + nsp + ' server connection is expired or invalid.';
                     core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')

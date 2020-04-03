@@ -163,3 +163,47 @@ $(function () {
 });
 
 //#endregion
+
+
+// var game2 = io(
+//     'http://localhost:9091?wpid='+localStorage['wpid']+'&snid='+localStorage['snid'], 
+//     { 
+//         autoConnect: false,
+//         forceNew: false,
+//         transports: ['websocket', 'polling']
+//     }
+// ); game2.connect();
+
+// game2.on('connect', () => {
+//     $('#messages').append($('<li style="text-align: center;">').text( 'game2: '+game2.connected+'! ID# ' + game2.id ));
+// });
+
+// //Client listen for disconnect. 
+// game2.on('disconnect', (data) => {
+//     forceDisconnect('game2 Disconnected: ' + data);
+// });
+
+// //Client listen for disconnect. 
+// game2.on('connect_error', (data) => {
+//     forceDisconnect('game2 Connect Error: ' + data);
+// });
+
+// //Client listen for disconnect. 
+// game2.on('connect_timeout', (data) => {
+//     forceDisconnect('game2 Connect Timeout: ' + data);
+// });
+
+// //Client listen for disconnect. 
+// game2.on('reconnect_error ', (data) => {
+//     forceDisconnect('game2 Reconnect Error : ' + data);
+// });
+
+// //Client listen for disconnect. 
+// game2.on('reconnect_failed', (data) => {
+//     forceDisconnect('game2 Reconnect Failed: ' + data);
+// });
+
+// //Listens form any server error.
+// game2.on('error', (data) => {
+//     forceDisconnect('game2 Error: ' + data);
+// });

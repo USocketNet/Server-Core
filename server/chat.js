@@ -3,7 +3,7 @@ var core = require('./core');
 var server = require('./controllers/express')(core);
 var redis = require('./controllers/redis').init(core, 'chat');
 var socketio = require('./controllers/socketio');
-  var sio = socketio.init(core, server, 'chat');
+  var sio = socketio.init(core, server, redis, 'chat');
   var con = socketio.conn(core, server, sio, 'chat');
 
   sio.on('connection', (socket) => {
@@ -12,9 +12,9 @@ var socketio = require('./controllers/socketio');
     core.debug.log('Connection on Chat', 'User connect @ port ' + con.address().port + ' with sid of ' + socket.id, 'white', 'connect');
     
     //Add or Update redis user entry @cid.
-    redis.entry({ wpid: sio.wpid, cid: socket.id }, (res) => {
+    // redis.entry({ wpid: sio.wpid, cid: socket.id }, (res) => {
 
-    });
+    // });
   
       socket.on('chat', (msg, cback) => {
         cback('returnee');
@@ -26,7 +26,7 @@ var socketio = require('./controllers/socketio');
       //Server logging about the disconnection on Chat Server.
       core.debug.log('Disconnection on Chat', 'User disconnect @ port ' + con.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
 
-      redis.entry({ wpid: sio.wpid, cid: 'undefine' }, (res) => {
+      redis.entry({ wpid: sio.wpid, cid: 'undefined' }, (res) => {
         //Make to make the cid undefine on redis to check if user is currently connected.
       });
     });
