@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //																																//
-// 		                 		Property of Bytes Crafter : Website - "www.bytes-crafter.com"    								//
+// 		                 		Property of Bytes Crafter : Website - "www.bytescrafter.net"    								//
 // 		                 		This script is subjected to Copyrights Law. All rights Reserved. 								//
-// 		                   		Project Involved: USocketNet v1.0.0 Server  for Unity of 2018.  								//
+// 		                   		Project Involved: USocketNet v1.0.0 Server  for Unity of 2020.  								//
 //																																//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -12,8 +12,8 @@ require('./server/game');
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //																																//
-// 		                 		Property of Bytes Crafter : Website - "www.bytes-crafter.com"    								//
+// 		                 		Property of Bytes Crafter : Website - "www.bytescrafter.net"    								//
 // 		                 		This script is subjected to Copyrights Law. All rights Reserved. 								//
-// 		                   		Project Involved: USocketNet v1.0.0 Server  for Unity of 2018.  								//
+// 		                   		Project Involved: USocketNet v1.0.0 Server  for Unity of 2020.  								//
 //																																//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
