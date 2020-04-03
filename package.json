@@ -14,13 +14,11 @@
     "cors": "^2.8.5",
     "crc": "^3.8.0",
     "crypto-js": "^3.3.0",
-    "ejs": "^2.7.4",
     "express": "^4.17.1",
     "ioredis": "^4.16.1",
     "mysql": "^2.18.1",
     "request": "^2.88.2",
     "socket.io": "^2.3.0",
-    "socket.io-redis": "^5.2.0",
-    "swagger-stats": "^0.95.17"
+    "socket.io-redis": "^5.2.0"
   }
 }
