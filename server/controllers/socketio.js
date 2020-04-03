@@ -1,5 +1,5 @@
 
-function init(core, server, redis, nsp) {
+function init(core, server, user, nsp) {
     const socketio = require('socket.io').listen(server);
     const redisAdapter = require('socket.io-redis');
         socketio.adapter(redisAdapter({ host: 'localhost', port: 6379 }));
@@ -17,7 +17,7 @@ function init(core, server, redis, nsp) {
 
                 if( result.status == 'success' ) {
                     
-                    redis.exist(data, (connected) => {
+                    user.exist(data, (connected) => {
 
                         socketio.wpid = data.wpid;
                         var entry = 'undefined'
@@ -37,7 +37,7 @@ function init(core, server, redis, nsp) {
                             }
                             entry.wpid = data.wpid;
 
-                        redis.entry(entry, (res) => {
+                            user.entry(entry, (res) => {
 
                         });
                         return next();

@@ -1,9 +1,10 @@
 
 var core = require('./core');
 var server = require('./controllers/express')(core);
-var redis = require('./controllers/redis').init(core, 'game');
+var redis = require('./controllers/redis')(core);
+  var user = redis.select( core.config.admin.redis.database.user );
 var socketio = require('./controllers/socketio');
-  var sio = socketio.init(core, server, redis, 'game');
+  var sio = socketio.init(core, server, user, 'game');
   var con = socketio.conn(core, server, sio, 'game');
   
   sio.on('connection', (socket) => {
@@ -21,7 +22,7 @@ var socketio = require('./controllers/socketio');
       //Server logging about the disconnection on Game Server.
       core.debug.log('Disconnection on Game', 'User disconnect @ port ' + con.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
 
-      redis.entry({ wpid: sio.wpid, gid: 'undefined' }, (res) => {
+      user.entry({ wpid: sio.wpid, gid: 'undefined' }, (res) => {
         //Make to make the gib undefine on redis to check if user is currently connected.
       });
     });

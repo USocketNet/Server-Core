@@ -1,9 +1,10 @@
 
 var core = require('./core');
 var server = require('./controllers/express')(core);
-var redis = require('./controllers/redis').init(core, 'chat');
+var redis = require('./controllers/redis')(core);
+  var user = redis.select( core.config.admin.redis.database.user );
 var socketio = require('./controllers/socketio');
-  var sio = socketio.init(core, server, redis, 'chat');
+  var sio = socketio.init(core, server, user, 'chat');
   var con = socketio.conn(core, server, sio, 'chat');
 
   sio.on('connection', (socket) => {
@@ -26,7 +27,7 @@ var socketio = require('./controllers/socketio');
       //Server logging about the disconnection on Chat Server.
       core.debug.log('Disconnection on Chat', 'User disconnect @ port ' + con.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
 
-      redis.entry({ wpid: sio.wpid, cid: 'undefined' }, (res) => {
+      user.entry({ wpid: sio.wpid, cid: 'undefined' }, (res) => {
         //Make to make the cid undefine on redis to check if user is currently connected.
       });
     });
