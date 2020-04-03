@@ -1,34 +1,38 @@
 
 var redis = require('ioredis');
+const debug = require('./debug');
 
-//Check if js obj is empty or not.
-function isObjectEmpty(obj) {
-    return !Object.keys(obj).length;
-}
+//#region Helper function for redis script.
+    //Check if js obj is empty or not.
+    function isObjectEmpty(obj) {
+        return !Object.keys(obj).length;
+    }
 
-//Make sure that json var is not reference.
-function cloneJson( json ) {
-    var string = JSON.stringify(json);
-    return JSON.parse(string);
-}
+    //Make sure that json var is not reference.
+    function cloneJson( json ) {
+        var string = JSON.stringify(json);
+        return JSON.parse(string);
+    }
 
-function getUserKey( wpid ) {
-    return 'wpid_' + wpid;
-}
+    //Make a default user key.
+    function getUserKey( wpid ) {
+        return 'wpid_' + wpid;
+    }
 
-function getMsgKey( wpid ) {
-    return 'msg_' + wpid;
-}
+    //Make a default message key.
+    function getMsgKey( wpid ) {
+        return 'msg_' + wpid;
+    }
+//#endregion
 
 class usn_redis {
 
-    config = null; debug = null;
+    config = null;
 
     //Initialized instance of redis.
     constructor ( core ) {
         this.config = cloneJson(core.config.admin.redis);
         delete this.config.database;
-        this.debug = core.debug;
         return this;
     }
 
@@ -44,6 +48,17 @@ class usn_redis {
             conf.db = db;
 
         return new usn_redis_conn( conf );
+    }
+
+    ping () {
+        redis.createClient( this.config ).ping( (err, result) => {
+            if( err ) {
+                debug.log('Redis-Init-Error', 'Redis Server connection check return error. Please check redis-server.', 'red', 'redis');
+                process.exit(1);
+            } else {
+                debug.log('Redis-Init-Success', 'Redis Server connection check was successful with healthy response.', 'green', 'redis');
+            }
+        });
     }
 } 
 
