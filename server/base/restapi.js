@@ -11,7 +11,7 @@ class usn_restapi {
         this.wpress_url = url;
     }
 
-    post ( cred, cback ) {
+    verify ( cred, cback ) {
         request.post(
             'http://' + this.wpress_url + '/wp-json/usocketnet/v1/token',
             { form: { wpid: cred.wpid, snid: cred.snid } },

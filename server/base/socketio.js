@@ -27,9 +27,10 @@ class usn_socketio {
 
                 this.instance.wpid = data.wpid;
      
-            core.restapi.post(data, (result) => {
+            core.restapi.verify(data, (result) => {
 
                 if( result.status == 'success' ) {
+                    this.instance.nme = JSON.parse(result.data).uname;              
                     return next();
                 } else {
                     let msg = 'Token used for ' + nsp + ' server connection is expired or invalid.';

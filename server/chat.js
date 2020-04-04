@@ -16,9 +16,9 @@ const instance = require('./base/socketio')( 'chat' );
 
     // });
   
-      socket.on('chat', (msg, cback) => {
+      socket.on('public', (msg, cback) => {
         cback('returnee');
-        socket.broadcast.emit('chat', { wpid: instance.wpid, sid: socket.id,  msg: msg });
+        socket.broadcast.emit('public', { nme: instance.nme, snd: instance.wpid,  msg: msg, date: new Date() });
       });
 
     //Listens for any server-client disconnectio

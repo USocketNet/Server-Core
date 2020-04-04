@@ -25,6 +25,7 @@ $(function () {
     if( localStorage['wpid'] != 'undefined' && localStorage['snid'] != 'undefined' ) { 
 
         var curUser = JSON.parse(localStorage['user']);
+        $('#messages').append($('<li style="text-align: center;">').text( 'Welcome! '+ curUser.dname+' [' + curUser.email + '] ID: ' + localStorage['wpid'] ));
 
         //#region Master Connection.
             //Master Initialized and Connect.
@@ -46,7 +47,7 @@ $(function () {
                     });
                     $('#messages').append($('<li style="text-align: center;">').text( 'Master: '+master.connected+'! ID# ' + master.id ));
                     
-                    console.log('Master Connected: ' + master.connected + '. Im ' + master.id + ' from master server on port: ' + returnee);
+                    console.log('Master Connected: ' + master.connected + '. Im ' + master.id + ' from server on port: ' + returnee);
                 });
             });
 
@@ -94,19 +95,22 @@ $(function () {
 
             chat.on('connect', () => {
                 $('#messages').append($('<li style="text-align: center;">').text( 'Chat: '+chat.connected+'! ID# ' + chat.id ));
+                console.log('Chat Connected: ' + chat.connected + '. Im ' + chat.id + ' from server.');
             });
 
             function sendChatMessage(msg) {
-                chat.emit('chat', msg, (returnee) => {
+                chat.emit('public', msg, (returnee) => {
                     $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + msg ));
                 });
             }
 
-            chat.on('chat', function(receiving) {
-                if( curUser.wpid == receiving.wpid ) {
-                    $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + receiving.msg ));
+            chat.on('public', function( rcvr ) {
+
+                console.log(rcvr);
+                if( curUser.wpid == rcvr.snd ) {
+                    $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + rcvr.msg ));
                 } else {
-                    $('#messages').append($('<li>').text( curUser.dname  + '['+receiving.sid+']: ' + receiving.msg));
+                    $('#messages').append($('<li>').text( rcvr.nme + ' #' + rcvr.snd + ' ['+rcvr.date+']: ' + rcvr.msg));
                 }
             });
 
@@ -125,6 +129,7 @@ $(function () {
 
             game.on('connect', () => {
                 $('#messages').append($('<li style="text-align: center;">').text( 'Game: '+game.connected+'! ID# ' + game.id ));
+                console.log('Game Connected: ' + game.connected + '. Im ' + game.id + ' from server.');
             });
 
             //Client listen for disconnect. 
