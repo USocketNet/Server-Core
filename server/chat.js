@@ -1,8 +1,8 @@
 
 var core = require('./base/core');
 var server = require('./base/express')();
-var redis = require('./base/redis')( core.config.admin.redis );
-  var user = redis.select( core.config.admin.redis.database.user );
+var redis = require('./base/redis')( core.config.server.redis );
+  var user = redis.select( core.config.server.redis.database.user );
 var socketio = require('./base/socketio');
   var sio = socketio.init(core, server, user, 'chat');
   var con = socketio.conn(core, server, sio, 'chat');
