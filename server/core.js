@@ -2,13 +2,13 @@
 // This script will be usable to all types of server.
 // Add modules that should be shared only.
 
-//Access current system information such as os, cpu, ram, etc.
-const system = require('os');
-    exports.system = system;
-
 //Includes clustering library to take advantage of cpu count.
 //const cluster = require('cluster');
 //    exports.cluster = cluster;
+
+//Access current system information such as os, cpu, ram, etc.
+const system = require('os');
+    exports.system = system;
 
 //Contains server options in running server.
 var config = {};
@@ -47,6 +47,10 @@ const restapi = require('./controllers/restapi');
 const mysql = require('./controllers/mysql');
     mysql.init();
     exports.mysql = mysql;
+
+//Declare and initialized redis instance per server type.
+var redis = require('./controllers/redis')( this );
+    redis.ping(); //Check redis-server else exit.
 
 //Filter unwanted process error info.
 if( config.admin.production ) {
