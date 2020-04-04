@@ -1,11 +1,11 @@
 
-var core = require('./base/core');
-var server = require('./base/express')();
-var redis = require('./base/redis')( core.config.server.redis );
-  var user = redis.select( core.config.server.redis.database.user );
-var socketio = require('./base/socketio');
-  var sio = socketio.init(core, server, user, 'master');
-  var con = socketio.conn(core, server, sio, 'master');
+const core = require('./base/core');
+const server = require('./base/express')();
+const redis = require('./base/redis')( core.config.server.redis );
+  const user = redis.select( core.config.server.redis.database.user );
+const socketio = require('./base/socketio');
+  const sio = socketio.init(core, server, user, 'master');
+  const con = socketio.conn(core, server, sio, 'master');
 
 sio.on('connection', (socket) => {
   
