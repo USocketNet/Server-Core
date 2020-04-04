@@ -78,7 +78,7 @@ class usn_redis_conn {
             if( err ) {
                 cback( { status: 'error', info: 'Error finding user: ' + err } );
             } else {
-                if( isEmptyObject(obj) ) {
+                if( isObjectEmpty(obj) ) {
                     cback( { status: 'notfound' } );
                 } else {
                     cback( { status: 'success', data: obj } );
@@ -109,10 +109,10 @@ class usn_redis_conn {
     }
 
     entry( user, cback ) {
-        getUser(user.wpid, (res) => {
+        this.getUser(user.wpid, (res) => {
             if( res.status == 'success' ) {
     
-              updateUser( user, ( result ) => {
+            this.updateUser( user, ( result ) => {
                 if( result.status == 'success' ) {
                     cback( result );
                 } else {
@@ -122,7 +122,7 @@ class usn_redis_conn {
     
             } else if( res.status == 'notfound' ) {
     
-              addUser( user, ( result ) => {
+            this.addUser( user, ( result ) => {
                 if( result.status == 'success' ) {
                     cback( result );
                 } else {

@@ -1,6 +1,6 @@
 
 var core = require('./core');
-var server = require('./controllers/express')(core);
+var server = require('./controllers/express')();
 var redis = require('./controllers/redis')( core.config.admin.redis );
   var user = redis.select( core.config.admin.redis.database.user );
 var socketio = require('./controllers/socketio');

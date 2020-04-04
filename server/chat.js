@@ -1,6 +1,6 @@
 
 var core = require('./core');
-var server = require('./controllers/express')(core);
+var server = require('./controllers/express')();
 var redis = require('./controllers/redis')( core.config.admin.redis );
   var user = redis.select( core.config.admin.redis.database.user );
 var socketio = require('./controllers/socketio');
@@ -19,7 +19,7 @@ var socketio = require('./controllers/socketio');
   
       socket.on('chat', (msg, cback) => {
         cback('returnee');
-        socket.broadcast.emit('chat', { wpid: curUser.wpid, sid: socket.id,  msg: msg });
+        socket.broadcast.emit('chat', { wpid: sio.wpid, sid: socket.id,  msg: msg });
       });
 
     //Listens for any server-client disconnectio

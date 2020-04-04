@@ -16,32 +16,7 @@ function init(core, server, user, nsp) {
             core.restapi.post(data, core, (result) => {
 
                 if( result.status == 'success' ) {
-                    
-                    user.exist(data, (connected) => {
-
-                        socketio.wpid = data.wpid;
-                        var entry = 'undefined'
-                            switch( nsp ) {
-                                case 'master':
-                                    entry = JSON.parse(result.data);
-                                    entry.mid = packet.id;
-                                    delete entry.status;
-                                    break;
-                                case 'chat':
-                                    entry.cid = packet.id;
-                                    break;
-                                case 'game':
-                                    entry.gid = packet.id;
-                                    break;
-                                default:
-                            }
-                            entry.wpid = data.wpid;
-
-                            user.entry(entry, (res) => {
-
-                        });
-                        return next();
-                    });
+                    return next();
                 } else {
                     var msg = 'Token used for ' + nsp + ' server connection is expired or invalid.';
                     core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
