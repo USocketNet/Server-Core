@@ -1,6 +1,6 @@
 
 const mysql = require('mysql');
-const debug = require('./debug');
+const debug = require('./debug')();
 
 module.exports = ( config ) => {
     return new usn_mysql( config );

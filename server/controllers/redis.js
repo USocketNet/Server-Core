@@ -1,6 +1,6 @@
 
 const redis = require('ioredis');
-const debug = require('./debug');
+const debug = require('./debug')();
 
 //#region Helper function for redis script.
     //Check if js obj is empty or not.

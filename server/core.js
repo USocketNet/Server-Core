@@ -33,11 +33,7 @@ exports.configof = function(servertype) {
 
 //Require logging via console and file.
 const debug = require('./controllers/debug');
-    exports.debug = debug;
-
-//Optional for simple and complex hashing.
-const cipher = require('./controllers/cipher');
-    exports.cipher = cipher;
+    exports.debug = debug();
 
 //Declare and initialized http as our rest api instance.
 const restapi = require('./controllers/restapi');
