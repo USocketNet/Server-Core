@@ -3,6 +3,6 @@
     "host": "localhost",
     "port": 19091,
     "redis": {
-        "db": 1
+        "db": 0
     }
 }

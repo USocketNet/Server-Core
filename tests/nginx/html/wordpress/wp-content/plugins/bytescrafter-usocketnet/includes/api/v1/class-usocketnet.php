@@ -32,6 +32,7 @@
 					return rest_ensure_response( 
 						array(
 							"status" => "success",
+							"wpid" => $user_id,
 							"uname" => $wp_user->data->user_nicename,
 							"dname" => $wp_user->data->display_name,
 							"email" => $wp_user->data->user_email,

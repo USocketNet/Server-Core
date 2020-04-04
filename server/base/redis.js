@@ -14,14 +14,31 @@ const debug = require('./debug')();
         return JSON.parse(string);
     }
 
+    //Make a default socket key.
+    function getSockKey( wpid, nsp ) {
+        switch(nsp) {
+            case 'master':
+                nsp = 'mid';
+                break;
+            case 'chat':
+                nsp = 'cid';
+                break;
+            case 'game':
+                nsp = 'gid';
+                break;
+            default:
+        }
+        return 'user:' + wpid + ':' + nsp;
+    }
+
     //Make a default user key.
     function getUserKey( wpid ) {
-        return 'wpid_' + wpid;
+        return 'user:' + wpid;
     }
 
     //Make a default message key.
     function getMsgKey( wpid ) {
-        return 'msg_' + wpid;
+        return 'msg:' + wpid;
     }
 //#endregion
 
@@ -108,29 +125,32 @@ class usn_redis_conn {
         });
     }
 
-    entry( user, cback ) {
-        this.getUser(user.wpid, (res) => {
-            if( res.status == 'success' ) {
-    
-            this.updateUser( user, ( result ) => {
-                if( result.status == 'success' ) {
-                    cback( result );
-                } else {
-                    cback( result );
-                }
-              });
-    
-            } else if( res.status == 'notfound' ) {
-    
-            this.addUser( user, ( result ) => {
-                if( result.status == 'success' ) {
-                    cback( result );
-                } else {
-                    cback( result );
-                }
-              });
-    
+    masterInit( user, cback ) {
+        this.database.hmset( getUserKey( user.wpid ), user, (err, res) => {
+            if( err ) {
+                cback( { status: 'failed', data: null } );
+            } else {
+                cback( { status: 'success', data: res} );
             }
-        }); 
+        });
+    }
+
+    socketConnect ( socket, cback ) { // { wpid: 1, sid: 'hash', nsp: 'master' }
+
+        let sid = socket.sid;
+        let curSocket = { [sid]: new Date() };
+
+        this.database.hset( getSockKey( socket.wpid, socket.nsp ), curSocket, (err, res) => {
+            if( err ) {
+                cback( { status: 'failed', data: null } );
+            } else {
+                cback( { status: 'success', data: res} );
+            }
+        });
+    }
+
+    socketDisconnect ( socket ) { // { wpid: 1, sid: 'hash', nsp: 'master' }
+
+        this.database.hdel(getSockKey( socket.wpid, socket.nsp ), socket.sid);
     }
 }

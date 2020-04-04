@@ -45,3 +45,4 @@ const mysql = require('./mysql')( config.server.mysql );
 //Declare and initialized redis instance per server type.
 const redis = require('./redis')( config.server.redis );
     redis.ping(); //Check redis-server else exit.
+    exports.redis = redis;

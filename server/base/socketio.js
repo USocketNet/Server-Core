@@ -1,10 +1,9 @@
 
 const core = require('./core');
 const process = require('process');
-const debug = require('./debug')();
 
-module.exports = () => {
-    return new usn_socketio();
+module.exports = ( nsp ) => {
+    return new usn_socketio( nsp );
 };
 
 class usn_socketio {
@@ -24,17 +23,35 @@ class usn_socketio {
                 data.nsp = nsp;
                 data.wpid = packet.handshake.query.wpid;
                 data.snid = packet.handshake.query.snid;
-
-                this.instance.wpid = data.wpid;
+                packet.wpid = data.wpid;
      
             core.restapi.verify(data, (result) => {
 
                 if( result.status == 'success' ) {
-                    this.instance.nme = JSON.parse(result.data).uname;              
+                    
+                    let redis = core.redis.select(0);
+                    
+                    switch( nsp ) {
+                        case 'master':
+                            let user = JSON.parse( result.data );
+                            delete user.status;
+                            redis.masterInit(user, (res) => {});
+                            break;
+                        case 'chat': 
+                            break;
+                        case 'game': 
+                            break;
+                        default:
+                    }
+
+                    let sock = { wpid: data.wpid, sid: packet.id, nsp: nsp };
+                    redis.socketConnect(sock, (res) => {});
+
+                    packet.nme = JSON.parse(result.data).uname;              
                     return next();
                 } else {
                     let msg = 'Token used for ' + nsp + ' server connection is expired or invalid.';
-                    debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
+                    core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
                     return next( new Error(msg) );
                 }
             });
@@ -54,11 +71,11 @@ class usn_socketio {
 
         return this.instance.http.listen( process.env.PORT || config.port, config.host, function(err) {
             if (err) {
-                debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + config.package.version + '] - Failed to initialized.', 'red', config.type);
+                core.debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + config.package.version + '] - Failed to initialized.', 'red', config.type);
                 // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT
                 process.exit(1);
             } else {
-                debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + config.package.version + '] - Running since ' + new Date().toLocaleString() + '.', 'green', config.type);
+                core.debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + config.package.version + '] - Running since ' + new Date().toLocaleString() + '.', 'green', config.type);
             }
         });
     }
