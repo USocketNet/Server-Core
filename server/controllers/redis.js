@@ -1,5 +1,5 @@
 
-var redis = require('ioredis');
+const redis = require('ioredis');
 const debug = require('./debug');
 
 //#region Helper function for redis script.
@@ -24,6 +24,10 @@ const debug = require('./debug');
         return 'msg_' + wpid;
     }
 //#endregion
+
+module.exports = ( core ) => {
+    return new usn_redis( core );
+};
 
 class usn_redis {
 
@@ -60,11 +64,7 @@ class usn_redis {
             }
         });
     }
-} 
-
-function init( core ) {
-    return new usn_redis( core );
-} module.exports = init;
+}
 
 class usn_redis_conn {
     database = null;
