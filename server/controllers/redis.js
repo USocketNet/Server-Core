@@ -25,8 +25,8 @@ const debug = require('./debug');
     }
 //#endregion
 
-module.exports = ( core ) => {
-    return new usn_redis( core );
+module.exports = ( config ) => {
+    return new usn_redis( config );
 };
 
 class usn_redis {
@@ -34,8 +34,8 @@ class usn_redis {
     config = null;
 
     //Initialized instance of redis.
-    constructor ( core ) {
-        this.config = cloneJson(core.config.admin.redis);
+    constructor ( conf ) {
+        this.config = cloneJson( conf );
         delete this.config.database;
         return this;
     }

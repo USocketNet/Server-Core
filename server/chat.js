@@ -1,7 +1,7 @@
 
 var core = require('./core');
 var server = require('./controllers/express')(core);
-var redis = require('./controllers/redis')(core);
+var redis = require('./controllers/redis')( core.config.admin.redis );
   var user = redis.select( core.config.admin.redis.database.user );
 var socketio = require('./controllers/socketio');
   var sio = socketio.init(core, server, user, 'chat');

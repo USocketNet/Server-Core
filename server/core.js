@@ -43,13 +43,12 @@ const cipher = require('./controllers/cipher');
 const restapi = require('./controllers/restapi');
     exports.restapi = restapi;
 
-    console.log(config.admin.mysql);
 //Declare and initialized mysql instance per server type.
 const mysql = require('./controllers/mysql')( config.admin.mysql );
     exports.mysql = mysql;
 
 //Declare and initialized redis instance per server type.
-var redis = require('./controllers/redis')( this );
+var redis = require('./controllers/redis')( config.admin.redis );
     redis.ping(); //Check redis-server else exit.
 
 //Filter unwanted process error info.
