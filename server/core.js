@@ -43,9 +43,9 @@ const cipher = require('./controllers/cipher');
 const restapi = require('./controllers/restapi');
     exports.restapi = restapi;
 
+    console.log(config.admin.mysql);
 //Declare and initialized mysql instance per server type.
-const mysql = require('./controllers/mysql');
-    mysql.init();
+const mysql = require('./controllers/mysql')( config.admin.mysql );
     exports.mysql = mysql;
 
 //Declare and initialized redis instance per server type.
