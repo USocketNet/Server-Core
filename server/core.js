@@ -3,7 +3,7 @@
 // Add modules that should be shared only.
 
 //Listens for Process unexpected errors and do something about it.
-require('./controllers/process');
+require('./base/process');
 
 //Contains server options in running server.
 const config = {};
@@ -27,17 +27,17 @@ exports.configof = function(servertype) {
 }
 
 //Require logging via console and file.
-const debug = require('./controllers/debug');
+const debug = require('./base/debug');
     exports.debug = debug();
 
 //Declare and initialized http as our rest api instance.
-const restapi = require('./controllers/restapi');
+const restapi = require('./base/restapi')( config.admin.wpress.host );
     exports.restapi = restapi;
 
 //Declare and initialized mysql instance per server type.
-const mysql = require('./controllers/mysql')( config.admin.mysql );
+const mysql = require('./base/mysql')( config.admin.mysql );
     exports.mysql = mysql;
 
 //Declare and initialized redis instance per server type.
-const redis = require('./controllers/redis')( config.admin.redis );
+const redis = require('./base/redis')( config.admin.redis );
     redis.ping(); //Check redis-server else exit.

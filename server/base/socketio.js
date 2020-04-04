@@ -13,7 +13,7 @@ function init(core, server, user, nsp) {
                 data.wpid = packet.handshake.query.wpid;
                 data.snid = packet.handshake.query.snid;
      
-            core.restapi.post(data, core, (result) => {
+            core.restapi.post(data, (result) => {
 
                 if( result.status == 'success' ) {
                     return next();
