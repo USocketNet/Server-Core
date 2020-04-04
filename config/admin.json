@@ -1,6 +1,4 @@
-{
-    "production": false,
-    
+{    
     "allowedDomain": ["localhost"],
 
     "wpress": {
@@ -24,7 +22,5 @@
             "message": 2,
             "game": 3
         }
-
-        
     }
 }
