@@ -20,42 +20,48 @@ class usn_socketio {
         //Prevent client socket connection if condition is not met.
         socketio.use((packet, next) => {
 
-            let data = {};
+            if( typeof packet.handshake.query.wpid == 'undefined' || packet.handshake.query.snid == 'undefined' ) {
+                let msg = 'The client for ' + nsp + ' did not submit required arguments.';
+                    core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
+                    return next( new Error(msg) );
+            } else {
+                let data = {};
                 data.nsp = nsp;
                 data.wpid = packet.handshake.query.wpid;
                 data.snid = packet.handshake.query.snid;
                 packet.wpid = data.wpid;
      
-            core.restapi.verify(data, (result) => {
+                core.restapi.verify(data, (result) => {
 
-                if( result.status == 'success' ) {
-                    
-                    let redis = core.redis.select(0);
-                    
-                    switch( nsp ) {
-                        case 'master':
-                            let user = JSON.parse( result.data );
-                            delete user.status;
-                            redis.masterInit(user, (res) => {});
-                            break;
-                        case 'chat': 
-                            break;
-                        case 'game': 
-                            break;
-                        default:
+                    if( result.status == 'success' ) {
+                        
+                        let redis = core.redis.select(0);
+                        
+                        switch( nsp ) {
+                            case 'master':
+                                let user = JSON.parse( result.data );
+                                delete user.status;
+                                redis.masterInit(user, (res) => {});
+                                break;
+                            case 'chat': 
+                                break;
+                            case 'game': 
+                                break;
+                            default:
+                        }
+
+                        let sock = { wpid: data.wpid, sid: packet.id, nsp: nsp };
+                        redis.socketConnect(sock, (res) => {});
+
+                        packet.nme = JSON.parse(result.data).uname;              
+                        return next();
+                    } else {
+                        let msg = 'Token used for ' + nsp + ' server connection is expired or invalid.';
+                        core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
+                        return next( new Error(msg) );
                     }
-
-                    let sock = { wpid: data.wpid, sid: packet.id, nsp: nsp };
-                    redis.socketConnect(sock, (res) => {});
-
-                    packet.nme = JSON.parse(result.data).uname;              
-                    return next();
-                } else {
-                    let msg = 'Token used for ' + nsp + ' server connection is expired or invalid.';
-                    core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
-                    return next( new Error(msg) );
-                }
-            });
+                });
+            }
         });
 
         this.instance = this;
@@ -86,11 +92,11 @@ class usn_socketio {
 
         return this.instance.http.listen( port, config.host, function(err) {
             if (err) {
-                core.debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + config.package.version + '] - Failed to initialized.', 'red', config.type);
+                core.debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + port + '] - Failed to initialized.', 'red', config.type);
                 // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT
                 process.exit(1);
             } else {
-                core.debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + config.package.version + '] - Running since ' + new Date().toLocaleString() + '.', 'green', config.type);
+                core.debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + port + '] - Running since ' + new Date().toLocaleString() + '.', 'green', config.type);
             }
         });
     }
