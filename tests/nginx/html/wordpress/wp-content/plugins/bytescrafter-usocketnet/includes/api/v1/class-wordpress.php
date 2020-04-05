@@ -67,10 +67,9 @@
 						"dname" => $user->data->display_name,
 						"email" => $user->data->user_email,
 						"roles" => $user->roles
-					),
-					"demo" => $user,
-					'previous' => $_COOKIE['BC_USN'], 
-					'testing' => wp_validate_auth_cookie($_COOKIE['BC_USN'], 'logged_in'))  );
+						)
+					)  
+				);
 		}
 	}
 
