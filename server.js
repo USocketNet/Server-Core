@@ -6,9 +6,20 @@
 //																																//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-require('./server/master');
-require('./server/chat');
-require('./server/game');
+const process = require('process');
+const argv = require('minimist')(process.argv.slice(2));
+
+if( typeof argv.master == 'undefined' || typeof argv.chat == 'undefined' || typeof argv.game == 'undefined' ) {
+    console.log('Stopping server...');
+    process.exit(1);
+} else {
+    console.log('Starting server...');
+    require('./server/master');
+    require('./server/chat');
+    require('./server/game');
+}
+
+console.log(argv.master);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //																																//

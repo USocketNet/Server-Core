@@ -1,6 +1,7 @@
 
 const core = require('./core');
 const process = require('process');
+const argv = require('minimist')(process.argv.slice(2));
 
 module.exports = ( nsp ) => {
     return new usn_socketio( nsp );
@@ -69,7 +70,21 @@ class usn_socketio {
         let config = core.configof(type);
             config.package = core.config.package;
 
-        return this.instance.http.listen( process.env.PORT || config.port, config.host, function(err) {
+        let port = process.env.PORT || config.port;
+        switch ( type ) {
+            case 'master':
+                port = argv.master;
+                break;
+            case 'chat':
+                port = argv.chat;
+                break;
+            case 'game':
+                port = argv.game;
+                break;
+            default:
+        }
+
+        return this.instance.http.listen( port, config.host, function(err) {
             if (err) {
                 core.debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + config.package.version + '] - Failed to initialized.', 'red', config.type);
                 // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT

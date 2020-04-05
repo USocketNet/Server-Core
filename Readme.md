@@ -1,21 +1,22 @@
 
-# USocketNet - Server
+# USocketNet
 
-The USocketNet is currently designed and developed for Unity Engine. It is a multi-platform that can be used through mobile or standalone computers. The developers advised the users to report any issues or bugs immediately to further improve our services. We are driven to develop more and add new powerful features. We are positively driven to improve more and add new powerful features.
+#### Short Description: Self-Host Realtime Bidirectional Event-Based Communication for your Game or Chat Application. 
+
+The USocketNet is currently designed and developed for Unity Engine. It is a multi-platform by design that can be used through mobile, computers, or even web. We advised the developers to report any issues or bugs immediately to further fix and improve our code. We are driven to add new features that will make this project awesome for everyone.
 
 ### Its main features are:
 
-* USocketNet enables real-time bidirectional event-based communication. It consists in:
-
-- Realtime WebSocket Connection.
-- Host your own server.
-- Cross-Platform with Unity.
-- Reconnect Client Event.
-- Realtime Admin Page.
-- Server Health Monitoring.
-- Flexible and Scalable.
-- Matchmaking Mechanism.
-- Any Gameplay Compatible.
+– Realtime WebSocket connection using the stable and reliable socket.io-engine.
+– Host your own server anywhere, it can be any VPS, CLOUD, or NodeJS hosting.
+– Cross-Platform with Unity, if unity supports it, we will also support it.
+– Yes! We support WebGL build even if threading is not allowed on the browser.
+– Reconnect event handling which automatically resyncs client to the server.
+– Dedicated Realtime GUI backend page for all server instance.
+– Stability (socket.io), Security (NodeJS) and Scalability (NGINX).
+– Matchmaking mechanism for auto, create, join and lots of options.
+– Dedicate and easy to use, we have messaging service for private and public.
+– Lots of features to be announce! Stay tuned for more updates.
 
 * Connections are established even in the presence of:
   - proxies and load balancers with Nginx Server.
@@ -24,24 +25,7 @@ The USocketNet is currently designed and developed for Unity Engine. It is a mul
   - multi instancing and keymetrics by npm PM2.
   - easy npm devDependencies updates NPM npm-gui.
 
-#### Reliability
-
- For this purpose, it relies on [Engine.IO](https://github.com/socketio/engine.io), which first establishes a long-polling connection, then tries to upgrade to better transports that are "tested" on the side, like WebSocket. Please see the [Goals](https://github.com/socketio/engine.io#goals) section for more information.
-
-#### Auto-reconnection support
-
-Unless instructed otherwise a disconnected client will try to reconnect forever, until the server is available again. Please see the available reconnection options [here](https://github.com/socketio/socket.io-client/blob/master/docs/API.md#new-managerurl-options).
-
-#### Disconnection detection
-
-A heartbeat mechanism is implemented at the Engine.IO level, allowing both the server and the client to know when the other one is not responding anymore.
-That functionality is achieved with timers set on both the server and the client, with timeout values (the `pingInterval` and `pingTimeout` parameters) shared during the connection handshake. Those timers require any subsequent client calls to be directed to the same server, hence the `sticky-session` requirement when using multiples nodes.
-
-#### Room support
-
-Within each `Server`, you can define arbitrary channels, called `Channel`, that sockets can join and leave. You can then broadcast to any given channel, reaching every socket that has joined it.
-
-This is a useful feature to send notifications to a group of users, or to a given user connected on several devices for example.
+Within each `Server`, you can define arbitrary channels, called `Channel`, that sockets can join and leave. You can then broadcast to any given channel, reaching every socket that has joined it. This is a useful feature to send notifications to a group of users, or to a given user connected on several devices for example.
 
 **Note:** USocketNet is not a WebSocket implementation. Although USocketNet indeed uses WebSocket as a transport when possible, it adds some metadata to each packet: the packet type, the namespace and the ack id when a message acknowledgement is needed. That is why a WebSocket client will not be able to successfully connect to a USocketNet server, and a USocketNet client will not be able to connect to a WebSocket server (like `ws://echo.websocket.org`) either.
 
@@ -50,32 +34,31 @@ This is a useful feature to send notifications to a group of users, or to a give
 ### Prerequisites
 
 * NodeJS
-Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a browser.
+- Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a browser.
 
 * Nginx
-Nginx is a web server which can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. The software was created by Igor Sysoev and first publicly released in 2004. A company of the same name was founded in 2011 to provide support and Nginx plus paid software.
+- Nginx is a web server which can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. The software was created by Igor Sysoev and first publicly released in 2004. A company of the same name was founded in 2011 to provide support and Nginx plus paid software.
 
 * MySQL
-MySQL is an open-source relational database management system. Its name is a combination of "My", the name of co-founder Michael Widenius's daughter, and "SQL", the abbreviation for Structured Query Language.
+- MySQL is an open-source relational database management system. Its name is a combination of "My", the name of co-founder Michael Widenius's daughter, and "SQL", the abbreviation for Structured Query Language.
 
 * Redis
-Redis is an in-memory data structure project implementing a distributed, in-memory key-value database with optional durability. Redis supports different kinds of abstract data structures, such as strings, lists, maps, sets, sorted sets, HyperLogLogs, bitmaps, streams, and spatial indexes.
+- Redis is an in-memory data structure project implementing a distributed, in-memory key-value database with optional durability. Redis supports different kinds of abstract data structures, such as strings, lists, maps, sets, sorted sets, HyperLogLogs, bitmaps, streams, and spatial indexes.
 
-* PM2
-PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
-
-* Artillery
-Artillery is a modern, powerful & easy-to-use load testing and functional testing toolkit. Use it to ship scalable applications that stay performant & resilient under high load.
+* NPM
+- NPM is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. The following are the required NPM package that must be install globally.
+- PM2 - is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks. Run: ``` npm install pm2 -g ```
+- Artillery - is a modern, powerful & easy-to-use load testing and functional testing toolkit. Use it to ship scalable applications that stay performant & resilient under high load. Run: ``` npm install artillery -g ```
 
 ### Default Public HTML
 
-This project includes built-in http server for WordPress which is nginx, SQL database using MySql, PHP version 7 as cgi engine. On windows, you can easily start or stop this said server on /test.
+This project includes built-in http server for WordPress which is nginx, SQL database using MySql, PHP version 7 as cgi engine. On windows, you can easily start or stop this said server on /test. To run Nginx, PHP, and MySQL server: Use our built-in .bat executable on windows in this path ``` /test/nginx ```. Click on start, stop, or even check to check if all server is currently running.
 
-- http://localhost/demo - Available if core server is running.
+- http://localhost/demo
 - http://localhost/wordpress
 - http://localhost/phpMyAdmin
 
-### Credentials
+#### Credentials
 
 This are the default credentials that we use during development. This credential should be replace with much stronger phrase on production.
 
@@ -88,9 +71,28 @@ This are the default credentials that we use during development. This credential
 - UN: demo  PW: demo  TP: subscribers
 - UN: test  PW: test  TP: subscribers
 
+### Testing
+
+LOAD BENCHMARKING
+
+- Run this to automatically load test your app. But before you do, 
+please ensure to run ``` npm install artillery -g ``` to install 
+the package that will execute server benchmarking.
+
+``` artillery run artillery.yaml ```
+
+SAFE MODE TESTING
+
+- We made some built-in testing to test if the required server such as 
+redis, mysql, and path writability have no issues. We made this just to make 
+sure that you NEED to FIRST RUN this: ``` npm test ``` so that the app will 
+have no critical issue.
+
 ### Installing
 
 STEP 1 - SETUP NGINX LOAD BALANCER.
+
+This are the required config for NGIX server for load balance. By default
 
 - MASTER INTANCE - PORT 19090 (19091-19099)
 - CHAT INTANCE - PORT 6060 (6061-6069)
@@ -112,14 +114,15 @@ STEP 3 - LAUNCH THE INSTANCES.
 
 * ADDING NEW INSTANCE OF THE SERVER.
   ```
-    $ CODE: PORT=3001 pm2 start --name master server.js -- --query values
-    // PORT : Port value should not be used. Use Task Manager -> Network and find the corresponding PID.
+    $ CODE: pm2 start server.js --name svr-1 -- --master 19091 --chat 6061 --game 9091
     // pm2 : Call or use the global dependency of pm2 npm package.
     // start : Start instance of the following server.js reference.
-    // --name IDENTITY : Tag and value of the process name or identity of the instance.
-    // server.js : Sample target node js application or server to initiate.
+    // server.js : USocketNet target node js application or server to initiate.
+    // --name svr-# : Name of the instance when you run > pm2 list.
     // -- : Separate pm2 arguments to node js arguments.
-    // --name : Name of the Node Js application or Server. 
+    // --master : 19091-19099 - available port for master that is must be declare on nginx.conf
+    // --chat : 6061-6069 - available port for chat that is must be declare on nginx.conf
+    // --game : 9091-9099 - available port for game that is must be declare on nginx.conf
   ```
 
 * OTHER BASIC PM2 COMMANDS THAT COULD BE USEFULL.
@@ -144,22 +147,18 @@ Google Cloud, Amazon AWS, etc. Operating system is preferably in linux environme
 
 ## Built With
 
-### NPM packages on FINAL:
+### NPM packages:
 
-* [express](https://www.npmjs.com/package/express) - 
-* [mysql](https://www.npmjs.com/package/mysql) - 
-* [socket.io](https://www.npmjs.com/package/socket.io) - 
-* [socket.io-redis](https://www.npmjs.com/package/socket.io-redis) - 
-
-### NPM packages on RESERVED:
-
-* [body-parser](https://www.npmjs.com/package/body-parser) - 
-* [cors](https://www.npmjs.com/package/cors) - 
-* [crc](https://www.npmjs.com/package/crc) - 
-* [crypto-js](https://www.npmjs.com/package/crypto-js) - 
-* [ejs](https://www.npmjs.com/package/ejs) - 
-* [redis](https://www.npmjs.com/package/redis) - 
-* [swagger-stats](https://www.npmjs.com/package/swagger-stats) - 
+* [socket.io](https://www.npmjs.com/package/socket.io) - https://www.npmjs.com/package/socket.io
+* [socket.io-redis](https://www.npmjs.com/package/socket.io-redis) - https://www.npmjs.com/package/socket.io-redis
+* [express](https://www.npmjs.com/package/express) - https://www.npmjs.com/package/express
+* [ioredis](https://www.npmjs.com/package/ioredis) - https://www.npmjs.com/package/ioredis
+* [mysql](https://www.npmjs.com/package/mysql) - https://www.npmjs.com/package/mysql
+* [redis](https://www.npmjs.com/package/redis) - https://www.npmjs.com/package/redis
+* [request](https://www.npmjs.com/package/request) - https://www.npmjs.com/package/request
+* [body-parser](https://www.npmjs.com/package/body-parser) - https://www.npmjs.com/package/body-parser
+* [cors](https://www.npmjs.com/package/cors) - https://www.npmjs.com/package/cors
+* [minimist](https://www.npmjs.com/package/minimist) - https://www.npmjs.com/package/minimist
 
 ## Contributing
 
@@ -173,7 +172,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Caezar V. De Castro II** - *Initial work* - [GitLab](https://gitlab.com/BytesCrafter)
 
-See also the list of [contributors](https://github.com/BytesCrafter) who participated in this project.
+See also the list of [contributors](https://github.com/BytesCrafter/USocketNet-on-NodeJS) who participated in this project.
 
 ## License
 
