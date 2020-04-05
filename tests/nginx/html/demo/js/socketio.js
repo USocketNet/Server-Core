@@ -25,6 +25,7 @@ $(function () {
     if( localStorage['wpid'] != 'undefined' && localStorage['snid'] != 'undefined' ) { 
 
         var curUser = JSON.parse(localStorage['user']);
+            curUser.wpid = localStorage['wpid'];
         $('#messages').append($('<li style="text-align: center;">').text( 'Welcome! '+ curUser.dname+' [' + curUser.email + '] ID: ' + localStorage['wpid'] ));
 
         //#region Master Connection.
@@ -106,7 +107,6 @@ $(function () {
 
             chat.on('public', function( rcvr ) {
 
-                console.log(rcvr);
                 if( curUser.wpid == rcvr.snd ) {
                     $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + rcvr.msg ));
                 } else {
