@@ -7,16 +7,16 @@ The USocketNet is currently designed and developed for Unity Engine. It is a mul
 
 ### Its main features are:
 
-– Realtime WebSocket connection using the stable and reliable socket.io-engine.
-– Host your own server anywhere, it can be any VPS, CLOUD, or NodeJS hosting.
-– Cross-Platform with Unity, if unity supports it, we will also support it.
-– Yes! We support WebGL build even if threading is not allowed on the browser.
-– Reconnect event handling which automatically resyncs client to the server.
-– Dedicated Realtime GUI backend page for all server instance.
-– Stability (socket.io), Security (NodeJS) and Scalability (NGINX).
-– Matchmaking mechanism for auto, create, join and lots of options.
-– Dedicate and easy to use, we have messaging service for private and public.
-– Lots of features to be announce! Stay tuned for more updates.
+- Realtime WebSocket connection using the stable and reliable socket.io-engine.
+- Host your own server anywhere, it can be any VPS, CLOUD, or NodeJS hosting.
+- Cross-Platform with Unity, if unity supports it, we will also support it.
+- Yes! We support WebGL build even if threading is not allowed on the browser.
+- Reconnect event handling which automatically resyncs client to the server.
+- Dedicated Realtime GUI backend page for all server instance.
+- Stability (socket.io), Security (NodeJS) and Scalability (NGINX).
+- Matchmaking mechanism for auto, create, join and lots of options.
+- Dedicate and easy to use, we have messaging service for private and public.
+- Lots of features to be announce! Stay tuned for more updates.
 
 * Connections are established even in the presence of:
   - proxies and load balancers with Nginx Server.
@@ -34,21 +34,21 @@ Within each `Server`, you can define arbitrary channels, called `Channel`, that 
 ### Prerequisites
 
 * NodeJS
-- Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a browser.
+  - Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside of a browser.
 
 * Nginx
-- Nginx is a web server which can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. The software was created by Igor Sysoev and first publicly released in 2004. A company of the same name was founded in 2011 to provide support and Nginx plus paid software.
+  - Nginx is a web server which can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. The software was created by Igor Sysoev and first publicly released in 2004. A company of the same name was founded in 2011 to provide support and Nginx plus paid software.
 
 * MySQL
-- MySQL is an open-source relational database management system. Its name is a combination of "My", the name of co-founder Michael Widenius's daughter, and "SQL", the abbreviation for Structured Query Language.
+  - MySQL is an open-source relational database management system. Its name is a combination of "My", the name of co-founder Michael Widenius's daughter, and "SQL", the abbreviation for Structured Query Language.
 
 * Redis
-- Redis is an in-memory data structure project implementing a distributed, in-memory key-value database with optional durability. Redis supports different kinds of abstract data structures, such as strings, lists, maps, sets, sorted sets, HyperLogLogs, bitmaps, streams, and spatial indexes.
+  - Redis is an in-memory data structure project implementing a distributed, in-memory key-value database with optional durability. Redis supports different kinds of abstract data structures, such as strings, lists, maps, sets, sorted sets, HyperLogLogs, bitmaps, streams, and spatial indexes.
 
 * NPM
-- NPM is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. The following are the required NPM package that must be install globally.
-- PM2 - is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks. Run: ``` npm install pm2 -g ```
-- Artillery - is a modern, powerful & easy-to-use load testing and functional testing toolkit. Use it to ship scalable applications that stay performant & resilient under high load. Run: ``` npm install artillery -g ```
+  - NPM is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. The following are the required NPM package that must be install globally.
+    - PM2 - is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks. Run: ``` npm install pm2 -g ```
+    - Artillery - is a modern, powerful & easy-to-use load testing and functional testing toolkit. Use it to ship scalable applications that stay performant & resilient under high load. Run: ``` npm install artillery -g ```
 
 ### Default Public HTML
 
@@ -63,13 +63,13 @@ This project includes built-in http server for WordPress which is nginx, SQL dat
 This are the default credentials that we use during development. This credential should be replace with much stronger phrase on production.
 
 * MySQL root users
-- UN: root  PW: root
-- UN: admin PW: admin
+  - UN: root  PW: root
+  - UN: admin PW: admin
 
 * WordPress users
-- UN: admin PW: admin TP: admin
-- UN: demo  PW: demo  TP: subscribers
-- UN: test  PW: test  TP: subscribers
+  - UN: admin PW: admin TP: admin
+  - UN: demo  PW: demo  TP: subscribers
+  - UN: test  PW: test  TP: subscribers
 
 ### Testing
 
@@ -77,9 +77,8 @@ LOAD BENCHMARKING
 
 - Run this to automatically load test your app. But before you do, 
 please ensure to run ``` npm install artillery -g ``` to install 
-the package that will execute server benchmarking.
-
-``` artillery run artillery.yaml ```
+the package that will execute server benchmarking. Then run this to 
+benchmark: ``` artillery run artillery.yaml ```
 
 SAFE MODE TESTING
 
@@ -90,7 +89,7 @@ have no critical issue.
 
 ### Installing
 
-STEP 1 - SETUP NGINX LOAD BALANCER.
+#### STEP 1 - SETUP NGINX LOAD BALANCER.
 
 This are the required config for NGIX server for load balance. By default
 
@@ -98,21 +97,21 @@ This are the required config for NGIX server for load balance. By default
 - CHAT INTANCE - PORT 6060 (6061-6069)
 - GAME INTANCE - PORT 9090 (9091-9099)
 
-STEP 2 - SETUP BACKEND AND FRONTEND WORDPRESS.
+#### STEP 2 - SETUP BACKEND AND FRONTEND WORDPRESS.
 
 * Prepare your LAMP stack for your wordpress environment.
 * Setup wordpress as your root public html.
 * Add USocketNet theme as frontend to all users.
 * Add USocketNet plugin for backend management.
 
-STEP 3 - LAUNCH THE INSTANCES.
+#### STEP 3 - LAUNCH THE INSTANCES.
 
 * PORT SERVER SEGRATION TO APP INTANCES.
 - MASTER INTANCE - (19091-19099)
 - CHAT INTANCE - (6061-6069)
 - GAME INTANCE - (9091-9099)
 
-* ADDING NEW INSTANCE OF THE SERVER.
+##### ADDING NEW INSTANCE OF THE SERVER.
   ```
     $ CODE: pm2 start server.js --name svr-1 -- --master 19091 --chat 6061 --game 9091
     // pm2 : Call or use the global dependency of pm2 npm package.
@@ -125,7 +124,7 @@ STEP 3 - LAUNCH THE INSTANCES.
     // --game : 9091-9099 - available port for game that is must be declare on nginx.conf
   ```
 
-* OTHER BASIC PM2 COMMANDS THAT COULD BE USEFULL.
+##### OTHER BASIC PM2 COMMANDS THAT COULD BE USEFULL.
   ```
     $ pm2 startup //Enable startup of all saved intance of apps. [Windows](https://www.npmjs.com/package/pm2-windows-startup)
     $ pm2 start id/index //Start the current instance of the Node JS app.
@@ -170,9 +169,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Caezar V. De Castro II** - *Initial work* - [GitLab](https://gitlab.com/BytesCrafter)
+* **Caezar V. De Castro II** - *Initial work* - [Github](https://github.com/BytesCrafter/USocketNet-on-NodeJS)
 
-See also the list of [contributors](https://github.com/BytesCrafter/USocketNet-on-NodeJS) who participated in this project.
+See also the list of [contributors](https://github.com/BytesCrafter) who participated in this project.
 
 ## License
 
