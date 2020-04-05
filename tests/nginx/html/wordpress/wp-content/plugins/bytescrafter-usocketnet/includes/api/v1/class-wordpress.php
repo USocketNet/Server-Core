@@ -43,6 +43,7 @@
 			
 			//Check for wp authentication issue.
 			if ( is_wp_error($user) ) {
+				$user = ['code' => 'auth_failed', 'message' => $user->get_error_message(), 'data' => null];
 				return rest_ensure_response( $user );
 			}
 	
