@@ -1,6 +1,12 @@
 # Sample load test. $ artillery run artillery.yaml
 config:
-  target: "http://localhost:19090?token=demoguy&seckey=HashKey123"
+  target: "http://localhost:19090"
+  socketio:
+    path: "/"
+    transports: ["websocket", "polling"]
+    query:
+      wpid: "1"
+      snid: "AfuJTZY0Pv2VG1rj8t60SQxDDFGLoQ3S6nO4JZymHB"
   phases:
     - duration: 60
       arrivalRate: 10
@@ -16,9 +22,9 @@ scenarios:
           data: "user-{{ $randomString() }}"
       - loop:
           - emit:
-              channel: "hello"
-              data: "The code is {{ $randomString() }}!"
+              channel: "public"
+              data: "The message is {{ $randomString() }}!"
           - think: 1
-        count: 10
+        count: 2
       - think: 1
       
