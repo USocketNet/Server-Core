@@ -20,7 +20,7 @@ class usn_socketio {
         //Prevent client socket connection if condition is not met.
         socketio.use((packet, next) => {
 
-            if( typeof packet.handshake.query.wpid == 'undefined' || typeof packet.handshake.query.snid == 'undefined' ) {
+            if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' ) {
                 let msg = 'The client for ' + nsp + ' did not submit required arguments.';
                     core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
                     return next( new Error(msg) );
@@ -96,12 +96,13 @@ class usn_socketio {
         }
 
         return this.instance.http.listen( port, config.host, function(err) {
+            let sType = type.charAt(0).toUpperCase() + type.slice(1);
             if (err) {
-                core.debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + port + '] - Failed to initialized.', 'red', config.type);
+                core.debug.log('USocketNet-' + sType + '-Stop', 'This server failed to run @ ' + config.host + ':' + port + '.', 'red', config.type);
                 // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT
                 process.exit(1);
             } else {
-                core.debug.log('Server Init', 'USocketNet Server > ' + type + ' [' + port + '] - Running since ' + new Date().toLocaleString() + '.', 'green', config.type);
+                core.debug.log('USocketNet-' + sType + '-Init', 'This server is now listening @ ' + config.host + ':' + port + '.', 'green', config.type);
             }
         });
     }

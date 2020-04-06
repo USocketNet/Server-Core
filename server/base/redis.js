@@ -74,10 +74,10 @@ class usn_redis {
     ping () {
         redis.createClient( this.config ).ping( (err, result) => {
             if( err ) {
-                debug.log('Redis-Init-Error', 'Redis Server connection check return error. Please check redis-server.', 'red', 'redis');
+                debug.log('Redis-Server-Error', 'Redis connection check return error. Please check redis-server.', 'red', 'redis');
                 process.exit(1);
             } else {
-                debug.log('Redis-Init-Success', 'Redis Server connection check was successful with healthy response.', 'green', 'redis');
+                debug.log('Redis-Server-Success', 'Redis connection check was successful with healthy response.', 'green', 'redis');
             }
         });
     }

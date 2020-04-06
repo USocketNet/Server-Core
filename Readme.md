@@ -113,12 +113,13 @@ This are the required config for NGIX server for load balance. By default
 
 ##### ADDING NEW INSTANCE OF THE SERVER.
   ```
-    $ CODE: pm2 start server.js --name svr-1 -- --master 19091 --chat 6061 --game 9091
+    $ CODE: pm2 start server.js --name svr-1 -- --name svr1 --master 19091 --chat 6061 --game 9091
     // pm2 : Call or use the global dependency of pm2 npm package.
     // start : Start instance of the following server.js reference.
     // server.js : USocketNet target node js application or server to initiate.
     // --name svr-# : Name of the instance when you run > pm2 list.
     // -- : Separate pm2 arguments to node js arguments.
+    // --name : This will be the name of the instance that will be using to log on the server.
     // --master : 19091-19099 - available port for master that is must be declare on nginx.conf
     // --chat : 6061-6069 - available port for chat that is must be declare on nginx.conf
     // --game : 9091-9099 - available port for game that is must be declare on nginx.conf

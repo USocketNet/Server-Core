@@ -20,10 +20,10 @@ class usn_mysql {
 
         this.conn.connect( (connError) => {
             if (connError) {
-                debug.log('MySql-Init-Error', 'MySQL Server connection check return error. Code: ' + connError.code, 'red', 'mysql');
+                debug.log('MySql-Server-Error', 'MySQL connection check return error. Code: ' + connError.code, 'red', 'mysql');
                 process.exit(1); // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT
             } else {
-                debug.log('MySql-Init-Success', 'MySQL Server connection check was successful on Thread Id: ' + + this.conn.threadId, 'green', 'mysql');
+                debug.log('MySql-Server-Success', 'MySQL connection check was successful on Thread Id: ' + + this.conn.threadId, 'green', 'mysql');
             } //conn.destroy(); //Close connections.
         });
 

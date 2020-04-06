@@ -7,19 +7,18 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const process = require('process');
+const debug = require('./server/base/debug')();
 const argv = require('minimist')(process.argv.slice(2));
 
-if( typeof argv.master == 'undefined' || typeof argv.chat == 'undefined' || typeof argv.game == 'undefined' ) {
-    console.log('Stopping server...');
+if( typeof argv.name === 'undefined' || typeof argv.master === 'undefined' || typeof argv.chat === 'undefined' || typeof argv.game === 'undefined' ) {
+    debug.log('USocketNet-Check-Error', 'Detected no arument for --name, --master, --chat, and --game.', 'red', 'usocketnet');
     process.exit(1);
 } else {
-    console.log('Starting server...');
+    debug.log('USocketNet-Check-Success', 'Executing the required server libraries for: ' + argv.name, 'green', 'usocketnet');
     require('./server/master');
     require('./server/chat');
     require('./server/game');
 }
-
-console.log(argv.master);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //																																//
