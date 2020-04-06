@@ -56,9 +56,8 @@ class usn_socketio {
                             packet.nme = JSON.parse(result.data).uname;              
                             return next();
                         } else {
-                            let msg = 'WordPress Error: ' + user.message;
-                            core.debug.log('WPress-Connect-Refused', msg, 'yellow', 'connect')
-                            return next( new Error(msg) );
+                            core.debug.log('WPress-Connect-Refused', user.message, 'yellow', 'connect')
+                            return next( new Error(user.message) );
                         }
                     } else {
                         let msg = 'Token used for ' + nsp + ' server connection is expired or invalid.';
