@@ -27,24 +27,32 @@
 
 		//Authenticate user via Rest Api.
 		public static function bc_usn_authenticate() {
-        
+		
+			// Check that we're trying to authenticate
+			if (!isset($_POST["UN"]) || !isset($_POST["PW"])) {
+				return rest_ensure_response( 
+					array(
+						"code" => "unknown",
+						"message" => "Please contact your administrator. Authentication Unknown!",
+					)
+				);
+			}
+
 			//Listens for POST values.
 			$username = $_POST["UN"];
 			$password = $_POST["PW"];
-	
-			// Check that we're trying to authenticate
-			if (!isset($username) || !isset($password)) {
-				$user = ['code' => 'unknown_request', 'message' => 'Please contact your administrator.', 'data' => null];
-				return rest_ensure_response( $user );
-			}
-	
+
 			//Initialize wp authentication process.
 			$user = wp_authenticate($username, $password);
 			
 			//Check for wp authentication issue.
 			if ( is_wp_error($user) ) {
-				$user = ['code' => 'auth_failed', 'message' => $user->get_error_message(), 'data' => null];
-				return rest_ensure_response( $user );
+				return rest_ensure_response( 
+					array(
+						"code" => "unknown",
+						"message" => $user->get_error_message(),
+					)
+				);
 			}
 	
 			//Make an authentication cookie for WP.
@@ -56,8 +64,8 @@
 	
 			return rest_ensure_response( 
 				array(
-					"code" => "auth_success",
-					"message" => "<strong>Success</strong>: Welcome to USocketNet Rest Api.",
+					"code" => "success",
+					"message" => "<strong>Success</strong>: Welcome to USocketNet Rest Api powered by WordPress.",
 					"data" => array(
 						"session" => BC_USocketNet_WP::bc_usn_get_session($user->ID),                 
 						"cookie" => $cookie, 

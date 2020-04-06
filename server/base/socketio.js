@@ -20,7 +20,7 @@ class usn_socketio {
         //Prevent client socket connection if condition is not met.
         socketio.use((packet, next) => {
 
-            if( typeof packet.handshake.query.wpid == 'undefined' || packet.handshake.query.snid == 'undefined' ) {
+            if( typeof packet.handshake.query.wpid == 'undefined' || typeof packet.handshake.query.snid == 'undefined' ) {
                 let msg = 'The client for ' + nsp + ' did not submit required arguments.';
                     core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
                     return next( new Error(msg) );
@@ -33,28 +33,33 @@ class usn_socketio {
      
                 core.restapi.verify(data, (result) => {
 
-                    if( result.status == 'success' ) {
-                        
+                    if( result.status === 'success' ) {
                         let redis = core.redis.select(0);
-                        
-                        switch( nsp ) {
-                            case 'master':
-                                let user = JSON.parse( result.data );
-                                delete user.status;
-                                redis.masterInit(user, (res) => {});
-                                break;
-                            case 'chat': 
-                                break;
-                            case 'game': 
-                                break;
-                            default:
+                        let user = JSON.parse( result.data );
+
+                        if( user.status === 'success' ) {
+                            switch( nsp ) {
+                                case 'master':
+                                    delete user.status;
+                                    redis.masterInit(user, (res) => {});
+                                    break;
+                                case 'chat': 
+                                    break;
+                                case 'game': 
+                                    break;
+                                default:
+                            }
+    
+                            let sock = { wpid: data.wpid, sid: packet.id, nsp: nsp };
+                            redis.socketConnect(sock, (res) => {});
+    
+                            packet.nme = JSON.parse(result.data).uname;              
+                            return next();
+                        } else {
+                            let msg = 'WordPress Error: ' + user.message;
+                            core.debug.log('WPress-Connect-Refused', msg, 'yellow', 'connect')
+                            return next( new Error(msg) );
                         }
-
-                        let sock = { wpid: data.wpid, sid: packet.id, nsp: nsp };
-                        redis.socketConnect(sock, (res) => {});
-
-                        packet.nme = JSON.parse(result.data).uname;              
-                        return next();
                     } else {
                         let msg = 'Token used for ' + nsp + ' server connection is expired or invalid.';
                         core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')

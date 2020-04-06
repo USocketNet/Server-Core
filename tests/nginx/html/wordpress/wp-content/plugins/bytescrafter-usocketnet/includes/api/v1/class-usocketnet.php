@@ -13,15 +13,24 @@
 	class BC_USocketNet {
 
 		public static function bc_usn_verify_token() {
+
+			// Check that we're trying to authenticate
+			if (!isset($_POST["wpid"]) || !isset($_POST["snid"])) {
+				return rest_ensure_response( 
+					array(
+						"status" => "unknown",
+						"message" => "Please contact your administrator. Verification Unknown!",
+					)
+				);
+			}
+
 			//Listen for this POST parameters push by client.
 			$user_id = $_POST["wpid"];
 			$session_token = $_POST["snid"];
 	
 			//Grab WP_Session_Token from wordpress.
 			$wp_session_token = WP_Session_Tokens::get_instance($user_id);
-	
-			$user_data = [];
-	
+		
 			if( $wp_session_token->verify( $session_token ) ) {
 				$wp_session = $wp_session_token->get( $session_token );
 				if( $wp_session['expiration'] >= time() ) {
@@ -41,16 +50,15 @@
 							"regdate" => $wp_user->data->user_registered
 						)
 					);
-
-					//Return a with primary key, status[error, success].
-					return rest_ensure_response( $user_data );
 				}
 			}
 	
-			//Our client primary status report as failed.
-			$user_data["status"] = "failed";
-	
-			return rest_ensure_response( $user_data );
+			return rest_ensure_response( 
+				array(
+					"status" => "failed",
+					"message" => "Please contact your administrator. Verification Failed!",
+				)
+			);
 		}
 	}
 

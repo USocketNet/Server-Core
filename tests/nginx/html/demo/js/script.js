@@ -69,7 +69,7 @@ function onLoginNow() {
             
             $("#signin-submit").prop('disabled', false);
 
-          if( data.code == 'auth_success' ) {
+          if( data.code == 'success' ) {
 
             $("#signin-success-alert").fadeTo(7000, 500).slideUp(500, function() {
                 $("#signin-success-alert").slideUp(500);
