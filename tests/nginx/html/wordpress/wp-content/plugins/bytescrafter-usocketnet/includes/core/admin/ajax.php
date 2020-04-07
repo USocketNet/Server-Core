@@ -17,7 +17,7 @@
     function ReloadApps() 
     { 
         global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_TABLE_PREFIX . '_' . 'apps';
+        $appsTable = USN_PREFIX . '_' . 'apps';
 
         //SELECT ALL ENTRY on bc_apps
         $rows = $wpdb->get_results( "SELECT aid, uid, api, asta, aname, ainfo, aurl, acap, regdate, wp_users.user_login 
@@ -38,7 +38,7 @@
     function CreateNewApp() 
     { 
         global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_TABLE_PREFIX . '_' . 'apps';
+        $appsTable = USN_PREFIX . '_' . 'apps';
 
         $appname = $_POST['appname_create'];
         $appdesc = $_POST['appdesc_create'];
@@ -108,7 +108,7 @@
     function DeleteThisApp() 
     { 
         global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_TABLE_PREFIX . '_' . 'apps';
+        $appsTable = USN_PREFIX . '_' . 'apps';
 
         if( !isset($_POST['appid_edit']) )
         {
@@ -133,7 +133,7 @@
     function UpdateThisApp() 
     { 
         global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_TABLE_PREFIX . '_' . 'apps';
+        $appsTable = USN_PREFIX . '_' . 'apps';
 
         $appid = $_POST['appid_edit'];
         $appname = $_POST['appname_edit'];

@@ -15,7 +15,7 @@
 		public static function bc_usn_verify_token() {
 
 			// Check that we're trying to authenticate
-			if (!isset($_POST["wpid"]) || !isset($_POST["snid"])) {
+			if (!isset($_POST["wpid"]) || !isset($_POST["snid"]) || !isset($_POST["apid"])) {
 				return rest_ensure_response( 
 					array(
 						"status" => "unknown",
@@ -27,6 +27,10 @@
 			//Listen for this POST parameters push by client.
 			$user_id = $_POST["wpid"];
 			$session_token = $_POST["snid"];
+			$app_id = $_POST["apid"];
+
+			//Check app is active and have capacity avail.
+			
 	
 			//Grab WP_Session_Token from wordpress.
 			$wp_session_token = WP_Session_Tokens::get_instance($user_id);

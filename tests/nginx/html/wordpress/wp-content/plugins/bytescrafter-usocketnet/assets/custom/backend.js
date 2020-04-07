@@ -383,13 +383,11 @@ jQuery(document).ready( function ( $ )
 
         // MAKE SURE THAT TIMEOUT IS CANCELLED.
         $('#EditAppOption').on('hide.bs.modal', function(e) {
-            if( activeTimeout != undefined )
-            {
+            if( activeTimeout != undefined ) {
                 clearTimeout( activeTimeout );
             }
 
-            if( !$('#DFAMessage').hasClass('usn-display-hide') )
-            {
+            if( !$('#DFAMessage').hasClass('usn-display-hide') ){
                 $('#DFAMessage').addClass('usn-display-hide');
             }
         });

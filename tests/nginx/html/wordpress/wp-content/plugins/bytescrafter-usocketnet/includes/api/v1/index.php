@@ -14,11 +14,6 @@ include_once( plugin_dir_path( __FILE__ ) . '/demo-callback.php' );
 // Init check if USocketNet successfully request from wapi.
 function bytescrafter_usocketnet_route()
 {
-    // register_rest_route( 'usocketnet/v1', 'demo', array(
-    //     'methods' => 'POST',
-    //     'callback' => array('BC_Demoguy','init'),
-    // ));
-
     register_rest_route( 'usocketnet/v1', 'auth', array(
         'methods' => 'POST',
         'callback' => array('BC_USocketNet_WP','bc_usn_authenticate'),

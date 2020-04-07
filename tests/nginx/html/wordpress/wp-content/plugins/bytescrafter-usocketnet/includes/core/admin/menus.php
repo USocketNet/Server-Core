@@ -23,20 +23,20 @@
             add_submenu_page('usocketnet-getting_started', 'USN Getting Started', 'Getting Started', 
                 'manage_options', 'usocketnet-getting_started' );
 
-            //add_submenu_page('usocketnet-getting_started', 'USN Online Users', 'Online Users',
-            //    'manage_options', 'usocketnet-online_users', 'usocketnet_onlineusers_page_callback' );
+            add_submenu_page('usocketnet-getting_started', 'USN Online Users', 'Online Users',
+               'manage_options', 'usocketnet-online_users', 'usocketnet_onlineusers_page_callback' );
 
-            //add_submenu_page('usocketnet-getting_started', 'USN Active Channels', 'Active Channels',
-            //    'manage_options', 'usocketnet-active_channels', 'usocketnet_activechannels_page_callback' );
+            add_submenu_page('usocketnet-getting_started', 'USN Active Channels', 'Active Channels',
+               'manage_options', 'usocketnet-active_channels', 'usocketnet_activechannels_page_callback' );
 
             add_submenu_page('usocketnet-getting_started', 'USN Applications', 'Applications',
                 'manage_options', 'usocketnet-applications', 'usocketnet_applications_page_callback' );
 
-            //add_submenu_page('usocketnet-getting_started', 'USN Server Instance', 'Server Instance',
-            //   'manage_options', 'usocketnet-server_instance', 'usocketnet_serverinstance_page_callback' );
+            add_submenu_page('usocketnet-getting_started', 'USN Server Instance', 'Server Instance',
+              'manage_options', 'usocketnet-server_instance', 'usocketnet_serverinstance_page_callback' );
 
-            //add_submenu_page('usocketnet-getting_started', 'USN Settings', 'Settings',
-            //    'manage_options', 'usocketnet-settings', 'usocketnet_setting_page_callback' );
+            add_submenu_page('usocketnet-getting_started', 'USN Settings', 'Settings',
+               'manage_options', 'usocketnet-settings', 'usocketnet_setting_page_callback' );
         }
         add_action('admin_menu', 'usocketnet_init_admin_menu');
 
