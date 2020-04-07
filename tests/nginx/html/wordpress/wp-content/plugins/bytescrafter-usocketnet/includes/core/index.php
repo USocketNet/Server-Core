@@ -14,6 +14,11 @@
 <?php
 
 	include_once ( plugin_dir_path( __FILE__ ) . '/admin/menus.php' );
-	include_once ( plugin_dir_path( __FILE__ ) . '/admin/ajax.php' );
+
+	//Application
+	include_once ( plugin_dir_path( __FILE__ ) . '/admin/apps/reload.php' );
+	include_once ( plugin_dir_path( __FILE__ ) . '/admin/apps/create.php' );
+	include_once ( plugin_dir_path( __FILE__ ) . '/admin/apps/update.php' );
+	include_once ( plugin_dir_path( __FILE__ ) . '/admin/apps/delete.php' );
 	
 ?>
