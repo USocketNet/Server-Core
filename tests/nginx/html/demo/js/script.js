@@ -47,6 +47,7 @@ function onLoginNow() {
 
     //Instead of using this: $('#login_form').serialize()
     //We try to get element value by id to create new object.
+    var signinAppId = document.getElementById('signin-apid').value;
     var signinUname = document.getElementById('signin-uname').value;
     var signinPword = document.getElementById('signin-pword').value;
     var signinData = { "UN": signinUname, "PW": signinPword };
@@ -78,6 +79,7 @@ function onLoginNow() {
             localStorage['wpid'] = data.data.id;
             localStorage['uname'] = data.data.dname;
             localStorage['snid'] = data.data.session;
+            localStorage['apid'] = signinAppId;
             localStorage['cookie'] = data.data.cookie;
             localStorage['user'] = JSON.stringify(data.data);
             window.location.replace(site_url + '/profile.html');

@@ -31,7 +31,7 @@ $(function () {
         //#region Master Connection.
             //Master Initialized and Connect.
             var master = io(
-                'http://localhost:19091?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid=93c92d1222223a92de556ca2db02b6c4', 
+                'http://localhost:19091?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid='+localStorage['apid'], 
                 { 
                     autoConnect: false,
                     forceNew: false,
@@ -86,7 +86,7 @@ $(function () {
         //#region Chat Connection.
 
             var chat = io(
-                'http://localhost:6061?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid=93c92d1222223a92de556ca2db02b6c4', 
+                'http://localhost:6061?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid='+localStorage['apid'], 
                 { 
                     autoConnect: false,
                     forceNew: false,
@@ -119,7 +119,7 @@ $(function () {
         //#region Game Connection.
 
             var game = io(
-                'http://localhost:9091?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid=93c92d1222223a92de556ca2db02b6c4', 
+                'http://localhost:9091?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid='+localStorage['apid'], 
                 { 
                     autoConnect: false,
                     forceNew: false,
