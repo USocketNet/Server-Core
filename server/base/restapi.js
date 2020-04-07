@@ -14,7 +14,7 @@ class usn_restapi {
     verify ( cred, cback ) {
         request.post(
             'http://' + this.wpress_url + '/wp-json/usocketnet/v1/token',
-            { form: { wpid: cred.wpid, snid: cred.snid } },
+            { form: { wpid: cred.wpid, snid: cred.snid, apid: cred.apid } },
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     cback( { status: 'success', data: body } );

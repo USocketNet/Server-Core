@@ -26,17 +26,16 @@ class usn_socketio {
                     return next( new Error(msg) );
             } else {
                 let data = {};
-                data.nsp = nsp;
                 data.wpid = packet.handshake.query.wpid;
                 data.snid = packet.handshake.query.snid;
+                data.apid = packet.handshake.query.apid;
                 packet.wpid = data.wpid;
      
                 core.restapi.verify(data, (result) => {
-
                     if( result.status === 'success' ) {
                         let redis = core.redis.select(0);
                         let user = JSON.parse( result.data );
-
+                        
                         if( user.status === 'success' ) {
                             switch( nsp ) {
                                 case 'master':
@@ -53,7 +52,7 @@ class usn_socketio {
                             let sock = { wpid: data.wpid, sid: packet.id, nsp: nsp };
                             redis.socketConnect(sock, (res) => {});
     
-                            packet.nme = JSON.parse(result.data).uname;              
+                            packet.nme = user.uname;              
                             return next();
                         } else {
                             core.debug.log('WPress-Connect-Refused', user.message, 'yellow', 'connect')
