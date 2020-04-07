@@ -16,16 +16,7 @@
     add_action('wp_ajax_nopriv_CreateNewApp', 'CreateNewApp');
     function CreateNewApp() 
     { 
-        global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_PREFIX . '_' . 'apps';
-
-        $appname = $_POST['appname_create'];
-        $appdesc = $_POST['appdesc_create'];
-        $appurl = $_POST['appurl_create'];
-        $appsta = $_POST['appsta_create'];
-        $appcap = $_POST['appcap_create'];
-
-        if( !isset($appname) || !isset($appdesc) || !isset($appurl) || !isset($appsta) || !isset($appcap) )
+        if( !isset($_POST['appname_create']) || !isset($_POST['appdesc_create']) || !isset($_POST['appurl_create']) || !isset($_POST['appsta_create']) || !isset($_POST['appcap_create']) )
         {
             echo json_encode( 
                 array(
@@ -35,6 +26,15 @@
             );
             wp_die();
         }
+
+        $appname = $_POST['appname_create'];
+        $appdesc = $_POST['appdesc_create'];
+        $appurl = $_POST['appurl_create'];
+        $appsta = $_POST['appsta_create'];
+        $appcap = $_POST['appcap_create'];
+
+        global $wpdb; //Reference to wp mysql conn.
+        $appsTable = USN_PREFIX . '_' . 'apps';
 
         $checkName = $wpdb->get_results("SELECT uid, wp_users.user_login FROM $appsTable, wp_users 
             WHERE aname = '$appname'");

@@ -16,14 +16,19 @@
     add_action('wp_ajax_nopriv_DeleteThisApp', 'DeleteThisApp');
     function DeleteThisApp() 
     { 
-        global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_PREFIX . '_' . 'apps';
-
         if( !isset($_POST['appid_edit']) )
         {
-            echo json_encode( array('message'=>'Application id is required during app deletion, contact your administrator.') );
+            echo json_encode( 
+                array(
+                    'status'=>'danger', 
+                    'message'=>'Application id is required during app deletion, contact your administrator.'
+                ) 
+            );
             wp_die();
         }
+
+        global $wpdb; //Reference to wp mysql conn.
+        $appsTable = USN_PREFIX . '_' . 'apps';
 
         $rows = $wpdb->get_results( "DELETE FROM $appsTable WHERE aid = ".$_POST['appid_edit']);
 

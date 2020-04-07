@@ -16,8 +16,16 @@
     add_action('wp_ajax_nopriv_UpdateThisApp', 'UpdateThisApp');
     function UpdateThisApp() 
     { 
-        global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_PREFIX . '_' . 'apps';
+        if( !isset($_POST['appid_edit']) || !isset($_POST['appname_edit'])  || !isset($_POST['appdesc_edit']) || !isset($_POST['appurl_edit']) || !isset($_POST['appsta_edit']) || !isset($_POST['appcap_edit']))
+        {
+            echo json_encode( 
+                array(
+                    'status'=>'danger', 
+                    'message'=>'All inputs is required and neccesary for application to be updated.'
+                ) 
+            );
+            wp_die();
+        }
 
         $appid = $_POST['appid_edit'];
         $appname = $_POST['appname_edit'];
@@ -26,11 +34,8 @@
         $appsta = $_POST['appsta_edit'];
         $appcap = $_POST['appcap_edit'];
 
-        if( !isset($appid) || !isset($appname) || !isset($appdesc) || !isset($appurl) || !isset($appsta) || !isset($appcap) )
-        {
-            echo json_encode( array('message'=>'All inputs is required and neccesary for application to be updated.') );
-            wp_die();
-        }
+        global $wpdb; //Reference to wp mysql conn.
+        $appsTable = USN_PREFIX . '_' . 'apps';
 
         $rows = $wpdb->get_results( "UPDATE $appsTable SET aname = '$appname', ainfo = '$appdesc', aurl = '$appurl', asta = '$appsta', acap = '$appcap' 
             WHERE aid = '$appid'" );
