@@ -48,8 +48,6 @@ module.exports = ( config ) => {
 
 class usn_redis {
 
-    config = null;
-
     //Initialized instance of redis.
     constructor ( conf ) {
         this.config = cloneJson( conf );
@@ -84,7 +82,7 @@ class usn_redis {
 }
 
 class usn_redis_conn {
-    database = null;
+
     constructor ( config ) {
         this.database = redis.createClient( config );
         return this;

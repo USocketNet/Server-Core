@@ -6,7 +6,8 @@ config:
     transports: ["websocket", "polling"]
     query:
       wpid: "1"
-      snid: "AfuJTZY0Pv2VG1rj8t60SQxDDFGLoQ3S6nO4JZymHB"
+      snid: "n9O50YByIXK2JRBErO1IZQMzDlVc82EQ0K2AuJ1tEvw"
+      apid: "93c92d1222223a92de556ca2db02b6c4"
   phases:
     - duration: 60
       arrivalRate: 10

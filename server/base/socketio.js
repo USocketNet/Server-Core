@@ -7,20 +7,28 @@ module.exports = ( nsp ) => {
     return new usn_socketio( nsp );
 };
 
-class usn_socketio {
-    instance = 'undefined';
-    
+class usn_socketio {    
     constructor ( nsp ) {
         const server = require('./express')();
         const socketio = require('socket.io').listen(server);
             const redisAdapter = require('socket.io-redis');
             socketio.adapter( redisAdapter({ host: 'localhost', port: 6379 }) );
+            //socketio.origins(['http://localhost:19090','http://localhost:6060','http://localhost:9090']);
+            // socketio.origins((origin, callback) => {
+            //     console.log(origin);
+            //     if (origin !== 'http://localhost') {
+            //       return callback('origin not allowed', false);
+            //     }
+            //     callback(null, true);
+            //   });
+
             //const namespace = socketio.of( '/' + nsp );
 
         //Prevent client socket connection if condition is not met.
         socketio.use((packet, next) => {
+            //packet.disconnect(true);
 
-            if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' ) {
+            if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' || typeof packet.handshake.query.apid === 'undefined' ) {
                 let msg = 'The client for ' + nsp + ' did not submit required arguments.';
                     core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
                     return next( new Error(msg) );
@@ -59,9 +67,8 @@ class usn_socketio {
                             return next( new Error(user.message) );
                         }
                     } else {
-                        let msg = 'Token used for ' + nsp + ' server connection is expired or invalid.';
-                        core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
-                        return next( new Error(msg) );
+                        core.debug.log('RestApi-Request-Error', result.message, 'yellow', 'connect')
+                        return next( new Error(result.message) );
                     }
                 });
             }
@@ -69,6 +76,7 @@ class usn_socketio {
 
         this.instance = this;
         this.instance.sio = socketio;
+        //this.instance.sio = socketio.of( '/' + nsp );
         this.instance.http = server;
 
         return this.instance;

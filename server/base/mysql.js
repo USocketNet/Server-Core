@@ -8,8 +8,6 @@ module.exports = ( config ) => {
 
 class usn_mysql {
 
-    conn = null;
-
     constructor ( conf ) {
         this.conn = mysql.createConnection({
             host: conf.host,

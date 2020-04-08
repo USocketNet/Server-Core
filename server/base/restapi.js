@@ -6,7 +6,6 @@ module.exports = ( url ) => {
 };
 
 class usn_restapi {
-    wpress_url = 'undefined';
     constructor ( url ) {
         this.wpress_url = url;
     }
@@ -19,7 +18,12 @@ class usn_restapi {
                 if (!error && response.statusCode == 200) {
                     cback( { status: 'success', data: body } );
                 } else {
-                    cback( { status: 'error'} );
+                    if( typeof response === 'undefined' ) {
+                        cback( { status: 'error', message: 'USocketNet reach the hostname that you provide for wpress.' } );
+                    } else {
+                        cback( { status: 'error', message: 'RestApi response a status of ' + response.statusCode + ' from hostname ' 
+                            + response.request.uri.hostname + ':' + response.request.uri.protocol + '.' } );
+                    }
                 }
             }
         );
