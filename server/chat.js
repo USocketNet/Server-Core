@@ -9,6 +9,13 @@ const instance = require('./base/socketio')( 'chat' );
     //Server logging about the connection on Chat Server.
     debug.log('Connection on Chat', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
   
+    //Called by client that its connected.
+    socket.on('connected', (data, cback) => {
+      if(typeof cback === 'function') {
+        cback( conn.address().port );
+      }
+    });
+    
       socket.on('public', (msg, cback) => {
         cback('returnee');
         socket.broadcast.emit('public', { nme: socket.nme, snd: socket.wpid,  msg: msg, date: new Date() });

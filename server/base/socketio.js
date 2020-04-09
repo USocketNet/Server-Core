@@ -42,13 +42,13 @@ class usn_socketio {
                 core.restapi.verify(data, (result) => {
                     if( result.status === 'success' ) {
                         let redis = core.redis.select(0);
-                        let user = JSON.parse( result.data );
+                        let respo = JSON.parse( result.data );
                         
-                        if( user.status === 'success' ) {
+                        if( respo.status === 'success' ) {
                             switch( nsp ) {
                                 case 'master':
-                                    delete user.status;
-                                    redis.masterInit(user, (res) => {});
+                                    delete respo.status;
+                                    //redis.masterInit(respo, (res) => {});
                                     break;
                                 case 'chat': 
                                     break;
@@ -58,13 +58,14 @@ class usn_socketio {
                             }
     
                             let sock = { wpid: data.wpid, sid: packet.id, nsp: nsp };
-                            redis.socketConnect(sock, (res) => {});
+                            //redis.socketConnect(sock, (res) => {});
     
-                            packet.nme = user.uname;              
+                            packet.nme = respo.user.uname;
+                            console.log('The name is ' + respo.user.uname);              
                             return next();
                         } else {
-                            core.debug.log('WPress-Connect-Refused', user.message, 'yellow', 'connect')
-                            return next( new Error(user.message) );
+                            core.debug.log('WPress-Connect-Refused', result.message, 'yellow', 'connect')
+                            return next( new Error(result.message) );
                         }
                     } else {
                         core.debug.log('RestApi-Request-Error', result.message, 'yellow', 'connect')

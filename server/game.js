@@ -9,6 +9,13 @@ const instance = require('./base/socketio')( 'game' );
     //Server logging about the connection on Game Server.
     debug.log('Connection on Game', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
 
+    //Called by client that its connected.
+    socket.on('connected', (data, cback) => {
+      if(typeof cback === 'function') {
+        cback( conn.address().port );
+      }
+    });
+
     //Listens for any server-client disconnection
     socket.on('disconnect', () => {
       //Server logging about the disconnection on Game Server.
