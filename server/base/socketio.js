@@ -26,6 +26,7 @@ class usn_socketio {
 
         //Prevent client socket connection if condition is not met.
         socketio.use((packet, next) => {
+            packet.emit('hello', 'can you hear me?');
             //packet.disconnect(true);
 
             if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' || typeof packet.handshake.query.apid === 'undefined' ) {
@@ -61,7 +62,6 @@ class usn_socketio {
                             //redis.socketConnect(sock, (res) => {});
     
                             packet.nme = respo.user.uname;
-                            console.log('The name is ' + respo.user.uname);              
                             return next();
                         } else {
                             core.debug.log('WPress-Connect-Refused', result.message, 'yellow', 'connect')

@@ -22,7 +22,7 @@ class usn_restapi {
                         cback( { status: 'error', message: 'USocketNet reach the hostname that you provide for wpress.' } );
                     } else {
                         cback( { status: 'error', message: 'RestApi response a status of ' + response.statusCode + ' from hostname ' 
-                            + response.request.uri.hostname + ':' + response.request.uri.protocol + '.' } );
+                            + response.request.uri.hostname + ':' + response.request.port + '.' } );
                     }
                 }
             }
