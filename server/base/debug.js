@@ -15,6 +15,14 @@ class usn_debug {
 
 	log (title, detail, color, type) //Note: tilteLimit: 49 | detailLimit: 250
     {
+		try {
+			fs.mkdirSync('logs');
+		} catch(err) {
+			if(err.code == 'EEXIST') {
+				//Just continue.
+			}
+		}
+
 		var curLogDate = new Date();
 		var pathFile = 'logs/' + type + '.log';
 
