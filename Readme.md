@@ -78,7 +78,7 @@ LOAD BENCHMARKING
 - Run this to automatically load test your app. But before you do, 
 please ensure to run ``` npm install artillery -g ``` to install 
 the package that will execute server benchmarking. Then run this to 
-benchmark: ``` artillery run artillery.yaml ```
+benchmark: ``` artillery run tests/artillery.yaml ```
 
 SAFE MODE TESTING
 
