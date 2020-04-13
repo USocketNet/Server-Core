@@ -2,9 +2,9 @@
   "name": "usocketnet",
   "version": "v0.9.5",
   "description": "www.bytescrafter.net",
-  "main": "server.js",
+  "main": "usocketnet.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node usocketnet.js",
     "test": "node tests/index.js"
   },
   "author": "Bytes Crafter",
