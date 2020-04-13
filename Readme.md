@@ -50,13 +50,13 @@ Within each `Server`, you can define arbitrary channels, called `Channel`, that 
     - PM2 - is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks. Run: ``` npm install pm2 -g ```
     - Artillery - is a modern, powerful & easy-to-use load testing and functional testing toolkit. Use it to ship scalable applications that stay performant & resilient under high load. Run: ``` npm install artillery -g ```
 
-### Default Public HTML
+### Testing Environment
 
-This project includes built-in http server for WordPress which is nginx, SQL database using MySql, PHP version 7 as cgi engine. On windows, you can easily start or stop this said server on /test. To run Nginx, PHP, and MySQL server: Use our built-in .bat executable on windows in this path ``` /test/nginx ```. Click on start, stop, or even check to check if all server is currently running.
+This project includes built-in http server for WordPress which is nginx, SQL database using MySql, PHP version 7 as cgi engine. On windows, you can easily start or stop this said server on /test. To run Nginx, PHP, and MySQL server: Use our built-in .bat executable on windows. Click on start, stop, or even check to check if all server is currently running. Download this Github [Release](https://github.com/BytesCrafter/LEMP-Stack-on-Windows/releases/tag/working) for LEMP stacks,, dont forget leave your stars on that git repo. Thanks!
 
-- http://localhost/demo
-- http://localhost/wordpress
-- http://localhost/phpMyAdmin
+- Copy the public/demoguy folder to the html forlder of that nginx so that we can test USocketNet sample chat application.
+- Install a WordPress on nginx just by downloading WordPress into html path of nginx. First, create MySQL database using phpMyAdmin.
+- Copy or install usocketnet-backend from public/wordpress/wp-content/plugins to your new wordpress and activate it on WP Admin.
 
 #### Credentials
 
