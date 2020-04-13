@@ -1,32 +1,39 @@
 root
-  |-config/
-  |--master.json
-  |--chat.json
-  |--game.json
+  |
   |-docs/
   |--file-structure.txt
+  |--nginx.conf
   |
   |-logs/
-  |--master.txt
-  |--chat.txt
-  |--game.txt
+  |--chat.log
+  |--game.log
+  |--master.log
+  |--connect.log
+  |--disconnect.log
+  |--mysql.log
+  |--process.log
+  |--redis.log
+  |--usocketnet.log
+  |
+  |-public/
+  |--demoguy
+  |--wordpress
   |
   |-server/
-  |--controllers
-  |--models
-  |--views
+  |--base
+  |--config
+  |--chat.js
+  |--game.js
+  |--master.js
   |
-  |-test/
-  |--micro/
-  |---master.js
-  |---chat.js
-  |---game.js
-  |--nginx/*
+  |-tests/
+  |--demo.js
+  |--index.js
+  |--artillery.yaml
   |
   |-package-lock.json
   |-package.json
-  |-server.js
-  |-artillery.yaml
+  |-usocketnet.js
   |-LICENCE
   |-README.MD
   |-CHANGELOG
