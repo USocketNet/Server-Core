@@ -6,7 +6,7 @@ $(function () {
     function forceDisconnect(log) {
         localStorage.clear();
         console.error('Client Error: ');
-        window.location.replace("http://localhost/demo");
+        window.location.replace("http://localhost/demoguy");
     }
 
     $('form').submit(function(e) {

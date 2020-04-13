@@ -1,4 +1,4 @@
-const site_url = 'http://localhost/demo';
+const site_url = 'http://localhost/demoguy';
 const wp_url = 'http://localhost/wordpress';
 
 //#region JQuery Mechanism
@@ -121,7 +121,7 @@ function onLogout() {
 //         success: function(data) {
 //           if( data.status == 'success' ) {
 //             localStorage['user'] = JSON.stringify(data);
-//             window.location.replace("http://localhost/demo/chat.html");
+//             window.location.replace("http://localhost/demoguy/chat.html");
 //           } else {
 //             console.log( 'USocketNet: Failed to login using token!' );
 //           }
