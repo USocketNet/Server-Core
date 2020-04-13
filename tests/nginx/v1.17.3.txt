@@ -1,4 +1,0 @@
-MYSQL DEFAULT:
-
-USER: root / admin
-PASS: root / admin

@@ -1,2 +1,0 @@
-1. Working server instance communication with socket.io-redis NPM packages.
-2. With ioredis, we are able to set and get value to redis database.
