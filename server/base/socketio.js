@@ -64,7 +64,7 @@ class usn_socketio {
                             return next();
                         } else {
                             core.debug.log('WPress-Connect-Refused', respo.message, 'yellow', 'connect')
-                            return next( new Error(result.message) );
+                            return next( new Error(respo.message) );
                         }
                     } else {
                         core.debug.log('RestApi-Request-Error', result.message, 'yellow', 'connect')
