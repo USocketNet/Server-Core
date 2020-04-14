@@ -6,8 +6,6 @@
 require plugin_dir_path(__FILE__) . '/class-wordpress.php';
 require plugin_dir_path(__FILE__) . '/class-usocketnet.php';
 
-include_once( plugin_dir_path( __FILE__ ) . '/auth-callback.php' );
-
 //require plugin_dir_path(__FILE__) . '/class-demoguy.php';
 include_once( plugin_dir_path( __FILE__ ) . '/demo-callback.php' );
 
