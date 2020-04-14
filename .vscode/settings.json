@@ -2,7 +2,8 @@
     "favorites.resources": [
         "public\\wordpress\\wp-content\\plugins\\bytescrafter-usocketnet",
         "docs\\nginx.conf",
-        "public\\demoguy"
+        "public\\demoguy",
+        "server"
     ],
     "files.exclude": {
         "**/.git": true,
