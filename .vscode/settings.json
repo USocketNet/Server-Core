@@ -1,12 +1,8 @@
 {
     "favorites.resources": [
-        "tests\\nginx\\html\\wordpress\\wp-content\\plugins\\bytescrafter-usocketnet",
-        "tests\\nginx\\conf\\nginx.conf",
-        "server",
-        "docs\\file-structure.txt",
-        "library",
-        "tests\\nginx\\html\\demo",
-        "README.MD"
+        "public\\wordpress\\wp-content\\plugins\\bytescrafter-usocketnet",
+        "docs\\nginx.conf",
+        "public\\demoguy"
     ],
     "files.exclude": {
         "**/.git": true,
