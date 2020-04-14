@@ -63,7 +63,7 @@ class usn_socketio {
                             packet.nme = respo.user.uname;
                             return next();
                         } else {
-                            core.debug.log('WPress-Connect-Refused', result.message, 'yellow', 'connect')
+                            core.debug.log('WPress-Connect-Refused', respo.message, 'yellow', 'connect')
                             return next( new Error(result.message) );
                         }
                     } else {
