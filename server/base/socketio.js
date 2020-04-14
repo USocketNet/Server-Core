@@ -26,7 +26,6 @@ class usn_socketio {
 
         //Prevent client socket connection if condition is not met.
         socketio.use((packet, next) => {
-            packet.emit('hello', 'can you hear me?');
             //packet.disconnect(true);
 
             if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' || typeof packet.handshake.query.apid === 'undefined' ) {

@@ -233,13 +233,13 @@ class USocketNet {
     getServerType(stype) {
         switch(stype) {
             case 'master':
-                return '19091';
+                return '19090';
                 break;
             case 'chat':
-                return '6061';
+                return '6060';
                 break;
             case 'game':
-                return '9091';
+                return '9090';
                 break;
             default:
                 return 'undefined';
