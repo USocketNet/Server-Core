@@ -10,7 +10,10 @@ module.exports = ( nsp ) => {
 class usn_socketio {    
     constructor ( nsp ) {
         const server = require('./express')();
-        const socketio = require('socket.io').listen(server);
+        const socketio = require('socket.io')(server, {
+            pingInterval: 10000,
+            pingTimeout: 5000,
+        });
             const redisAdapter = require('socket.io-redis');
             socketio.adapter( redisAdapter({ host: 'localhost', port: 6379 }) );
             //socketio.origins(['http://localhost:19090','http://localhost:6060','http://localhost:9090']);
@@ -31,6 +34,7 @@ class usn_socketio {
             if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' || typeof packet.handshake.query.apid === 'undefined' ) {
                 let msg = 'The client for ' + nsp + ' did not submit required arguments.';
                     core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
+                    packet.disconnect(true);
                     return next( new Error(msg) );
             } else {
                 let data = {};
@@ -64,10 +68,12 @@ class usn_socketio {
                             return next();
                         } else {
                             core.debug.log('WPress-Connect-Refused', respo.message, 'yellow', 'connect')
+                            packet.disconnect(true);
                             return next( new Error(respo.message) );
                         }
                     } else {
                         core.debug.log('RestApi-Request-Error', result.message, 'yellow', 'connect')
+                        packet.disconnect(true);
                         return next( new Error(result.message) );
                     }
                 });
