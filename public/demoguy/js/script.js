@@ -1,5 +1,5 @@
-const site_url = 'http://localhost/demoguy';
-const wp_url = 'http://localhost/wordpress';
+const site_url = 'http://'+window.location.host+'/demoguy';
+const wp_url = 'http://'+window.location.host+'/wordpress';
 
 //#region JQuery Mechanism
 $(document).ready(function() {

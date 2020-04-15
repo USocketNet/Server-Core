@@ -6,7 +6,7 @@ $(function () {
     function forceDisconnect(log) {
         localStorage.clear();
         console.error('Client Error: ');
-        window.location.replace("http://localhost/demoguy");
+        window.location.replace("http://"+window.location.host+"/demoguy");
     }
 
     $('form').submit(function(e) {
@@ -28,15 +28,15 @@ $(function () {
             curUser.wpid = localStorage['wpid'];
         $('#messages').prepend($('<li style="text-align: center;">').text( 'Welcome! '+ curUser.dname+' [' + curUser.email + '] ID: ' + localStorage['wpid'] ));
 
-        var usnList = [];
-        //usnList.push(new USocketNet('chat')); 
-        var asd = new USocketNet('chat', curUser);
+        let usnList = [];
+            usnList.push(new USocketNet('master', curUser)); 
+            usnList.push(new USocketNet('chat', curUser)); 
+            usnList.push(new USocketNet('game', curUser)); 
+
         setInterval(() => {
-            asd.sendMessage(randomizer(20));
-        }, 1000);
+            usnList[1].sendMessage(randomizer(20) + ' ON ' + new Date().toLocaleString());
+        }, 2000);
        
-
-
         function randomizer(length) {
             var result           = '';
             var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -45,171 +45,28 @@ $(function () {
                result += characters.charAt(Math.floor(Math.random() * charactersLength));
             }
             return result;
-         }
-
-        // setInterval(function(){ 
-        //     usnList.push(new USocketNet('master')); 
-        //     usnList.push(new USocketNet('chat')); 
-        //     usnList.push(new USocketNet('game')); 
-        // }, 500);
-            
-        //#region Master Connection.
-            //Master Initialized and Connect.
-            // var master = io(
-            //     'http://localhost:19091?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid='+localStorage['apid'], 
-            //     { 
-            //         autoConnect: false,
-            //         forceNew: false,
-            //         transports: ['websocket', 'polling']
-            //     }
-            // ); master.connect();
-
-            // //Client listen for connect. 
-            // master.on('connect', () => {                
-            //     //Send to master for further server verification.
-            //     master.emit( 'connected', localStorage['user'], (returnee) => {
-            //         chat.emit( 'connected', { data: 'Abc123' }, (user) => {
-            //             $('#messages').append($('<li style="text-align: center;">').text( 'Welcome! ' + curUser.dname + '[' +curUser.email+ ']' ));
-            //         });
-            //         $('#messages').append($('<li style="text-align: center;">').text( 'Master: '+master.connected+'! ID# ' + master.id ));
-                    
-            //         console.log('Master Connected: ' + master.connected + '. Im ' + master.id + ' from server on port: ' + returnee);
-            //     });
-            // });
-
-            // //Client listen for disconnect. 
-            // master.on('disconnect', (data) => {
-            //     forceDisconnect('Master Disconnected: ' + data);
-            // });
-
-            // //Client listen for disconnect. 
-            // master.on('connect_error', (data) => {
-            //     forceDisconnect('Master Connect Error: ' + data);
-            // });
-
-            // //Client listen for disconnect. 
-            // master.on('connect_timeout', (data) => {
-            //     forceDisconnect('Master Connect Timeout: ' + data);
-            // });
-
-            // //Client listen for disconnect. 
-            // master.on('reconnect_error ', (data) => {
-            //     forceDisconnect('Master Reconnect Error : ' + data);
-            // });
-
-            // //Client listen for disconnect. 
-            // master.on('reconnect_failed', (data) => {
-            //     forceDisconnect('Master Reconnect Failed: ' + data);
-            // });
-    
-            // //Listens form any server error.
-            // master.on('error', (data) => {
-            //     forceDisconnect('Master Error: ' + data);
-            // });
-        //#endregion
-
-        //#region Chat Connection.
-
-        //     var chat = io(
-        //         'http://localhost:6061?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid='+localStorage['apid'], 
-        //         { 
-        //             autoConnect: false,
-        //             forceNew: false,
-        //             transports: ['websocket', 'polling']
-        //         }
-        //     ); chat.connect();
-
-        //     chat.on('connect', () => {
-        //         $('#messages').append($('<li style="text-align: center;">').text( 'Chat: '+chat.connected+'! ID# ' + chat.id ));
-        //         console.log('Chat Connected: ' + chat.connected + '. Im ' + chat.id + ' from server.');
-        //     });
-
-        //     function sendChatMessage(msg) {
-        //         chat.emit('public', msg, (returnee) => {
-        //             $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + msg ));
-        //         });
-        //     }
-
-        //     chat.on('public', function( rcvr ) {
-
-        //         if( curUser.wpid == rcvr.snd ) {
-        //             $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + rcvr.msg ));
-        //         } else {
-        //             $('#messages').append($('<li>').text( rcvr.nme + ' #' + rcvr.snd + ' ['+rcvr.date+']: ' + rcvr.msg));
-        //         }
-        //     });
-
-        //#endregion
-
-        //#region Game Connection.
-
-        //     var game = io(
-        //         'http://localhost:9091?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid='+localStorage['apid'], 
-        //         { 
-        //             autoConnect: false,
-        //             forceNew: false,
-        //             transports: ['websocket', 'polling']
-        //         }
-        //     ); game.connect();
-
-        //     game.on('connect', () => {
-        //         $('#messages').append($('<li style="text-align: center;">').text( 'Game: '+game.connected+'! ID# ' + game.id ));
-        //         console.log('Game Connected: ' + game.connected + '. Im ' + game.id + ' from server.');
-        //     });
-
-        //     //Client listen for disconnect. 
-        //     game.on('disconnect', (data) => {
-        //         forceDisconnect('Game Disconnected: ' + data);
-        //     });
-
-        //     //Client listen for disconnect. 
-        //     game.on('connect_error', (data) => {
-        //         forceDisconnect('Game Connect Error: ' + data);
-        //     });
-
-        //     //Client listen for disconnect. 
-        //     game.on('connect_timeout', (data) => {
-        //         forceDisconnect('Game Connect Timeout: ' + data);
-        //     });
-
-        //     //Client listen for disconnect. 
-        //     game.on('reconnect_error ', (data) => {
-        //         forceDisconnect('Game Reconnect Error : ' + data);
-        //     });
-
-        //     //Client listen for disconnect. 
-        //     game.on('reconnect_failed', (data) => {
-        //         forceDisconnect('Game Reconnect Failed: ' + data);
-        //     });
-    
-        //     //Listens form any server error.
-        //     game.on('error', (data) => {
-        //         forceDisconnect('Game Error: ' + data);
-        //     });
-
-        //#endregion
+         }   
     } 
-
 });
 
 class USocketNet {
-    
 
     constructor(nsp, curUser) {
 
         this.conn = io(
-            'http://localhost:'+this.getServerType(nsp)+'?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid='+localStorage['apid'], 
+            'http://'+window.location.host+':'+this.getServerType(nsp)+'?wpid='+localStorage['wpid']+'&snid='+localStorage['snid']+'&apid='+localStorage['apid'], 
             { 
-                autoConnect: false,
+                reconnection: false,
                 forceNew: false,
                 transports: ['websocket', 'polling']
             }
         ); this.conn.connect();
 
         //Client listen for connect. 
-        this.conn.on('connect', () => {                
+        this.conn.on('connect', () => {  
+            //this.conn.emit('ping');
             //Send to master for further server verification.
-            this.conn.emit( 'connected', localStorage['user'], (returnee) => {
+            this.conn.emit( 'connects', localStorage['user'], (returnee) => {
                 // chat.emit( 'connected', { data: 'Abc123' }, (user) => {
                 //     $('#messages').append($('<li style="text-align: center;">').text( 'Welcome! ' + curUser.dname + '[' +curUser.email+ ']' ));
                 // });
@@ -219,14 +76,71 @@ class USocketNet {
             });
         });
 
-        this.conn.on('public', function( rcvr ) {
+        if(nsp === 'chat') {
+            this.conn.on('pub', function( rcvr ) {
 
-            if( curUser.wpid == rcvr.snd ) {
-                $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + rcvr.msg ));
-            } else {
-                $('#messages').append($('<li>').text( rcvr.nme + ' #' + rcvr.snd + ' ['+rcvr.date+']: ' + rcvr.msg));
+                if( curUser.wpid == rcvr.snd ) {
+                    $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + rcvr.msg ));
+                } else {
+                    $('#messages').append($('<li>').text( rcvr.nme + ' #' + rcvr.snd + ' ['+rcvr.date+']: ' + rcvr.msg));
+                }
+            });
+        }
+
+        this.conn.on('disconnect', (reason) => {
+            if (reason === 'io server disconnect') {
+              // the disconnection was initiated by the server, you need to reconnect manually
+              //socket.connect();
             }
+            // else the socket will automatically try to reconnect
+            console.log('Event: disconnect - reason: ' + reason);
         });
+
+        this.conn.on('reconnect', (attemptNumber) => {
+            console.log('Event: reconnect - attempt: ' + attemptNumber);
+        });
+
+        this.conn.on('reconnect_attempt', (attemptNumber) => {
+            console.log('Event: reconnect_attempt - attempt: ' + attemptNumber);
+        });
+
+        this.conn.on('reconnecting', (attemptNumber) => {
+            console.log('Event: reconnecting - attempt: ' + attemptNumber);
+        });
+
+        this.conn.on('reconnect_failed', () => {
+            console.log('Event: reconnect_failed - ');
+        });
+
+        this.conn.on('reconnect_error', (error) => {
+            console.log('Event: reconnect_error - ' + error);
+        });
+
+        this.conn.on('error', (error) => {
+            console.log('Event: connect_timeout - ' + error);
+        });
+
+        this.conn.on('connect_timeout', (timeout) => {
+            console.log('Event: connect_timeout - ' + timeout);
+        });
+
+        this.conn.on('connect_error', (error) => {
+            console.log('Event: connect_error - ' + error);
+        });
+
+        if(nsp === 'master') {
+            this.conn.on('ping', function( ) {
+                // console.log('PINGING...');
+            });
+
+            this.latency = '0';
+            this.conn.on('pong', function( ping ) {
+                this.latency = ping + '';
+                document.getElementById('latency').innerText = 'PING: ' + ping + 'ms';
+            });
+        }
+        
+
         return this;
     }
 
@@ -248,7 +162,7 @@ class USocketNet {
     }
 
     sendMessage(msg) {
-        this.conn.emit('public', msg, (returnee) => {
+        this.conn.emit('pub', { msg: msg }, (returnee) => {
             $('#messages').append($('<li style="text-align: right;">').text( 'Me: ' + msg ));
         });
     }

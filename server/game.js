@@ -10,7 +10,7 @@ const instance = require('./base/socketio')( 'game' );
     debug.log('Connection on Game', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
 
     //Called by client that its connected.
-    socket.on('connected', (data, cback) => {
+    socket.on('connects', (data, cback) => {
       if(typeof cback === 'function') {
         cback( conn.address().port );
       }

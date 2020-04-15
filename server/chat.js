@@ -9,16 +9,44 @@ const instance = require('./base/socketio')( 'chat' );
     //Server logging about the connection on Chat Server.
     debug.log('Connection on Chat', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
   
+    socket.join('chat-pub', () => {
+      //let rooms = Object.keys(socket.rooms);
+      //console.log(rooms); // [ <socket.id>, 'room 237' ]
+    });
+
     //Called by client that its connected.
-    socket.on('connected', (data, cback) => {
+    socket.on('connects', (data, cback) => {
+      //console.log(JSON.stringify(data));
       if(typeof cback === 'function') {
         cback( conn.address().port );
       }
     });
     
-      socket.on('public', (msg, cback) => {
-        cback('returnee');
-        socket.broadcast.emit('public', { nme: socket.nme, snd: socket.wpid,  msg: msg, date: new Date() });
+      socket.on('pub', (data, cback) => {
+        socket.to('chat-pub').emit('pub', { nme: socket.nme, snd: socket.wpid,  msg: data.msg, date: new Date().toLocaleString() });
+        cback({ status: 'success' });
+      });
+
+      socket.on('app', (data, cback) => {
+        //If the app secret is found on redis server.
+        if(data.aks === 'undefined') {
+          socket.broadcast.emit('app', { nme: socket.nme, snd: socket.wpid,  msg: data.msg, date: new Date().toLocaleString() });
+          cback({ status: 'success' });
+        } else {
+          cback({ status: 'failed' });
+        }
+      });
+
+      socket.on('rom', (data, cback) => {
+        //Check on redis if there is a room created like same of this id.
+        socket.to(data.rom).emit('rom', { nme: socket.nme, snd: socket.wpid,  msg: data.msg, date: new Date().toLocaleString() });
+        cback({ status: 'success' });
+      });
+
+      socket.on('pri', (data, cback) => {
+        //Get from redis using wpid and Check if online or not.
+        socket.to(data.rcv).emit('pri', { nme: socket.nme, snd: socket.wpid,  msg: data.msg, date: new Date().toLocaleString() });
+        cback({ status: 'success' });
       });
 
     //Listens for any server-client disconnectio
