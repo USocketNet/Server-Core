@@ -62,17 +62,12 @@ function onLoginNow() {
         url: wp_url + '/wp-json/usocketnet/v1/auth',
         data: signinData,
         dataType: 'json',
-        success: function(data) {
-            console.log(JSON.stringify(data));
-            
+        success: function(data) {            
             $("#signin-submit").prop('disabled', false);
-
           if( data.code === 'success' ) {
-
-            $("#signin-success-alert").fadeTo(7000, 500).slideUp(500, function() {
+            $("#signin-success-alert").fadeTo(5000, 500).slideUp(500, function() {
                 $("#signin-success-alert").slideUp(500);
             });
-            console.log();
 
             localStorage['wpid'] = data.data.id;
             localStorage['uname'] = data.data.dname;
@@ -81,16 +76,17 @@ function onLoginNow() {
             localStorage['cookie'] = data.data.cookie;
             localStorage['user'] = JSON.stringify(data.data);
             window.location.replace(site_url + '/profile.html');
-
           } else {
-
-            $("#signin-error-alert").fadeTo(7000, 500).slideUp(500, function() {
+            $("#signin-error-alert").fadeTo(5000, 500).slideUp(500, function() {
                 $("#signin-error-alert").slideUp(500);
             });
-
-            //console.log( 'USocketNet: Failed to login!' );
-
           }
+        },
+        error: function(xmlHttpReq, textStatus, errorThrown) {
+            $("#signin-submit").prop('disabled', false);
+            $("#signin-error-alert").fadeTo(5000, 500).slideUp(500, function() {
+                $("#signin-error-alert").slideUp(500);
+            });
         }
     }); event.preventDefault();
 }
@@ -109,20 +105,3 @@ function onLogout() {
     console.log('Logging out...');
 }
 //#endregion
-
-//     if( localStorage.getItem("wpid") !== null && localStorage.getItem("snid") !== null ) {
-//       $.ajax({
-//         type: "POST",
-//         url: wp_url + '/wp-json/usocketnet/v1/auth/token',
-//         data: { wpid: localStorage['wpid'], snid: localStorage['snid']},
-//         dataType: 'json',
-//         success: function(data) {
-//           if( data.status == 'success' ) {
-//             localStorage['user'] = JSON.stringify(data);
-//             window.location.replace("http://localhost/demoguy/chat.html");
-//           } else {
-//             console.log( 'USocketNet: Failed to login using token!' );
-//           }
-//         }
-//       }); event.preventDefault();
-//     }

@@ -1,7 +1,4 @@
 
-body {
-  margin-top: 100px;
-}
 
 /* #region Toggle */
 .material-switch > input[type="checkbox"] {
@@ -202,4 +199,12 @@ form {
 .custom-control-input:checked~.custom-control-label::before {
   border-color: #169433;
   background-color: #5dd029;
+}
+
+body {
+  margin-top: 100px;
+}
+
+.navmenu {
+  flex: auto;
 }

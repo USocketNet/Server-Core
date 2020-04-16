@@ -48,7 +48,10 @@ class USocketNet {
                 'ws://'+serverHost+':'+this.getServerTypePort(serverType), 
                 { 
                     autoConnect: false, //by setting this false, you have to call manager.open whenever you decide it’s appropriate.
-                    reconnection: false, //whether to reconnect automatically.
+                    reconnection: true, //whether to reconnect automatically.
+                    reconnectionAttempts: 10, //def: Infinity - number of reconnection attempts before giving up
+                    reconnectionDelay: 2000, //how long to initially wait before attempting a new reconnection (1000). Affected by +/- randomizationFactor, for example the default initial delay will be between 500 to 1500ms.
+                    timeout: 10000, //connection timeout before a connect_error and connect_timeout events are emitted
                     forceNew: true, // (Boolean) whether to reuse an existing connection
                     transports: ['websocket', 'polling'], //a list of transports to try (in order). Engine always attempts to connect directly with the first one.
                     query: {
@@ -60,7 +63,9 @@ class USocketNet {
             ); 
 
             this.conn.on('reconnect', (attemptNumber) => {
-                console.log('Event: reconnect - attempt: ' + attemptNumber);
+                this.conn.emit( 'connects', localStorage['user'], (res) => {
+                    this.emit('svr-reconnect', { serverType: this.serverType, port: res, socketid: this.conn.id } );
+                });
             });
     
             this.conn.on('reconnect_attempt', (attemptNumber) => {
@@ -117,9 +122,11 @@ class USocketNet {
 
         //Client listen for connect. 
         this.conn.on('connect', () => {  
-            //Send to master for further server verification.
             this.conn.emit( 'connects', localStorage['user'], (res) => {
-                this.emit('svr-connect', { serverType: this.serverType, port: res, socketid: this.conn.id } );
+                if(typeof this.prevConSid === 'undefined') {
+                    this.prevConSid = this.conn.id;
+                    this.emit('svr-connect', { serverType: this.serverType, port: res, socketid: this.conn.id } );
+                }
             });
         });
 

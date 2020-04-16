@@ -1,230 +1,236 @@
 <!doctype html>
 <html>
+  <head>
+    <title>USocketNet - Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-  <title>USocketNet - Profile</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/fontawesome.min.css">
 
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/popper.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript">
+      var pname = 'signin';
+    </script>
 
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script type="text/javascript">
-    var pname = 'signin';
-  </script>
+  </head>
 
-</head>
+  <body>
 
-<body>
-
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand mr-auto mr-lg-0" href="#">USocketNet</a>
-    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-
-      <ul class="navbar-nav justify-content-end">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Profile</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img id="userphoto" src="#" style="width:25px; border-radius: 50%;">
-          </a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#" onclick="onLogout()">Logout</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-
-  <div class="container">
-    
-
-    <div class="row">
-      <div class="col-md-4 shadow-sm" style="text-align: center;">
-        <svg class=" rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-        <h2 style="margin: 20px;">MASTER SERVER</h2>
-        <p id="masterCon"></p>
-        <h5 style="margin-bottom: 1.5rem;">PING: <strong id="masterping" style="color:#33b364;">0</strong> ms</h5>
-        <p><a class="btn btn-success" href="#" role="button" disabled>CONNECTED</a></p>
-      </div>
-      <div class="col-md-4 shadow-sm" style="text-align: center;">
-        <svg class="bd-placeholder-img rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-        <h2 style="margin: 20px;">CHAT SERVER</h2>
-        <p id="chatCon"></p>
-        <h5 style="margin-bottom: 1.5rem;">PING: <strong id="chatping" style="color:#33b364;">0</strong> ms</h5>
-        <p><a class="btn btn-success" href="#" role="button" disabled>CONNECTED</a></p>
-      </div>
-      <div class="col-md-4 shadow-sm" style="text-align: center;">
-        <svg class="bd-placeholder-img rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-        <h2 style="margin: 20px;">GAME SERVER</h2>
-        <p id="gameCon"></p>
-        <h5 style="margin-bottom: 1.5rem;">PING: <strong id="gameping" style="color:#33b364;">0</strong> ms</h5>
-        <p><a class="btn btn-success" href="#" role="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          <span class="sr-only">Loading...</span>CONNECTING</a></p>
-      </div>
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-6">
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0">Current User Information</h6>
-          <div class="media text-muted pt-3">
-            <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <strong id="userdname" class="text-gray-dark"></strong>
-                <!-- <a href="#">Follow</a> -->
-              </div>
-              <span id="useruname" class="d-block"></span>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="./img/logo.png" width="32" height="32" alt="">
+        USocketNet
+      </a>
+      <div class="navmenu col-xs-12">
+        <ul class="navbar-nav" style="float: right;">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="#serverStatus">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#userInfo">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#messageArea">Messages</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img id="userphoto" src="#" style="width:25px; border-radius: 50%;">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#" onclick="onLogout()">Logout</a>
             </div>
-          </div>
-          <div class="media text-muted pt-3">
-            <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <strong id="useremail" class="text-gray-dark"></strong>
-                <!-- <a href="#">Follow</a> -->
-              </div>
-              <span class="d-block">EMAIL ADDRESS</span>
-            </div>
-          </div>
-          <div class="media text-muted pt-3">
-            <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <strong id="userreg" class="text-gray-dark"></strong>
-                <!-- <a href="#">Follow</a> -->
-              </div>
-              <span class="d-block">REGISTRATION DATE</span>
-            </div>
-          </div>
-          <small class="d-block text-right mt-3">
-            <a href="#">Learn More</a>
-          </small>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="serverStatus" class="container">
+      <div class="row">
+        
+        <div class="col-md-4 shadow-sm" style="text-align: center;">
+          <svg class=" rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+          <h2 style="margin: 20px;">MASTER SERVER</h2>
+          <p id="masterCon"></p>
+          <h5 style="margin-bottom: 1.5rem;">PING: <strong id="masterping" style="color:#33b364;">0</strong> ms</h5>
+          <p><a id="masterConStat" class="btn btn-secondary disabled" href="#" role="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>OFFLINE</a></p>
         </div>
-      </div>
 
-      <div class="col-md-6">
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0">Current Application Data</h6>
-          <div class="media text-muted pt-3">
-            <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <strong id="appname" class="text-gray-dark"></strong>
-                <!-- <a href="#">Follow</a> -->
-              </div>
-              <span class="d-block">NAME OF PROJECT</span>
-            </div>
-          </div>
-          <div class="media text-muted pt-3">
-            <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <strong id="appdesc" class="text-gray-dark"></strong>
-                <!-- <a href="#">Follow</a> -->
-              </div>
-              <span class="d-block">DESCRIPTION</span>
-            </div>
-          </div>
-          <div class="media text-muted pt-3">
-            <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <div class="d-flex justify-content-between align-items-center w-100">
-                <strong id="appurl" class="text-gray-dark"></strong>
-                <!-- <a href="#">Follow</a> -->
-              </div>
-              <span class="d-block">URL AND CAPACITY</span>
-            </div>
-          </div>
-          <small class="d-block text-right mt-3">
-            <a href="#">Learn More</a>
-          </small>
+        <div class="col-md-4 shadow-sm" style="text-align: center;">
+          <svg class="bd-placeholder-img rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+          <h2 style="margin: 20px;">CHAT SERVER</h2>
+          <p id="chatCon"></p>
+          <h5 style="margin-bottom: 1.5rem;">PING: <strong id="chatping" style="color:#33b364;">0</strong> ms</h5>
+          <p><a id="chatConStat" class="btn btn-secondary disabled" href="#" role="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>OFFLINE</a></p>
         </div>
+
+        <div class="col-md-4 shadow-sm" style="text-align: center;">
+          <svg class="bd-placeholder-img rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+          <h2 style="margin: 20px;">GAME SERVER</h2>
+          <p id="gameCon"></p>
+          <h5 style="margin-bottom: 1.5rem;">PING: <strong id="gameping" style="color:#33b364;">0</strong> ms</h5>
+          <p><a id="gameConStat" class="btn btn-secondary disabled" href="#" role="button" >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>OFFLINE</a></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="userInfo" class="container">
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Current User Information</h6>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="userdname" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span id="useruname" class="d-block"></span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="userroles" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span id="useremail" class="d-block"></span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="userwpid" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span id="usersess" class="d-block"></span>
+              </div>
+            </div>
+            <small class="d-block text-right mt-3">
+              <a href="#">Learn More</a>
+            </small>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Current Application Data</h6>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="appname" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span class="d-block">NAME OF PROJECT</span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="appdesc" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span class="d-block">DESCRIPTION</span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="appurl" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span class="d-block">URL AND CAPACITY</span>
+              </div>
+            </div>
+            <small class="d-block text-right mt-3">
+              <a href="#">Learn More</a>
+            </small>
+          </div>
+        </div>
+
       </div>
 
     </div>
 
-  </div>
+    <div id="messageArea" class="container">
+      <div class="messaging">
+        <div class="inbox_msg">
 
-  <div class="container">
-    <div id="messageArea" class="messaging">
-      <div class="inbox_msg">
-
-        <div class="inbox_people">
-          <div class="headind_srch">
-            <div class="recent_heading">
-              <h4>Online Users</h4>
+          <div class="inbox_people">
+            <div class="headind_srch">
+              <div class="recent_heading">
+                <h4>Online Users</h4>
+              </div>
+              <div class="srch_bar">
+                <div class="stylish-input-group">
+                  <input type="text" class="search-bar" placeholder="Search">
+                  <span class="input-group-addon">
+                    <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                  </span> </div>
+              </div>
             </div>
-            <div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar" placeholder="Search">
-                <span class="input-group-addon">
-                  <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
-            </div>
-          </div>
-          <div class="inbox_chat">
+            <div class="inbox_chat">
 
-            <div class="chat_list active_chat">
-              <div class="chat_people">
-                <div class="chat_img">
-                  <i class='fas fa-user-circle fa-3x'></i></div>
-                  <!-- <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> -->
-                <div class="chat_ib">
-                  <h5>Juan Dela Cruz<span class="chat_date">October 12</span></h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                  </p>
+              <div class="chat_list active_chat">
+                <div class="chat_people">
+                  <div class="chat_img">
+                    <i class='fas fa-user-circle fa-3x'></i></div>
+                    <!-- <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> -->
+                  <div class="chat_ib">
+                    <h5>Juan Dela Cruz<span class="chat_date">October 12</span></h5>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-          </div>
-        </div>
-
-        <div class="mesgs">
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="chatbot_status">
-            <label class="custom-control-label" for="chatbot_status">Enable Chat Bot</label>
-          </div>
-          <div id="specificDiv" class="msg_history"></div>
-          <div class="type_msg">
-            <div class="input_msg_write">
-              <form id="sendChatMsg" action="">
-                <input id="m" type="text" class="write_msg" placeholder="Type a message" />
-                <button class="msg_send_btn" type="submit"><i class="fas fa-paper-plane"></i></button>
-              </form>
             </div>
           </div>
+
+          <div class="mesgs">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="chatbot_status">
+              <label class="custom-control-label" for="chatbot_status">Enable Chat Bot</label>
+            </div>
+            <div id="specificDiv" class="msg_history"></div>
+            <div class="type_msg">
+              <div class="input_msg_write">
+                <form id="sendChatMsg" action="">
+                  <input id="m" type="text" class="write_msg" placeholder="Type a message" />
+                  <button class="msg_send_btn" type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+              </div>
+            </div>
+          </div>
+
         </div>
+
+        <p class="text-center top_spac"> Copyright 2020 <a target="_blank" href="http://www.bytescrafter.net">Bytes Crafter</a></p>
 
       </div>
-
-      <p class="text-center top_spac"> Copyright 2020 <a target="_blank" href="http://www.bytescrafter.net">Bytes Crafter</a></p>
-
     </div>
-  </div>
 
-  <script type="text/javascript" src="./js/socket.io.js"></script>
-  <script type="text/javascript" src="./js/usocketnet.js"></script>
+    <script type="text/javascript" src="./js/socket.io.js"></script>
+    <script type="text/javascript" src="./js/usocketnet.js"></script>
 
-  <script type="text/javascript" src="./js/socketio.js"></script>
-  <script type="text/javascript" src="./js/script.js"></script>
-</body>
+    <script type="text/javascript" src="./js/socketio.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
 
+  </body>
 </html>

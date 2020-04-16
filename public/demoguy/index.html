@@ -1,122 +1,155 @@
-
 <!doctype html>
 <html>
-  <head>
-    <title>USocketNet - Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <script src="./js/jquery.min.js" ></script>
-    <script src="./js/popper.min.js" ></script>
-    <script src="./js/bootstrap.min.js" ></script>
-    <link rel="stylesheet" href="./css/bootstrap.min.css" >
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script type="text/javascript"> var pname = 'home'; </script>
-    <script type="text/javascript" src="js/script.js"></script>
-  </head>
-  <body>
+<head>
+  <title>USocketNet - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="panel panel-login">
-            
-            <div class="panel-heading">
-              <div class="row">
-                <div class="col-xs-112">
-                  <div class="login-logo-div">
-                    <img src="img/logo.png" alt="Avatar" class="login-logo-img">
-                    <p>This is only a demo of the project USocketNet.</p>
-                  </div>
-                </div>
-                <div class="col-xs-6">
-                  <a href="#" class="active" id="login-form-link">LOGIN</a>
-                </div>
-                <div class="col-xs-6">
-                  <a href="#" id="register-form-link">REGISTER</a>
-                </div>
-              </div>
-              <hr>
-            </div>
-            
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-lg-12">
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
 
-                  <form id="login_form" onsubmit="onLoginNow()" action="#" role="form" style="display: block;">
-                    <div class="form-group">
-                      <input type="text" name="signin-apid" id="signin-apid" tabindex="1" class="form-control" placeholder="App Secret">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" name="signin-uname" id="signin-uname" tabindex="2" class="form-control" placeholder="Username" value="">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" name="signin-pword" id="signin-pword" tabindex="3" class="form-control" placeholder="Password">
-                    </div>
-                    
-                    <div class="form-group text-center">
-                      <div class="alert alert-success" id="signin-success-alert">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <strong>Success! </strong> You are now authenticated.
-                      </div>
-                      <div class="alert alert-danger" id="signin-error-alert">
-                        <button type="button" class="close" data-dismiss="alert">x</button>
-                        <strong>Error! </strong> Something went wrong!
-                      </div>
-                    </div>
+  <script type="text/javascript">
+    var pname = 'home';
+  </script>
+  <script type="text/javascript" src="js/script.js"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
 
-                    <div class="form-group text-center">
-                      <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                      <label for="remember"> Remember Me</label>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                          <input id="signin-submit" type="submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-lg-12">
-                          <div class="text-center">
-                            <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                  
-                  <form id="register_form" onsubmit="onRegister()" action="#" role="form" style="display: none;">
-                    <div class="form-group">
-                      <input type="text" name="signup-uname" id="signup-uname" tabindex="1" class="form-control" placeholder="Username" value="">
-                    </div>
-                    <div class="form-group">
-                      <input type="email" name="signup-email" id="signup-email" tabindex="1" class="form-control" placeholder="Email Address" value="">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" name="signup-pword" id="signup-pword" tabindex="2" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" name="signup-confirm-pword" id="signup-confirm-pword" tabindex="2" class="form-control" placeholder="Confirm Password">
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                          <input type="submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                  
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
+    body {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: #f5f5f5;
+    }
+
+    .form-signin {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: auto;
+    }
+
+    .form-signin .checkbox {
+      font-weight: 400;
+    }
+
+    .form-signin .form-control {
+      position: relative;
+      box-sizing: border-box;
+      height: auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .form-signin .form-control:focus {
+      z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: #f5f5f5;
+    }
+
+    .form-signin {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: auto;
+    }
+
+    .form-signin .checkbox {
+      font-weight: 400;
+    }
+
+    .form-signin .form-control {
+      position: relative;
+      box-sizing: border-box;
+      height: auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .form-signin .form-control:focus {
+      z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  </style>
+</head>
+
+<body class="text-center">
+
+  <form class="form-signin" id="login_form" onsubmit="onLoginNow()" action="#" role="form">
+    <img class="mb-4" src="./img/logo.png" alt="" width="220" height="220">
+    <div class="alert alert-primary" role="alert">
+      PROJECT DEMO
+    </div>
+    <div class="form-group text-center">
+      <div class="alert alert-success" id="signin-success-alert">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Success! </strong> You are now authenticated.
+      </div>
+      <div class="alert alert-danger" id="signin-error-alert">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Error! </strong> Something went wrong!
       </div>
     </div>
+    <br>
+    <label for="signin-apid" class="sr-only">AppSecret</label>
+    <input type="text" id="signin-apid" class="form-control" placeholder="AppSecret" required="" autofocus="">
+    <label for="signin-uname" class="sr-only">Email address</label>
+    <input type="text" id="signin-uname" class="form-control" placeholder="Username" required="" autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="signin-pword" class="form-control" placeholder="Password" required="">
+    <div class="checkbox mb-3">
+      <!-- <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label> -->
+    </div>
+    <button id="signin-submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">www.bytescrafter.net</p>
+  </form>
 
-  </body>
+</body>
+
 </html>

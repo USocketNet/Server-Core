@@ -57,9 +57,14 @@ class Demoguy {
             const curUser = JSON.parse(localStorage['user']);
 
             $("#userphoto").attr("src", curUser.avatar);
-
-            $("#userdname").html(curUser.dname);
+            $("#userdname").html('Hello! ' + curUser.dname);
             $("#useruname").html('@' + curUser.uname);
+            $("#userroles").html( 'Role: ' + curUser.roles[0] );
+            $("#useremail").html( curUser.email );
+            $("#userwpid").html( 'WordPress ID: '+curUser.id );
+            $("#usersess").html( curUser.session );
+           
+            
 
             //$('#messages').prepend($('<li style="text-align: center;">').text( 'Welcome! '+ +' [' + curUser.email + '] ID: ' + localStorage['wpid'] ));
 
@@ -78,13 +83,46 @@ class Demoguy {
                 curUsn.on('svr-connect', ( data ) => {
                     let targ = 'undefined';
                     if(data.serverType == 'master') {
+                        $('#masterConStat').html( 'ONLINE' );
+                        $('#masterConStat').removeClass('btn-secondary');
+                        $('#masterConStat').addClass('btn-success');
                         targ = 'masterCon';
                     } else if(data.serverType == 'chat') {
+                        $('#chatConStat').html( 'ONLINE' );
+                        $('#chatConStat').removeClass('btn-secondary');
+                        $('#chatConStat').addClass('btn-success');
                         targ = 'chatCon';
                     } else if(data.serverType == 'game') {
+                        $('#gameConStat').html( 'ONLINE' );
+                        $('#gameConStat').removeClass('btn-secondary');
+                        $('#gameConStat').addClass('btn-success');
                         targ = 'gameCon';
                     }
     
+                    console.log(' Connected @ ' +data.serverType+ '.');
+                    document.getElementById(targ).innerHTML = data.socketid+ '<br><strong>Socket ID</strong> <br><br>' + data.port + '<br><strong>Port Forwarded</strong>';
+                });
+
+                curUsn.on('svr-reconnect', ( data ) => {
+                    let targ = 'undefined';
+                    if(data.serverType == 'master') {
+                        $('#masterConStat').html( 'ONLINE' );
+                        $('#masterConStat').removeClass('btn-secondary');
+                        $('#masterConStat').addClass('btn-success');
+                        targ = 'masterCon';
+                    } else if(data.serverType == 'chat') {
+                        $('#chatConStat').html( 'ONLINE' );
+                        $('#chatConStat').removeClass('btn-secondary');
+                        $('#chatConStat').addClass('btn-success');
+                        targ = 'chatCon';
+                    } else if(data.serverType == 'game') {
+                        $('#gameConStat').html( 'ONLINE' );
+                        $('#gameConStat').removeClass('btn-secondary');
+                        $('#gameConStat').addClass('btn-success');
+                        targ = 'gameCon';
+                    }
+    
+                    console.log(' Reconnected @ ' +data.serverType+ '.');
                     document.getElementById(targ).innerHTML = data.socketid+ '<br><strong>Socket ID</strong> <br><br>' + data.port + '<br><strong>Port Forwarded</strong>';
                 });
     
@@ -102,7 +140,21 @@ class Demoguy {
                 });
 
                 curUsn.on('svr-disconnect', ( data ) => {
-                    console.log(' Disconnected @ ' +data.serverType+ ' with socket id of ' +data.socketid+ '.');
+                    if(data.serverType == 'master') {
+                        $('#masterConStat').html( 'OFFLINE' );
+                        $('#masterConStat').removeClass('btn-success');
+                        $('#masterConStat').addClass('btn-secondary');
+                    } else if(data.serverType == 'chat') {
+                        $('#chatConStat').html( 'OFFLINE' );
+                        $('#chatConStat').removeClass('btn-success');
+                        $('#chatConStat').addClass('btn-secondary');
+                    } else if(data.serverType == 'game') {
+                        $('#gameConStat').html( 'OFFLINE' );
+                        $('#gameConStat').removeClass('btn-success');
+                        $('#gameConStat').addClass('btn-secondary');
+                    }
+
+                    console.log(' Disconnected @ ' +data.serverType+ '.');
                 });
 
             });
