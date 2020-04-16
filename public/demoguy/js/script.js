@@ -13,9 +13,6 @@ $(document).ready(function() {
         if( pname != 'signin') {
             window.location.href = site_url + '/profile.html';
         } 
-
-        //$('#messages').append('<li style="text-align: center;"><a href onclick="onLogout()">Logout</a></li>');
-        document.getElementById('profile-uname').innerText = 'Hello! ' + localStorage['uname'] ;
     }
 
     //Make sure to hide existing alert dialog.
@@ -75,6 +72,7 @@ function onLoginNow() {
             $("#signin-success-alert").fadeTo(7000, 500).slideUp(500, function() {
                 $("#signin-success-alert").slideUp(500);
             });
+            console.log();
 
             localStorage['wpid'] = data.data.id;
             localStorage['uname'] = data.data.dname;
