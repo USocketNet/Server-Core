@@ -58,8 +58,8 @@
 			//Make an authentication cookie for WP.
 			$expiration = time() + apply_filters('auth_cookie_expiration', 1209600, $user->ID, true);
 			$cookie = wp_generate_auth_cookie($user->ID, $expiration, 'logged_in');
-			preg_match('|src="(.+?)"|', get_avatar($user->ID, 32), $avatar);
-			if (!isset($avatar[1])) { $avatar[1] = ''; }
+			$avatar_url = get_avatar_url($user->ID, array('size' => 150));
+
 			setcookie('BC_USN', $cookie, $expiration, COOKIEPATH, COOKIE_DOMAIN, false, false);
 	
 			return rest_ensure_response( 
@@ -69,7 +69,7 @@
 					"data" => array(
 						"session" => BC_USocketNet_WP::bc_usn_get_session($user->ID),                 
 						"cookie" => $cookie, 
-						"avatar" => $avatar[1],
+						"avatar" => $avatar_url,
 						"id" => $user->ID,
 						"uname" => $user->data->user_login,
 						"dname" => $user->data->display_name,
