@@ -23,14 +23,14 @@ const instance = require('./base/socketio')( 'chat' );
     });
     
       socket.on('pub', (data, cback) => {
-        socket.to('chat-pub').emit('pub', { nme: socket.nme, snd: socket.wpid,  msg: data.msg, date: new Date().toLocaleString() });
-        cback({ status: 'success' });
+        socket.to('chat-pub').emit('pub', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+        cback({ status: 'success', d: new Date().toLocaleString() });
       });
 
       socket.on('app', (data, cback) => {
         //If the app secret is found on redis server.
         if(data.aks === 'undefined') {
-          socket.broadcast.emit('app', { nme: socket.nme, snd: socket.wpid,  msg: data.msg, date: new Date().toLocaleString() });
+          socket.broadcast.emit('app', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
           cback({ status: 'success' });
         } else {
           cback({ status: 'failed' });
@@ -39,13 +39,13 @@ const instance = require('./base/socketio')( 'chat' );
 
       socket.on('rom', (data, cback) => {
         //Check on redis if there is a room created like same of this id.
-        socket.to(data.rom).emit('rom', { nme: socket.nme, snd: socket.wpid,  msg: data.msg, date: new Date().toLocaleString() });
+        socket.to(data.rom).emit('rom', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
         cback({ status: 'success' });
       });
 
       socket.on('pri', (data, cback) => {
         //Get from redis using wpid and Check if online or not.
-        socket.to(data.rcv).emit('pri', { nme: socket.nme, snd: socket.wpid,  msg: data.msg, date: new Date().toLocaleString() });
+        socket.to(data.rcv).emit('pri', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
         cback({ status: 'success' });
       });
 
