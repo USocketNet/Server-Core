@@ -30,6 +30,7 @@
     #endregion
 
     include_once ( plugin_dir_path( __FILE__ ) . '/config.php' );
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/hook.php' );
 
     #region Include assets like scripts, styles, etc.
         $checkUSNget = isset($_GET['page']);
@@ -67,6 +68,7 @@
         }
     #endregion
 
+    // //Rendering Backend.
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/index.php' );
 
     //Include the REST API of USocketNet to be accessible.

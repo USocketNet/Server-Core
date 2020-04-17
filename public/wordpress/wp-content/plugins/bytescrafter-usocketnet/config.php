@@ -13,10 +13,10 @@
 
 <?php
 
-	//DEFINE('BC_USN', 'bc_usocketnet');
+	DEFINE('USN_PREFIX', 'bc_usn_');
 
 	// Global prefix for this plugins table name prefix.
-	DEFINE('USN_PREFIX', 'bc_usn');
+	DEFINE('USN_APPTAB', USN_PREFIX.'apps');
 	
 	// Global as Plugin URL for WordPress.
 	DEFINE('USN_PLUGIN', plugin_dir_url( __FILE__ ));

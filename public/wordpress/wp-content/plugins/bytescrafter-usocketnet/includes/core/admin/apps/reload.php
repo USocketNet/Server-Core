@@ -17,7 +17,7 @@
     function ReloadApps() 
     { 
         global $wpdb;
-        $appsTable = USN_PREFIX . '_' . 'apps';
+        $appsTable = USN_APPTAB;
 
         //SELECT ALL ENTRY on bc_apps
         $rows = $wpdb->get_results( "SELECT aid, uid, api, asta, aname, ainfo, aurl, acap, regdate, wp_users.user_login 

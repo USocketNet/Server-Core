@@ -28,7 +28,7 @@
         }
 
         global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_PREFIX . '_' . 'apps';
+        $appsTable = USN_APPTAB;
 
         $rows = $wpdb->get_results( "DELETE FROM $appsTable WHERE aid = ".$_POST['appid_edit']);
 

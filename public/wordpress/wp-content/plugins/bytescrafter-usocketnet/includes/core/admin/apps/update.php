@@ -35,7 +35,7 @@
         $appcap = $_POST['appcap_edit'];
 
         global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_PREFIX . '_' . 'apps';
+        $appsTable = USN_APPTAB;
 
         $rows = $wpdb->get_results( "UPDATE $appsTable SET aname = '$appname', ainfo = '$appdesc', aurl = '$appurl', asta = '$appsta', acap = '$appcap' 
             WHERE aid = '$appid'" );

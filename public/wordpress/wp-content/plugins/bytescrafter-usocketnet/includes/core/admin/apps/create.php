@@ -34,7 +34,7 @@
         $appcap = $_POST['appcap_create'];
 
         global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_PREFIX . '_' . 'apps';
+        $appsTable = USN_APPTAB;
 
         $checkName = $wpdb->get_results("SELECT uid, wp_users.user_login FROM $appsTable, wp_users 
             WHERE aname = '$appname'");

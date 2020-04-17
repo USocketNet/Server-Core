@@ -31,7 +31,7 @@
 
 			//Check app is active and have capacity avail.
 			global $wpdb; //Reference to wp mysql conn.
-			$appsTable = USN_PREFIX . '_' . 'apps';
+			$appsTable = USN_APPTAB;
 
 			$checkName = $wpdb->get_results("SELECT api, asta, aname, ainfo, aurl, acap FROM $appsTable WHERE api = '$app_id'");
 
