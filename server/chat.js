@@ -9,10 +9,7 @@ const instance = require('./base/socketio')( 'chat' );
     //Server logging about the connection on Chat Server.
     debug.log('Connection on Chat', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
   
-    socket.join('chat-pub', () => {
-      //let rooms = Object.keys(socket.rooms);
-      //console.log(rooms); // [ <socket.id>, 'room 237' ]
-    });
+    socket.join('chat-pub', () => {});
 
     //Called by client that its connected.
     socket.on('connects', (data, cback) => {
@@ -24,7 +21,9 @@ const instance = require('./base/socketio')( 'chat' );
     
       socket.on('pub', (data, cback) => {
         socket.to('chat-pub').emit('pub', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
-        cback({ status: 'success', d: new Date().toLocaleString() });
+        if(typeof cback === 'function') {
+          cback({ status: 'success', d: new Date().toLocaleString() });
+        }
       });
 
       socket.on('app', (data, cback) => {

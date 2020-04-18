@@ -5,7 +5,7 @@ const wp_url = 'http://'+window.location.host+'/wordpress';
 $(document).ready(function() {
 
     //Checking and Redirection.
-    if(localStorage.getItem('wpid') === null) {
+    if(localStorage.getItem('user') === null) {
         if( pname != 'home') {
             window.location.href = site_url;
         }
@@ -69,12 +69,9 @@ function onLoginNow() {
                 $("#signin-success-alert").slideUp(500);
             });
 
-            localStorage['wpid'] = data.data.id;
-            localStorage['uname'] = data.data.dname;
-            localStorage['snid'] = data.data.session;
-            localStorage['apid'] = signinAppId;
-            localStorage['cookie'] = data.data.cookie;
-            localStorage['user'] = JSON.stringify(data.data);
+            const userData = data.data;
+                userData.apid = signinAppId;
+            localStorage['user'] = JSON.stringify(userData);
             window.location.replace(site_url + '/profile.html');
           } else {
             $("#signin-error-alert").fadeTo(5000, 500).slideUp(500, function() {

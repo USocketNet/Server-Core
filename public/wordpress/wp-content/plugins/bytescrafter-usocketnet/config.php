@@ -15,6 +15,8 @@
 
 	DEFINE('USN_PREFIX', 'bc_usn_');
 
+	DEFINE('USN_HOST', 'localhost');
+
 	// Global prefix for this plugins table name prefix.
 	DEFINE('USN_APPTAB', USN_PREFIX.'apps');
 	

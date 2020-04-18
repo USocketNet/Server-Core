@@ -48,8 +48,10 @@
 }
 
 .usn-instance-divs {
+    position: relative;
     padding: 25px;
-    height: auto;
+    height: 280px;
+    width: -webkit-fill-available;
 }
 
 .usn-dot-status {

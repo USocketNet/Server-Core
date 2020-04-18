@@ -4,7 +4,38 @@ const core = require('./base/core');
 const instance = require('./base/socketio')( 'master' );
   const conn = instance.connect( 'master' );
 
+  const machine = [];
+  setInterval(() => {
+    machine.push( {
+      //Add object here...
+      cpu: getCpuUsagePercent(),
+      ram: getRamUsageInMB()
+    });
+
+    if( machine.length > 30 ) {
+      machine.shift();
+    }
+  }, 1000);
+
+  let cpuUse = 'undefined';
+  function getCpuUsagePercent() {
+    if( cpuUse != 'undefined' ) {
+      cpuUse = process.cpuUsage(cpuUse);
+    } else {
+      cpuUse = process.cpuUsage();
+    }
+    
+    return { user: Math.round( cpuUse.user/1000 ), system: Math.round( cpuUse.system/1000 ) };
+  }
+
+  function getRamUsageInMB() {
+    ramUse = process.memoryUsage();    
+    return { used: Math.round( ramUse.heapUsed/1024/1024 ), total: Math.round( ramUse.heapTotal/1024/1024 ) };
+  }
+
+
 instance.sio.on('connection', (socket) => {
+  require('./model/svr-status')(machine, socket);
   
   //Server logging about the connection on Master Server.
   debug.log('Connection on Master', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');

@@ -19,7 +19,7 @@
 			$wp_session_token = WP_Session_Tokens::get_instance($user_id);
 
 			//Create a session entry unto the session tokens of user with X expiry.
-			$expiration = time() + apply_filters('auth_cookie_expiration', 1 * DAY_IN_SECONDS, $user_id, true);
+			$expiration = time() + apply_filters('auth_cookie_expiration', 1 * DAY_IN_SECONDS, $user_id, true); //
 			$session_now = $wp_session_token->create($expiration);
 	
 			return $session_now;
@@ -55,26 +55,18 @@
 				);
 			}
 	
-			//Make an authentication cookie for WP.
-			$expiration = time() + apply_filters('auth_cookie_expiration', 1209600, $user->ID, true);
-			$cookie = wp_generate_auth_cookie($user->ID, $expiration, 'logged_in');
-			$avatar_url = get_avatar_url($user->ID, array('size' => 150));
-
-			setcookie('BC_USN', $cookie, $expiration, COOKIEPATH, COOKIE_DOMAIN, false, false);
-	
 			return rest_ensure_response( 
 				array(
 					"code" => "success",
 					"message" => "<strong>Success</strong>: Welcome to USocketNet Rest Api powered by WordPress.",
 					"data" => array(
-						"session" => BC_USocketNet_WP::bc_usn_get_session($user->ID),                 
-						"cookie" => $cookie, 
-						"avatar" => $avatar_url,
-						"id" => $user->ID,
+						"snid" => BC_USocketNet_WP::bc_usn_get_session($user->ID), 
+						"wpid" => $user->ID,
 						"uname" => $user->data->user_login,
 						"dname" => $user->data->display_name,
 						"email" => $user->data->user_email,
-						"roles" => $user->roles
+						"avatar" => get_avatar_url($user->ID, array('size' => 150)),
+						"roles" => $user->roles,
 						)
 					)  
 				);

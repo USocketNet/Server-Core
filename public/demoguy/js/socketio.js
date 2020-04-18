@@ -21,8 +21,8 @@ class Demoguy {
         msgScroller.scrollTop = msgScroller.scrollHeight;
     }
 
-    verifyToken(locStore) {
-        return locStore['wpid'] != 'undefined' && locStore['snid'] != 'undefined';
+    verifyToken( userData ) {
+        return typeof localStorage['user'] !== 'undefined' ? true : false;
     }
 
     getRandomString(length) {
@@ -46,6 +46,9 @@ class Demoguy {
         //Check if localStorage is set then continue else redirect back to home.
         if( demoguy.verifyToken(localStorage) ) { 
 
+            const curUser = JSON.parse(localStorage['user']);
+            let serverStatus = [];
+
             $("#userdname").html("Your content here...");
             $("#useremail").html("Your content here...");
             $("#userreg").html("Your content here...");
@@ -54,32 +57,37 @@ class Demoguy {
             $("#appdesc").html("Your content here...");
             $("#appurl").html("Your content here...");
 
-            const curUser = JSON.parse(localStorage['user']);
-
             $("#userphoto").attr("src", curUser.avatar);
             $("#userdname").html('Hello! ' + curUser.dname);
             $("#useruname").html('@' + curUser.uname);
             $("#userroles").html( 'Role: ' + curUser.roles[0] );
             $("#useremail").html( curUser.email );
-            $("#userwpid").html( 'WordPress ID: '+curUser.id );
+            $("#userwpid").html( 'WordPress ID: '+curUser.wpid );
             $("#usersess").html( curUser.session );
-           
-            
-
-            //$('#messages').prepend($('<li style="text-align: center;">').text( 'Welcome! '+ +' [' + curUser.email + '] ID: ' + localStorage['wpid'] ));
 
             //Declaration of 3 different type of server.
-            let usnList = [];
-                usnList.push(new USocketNet('master', window.location.host, curUser)); 
-                usnList.push(new USocketNet('chat', window.location.host, curUser)); 
-                usnList.push(new USocketNet('game', window.location.host, curUser)); 
+            let usnList = []; const authToken = { wpid: curUser.wpid, snid: curUser.snid, apid: curUser.apid };
+                usnList.push(new USocketNet('master', window.location.host, authToken)); 
+                usnList.push(new USocketNet('chat', window.location.host, authToken)); 
+                usnList.push(new USocketNet('game', window.location.host, authToken)); 
 
             //Connect all USocketNet instance.
             usnList.forEach(curUsn => {
                 curUsn.connect();
-                curUsn.on('msg-public', ( dat ) => {
-                    demoguy.showMessage(curUser.id == dat.sender ? true : false, dat);
-                })
+                if(curUsn.serverType == 'master') {
+                    curUsn.on('svr-status', ( status ) => {
+                        if(serverStatus.length > 0) {
+                            serverStatus.push(status);
+                            serverStatus.shift();
+                        } else {
+                            serverStatus = status;
+                        }
+                    })
+                } else if(curUsn.serverType == 'chat') {
+                    curUsn.on('msg-public', ( dat ) => {
+                        demoguy.showMessage(curUser.wpid == dat.sender ? true : false, dat);
+                    })
+                }
                 curUsn.on('svr-connect', ( data ) => {
                     let targ = 'undefined';
                     if(data.serverType == 'master') {

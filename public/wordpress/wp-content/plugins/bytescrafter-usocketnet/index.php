@@ -59,7 +59,9 @@
                 wp_enqueue_style( 'usn_jqueryui_style', plugin_dir_url( __FILE__ ) . 'assets/jquery-ui/jquery-ui.min.css' );
                 wp_enqueue_script( 'usn_jqueryui_script', plugin_dir_url( __FILE__ ) . 'assets/jquery-ui/jquery-ui.min.js' );
 
-                wp_enqueue_script( 'usn_socketio_script', plugin_dir_url( __FILE__ ) . 'assets/socket.io/socket.io.js' ); 
+                wp_enqueue_script( 'usn_socketio_script', plugin_dir_url( __FILE__ ) . 'assets/usocketnet/socket.io.js' ); 
+                wp_enqueue_script( 'usn_core_script', plugin_dir_url( __FILE__ ) . 'assets/usocketnet/usocketnet.js' ); 
+
                 wp_enqueue_style( 'usn_admin_style', plugin_dir_url( __FILE__ ) . 'assets/custom/styles.css' );
                 wp_enqueue_script( 'usn_admin_script', plugin_dir_url( __FILE__ ) . 'assets/custom/backend.js', array('jquery'), '1.0', true );
                 wp_localize_script( 'usn_admin_script', 'ajaxurl', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
