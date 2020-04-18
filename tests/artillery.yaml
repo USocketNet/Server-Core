@@ -1,31 +1,30 @@
 # Sample load test. $ artillery run artillery.yaml
+# Note: unit int are in seconds.
+# Note: Make sure on your emit on server to check if function.
+# command: artillery run tests/artillery.yaml
+
 config:
-  target: "http://localhost:19090"
+  target: "http://localhost:6060" #host server
   socketio:
-    path: "/"
-    transports: ["websocket", "polling"]
-    query:
+    transports: ["websocket", "polling"] #transport layer.
+    query:  # pass query here!
       wpid: "1"
-      snid: "n9O50YByIXK2JRBErO1IZQMzDlVc82EQ0K2AuJ1tEvw"
-      apid: "93c92d1222223a92de556ca2db02b6c4"
+      snid: "nWIvPgBP65wAZKAUPyKcYsRMOhDAD8FGU0opK2BmeNY"
+      apid: "svr-status"
   phases:
-    - duration: 60
-      arrivalRate: 10
+    - duration: 60 # how many seconds to create every seconds.
+      arrivalRate: 5 # create virtual users per seconds.
 scenarios:
-  - name: "Name Here!"
-    weight: 10
-    engine: "socketio"
+  - engine: "socketio"
     flow:
-      - get:
-          url: "/"
       - emit:
-          channel: "connected"
-          data: "user-{{ $randomString() }}"
+          channel: "connects"
+          data: "{ wpid: 'user-{{ $randomString() }}' }'"
       - loop:
           - emit:
-              channel: "public"
-              data: "The message is {{ $randomString() }}!"
+              channel: "pub"
+              data: #make an object of emit.
+                m: "The message is {{ $randomString() }}!"
           - think: 1
-        count: 2
-      - think: 1
-      
+        count: 2 #how many times this commit be done.
+      - think: 60 #time before virtual user disconnect
