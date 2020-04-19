@@ -189,7 +189,7 @@ class USocketNet {
 
     sendMessage(msg, cback) {
         this.conn.emit('pub', { m: msg }, (res) => {
-            if(res.status == 'success') {
+            if(res.status == 0) {
                 cback( { status: 'success', message: msg, datestamp: res.d } );
             } else {
                 cback( { status: 'failed' } );

@@ -22,7 +22,8 @@ const instance = require('./base/socketio')( 'chat' );
       socket.on('pub', (data, cback) => {
         socket.to('chat-pub').emit('pub', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
         if(typeof cback === 'function') {
-          cback({ status: 'success', d: new Date().toLocaleString() });
+          // 0 = success, 1 = failed
+          cback({ status: 0, d: new Date().toLocaleString() });
         }
       });
 
