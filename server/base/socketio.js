@@ -15,7 +15,7 @@ class usn_socketio {
             pingTimeout: 5000,
         });
             const redisAdapter = require('socket.io-redis');
-            socketio.adapter( redisAdapter({ host: 'localhost', port: 6379 }) );
+            socketio.adapter( redisAdapter({ host: core.config.server.redis.host, port: 6379 }) );
             //socketio.origins(['http://localhost:19090','http://localhost:6060','http://localhost:9090']);
             // socketio.origins((origin, callback) => {
             //     console.log(origin);
@@ -107,14 +107,14 @@ class usn_socketio {
             default:
         }
 
-        return this.instance.http.listen( port, config.host, function(err) {
+        return this.instance.http.listen( port, '0.0.0.0', function(err) {
             let sType = type.charAt(0).toUpperCase() + type.slice(1);
             if (err) {
-                core.debug.log('USocketNet-' + sType + '-Stop', 'This server failed to run @ ' + config.host + ':' + port + '.', 'red', config.type);
+                core.debug.log('USocketNet-' + sType + '-Stop', 'This server failed to run @ localhost:' + port + '.', 'red', config.type);
                 // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT
                 process.exit(1);
             } else {
-                core.debug.log('USocketNet-' + sType + '-Init', 'This server is now listening @ ' + config.host + ':' + port + '.', 'green', config.type);
+                core.debug.log('USocketNet-' + sType + '-Init', 'This server is now listening @ localhost:' + port + '.', 'green', config.type);
             }
         });
     }
