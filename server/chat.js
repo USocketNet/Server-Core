@@ -54,8 +54,8 @@ const instance = require('./base/socketio')( 'chat' );
       //Server logging about the disconnection on Chat Server.
       debug.log('Disconnection on Chat', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
 
-      let redis = core.redis.select(0);
-      let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'chat' };
-      redis.socketDisconnect( sock );
+      // let redis = core.redis.select(0);
+      // let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'chat' };
+      // redis.socketDisconnect( sock );
     });
   });

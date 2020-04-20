@@ -21,8 +21,8 @@ const instance = require('./base/socketio')( 'game' );
       //Server logging about the disconnection on Game Server.
       debug.log('Disconnection on Game', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
 
-      let redis = core.redis.select(0);
-      let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'game' };
-      redis.socketDisconnect(sock);
+      // let redis = core.redis.select(0);
+      // let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'game' };
+      // redis.socketDisconnect(sock);
     });
   });

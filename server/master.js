@@ -59,9 +59,9 @@ instance.sio.on('connection', (socket) => {
     //Server logging about the disconnection on Master Server.
     debug.log('Disconnection on Master', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id + ' - ' + reason, 'white', 'disconnect');
 
-    let redis = core.redis.select(0);
-    let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'master' };
-    redis.socketDisconnect( sock );
+    // let redis = core.redis.select(0);
+    // let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'master' };
+    // redis.socketDisconnect( sock );
   });
 
   socket.on('error', (error) => {

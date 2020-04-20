@@ -4,16 +4,16 @@
 # command: artillery run tests/artillery.yaml
 
 config:
-  target: "http://localhost:6060" #host server
+  target: "http://usn.mshome.net:6060" #host server
   socketio:
     transports: ["websocket", "polling"] #transport layer.
     query:  # pass query here!
       wpid: "1"
-      snid: "nWIvPgBP65wAZKAUPyKcYsRMOhDAD8FGU0opK2BmeNY"
+      snid: "raE2AcRdaLSRZ9ygt7m7gwnAZ40iJ8D8oIiVytDXk5p"
       apid: "svr-status"
   phases:
-    - duration: 60 # how many seconds to create every seconds.
-      arrivalRate: 5 # create virtual users per seconds.
+    - duration: 100 # how many seconds to create every seconds.
+      arrivalRate: 10 # create virtual users per seconds.
 scenarios:
   - engine: "socketio"
     flow:
@@ -25,6 +25,6 @@ scenarios:
               channel: "pub"
               data: #make an object of emit.
                 m: "The message is {{ $randomString() }}!"
-          - think: 1
-        count: 2 #how many times this commit be done.
+          - think: 1 #second before the next send emit.
+        count: 60 #how many times this commit be done.
       - think: 60 #time before virtual user disconnect
