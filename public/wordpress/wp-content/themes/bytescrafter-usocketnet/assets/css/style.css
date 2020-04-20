@@ -1453,10 +1453,11 @@ Icon for all respective meta
 
 /* === Hire Section === */
 .hire-section {
-    background: url(../../assets/images/hire-bg.jpg) no-repeat top center #008ecf;
+    background: url(../../assets/images/breadcrump-header.jpg) no-repeat top center #008ecf;
     background-attachment: fixed;
     background-size: cover;
     color: #fff;  
+    margin-bottom: 30px;
 }
 .hire-section-bg {
     padding: 110px 0;
