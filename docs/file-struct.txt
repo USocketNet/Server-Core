@@ -10,7 +10,6 @@ root
   |--master.log
   |--connect.log
   |--disconnect.log
-  |--mysql.log
   |--process.log
   |--redis.log
   |--usocketnet.log

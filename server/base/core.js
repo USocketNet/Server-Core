@@ -38,10 +38,6 @@ const debug = require('./debug');
 const restapi = require('./restapi')( config.server.wpress.host );
     exports.restapi = restapi;
 
-//Declare and initialized mysql instance per server type.
-const mysql = require('./mysql')( config.server.mysql );
-    exports.mysql = mysql;
-
 //Declare and initialized redis instance per server type.
 const redis = require('./redis')( config.server.redis );
     redis.ping(); //Check redis-server else exit.
