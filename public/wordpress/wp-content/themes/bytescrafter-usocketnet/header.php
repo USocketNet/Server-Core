@@ -46,15 +46,24 @@
 
                 <div class="collapse navbar-collapse" id="custom-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <?php 
-                        $menu_items = wp_get_nav_menu_items( 'main-menu' );
-                        foreach( $menu_items as $item ) {
-                           echo "<li><a href='".$item->url."'>".$item->title."</a></li>";
-                          }
-                    ?>
+                    <?php usocketnet_get_main_menu(); ?>
                 </ul>
                 </div>
             </div>
             </nav>
         </header>
         <!-- Navigation -->
+
+        <?php if(!is_home()) { ?>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ol class="breadcrumb">
+                            <?php get_breadcrumbs(); ?>
+                        </ol>
+                    </div>	
+                </div>
+            </div>
+        <?php } ?>
+
+        <?php

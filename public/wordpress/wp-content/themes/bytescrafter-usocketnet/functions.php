@@ -77,6 +77,54 @@
     }
     add_action('wp_head', 'usocketnet_head_meta');
 
+    // Get the navigation list here.
+    function usocketnet_get_main_menu() {
+        $menu_list = "";
+        $menu_items = wp_get_nav_menu_items( 'main-menu' );
+        foreach( $menu_items as $item ) {
+            if($item->menu_item_parent == 0) {
+                echo "<li><a href='".$item->url."'>".$item->title."</a></li>";
+            } {
+                //$parentMenu = get_post($item->ID);
+                //echo "<li><a href='".$item->url."'>".$item->title."</a></li>";
+            }
+            //echo $item->menu_item_parent;
+        }
+    }
+
+    // Get the breadcrumbs list to <li>.
+    function get_breadcrumbs() {   
+        // Start the breadcrumb with a link to your homepage 
+        echo '<div class="breadcrumbs"> <a href="'.get_option('home').'">'.'Home'.'</a>'.' > ';
+
+        // Check if the current page is a category, an archive or a single page. If so show the category or archive name.
+        if (is_category() || is_single() ){
+            the_category('title_li=');
+        } elseif (is_archive() || is_single()){
+            if ( is_day() ) {
+                printf( __( '%s', 'text_domain' ), get_the_date() );
+            } elseif ( is_month() ) {
+                printf( __( '%s', 'text_domain' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'text_domain' ) ) );
+            } elseif ( is_year() ) {
+                printf( __( '%s', 'text_domain' ), get_the_date( _x( 'Y', 'yearly archives date format', 'text_domain' ) ) );
+            } else {
+                _e( 'Blog Archives', 'text_domain' );
+            }
+        }
+        
+        // If the current page is a single post, show its title with the separator
+        if (is_single()) {
+            echo ' > ';
+            the_title();
+        }
+        
+        // If the current page is a static page, show its title.
+        if (is_page()) {
+            echo the_title();
+        }
+
+        echo '</div>';
+    }
 
     function hook_javascript() {
         ?>
@@ -86,12 +134,3 @@
         <?php
     }
     add_action('wp_head', 'hook_javascript');
-
-    /*
-    <!-- <link rel="profile" href="https://gmpg.org/xfn/11" /> -->
-    <!-- <link rel="shortcut icon" href="<?php echo plugins_url( __FILE__ ); ?>assets/images/ico/favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo plugins_url( __FILE__ ); ?>assets/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo plugins_url( __FILE__ ); ?>assets/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo plugins_url( __FILE__ ); ?>assets/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="<?php echo plugins_url( __FILE__ ); ?>assets/images/ico/apple-touch-icon-57-precomposed.png"> -->
-    */
