@@ -70,13 +70,6 @@
     }
     add_action( 'wp_head', 'usn_plugin_frontend_enqueue' );
 
-    function usocketnet_head_meta() {
-        ?>
-            <!-- <link rel="shortcut icon" href="<?php //echo get_template_directory_uri(); ?>assets/images/ico/favicon.png"> -->
-        <?php
-    }
-    add_action('wp_head', 'usocketnet_head_meta');
-
     // Get the navigation list here.
     function usocketnet_get_main_menu() {
         $menu_list = "";
@@ -125,6 +118,15 @@
 
         echo '</div>';
     }
+
+    //Add custom shortcode for blocks.
+    function bc_bloglist_display($atts) {
+        $a = shortcode_atts( array(
+            'name' => 'world'
+         ), $atts );
+         return 'Hello ' . $a['name'];
+    }
+    add_shortcode( 'bc_bloglist', 'bc_bloglist_display' );
 
     function hook_javascript() {
         ?>

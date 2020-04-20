@@ -15,7 +15,7 @@
 		<!-- Contact Section -->
 			<section id="contact" class="contact-section section-padding">
 				<div class="container">
-				<h2 class="section-title wow fadeInUp">CONTACT US</h2>
+				<!-- <h2 class="section-title wow fadeInUp">CONTACT US</h2> -->
 
 				<div class="row">
 					<div class="col-md-6">
