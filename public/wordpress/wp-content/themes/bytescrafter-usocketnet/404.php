@@ -6,9 +6,9 @@
 	* @package bytescrafter-usocketnet
 	* @since 0.1.0
 	*/
-
-	get_header();
 ?>
+
+<?php get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main">
@@ -27,5 +27,4 @@
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
-<?php
-get_footer();
+<?php get_footer(); ?>
