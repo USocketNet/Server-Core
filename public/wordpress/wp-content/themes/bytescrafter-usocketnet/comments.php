@@ -1,13 +1,13 @@
 <?php
-/**
- * The template for displaying comments.
- *
- * @link http://bytes-crafter.com/Projects/USocketNet
- *
- * @package BytesCrafter
- * @subpackage USocketNet_WebAdmin
- * @since 0.1.0
- */
+	/**
+	 * The template for displaying comments.
+	 *
+	 * @package bytescrafter-usocketnet
+	 * @since 0.1.0
+	 */
+?>
+
+<?php
 
 /*
  * If the current post is protected by a password and

@@ -1,15 +1,13 @@
-<?php
-/**
- * The template for displaying archive pages.
- *
- * @link http://bytes-crafter.com/Projects/USocketNet
- *
- * @package BytesCrafter
- * @subpackage USocketNet_WebAdmin
- * @since 0.1.0
- */
 
-get_header();
+<?php
+	/**
+	* The template for displaying archive pages.
+	*
+	* @package bytescrafter-usocketnet
+	* @since 0.1.0
+	*/
+
+	get_header();
 ?>
 
 	<section id="primary" class="content-area">
