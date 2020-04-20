@@ -1,7 +1,14 @@
 <?php
 
     /*
-        * Plugin Name   USocketNet Backend
+        Plugin Name: USocketNet Backend
+        Plugin URI: http://www.bytescrafter.net/projects/usocketnet
+        Description: USocketNet backend using the WordPress framework.
+        Version: 0.1.0
+        Author: Bytes Crafter
+        Author URI:   https://www.bytescrafter.net/about-us
+        Text Domain:  bytescrafter-usocketnet-backend
+        
         * @package      bytescrafter-usocketnet-backend
         * @author       Bytes Crafter
 
@@ -10,15 +17,7 @@
 
         * @wordpress-plugin
         * WC requires at least: 2.5.0
-        * WC tested up to: 5.0.3
-
-        Plugin Name: USocketNet Backend
-        Plugin URI: http://www.bytescrafter.net/projects/usocketnet
-        Description: USocketNet backend using the WordPress framework.
-        Version: 0.1.0
-        Author: Bytes Crafter
-        Author URI:   https://www.bytescrafter.net/about-us
-        Text Domain:  bytescrafter-usocketnet-backend
+        * WC tested up to: 5.4
     */
 
     #region WP Recommendation - Prevent direct initilization of the plugin.

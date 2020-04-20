@@ -2,12 +2,21 @@
 /*
     Theme Name: USocketNet WebAdmin
     Theme URI: http://www.bytescrafter.net/Projects/USocketNet
+    Description: USocketNet backend using the WordPress framework.
     Author: Bytes Crafter
-    Author URI: https://www.bytescrafter.net/about-us/
-
-    Description: This theme mis specifically written to be a backend GUI for USocketNet Node JS server.
-    Requires at least: WordPress 4.9.6
+    Author URI:   https://www.bytescrafter.net/about-us
+    Text Domain:  bytescrafter-usocketnet
     Version: 0.1.0
     Text Domain: bytescrafter-usocketnet
-    Tags: usocketnet, nodejs, unity
+    Tags: usocketnet, realtime server, nodejs, unity
+
+    * @package      bytescrafter-usocketnet
+    * @author       Bytes Crafter
+
+    * @copyright    2020 Bytes Crafter
+    * @version      0.1.0
+
+    * @wordpress-theme
+    * WC requires at least: 2.5.0
+    * WC tested up to: 5.4
 */
