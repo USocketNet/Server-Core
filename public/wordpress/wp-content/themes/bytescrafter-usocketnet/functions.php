@@ -73,15 +73,19 @@
     // Get the navigation list here.
     function usocketnet_get_main_menu() {
         $menu_list = "";
-        $menu_items = wp_get_nav_menu_items( 'main-menu' );
-        foreach( $menu_items as $item ) {
-            if($item->menu_item_parent == 0) {
-                echo "<li><a href='".$item->url."'>".$item->title."</a></li>";
-            } {
-                //$parentMenu = get_post($item->ID);
-                //echo "<li><a href='".$item->url."'>".$item->title."</a></li>";
+        $menus = wp_get_nav_menu_items( 'main-menu' );
+        if(!empty($menus)) {
+            foreach( $menus as $item ) {
+                if($item->menu_item_parent == 0) {
+                    echo "<li><a href='".$item->url."'>".$item->title."</a></li>";
+                } {
+                    //$parentMenu = get_post($item->ID);
+                    //echo "<li><a href='".$item->url."'>".$item->title."</a></li>";
+                }
+                //echo $item->menu_item_parent;
             }
-            //echo $item->menu_item_parent;
+        } else {
+            echo "<li><a >CREATE A MENU</a></li>";
         }
     }
 

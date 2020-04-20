@@ -54,9 +54,9 @@
         </header>
         <!-- Navigation -->
 
-        <?php if(!is_home()) { ?>
+        <!-- Header Section -->
+            <?php if(!is_home()) { ?>
 
-            <!-- Inquire Section -->
                 <section class="hire-section text-center" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2">
                     <div class="hire-section-bg">
                     <div class="container">
@@ -69,17 +69,16 @@
                     </div>
                     </div>
                 </section>
-            <!-- Inquire Section -->
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ol class="breadcrumb">
-                            <?php get_breadcrumbs(); ?>
-                        </ol>
-                    </div>	
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ol class="breadcrumb">
+                                <?php get_breadcrumbs(); ?>
+                            </ol>
+                        </div>	
+                    </div>
                 </div>
-            </div>
-        <?php } ?>
 
-        <?php
+            <?php } ?>
+        <!-- Header Section -->
