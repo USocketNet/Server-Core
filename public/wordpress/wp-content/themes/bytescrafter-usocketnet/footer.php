@@ -18,73 +18,66 @@
 				<!-- <h2 class="section-title wow fadeInUp">CONTACT US</h2> -->
 					<div class="row">
 						
-
-						<div class="col-md-6">
-						<div class="row center-xs">
-							<div class="col-sm-6">
-							<i class="fa fa-map-marker"></i>
-							<address>
-								<strong>Address/Street</strong>
-								1018 Narra St. Silcas Village<br>
-								Biñan City, Philippines<br>
-							</address>
-							</div>
-
-							<div class="col-sm-6">
-							<i class="fa fa-mobile"></i>
-							<div class="contact-number">
-								<strong>Phone Number</strong>
-								(+63) 294 429 4225<br>
-								(028) 529 3521
-							</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="intro">
+						<div class="col-md-3 footer-section-space">
+							<div class="row">
+								<div class="footer-company">
 									<!-- <div class="intro-sub">Welcome!</div> -->
-									<h1>USocket <span>Net</span></h1>
-									<p>Realtime WebSocket Multiplayer Server for Indie Game Developers.
-									<br> It is a multi-platform that can be used through mobile or standalone computers.
-									<br> Optional! Host your own server, contact us now.</p>
-
+									<a href="<?php echo get_home_url(); ?>">
+										<img src="<?php echo get_site_icon_url(); ?>" style="height: 70px; width: 70px;">
+									</a>
+									<h1 ><?php echo get_bloginfo('name'); ?></h1>
+									<!-- <p>Realtime WebSocket Multiplayer Server for Indie Game Developers.</p> -->
 									<div class="social-icons">
 										<ul class="list-inline">
-										<li><a href="https://www.facebook.com/BytesCrafterPH" target="_blank"><i class="fa fa-facebook"></i></a></li>
-										<li><a href="https://twitter.com/BytesCrafter" target="_blank"><i class="fa fa-twitter"></i></a></li>
-										<li><a href="https://www.youtube.com/channel/UCHXZUImmr9aSKmYpKXqN9vQ" target="_blank"><i class="fa fa-youtube"></i></a></li>
-										<li><a href="https://play.google.com/store/apps/dev?id=5394145917362507576" target="_blank"><i class="fa fa-android"></i></a></li>
+											<li><a href="<?php echo get_theme_mod( 'social_gp' ); ?>" target="_blank"><i class="fa fa-android"></i></a></li>
+											<li><a href="<?php echo get_theme_mod( 'social_yt' ); ?>" target="_blank"><i class="fa fa-youtube"></i></a></li>
+											<li><a href="<?php echo get_theme_mod( 'social_tw' ); ?>"><i class="fa fa-twitter"></i></a></li>
+											<li><a href="<?php echo get_theme_mod( 'social_fb' ); ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
 										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
+
+						<div class="col-md-3 footer-section-space">
+							<div class="row">
+								<div class="footer-company">
+									<strong>MENU A</strong>
+									<ul>
+										<li><a href="#">SUBMENU 1</a></li>
+										<li><a href="#">SUBMENU 2</a></li>
+										<li><a href="#">SUBMENU 3</a></li>
+										<li><a href="#">SUBMENU 4</a></li>
+									</ul>
+								</div>
+							</div>
 						</div>
 
-						<div class="col-md-6">
-							<div class="contact-form">
-								<h4 style="margin-bottom: 25px;">Send me a message</h4>
-								<form name="contact-form" method="post" action="custom/php/home/sendemail.php">
-								<div class="form-group">
-									<label for="InputName1">Name</label>
-									<input type="text" name="name" class="form-control" id="InputName1" required="">
+						<div class="col-md-3 footer-section-space">
+							<div class="row">
+								<div class="footer-company">
+									<strong>MENU B</strong>
+									<ul>
+										<li><a href="#">SUBMENU 1</a></li>
+										<li><a href="#">SUBMENU 2</a></li>
+										<li><a href="#">SUBMENU 3</a></li>
+										<li><a href="#">SUBMENU 4</a></li>
+									</ul>
 								</div>
-								<div class="form-group">
-									<label for="InputEmail1">Email</label>
-									<input type="email" name="email" class="form-control" id="InputEmail1" required="">
-								</div>
-								<!-- <div class="form-group">
-									<label for="InputSubject">Subject</label>
-									<input type="text" name="subject" class="form-control" id="InputSubject">
-								</div> -->
-								<div class="form-group">
-									<label for="InputTextarea">Message</label>
-									<textarea name="message" class="form-control" id="InputTextarea" rows="5" required=""></textarea>
-								</div>
+							</div>
+						</div>
 
-								<button type="submit" name="submit" class="btn btn-primary">Send Message</button>
-								</form>
+						<div class="col-md-3 footer-section-space">
+							<div class="row">
+								<div class="footer-company">
+									<strong>MENU C</strong>
+									<ul>
+										<li><a href="#">SUBMENU 1</a></li>
+										<li><a href="#">SUBMENU 2</a></li>
+										<li><a href="#">SUBMENU 3</a></li>
+										<li><a href="#">SUBMENU 4</a></li>
+									</ul>
+								</div>
 							</div>
 						</div>
 
@@ -100,7 +93,7 @@
 				<div class="row">
 					<div class="col-md-12">
 					<div class="copyright text-center">
-						<p>USocketNet &copy; <?php echo date("Y"); ?>. All rights reserved.</p>
+						<p><?php echo get_bloginfo('name'); ?> &copy; <?php echo date("Y"); ?>. All rights reserved.</p>
 					</div>
 					</div>
 				</div>

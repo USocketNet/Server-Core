@@ -1,5 +1,4 @@
 
-
 <?php
 	/**
 	 * Basically, all the logic happens here.
@@ -24,6 +23,9 @@
 
     //include post supports for formats.
     include_once( "include/override/postsupport.php" );
+
+    //Theme customizer fields.
+    include_once( "include/override/customizer.php" );
 
     //Include scripts that is needed js and css.
     function usn_plugin_frontend_enqueue()

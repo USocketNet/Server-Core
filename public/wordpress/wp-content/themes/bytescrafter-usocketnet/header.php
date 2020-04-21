@@ -40,7 +40,7 @@
                     </button>
                     <div class="navbar-brand">
                         <a href="<?php echo get_home_url(); ?>">
-                            <img src="<?php echo get_site_icon_url(27); ?>">
+                            <img src="<?php echo get_site_icon_url(); ?>">
                             <?php echo get_bloginfo('name'); ?>
                         </a>
                     </div>
