@@ -10,15 +10,14 @@
 
 <?php get_header(); ?>
 
-    <!-- About Section -->
+    <!-- Content Section -->
     <section id="about" class="about-section section-padding">
         <div class="container">
-          <h2 class="section-title wow fadeInUp"><?php the_title(); ?></h2>
           <div class="row">
             <div class="col-md-12 ">
                 <?php
                     while ( have_posts() ) : the_post(); ?>
-                    <div class="short-info wow fadeInUp">
+                    <div class="short-info">
                         <?php the_content(); ?>
                     </div>
                 <?php
@@ -29,6 +28,6 @@
           </div>
         </div>
       </section>
-    <!-- About Section --> 
+    <!-- Content Section --> 
 
 <?php get_footer(); ?>

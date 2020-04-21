@@ -105,8 +105,6 @@ h6 {
     font-size     : 12px;
 }
 
-
-
 /* === FORM STYLE === */
 .form-control {
     height: 45px;
@@ -277,7 +275,6 @@ ul.list-check li::before {
 
 
 #home {
-	background: url(../images/home-jumbutron.jpg) no-repeat center center;
 	-webkit-background-attachment: fixed;
     background-attachment: fixed;
 	background-color: #222;
@@ -1427,8 +1424,8 @@ Icon for all respective meta
 .the-time::before{
     content: "\f133";
 }
-.the-share::before{
-    content: "\f1e0";
+.the-views::before{
+    content: "\f06e";
 }
 .the-comments::before{
     content: "\f0e6";
@@ -1451,34 +1448,34 @@ Icon for all respective meta
     left: 0;
 }
 
-/* === Hire Section === */
-.hire-section {
-    background: url(../../assets/images/breadcrump-header.jpg) no-repeat top center #008ecf;
-    background-attachment: fixed;
-    background-size: cover;
+/* === Header Section === */
+.header-section {
+    background-attachment: fixed !important;
+    background-size: cover !important;
     color: #fff;  
     margin-bottom: 30px;
 }
-.hire-section-bg {
+.header-section-bg {
     padding: 110px 0;
-    background: -webkit-linear-gradient(bottom, #008ecf, rgba(104, 195, 163, 0.7)); /*Safari 5.1-6*/
-    background: -o-linear-gradient(top, #008ecf, rgba(104, 195, 163, 0.7)); /*Opera 11.1-12*/
-    background: -moz-linear-gradient(top, #008ecf, rgba(104, 195, 163, 0.7)); /*Fx 3.6-15*/
-    background: linear-gradient(to top, #008ecf, rgba(104, 195, 163, 0.7)); /*Standard*/
+    background: -webkit-linear-gradient(bottom,  #00afff99, rgba(255, 18, 138, 0.12)); /*Safari 5.1-6*/
+    background: -o-linear-gradient(top, #00afff99, rgba(255, 18, 138, 0.12)); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(top,  #00afff99, rgba(255, 18, 138, 0.12)); /*Fx 3.6-15*/
+    background: linear-gradient(to top,  #00afff99, rgba(255, 18, 138, 0.12)); /*Standard*/
 }
 
-.hire-section h2 {
+.header-section h2 {
     font-size: 36px;
     margin-bottom: 40px;
 }
 
-.hire-section .btn {
+.header-section .btn {
     padding: 9px 54px;
 }
 
 
 /* === Contact Section === */
 .contact-section  {
+    padding: 120px 0 100px;
     background-color: #2d2d2d;
     color: #d4d4d4;
 }

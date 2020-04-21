@@ -7,10 +7,25 @@
 	 * @package bytescrafter-usocketnet
 	 * @since 0.1.0
 	 */
+
+     #region WP Recommendation - Prevent direct initilization of the plugin.
+        if ( !defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
+        if ( ! function_exists( 'is_plugin_active' ) ) 
+        {
+            require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        }
+    #endregion
 ?>
 
 <?php
 
+    // Includes all our available shortcodes.
+    include_once( "include/shortcodes.php" );
+
+    //include post supports for formats.
+    include_once( "include/override/postsupport.php" );
+
+    //Include scripts that is needed js and css.
     function usn_plugin_frontend_enqueue()
     {    
         wp_enqueue_style('usn_google_fonts', 
@@ -119,23 +134,15 @@
         if (is_page()) {
             echo the_title();
         }
-
+        
         echo '</div>';
     }
 
-    //Add custom shortcode for blocks.
-    function bc_bloglist_display($atts) {
-        $a = shortcode_atts( array(
-            'name' => 'world'
-         ), $atts );
-         return 'Hello ' . $a['name'];
-    }
-    add_shortcode( 'bc_bloglist', 'bc_bloglist_display' );
-
+    // Sample hook for js or css.
     function hook_javascript() {
         ?>
             <script>
-                console.log('Function has been called!');
+                console.log('Theme had been initialized!');
             </script>
         <?php
     }

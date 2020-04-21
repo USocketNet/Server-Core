@@ -57,21 +57,36 @@
         <!-- Navigation -->
 
         <!-- Header Section -->
-            <?php if(!is_home()) { ?>
+            <?php if(is_home() || !is_front_page() ) { ?>
 
-                <section class="hire-section text-center" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2">
-                    <div class="hire-section-bg">
-                    <div class="container">
-                        <div class="row">
-                        <div class="col-md-12">
-                            <h2><?php the_title(); ?></h2>
-                            <!-- <a href="#" data-toggle="modal" data-target="#signIn" class="btn btn-default">Click Here!</a> -->
+                <section class="header-section text-center" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2" 
+                    <?php 
+                        $defaultHeaderImage = get_template_directory_uri()."/assets/images/default-header.jpg";
+                        if (has_post_thumbnail( $post->ID ) ) {
+                            $headerImageHeader = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'header-image' );
+                            $defaultHeaderImage = $headerImageHeader[0];
+                        }
+                    ?>
+                    style="background: url(<?php echo $defaultHeaderImage; ?>) no-repeat top center #008ecf;">
+                    <div class="header-section-bg">
+                        <div class="container">
+                            <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="section-title wow fadeInUp" style="color: white; font-size: 50px;">
+                                    <?php 
+                                        if( is_home() ) {
+                                            echo "JUST BLOG IT";
+                                        } else {
+                                            echo get_the_title(get_the_ID()); 
+                                        }
+                                    ?>
+                                </h2>
+                            </div>
+                            </div>
                         </div>
-                        </div>
-                    </div>
                     </div>
                 </section>
-
+                <?php if( !is_home() ) { ?>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
@@ -81,6 +96,7 @@
                         </div>	
                     </div>
                 </div>
+                <?php } ?>
 
             <?php } ?>
         <!-- Header Section -->
