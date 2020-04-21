@@ -10,21 +10,24 @@
 
 <?php get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main">
+	<div class="container"> 
+		<div class="row"> 
+			<section id="primary" class="content-area">
+				<main id="main" class="site-main">
 
-			<div class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'bytescrafter-usocketnet-theme' ); ?></h1>
-				</header><!-- .page-header -->
+					<div class="error-404 not-found" style="text-align: center; margin: 50px 0;">
+						<header class="page-header">
+							<h1 class="page-title"><?php _e( '404 Page Cant Be Found', 'bytescrafter-usocketnet-theme' ); ?></h1>
+						</header>
 
-				<div class="page-content">
-					<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'bytescrafter-usocketnet-theme' ); ?></p>
-					<?php get_search_form(); ?>
-				</div><!-- .page-content -->
-			</div><!-- .error-404 -->
+						<div class="page-content">
+							<p><?php _e( 'It looks like nothing was found at this location. Maybe try a search?', 'bytescrafter-usocketnet-theme' ); ?></p>
+						</div>
+					</div>
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
+				</main>
+			</section>
+		</div>
+	</div>
 
 <?php get_footer(); ?>
