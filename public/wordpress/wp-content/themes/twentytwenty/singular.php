@@ -21,7 +21,7 @@ get_header();
 		while ( have_posts() ) {
 			the_post();
 
-			get_template_part( 'template-parts/content', get_post_type() );
+			get_template_part( 'template/content', get_post_type() );
 		}
 	}
 
@@ -29,6 +29,6 @@ get_header();
 
 </main><!-- #site-content -->
 
-<?php get_template_part( 'template-parts/footer-menus-widgets' ); ?>
+<?php get_template_part( 'template/footer-menus-widgets' ); ?>
 
 <?php get_footer(); ?>
