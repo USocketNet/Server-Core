@@ -22,9 +22,9 @@
     <body <?php body_class(); ?>>
 
         <div id="tt-preloader">
-        <div id="pre-status">
-            <div class="preload-placeholder"></div>
-        </div>
+            <div id="pre-status">
+                <div class="preload-placeholder"></div>
+            </div>
         </div>
 
         <!-- Navigation -->
@@ -32,15 +32,17 @@
             <nav class="navbar navbar-custom" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="navbar-brand" href="#">
-                    <img src="<?php echo get_site_icon_url(27); ?>" alt="">
-                    <?php echo get_bloginfo('name'); ?>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">
+                        <a href="<?php echo get_home_url(); ?>">
+                            <img src="<?php echo get_site_icon_url(27); ?>">
+                            <?php echo get_bloginfo('name'); ?>
+                        </a>
                     </div>
                 </div>
 
