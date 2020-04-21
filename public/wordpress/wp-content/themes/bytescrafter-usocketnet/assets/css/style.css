@@ -237,7 +237,7 @@ ul.list-check li::before {
 
 /* === MAIN === */
 .section-padding {
-	padding: 120px 0 100px;
+	padding: 30px 0 50px;
 }
 
 
@@ -333,14 +333,14 @@ ul.list-check li::before {
 
 .footer-company {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     padding: 0 25px;
 }
 
 .footer-company h1{
-	font-size: 20px;
-	line-height: 60px;
-	color: #00b3fa;
+    font-size: 18px;
+    line-height: 50px;
+    color: #00b3fa;
 }
 
 .footer-company p{
@@ -358,7 +358,7 @@ SOCIAL ICON
     position: relative;
     color: #fff;
     font-size: 18px;
-    margin: 0 7px;
+    margin: 0 3px;
     line-height: 30px;
     text-align: center;
 }
@@ -1492,12 +1492,13 @@ Icon for all respective meta
 
 /* === Contact Section === */
 .contact-section  {
-    padding: 120px 0 100px;
+    padding: 75px 0 50px;
     background-color: #2d2d2d;
     color: #d4d4d4;
 }
 
 .contact-section strong {
+    font-size: 18px;
     display: block;
     text-transform: uppercase;
 }

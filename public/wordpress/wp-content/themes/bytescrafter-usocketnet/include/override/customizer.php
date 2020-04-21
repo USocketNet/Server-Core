@@ -283,3 +283,106 @@
         ));
 
     } add_action('customize_register', 'welcome_link_customizer');
+
+    //adding setting for Footer text
+    function menus_link_customizer($wp_customize) {
+        //adding section in wordpress customizer   
+        $wp_customize->add_section('menus_links_section', array(
+            'title' => 'Menus Section'
+        ));
+
+        $wp_customize->add_setting('menua_name', array(
+            'default'        => 'MENU A',
+        )); $wp_customize->add_control('menua_name', array(
+            'label'   => '1ST MENU GROUP',
+            'section' => 'menus_links_section',
+            'type'    => 'text',
+            'description' => __('Put menu name here:', 'maname' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'WELCOME', 'maname' ),
+            )
+        ));
+
+        $wp_customize->add_setting('menua_target', array(
+            'default'        => 'menu-a',
+        )); $wp_customize->add_control('menua_target', array(
+            'label'   => 'Target',
+            'section' => 'menus_links_section',
+            'type'    => 'text',
+            'description' => __('Put menu key here:', 'matarget' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'WELCOME', 'matarget' ),
+            )
+        ));
+
+        $wp_customize->add_setting('menub_name', array(
+            'default'        => 'MENU B',
+        )); $wp_customize->add_control('menub_name', array(
+            'label'   => '2ND MENU GROUP',
+            'section' => 'menus_links_section',
+            'type'    => 'text',
+            'description' => __('Put menu name here:', 'mbname' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'WELCOME', 'mbname' ),
+            )
+        ));
+
+        $wp_customize->add_setting('menub_target', array(
+            'default'        => 'menu-b',
+        )); $wp_customize->add_control('menub_target', array(
+            'label'   => 'Target',
+            'section' => 'menus_links_section',
+            'type'    => 'text',
+            'description' => __('Put menu key here:', 'mbtarget' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'WELCOME', 'mbtarget' ),
+            )
+        ));
+
+        $wp_customize->add_setting('menuc_name', array(
+            'default'        => 'MENU C',
+        )); $wp_customize->add_control('menuc_name', array(
+            'label'   => '3RD MENU GROUP',
+            'section' => 'menus_links_section',
+            'type'    => 'text',
+            'description' => __('Put menu name here:', 'mcname' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'WELCOME', 'mcname' ),
+            )
+        ));
+
+        $wp_customize->add_setting('menuc_target', array(
+            'default'        => 'menu-c',
+        )); $wp_customize->add_control('menuc_target', array(
+            'label'   => 'Target',
+            'section' => 'menus_links_section',
+            'type'    => 'text',
+            'description' => __('Put menu key here:', 'mctarget' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'WELCOME', 'mctarget' ),
+            )
+        ));
+
+
+        $wp_customize->add_setting('menuc_choices', array(
+            'default'        => '',
+        )); $wp_customize->add_control('menuc_choices', array(
+            'label'   => 'Target',
+            'section' => 'menus_links_section',
+            'type'    => 'select',
+            'description' => __('Put menu key here:', 'mcctarget' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'WELCOME', 'mcctarget' ),
+            ),
+            'choices' => get_list_of_menus()
+        ));
+
+    } add_action('customize_register', 'menus_link_customizer');
+
+    function get_list_of_menus() {
+        return array(
+            'value1' => 'Choice 1',
+            'value2' => 'Choice 2',
+            'value3' => 'Choice 3',
+        );
+    }

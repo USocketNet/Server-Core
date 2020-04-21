@@ -18,7 +18,7 @@
 				<!-- <h2 class="section-title wow fadeInUp">CONTACT US</h2> -->
 					<div class="row">
 						
-						<div class="col-md-3 footer-section-space">
+						<div class="col-sm-3 footer-section-space">
 							<div class="row">
 								<div class="footer-company">
 									<!-- <div class="intro-sub">Welcome!</div> -->
@@ -39,43 +39,49 @@
 							</div>
 						</div>
 
-						<div class="col-md-3 footer-section-space">
+						<div class="col-sm-3 footer-section-space">
 							<div class="row">
 								<div class="footer-company">
-									<strong>MENU A</strong>
+									<strong><?php echo get_theme_mod( 'menua_name' ); ?></strong>
 									<ul>
-										<li><a href="#">SUBMENU 1</a></li>
-										<li><a href="#">SUBMENU 2</a></li>
-										<li><a href="#">SUBMENU 3</a></li>
-										<li><a href="#">SUBMENU 4</a></li>
+										<?php
+											$menua = wp_get_menu_array(get_theme_mod( 'menua_target' ));
+											foreach($menua as $item) {
+												echo '<li><a href="'.$item['url'].'">'.$item['title'].'</a></li>';
+											}                         
+										?>
 									</ul>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-3 footer-section-space">
+						<div class="col-sm-3 footer-section-space">
 							<div class="row">
 								<div class="footer-company">
-									<strong>MENU B</strong>
+									<strong><?php echo get_theme_mod( 'menub_name' ); ?></strong>
 									<ul>
-										<li><a href="#">SUBMENU 1</a></li>
-										<li><a href="#">SUBMENU 2</a></li>
-										<li><a href="#">SUBMENU 3</a></li>
-										<li><a href="#">SUBMENU 4</a></li>
+										<?php
+											$menua = wp_get_menu_array(get_theme_mod( 'menub_target' ));
+											foreach($menua as $item) {
+												echo '<li><a href="'.$item['url'].'">'.$item['title'].'</a></li>';
+											}                         
+										?>
 									</ul>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-md-3 footer-section-space">
+						<div class="col-sm-3 footer-section-space">
 							<div class="row">
 								<div class="footer-company">
-									<strong>MENU C</strong>
+									<strong><?php echo get_theme_mod( 'menuc_name' ); ?></strong>
 									<ul>
-										<li><a href="#">SUBMENU 1</a></li>
-										<li><a href="#">SUBMENU 2</a></li>
-										<li><a href="#">SUBMENU 3</a></li>
-										<li><a href="#">SUBMENU 4</a></li>
+										<?php
+											$menua = wp_get_menu_array(get_theme_mod( 'menuc_target' ));
+											foreach($menua as $item) {
+												echo '<li><a href="'.$item['url'].'">'.$item['title'].'</a></li>';
+											}    
+										?>
 									</ul>
 								</div>
 							</div>
