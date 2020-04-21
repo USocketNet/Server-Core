@@ -88,3 +88,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Ignore WordPress uploads.
+public/wordpress/wp-content/uploads
