@@ -1,19 +1,19 @@
 @charset "UTF-8";
 /*
-    Theme Name: USocketNet WebAdmin
-    Theme URI: http://www.bytescrafter.net/Projects/USocketNet
-    Description: USocketNet backend using the WordPress framework.
+    Theme Name: Hello WPress
+    Theme URI: http://www.bytescrafter.net/Projects/Hello-WPress
+    Description: The centered content column and fine-tuned typography also makes it perfect for traditional blogs. Complete editor styles give you a good idea of what your content will look like, even before you publish. You can give your site a personal touch by changing the background colors and the accent color in the Customizer. The colors of all elements on your site are automatically calculated based on the colors you pick, ensuring a high, accessible color contrast for your visitors.
     Author: Bytes Crafter
     Author URI:   https://www.bytescrafter.net/about-us
-    Version: 0.1.0
-    Text Domain: minimalist
-    Tags: usocketnet, realtime server, nodejs, unity
+    Version: 0.2.0
+    Text Domain: hellowpress
+    Tags: blog, one-column, custom-background, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, block-styles, wide-blocks, accessibility-ready
 
-    * @package      bytescrafter-usocketnet
+    * @package      hellowpress
     * @author       Bytes Crafter
 
     * @copyright    2020 Bytes Crafter
-    * @version      0.1.0
+    * @version      0.2.0
 
     * @wordpress-theme
     * WC requires at least: 2.5.0
