@@ -103,10 +103,10 @@
                     </div>
                 </section>
                 <?php if( !is_home() && !is_search() && !is_404() ) { ?>
-                <div class="container">
+                <div class="container" style="position: relative; top: -50px;">
                     <div class="row">
                         <div class="col-md-12">
-                            <ol class="breadcrumb">
+                            <ol class="breadcrumb" style="background-color: #efefef; box-shadow: 0px 2px #dadada; margin-bottom: 0;">
                                 <?php get_breadcrumbs(); ?>
                             </ol>
                         </div>	

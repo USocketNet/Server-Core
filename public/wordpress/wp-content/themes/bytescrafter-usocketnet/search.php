@@ -29,9 +29,18 @@
 							wp_reset_query();
 
 							if($num == 0) {
-								
+								?>
+								<div class="error-404 not-found" style="text-align: center; margin: 50px 0;">
+									<header class="page-header">
+										<h1 class="page-title"><?php _e( 'SEARCH RESULT EMPTY', 'bytescrafter-usocketnet-theme' ); ?></h1>
+									</header>
+
+									<div class="page-content">
+										<p><?php _e( 'It looks like nothing was found at during search. Maybe try another word?', 'bytescrafter-usocketnet-theme' ); ?></p>
+									</div>
+								</div>
+								<?php
 							}
-							echo $num;
 						?>
 					</div>
 				</section>

@@ -82,15 +82,14 @@
         wp_enqueue_script('usn_shuffle_js', get_template_directory_uri() . '/assets/jquery/jquery.shuffle.min.js', array(),'3.3.2', false);
         wp_enqueue_script('usn_magnific_js', get_template_directory_uri() . '/assets/jquery/jquery.magnific-popup.min.js', array(),'3.3.2', false);
         wp_enqueue_script('usn_fitvids_js', get_template_directory_uri() . '/assets/jquery/jquery.fitvids.js', array(),'3.3.2', false);
-        wp_enqueue_script('usn_script_js', get_template_directory_uri() . '/assets/jquery/theme.js', array(),'3.3.2', false);
-        // wp_enqueue_script('usn_googlemap_js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAhQl6ptglWbMEG1qzoateEXcA4oPHSCSk&callback=initMaps', array(),'3.3.2', false);
+        wp_enqueue_script('usn_script_js', get_template_directory_uri() . '/assets/jquery/theme.js', array(),'', false);
     }
     add_action( 'wp_head', 'usn_plugin_frontend_enqueue' );
 
     // Get the navigation list here.
     function usocketnet_get_main_menu() {
         $menu_list = "";
-        $menus = wp_get_nav_menu_items( 'main-menu' );
+        $menus = wp_get_nav_menu_items( 'primary' );
         if(!empty($menus)) {
             foreach( $menus as $item ) {
                 if($item->menu_item_parent == 0) {
@@ -151,7 +150,6 @@
     add_action('wp_head', 'hook_javascript');
 
 
-
     function wp_get_menu_array($current_menu) {
 
         $array_menu = wp_get_nav_menu_items($current_menu);
@@ -180,3 +178,4 @@
         // }
         return $menu;
     }
+    

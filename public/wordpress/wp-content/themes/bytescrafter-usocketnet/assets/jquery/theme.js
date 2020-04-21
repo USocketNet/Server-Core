@@ -1,8 +1,3 @@
-/*
-Theme Name: IAMX
-Author: Ahmed Faruk
-Author URL: farukahmed.com
-*/
 
 /*
     = Preloader
@@ -28,10 +23,9 @@ jQuery(function ($) {
     /* ---------------------------------------------- /*
      * Preloader
     /* ---------------------------------------------- */
-
     $(window).ready(function() {
         $('#pre-status').fadeOut();
-        $('#tt-preloader').delay(350).fadeOut('slow');
+        $('#tt-preloader').delay(150).fadeOut('slow');
     });
 
 
