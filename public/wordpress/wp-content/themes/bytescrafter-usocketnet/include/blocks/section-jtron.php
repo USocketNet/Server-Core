@@ -21,7 +21,7 @@
         style="background: url(<?php echo $defaultHeaderImage; ?>) no-repeat center center; background-attachment: fixed; background-color: #222; background-size: cover;">
         <div class="intro">
           <div class="intro-sub"><?php echo getThemeField( 'welcome_subtitle', 'Welcome' ); ?></div>
-          <h1><?php echo getThemeField( 'welcome_title1', 'Hello' ); ?> <span><?php echo getThemeField( 'welcome_title2', 'Wpress' ); ?></span></h1>
+          <h1><?php echo getThemeField( 'welcome_title1', 'Hello' ); ?> <span><?php echo getThemeField( 'welcome_title2', 'Press' ); ?></span></h1>
           <p><?php echo getThemeField( 'welcome_desc', 'The Red Brown Fox Jump over the Lazy Dog.' ); ?></p>
           <!-- <div class="social-icons">
             <ul class="list-inline">
