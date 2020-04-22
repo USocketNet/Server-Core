@@ -31,10 +31,18 @@
 									<!-- <p>Realtime WebSocket Multiplayer Server for Indie Game Developers.</p> -->
 									<div class="social-icons">
 										<ul class="list-inline">
-											<li><a href="<?php echo getThemeField( 'social_gp', '#' ); ?>" target="_blank"><i class="fa fa-android"></i></a></li>
-											<li><a href="<?php echo getThemeField( 'social_yt', '#' ); ?>" target="_blank"><i class="fa fa-youtube"></i></a></li>
-											<li><a href="<?php echo getThemeField( 'social_tw', '#' ); ?>"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="<?php echo getThemeField( 'social_fb', '#' ); ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+											<?php if(!empty(getThemeField( 'social_gp', '' ))) { ?>
+												<li><a href="<?php echo getThemeField( 'social_gp', '' ); ?>" target="_blank"><i class="fa fa-android"></i></a></li>
+											<?php } ?>
+											<?php if(!empty(getThemeField( 'social_yt', '' ))) { ?>
+												<li><a href="<?php echo getThemeField( 'social_yt', '#' ); ?>" target="_blank"><i class="fa fa-youtube"></i></a></li>
+											<?php } ?>
+											<?php if(!empty(getThemeField( 'social_tw', '' ))) { ?>
+												<li><a href="<?php echo getThemeField( 'social_tw', '#' ); ?>"><i class="fa fa-twitter"></i></a></li>
+											<?php } ?>
+											<?php if(!empty(getThemeField( 'social_fb', '' ))) { ?>
+												<li><a href="<?php echo getThemeField( 'social_fb', '#' ); ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+											<?php } ?>
 										</ul>
 									</div>
 								</div>
