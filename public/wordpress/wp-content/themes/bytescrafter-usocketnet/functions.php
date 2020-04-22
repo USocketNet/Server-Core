@@ -183,6 +183,28 @@
             wp_insert_post( $blog_page );
         }
 
+        if( post_exists("About") == 0 ) {
+            $blog_page = array();
+            $blog_page['post_title']    = 'About';
+            $blog_page['post_content']  = 'The Red Brown Fox Jump over the Lazy Dog.';
+            $blog_page['post_status']   = 'publish';
+            $blog_page['post_author']   = 1;
+            $blog_page['post_category'] = array(0);
+            $blog_page['post_type']   = 'page';
+            wp_insert_post( $blog_page );
+        }
+
+        if( post_exists("Contact") == 0 ) {
+            $blog_page = array();
+            $blog_page['post_title']    = 'Contact';
+            $blog_page['post_content']  = 'The Red Brown Fox Jump over the Lazy Dog.';
+            $blog_page['post_status']   = 'publish';
+            $blog_page['post_author']   = 1;
+            $blog_page['post_category'] = array(0);
+            $blog_page['post_type']   = 'page';
+            wp_insert_post( $blog_page );
+        }
+
         $home = get_page_by_title( 'home' );
         update_option( 'page_on_front', $home->ID );
         update_option( 'show_on_front', 'page' );
@@ -192,8 +214,41 @@
         
         ?>
             <script>
-                console.log('asaaaaaaaaaaaaaaa!');
+                console.log('Hello WPress had been activated!');
             </script>
         <?php
+
+        $menu_id = '';
+        $menuname = 'Primary';
+        $menu_exists = wp_get_nav_menu_object( $menuname );
+        if( !$menu_exists ) {
+            $menu_id = wp_create_nav_menu($menuname);
+        } else {
+            $menu_id = $menu_exists->term_id;
+        }
+
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' =>  __('Home'),
+            'menu-item-classes' => 'home',
+            'menu-item-url' => home_url( '/' ), 
+            'menu-item-status' => 'publish'));
+
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' =>  __('Blog'),
+            'menu-item-classes' => 'blog',
+            'menu-item-url' => home_url( '/blog' ), 
+            'menu-item-status' => 'publish'));
+
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' =>  __('About'),
+            'menu-item-classes' => 'about',
+            'menu-item-url' => home_url( '/about' ), 
+            'menu-item-status' => 'publish'));
+
+        wp_update_nav_menu_item($menu_id, 0, array(
+            'menu-item-title' =>  __('Contact'),
+            'menu-item-classes' => 'contact',
+            'menu-item-url' => home_url( '/contact' ), 
+            'menu-item-status' => 'publish'));
     }
     add_action( 'after_switch_theme', 'setupTheme' );
