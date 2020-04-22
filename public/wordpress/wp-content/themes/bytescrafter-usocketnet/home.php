@@ -98,6 +98,4 @@
         </div>
     <!-- Content Section --> 
 
-    
-
 <?php get_footer(); ?>
