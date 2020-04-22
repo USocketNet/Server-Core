@@ -42,14 +42,9 @@
 						<div class="col-sm-3 footer-section-space">
 							<div class="row">
 								<div class="footer-company">
-									<strong><?php echo get_theme_mod( 'menua_name' ); ?></strong>
+									<strong><?php echo getThemeField( 'menua_name', "FIRST MENU" ); ?></strong>
 									<ul>
-										<?php
-											$menua = wp_get_menu_array(get_theme_mod( 'menua_target' ));
-											foreach($menua as $item) {
-												echo '<li><a href="'.$item['url'].'">'.$item['title'].'</a></li>';
-											}                         
-										?>
+										<?php getThemeMenuItems('menua_target'); ?>
 									</ul>
 								</div>
 							</div>
@@ -58,14 +53,9 @@
 						<div class="col-sm-3 footer-section-space">
 							<div class="row">
 								<div class="footer-company">
-									<strong><?php echo get_theme_mod( 'menub_name' ); ?></strong>
+									<strong><?php echo getThemeField( 'menub_name', "SECOND MENU" ); ?></strong>
 									<ul>
-										<?php
-											$menua = wp_get_menu_array(get_theme_mod( 'menub_target' ));
-											foreach($menua as $item) {
-												echo '<li><a href="'.$item['url'].'">'.$item['title'].'</a></li>';
-											}                         
-										?>
+										<?php getThemeMenuItems('menub_target'); ?>
 									</ul>
 								</div>
 							</div>
@@ -74,14 +64,9 @@
 						<div class="col-sm-3 footer-section-space">
 							<div class="row">
 								<div class="footer-company">
-									<strong><?php echo get_theme_mod( 'menuc_name' ); ?></strong>
+									<strong><?php echo getThemeField( 'menuc_name', "THIRD MENU" ); ?></strong>
 									<ul>
-										<?php
-											$menua = wp_get_menu_array(get_theme_mod( 'menuc_target' ));
-											foreach($menua as $item) {
-												echo '<li><a href="'.$item['url'].'">'.$item['title'].'</a></li>';
-											}    
-										?>
+										<?php getThemeMenuItems('menuc_target'); ?>
 									</ul>
 								</div>
 							</div>
