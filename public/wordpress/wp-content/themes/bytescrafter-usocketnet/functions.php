@@ -126,10 +126,19 @@
             <script>
                 console.log('Theme had been initialized!');
             </script>
+            <style>
+            </style>
         <?php
     }
     add_action('wp_head', 'hook_javascript');
 
+    function my_filter_head() {
+        // show admin bar only for admins and editors. if admin only, use: manage_options
+        if (!current_user_can('edit_posts')) {
+            add_filter('show_admin_bar', '__return_false');
+            remove_action('wp_head', '_admin_bar_bump_cb');
+        }
+    } add_action('get_header', 'my_filter_head');
 
     function wp_get_menu_array($current_menu) {
 
