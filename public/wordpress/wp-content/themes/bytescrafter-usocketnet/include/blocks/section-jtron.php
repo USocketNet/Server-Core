@@ -20,9 +20,9 @@
         ?>
         style="background: url(<?php echo $defaultHeaderImage; ?>) no-repeat center center; background-attachment: fixed; background-color: #222; background-size: cover;">
         <div class="intro">
-          <div class="intro-sub"><?php echo get_theme_mod( 'welcome_subtitle' ); ?></div>
-          <h1><?php echo get_theme_mod( 'welcome_title1' ); ?> <span><?php echo get_theme_mod( 'welcome_title2' ); ?></span></h1>
-          <p><?php echo get_theme_mod( 'welcome_desc' ); ?></p>
+          <div class="intro-sub"><?php echo getThemeField( 'welcome_subtitle', 'Welcome' ); ?></div>
+          <h1><?php echo getThemeField( 'welcome_title1', 'Hello' ); ?> <span><?php echo getThemeField( 'welcome_title2', 'Wpress' ); ?></span></h1>
+          <p><?php echo getThemeField( 'welcome_desc', 'The Red Brown Fox Jump over the Lazy Dog.' ); ?></p>
           <!-- <div class="social-icons">
             <ul class="list-inline">
               <li><a href="https://www.facebook.com/BytesCrafterPH" target="_blank"><i class="fa fa-facebook"></i></a></li>

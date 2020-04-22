@@ -18,6 +18,9 @@
 
 <?php
 
+    //Incclud theme core here.
+    include_once( "core/index.php" );
+
     // Includes all our available shortcodes.
     include_once( "include/shortcodes.php" );
 

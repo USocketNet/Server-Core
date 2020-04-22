@@ -259,7 +259,7 @@
         ));
 
         $wp_customize->add_setting('welcome_title2', array(
-            'default'        => 'WOLRD',
+            'default'        => 'PRESS',
         )); $wp_customize->add_control('welcome_title2', array(
             'label'   => '2nd Title',
             'section' => 'welcome_links_section',
