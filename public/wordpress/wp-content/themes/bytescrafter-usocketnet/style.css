@@ -1399,6 +1399,7 @@ Resume Timeline
 .post-thumbnail {
     margin-bottom: 20px;
     overflow: hidden;
+    height: 20rem;
 }
 .post-thumbnail img{
     opacity: 0.8;
@@ -1526,6 +1527,7 @@ Icon for all respective meta
     padding: 75px 0 50px;
     background-color: #2d2d2d;
     color: #d4d4d4;
+    margin-top: 7rem;
 }
 
 .contact-section strong {
@@ -5891,4 +5893,15 @@ Copyright (c) 2014 Daniel Eden
   margin-bottom: 0;
   color: #2b2b2b;
   font-weight: 500;
+}
+
+
+#sidebar .sidebar__inner {
+    border: 2px dotted red;
+    padding: 10px;
+    position: relative;
+    height: 50rem;
+    transform: translate(0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: position, transform;
 }

@@ -243,65 +243,21 @@ jQuery(function ($) {
     }());
 
     
+    // -------------------------------------------------------------
+    // STICKY SIDEBAR
+    // -------------------------------------------------------------
+
+    // var sidebar = new StickySidebar('#sidebar', {
+    //     containerSelector: '#main-content',
+    //     innerWrapperSelector: '.sidebar__inner',
+    //     topSpacing: 90,
+    //     bottomSpacing: 50
+    // });
+
+    // $('#sidebar').stickySidebar({
+    //     topSpacing: 60,
+    //     bottomSpacing: 60
+    // });
 
 
 });
-
-
-// -------------------------------------------------------------
-    // Google Map
-    // -------------------------------------------------------------
-
-    function initMaps() {
-        var myLatlng = new google.maps.LatLng(14.329156, 121.041360);
-
-            var styles = [
-                {
-                    featureType: "landscape",
-                    stylers: [
-                        { color: '#f7f7f7' }
-                    ]
-                },{
-                    featureType: "road",
-                    stylers: [
-                        { hue: '#fff' },
-                        { saturation: -70 }
-                    ]
-                },{
-                    featureType: "poi", //points of interest
-                    stylers: [
-                        { hue: '' }
-                    ]
-                }
-            ];
-
-            var mapOptions = {
-                zoom: 15,
-                scrollwheel: false,
-                center: myLatlng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                disableDefaultUI: true,
-                styles: styles
-            }
-            var map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
-
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                animation: google.maps.Animation.DROP,
-                title: 'Hello World!'
-            });
-
-            var contentString = '' +
-                    '' +
-                    '';
-
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-
-            google.maps.event.addListener(marker, 'click', function () {
-                infowindow.open(map, marker);
-            });
-
-    };

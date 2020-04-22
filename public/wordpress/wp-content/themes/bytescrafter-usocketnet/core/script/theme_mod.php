@@ -67,3 +67,18 @@
         }
         
     }
+
+    //Get post type icon.
+    function getPostFormatIcon( $types ) {
+        if($types == "status") {
+            echo "fa fa-quote-left";
+        } else if($types == "image") {
+            echo "fa fa-file-video-o";
+        } else if($types == "videos") {
+            echo "fa-file-video-o";
+        } else if($types == "audio") {
+            echo "fa-file-sound-o";
+        } else {
+            echo "fa fa-file-o";
+        }
+    }
