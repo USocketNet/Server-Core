@@ -208,11 +208,13 @@
             wp_insert_post( $blog_page );
         }
 
-        $home = get_page_by_title( 'home' );
+        $home = get_page_by_title( 'Home' );
+        $blog = get_page_by_title( 'Blog' );
+        $about = get_page_by_title( 'About' );
+        $contact = get_page_by_title( 'Contact' );
+
         update_option( 'page_on_front', $home->ID );
         update_option( 'show_on_front', 'page' );
-
-        $blog = get_page_by_title( 'Blog' );
         update_option( 'page_for_posts', $blog->ID );
         
         ?>
@@ -232,26 +234,30 @@
 
         wp_update_nav_menu_item($menu_id, 0, array(
             'menu-item-title' =>  __('Home'),
-            'menu-item-classes' => 'home',
-            'menu-item-url' => home_url( '/' ), 
-            'menu-item-status' => 'publish'));
+            'menu-item-object-id' => $home->ID,
+            'menu-item-object' => 'page', 
+            'menu-item-status' => 'publish',
+            'menu-item-type' => 'post_type'));
 
         wp_update_nav_menu_item($menu_id, 0, array(
             'menu-item-title' =>  __('Blog'),
-            'menu-item-classes' => 'blog',
-            'menu-item-url' => home_url( '/blog' ), 
-            'menu-item-status' => 'publish'));
+            'menu-item-object-id' => $blog->ID,
+            'menu-item-object' => 'page', 
+            'menu-item-status' => 'publish',
+            'menu-item-type' => 'post_type'));
 
         wp_update_nav_menu_item($menu_id, 0, array(
             'menu-item-title' =>  __('About'),
-            'menu-item-classes' => 'about',
-            'menu-item-url' => home_url( '/about' ), 
-            'menu-item-status' => 'publish'));
+            'menu-item-object-id' => $about->ID,
+            'menu-item-object' => 'page', 
+            'menu-item-status' => 'publish',
+            'menu-item-type' => 'post_type'));
 
         wp_update_nav_menu_item($menu_id, 0, array(
             'menu-item-title' =>  __('Contact'),
-            'menu-item-classes' => 'contact',
-            'menu-item-url' => home_url( '/contact' ), 
-            'menu-item-status' => 'publish'));
+            'menu-item-object-id' => $contact->ID,
+            'menu-item-object' => 'page', 
+            'menu-item-status' => 'publish',
+            'menu-item-type' => 'post_type'));
     }
     add_action( 'after_switch_theme', 'setupTheme' );
