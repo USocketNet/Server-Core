@@ -129,7 +129,7 @@ h6 {
 
 /* === FORM STYLE === */
 .form-control {
-    height: 45px;
+    height: 27px;
     background-color: #f7f7f7;
     border: 1px solid #e8e8e8;
     border-radius: 0;
@@ -489,8 +489,8 @@ SOCIAL ICON
     color: #cccccc;
     font-size: 14px;
     font-weight: 700;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 28px;
+    padding-bottom: 0;
     text-transform: uppercase;
 }
 
@@ -519,9 +519,19 @@ SOCIAL ICON
 }
 
 .navbar-custom .navbar-brand {
+    height: 36px;
+    padding-top: 25px;
     font-weight: 700;
     font-size: 16px;
 }
+
+@media (max-width: 768px){
+    .navbar .navbar-header {
+        position: relative;
+        display: contents;
+    }
+}
+
 
 .navbar-brand img{
     display: inline;
@@ -539,7 +549,6 @@ SOCIAL ICON
   
 .navbar{
    background: #1A1E23;
-    padding: 7px 0;
     color: #e1e1e1;
 }
 
@@ -5839,3 +5848,39 @@ Copyright (c) 2014 Daniel Eden
     right: 0;
     padding-top: 0; }
   
+/*
+
+    CUSTOM SCRIPTS.
+
+*/
+
+@media (max-width: 992px) {
+
+    .container .navbar-header {
+        padding-top: 15px;
+    }
+
+    .container .navbar-collapse {
+        padding-top: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .hp-nav-row {
+        position: relative;
+        top: 52px;
+        width: 20rem;
+        left: 20rem;
+        margin-top: -42px;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .hp-nav-row {
+        width: 90%;
+        left: 5%;
+        position: relative;
+        margin-top: 12px;
+    }
+}

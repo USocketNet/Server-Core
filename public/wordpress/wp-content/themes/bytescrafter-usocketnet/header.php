@@ -29,15 +29,12 @@
 
         <!-- Navigation -->
         <header class="header">
-            <nav class="navbar navbar-custom" role="navigation">
+            <nav class="navbar navbar-custom" role="navigation" style="margin-bottom: -4px;">
             <div class="container">
-                <div class="row">
-                    <form class="" >
-                        
-                    </form>
-                    <form role="search" style="margin: 0 10px;" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
+                <div class="hp-nav-row">
+                    <form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
                         <div>
-                            <input class="form-control mr-sm-2" type="text" value="" name="s" id="s" placeholder="Search" aria-label="Search" style="text-align: center;">
+                            <input class="form-control mr-sm-2" type="text" value="" name="s" id="s" placeholder="Search" aria-label="Search">
                         </div>
                     </form>
                 </div>
