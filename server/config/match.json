@@ -1,5 +1,5 @@
 {
-    "type": "game",
+    "type": "match",
     "host": "localhost",
     "port": 9091,
     "redis": {

@@ -113,7 +113,7 @@ This are the required config for NGIX server for load balance. By default
 
 ##### ADDING NEW INSTANCE OF THE SERVER.
   ```
-    $ CODE: pm2 start usocketnet.js --name svr-1 -- --name svr1 --master 19091 --chat 6061 --game 9091
+    $ CODE: pm2 start usocketnet.js --name svr-1 -- --name svr1 --master 19091 --message 6061 --match 9091
     // pm2 : Call or use the global dependency of pm2 npm package.
     // start : Start instance of the following server.js reference.
     // server.js : USocketNet target node js application or server to initiate.

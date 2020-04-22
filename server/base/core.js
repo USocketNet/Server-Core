@@ -7,8 +7,8 @@ const config = {};
     config.package = require('../../package.json');
     config.server = require('../config/server.json');
     config.master = require('../config/master.json');
-    config.chat = require('../config/chat.json');
-    config.game = require('../config/game.json');
+    config.message = require('../config/message.json');
+    config.match = require('../config/match.json');
     exports.config = config;
 
     //console.log(config);
@@ -21,10 +21,10 @@ if( config.server.production ) {
 exports.configof = function(servertype) {
     if(servertype == 'master') {
         return config.master;
-    } else if (servertype == 'chat') {
-        return config.chat;
-    } else if (servertype == 'game') {
-        return config.game;
+    } else if (servertype == 'message') {
+        return config.message;
+    } else if (servertype == 'match') {
+        return config.match;
     } else {
         return null;
     }

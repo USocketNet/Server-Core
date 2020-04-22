@@ -1,5 +1,5 @@
 {
-    "type": "chat",
+    "type": "message",
     "host": "localhost",
     "port": 6061,
     "redis": {

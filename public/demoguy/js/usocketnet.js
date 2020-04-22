@@ -2,7 +2,7 @@
 class USocketNet {
 
     /**
-     * Get the default for server types. The server types that can be pass are 'master', 'chat', and 'game'.
+     * Get the default for server types. The server types that can be pass are 'master', 'message', and 'match'.
      * @param  {} stype
      */
     getServerTypePort(stype) {
@@ -10,10 +10,10 @@ class USocketNet {
             case 'master':
                 return '19090';
                 break;
-            case 'chat':
+            case 'message':
                 return '6060';
                 break;
-            case 'game':
+            case 'match':
                 return '9090';
                 break;
             default:
@@ -156,7 +156,7 @@ class USocketNet {
             });
         });
 
-        if(this.serverType === 'chat') {
+        if(this.serverType === 'message') {
             this.conn.on('pub', function( msg ) {
 
                 let cbs = cbList['msg-public'];

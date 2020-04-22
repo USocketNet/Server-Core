@@ -68,8 +68,8 @@ class Demoguy {
             //Declaration of 3 different type of server.
             let usnList = []; const authToken = { wpid: curUser.wpid, snid: curUser.snid, apid: curUser.apid };
                 usnList.push(new USocketNet('master', window.location.host, authToken)); 
-                usnList.push(new USocketNet('chat', window.location.host, authToken)); 
-                usnList.push(new USocketNet('game', window.location.host, authToken)); 
+                usnList.push(new USocketNet('message', window.location.host, authToken)); 
+                usnList.push(new USocketNet('match', window.location.host, authToken)); 
 
             //Connect all USocketNet instance.
             usnList.forEach(curUsn => {
@@ -83,7 +83,7 @@ class Demoguy {
                             serverStatus = status;
                         }
                     })
-                } else if(curUsn.serverType == 'chat') {
+                } else if(curUsn.serverType == 'message') {
                     curUsn.on('msg-public', ( dat ) => {
                         demoguy.showMessage(curUser.wpid == dat.sender ? true : false, dat);
                     })
@@ -95,12 +95,12 @@ class Demoguy {
                         $('#masterConStat').removeClass('btn-secondary');
                         $('#masterConStat').addClass('btn-success');
                         targ = 'masterCon';
-                    } else if(data.serverType == 'chat') {
+                    } else if(data.serverType == 'message') {
                         $('#chatConStat').html( 'ONLINE' );
                         $('#chatConStat').removeClass('btn-secondary');
                         $('#chatConStat').addClass('btn-success');
                         targ = 'chatCon';
-                    } else if(data.serverType == 'game') {
+                    } else if(data.serverType == 'match') {
                         $('#gameConStat').html( 'ONLINE' );
                         $('#gameConStat').removeClass('btn-secondary');
                         $('#gameConStat').addClass('btn-success');
@@ -118,12 +118,12 @@ class Demoguy {
                         $('#masterConStat').removeClass('btn-secondary');
                         $('#masterConStat').addClass('btn-success');
                         targ = 'masterCon';
-                    } else if(data.serverType == 'chat') {
+                    } else if(data.serverType == 'message') {
                         $('#chatConStat').html( 'ONLINE' );
                         $('#chatConStat').removeClass('btn-secondary');
                         $('#chatConStat').addClass('btn-success');
                         targ = 'chatCon';
-                    } else if(data.serverType == 'game') {
+                    } else if(data.serverType == 'match') {
                         $('#gameConStat').html( 'ONLINE' );
                         $('#gameConStat').removeClass('btn-secondary');
                         $('#gameConStat').addClass('btn-success');
@@ -138,9 +138,9 @@ class Demoguy {
                     let targ = 'undefined';
                     if(data.serverType == 'master') {
                         targ = '#masterping';
-                    } else if(data.serverType == 'chat') {
+                    } else if(data.serverType == 'message') {
                         targ = '#chatping';
-                    } else if(data.serverType == 'game') {
+                    } else if(data.serverType == 'match') {
                         targ = '#gameping';
                     }
     
@@ -152,11 +152,11 @@ class Demoguy {
                         $('#masterConStat').html( 'OFFLINE' );
                         $('#masterConStat').removeClass('btn-success');
                         $('#masterConStat').addClass('btn-secondary');
-                    } else if(data.serverType == 'chat') {
+                    } else if(data.serverType == 'message') {
                         $('#chatConStat').html( 'OFFLINE' );
                         $('#chatConStat').removeClass('btn-success');
                         $('#chatConStat').addClass('btn-secondary');
-                    } else if(data.serverType == 'game') {
+                    } else if(data.serverType == 'match') {
                         $('#gameConStat').html( 'OFFLINE' );
                         $('#gameConStat').removeClass('btn-success');
                         $('#gameConStat').addClass('btn-secondary');

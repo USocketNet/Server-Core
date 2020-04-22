@@ -1,15 +1,15 @@
 
 const debug = require('./base/debug')();
 const core = require('./base/core');
-const instance = require('./base/socketio')( 'chat' );
-  const conn = instance.connect( 'chat' );
+const instance = require('./base/socketio')( 'message' );
+  const conn = instance.connect( 'message' );
 
   instance.sio.on('connection', (socket) => {
   
-    //Server logging about the connection on Chat Server.
-    debug.log('Connection on Chat', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
+    //Server logging about the connection on message Server.
+    debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
   
-    socket.join('chat-pub', () => {});
+    socket.join('msg-pub', () => {});
 
     //Called by client that its connected.
     socket.on('connects', (data, cback) => {
@@ -20,7 +20,7 @@ const instance = require('./base/socketio')( 'chat' );
     });
     
       socket.on('pub', (data, cback) => {
-        socket.to('chat-pub').emit('pub', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+        socket.to('msg-pub').emit('pub', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
         if(typeof cback === 'function') {
           // 0 = success, 1 = failed
           cback({ status: 0, d: new Date().toLocaleString() });
@@ -51,11 +51,11 @@ const instance = require('./base/socketio')( 'chat' );
 
     //Listens for any server-client disconnectio
     socket.on('disconnect', () => {
-      //Server logging about the disconnection on Chat Server.
-      debug.log('Disconnection on Chat', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
+      //Server logging about the disconnection on message Server.
+      debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
 
       // let redis = core.redis.select(0);
-      // let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'chat' };
+      // let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'message' };
       // redis.socketDisconnect( sock );
     });
   });
