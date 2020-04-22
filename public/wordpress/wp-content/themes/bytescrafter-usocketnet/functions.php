@@ -155,4 +155,45 @@
         // }
         return $menu;
     }
-    
+
+    function setupTheme() {
+        if ( ! function_exists( 'post_exists' ) ) {
+            require_once( ABSPATH . 'wp-admin/includes/post.php' );
+        }
+        
+        if( post_exists("Home") == 0 ) {
+            $home_page = array();
+            $home_page['post_title']    = 'Home';
+            $home_page['post_content']  = 'The Red Brown Fox Jump over the Lazy Dog.';
+            $home_page['post_status']   = 'publish';
+            $home_page['post_author']   = 1;
+            $home_page['post_category'] = array(0);
+            $home_page['post_type']   = 'page';
+            wp_insert_post( $home_page );
+        }
+
+        if( post_exists("Blog") == 0 ) {
+            $blog_page = array();
+            $blog_page['post_title']    = 'Blog';
+            $blog_page['post_content']  = '';
+            $blog_page['post_status']   = 'publish';
+            $blog_page['post_author']   = 1;
+            $blog_page['post_category'] = array(0);
+            $blog_page['post_type']   = 'page';
+            wp_insert_post( $blog_page );
+        }
+
+        $home = get_page_by_title( 'home' );
+        update_option( 'page_on_front', $home->ID );
+        update_option( 'show_on_front', 'page' );
+
+        $blog = get_page_by_title( 'Blog' );
+        update_option( 'page_for_posts', $blog->ID );
+        
+        ?>
+            <script>
+                console.log('asaaaaaaaaaaaaaaa!');
+            </script>
+        <?php
+    }
+    add_action( 'after_switch_theme', 'setupTheme' );
