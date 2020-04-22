@@ -1531,7 +1531,7 @@ Icon for all respective meta
 .contact-section strong {
     font-size: 18px;
     display: block;
-    text-transform: uppercase;
+    margin-bottom: 0.7rem;
 }
 .contact-form strong {
     margin-bottom: 12px;

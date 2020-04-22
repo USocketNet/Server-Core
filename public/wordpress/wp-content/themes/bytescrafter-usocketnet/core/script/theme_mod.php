@@ -34,13 +34,13 @@
     function getThemeMenuItems($key) {
         $menua = wp_get_menu_array(get_theme_mod( $key ));
         foreach($menua as $item) {
-            echo '<li><a href="'.$item['url'].'">'.$item['title'].'</a></li>';
+            echo '<li><a href="'.$item['url'].'" style="font-weight: 500;">'.$item['title'].'</a></li>';
         }
 
         if( empty($menua) ) {
-            echo '<li><a href="#">SUBLINK A</a></li>';
-            echo '<li><a href="#">SUBLINK B</a></li>';
-            echo '<li><a href="#">SUBLINK C</a></li>';
-            echo '<li><a href="#">SUBLINK D</a></li>';
+            echo '<li><a href="#" style="font-weight: 500;">SubLink A</a></li>';
+            echo '<li><a href="#" style="font-weight: 500;">SubLink B</a></li>';
+            echo '<li><a href="#" style="font-weight: 500;">SubLink C</a></li>';
+            echo '<li><a href="#" style="font-weight: 500;">SubLink D</a></li>';
         }
     }
