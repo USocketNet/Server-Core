@@ -18,6 +18,7 @@
         } else {
             return $tarField;
         }
+        echo $tarField;
     }
 
     //Get url of logo image.
@@ -43,4 +44,26 @@
             echo '<li><a href="#" style="font-weight: 500;">SubLink C</a></li>';
             echo '<li><a href="#" style="font-weight: 500;">SubLink D</a></li>';
         }
+    }
+
+    //Get featured image of a post by id.
+    function getPostFeaturedImage( $postId, $sizeGroup ) {
+        $returningImage = get_template_directory_uri()."/assets/images/default-header.jpg";
+            if ( has_post_thumbnail( $postId ) ) {
+                $imageAttachment = wp_get_attachment_image_src( get_post_thumbnail_id( $postId ), $sizeGroup );
+                if( !empty($imageAttachment) ) {
+                    $returningImage = $imageAttachment[0];
+                }
+            } 
+        echo $returningImage;
+    }
+
+    //Getting header image here.
+    function getHeaderImageBg( $key ){
+        if(empty( get_theme_mod($key) )) {
+            echo get_template_directory_uri()."/assets/images/default-header.jpg";
+        } else {
+            echo esc_url( get_theme_mod( $key ) );
+        }
+        
     }

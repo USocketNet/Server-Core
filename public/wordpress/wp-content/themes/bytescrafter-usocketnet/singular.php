@@ -18,9 +18,7 @@
 				<section id="about" class="about-section section-padding">
 					<div class="col-md-12 ">
 						<?php
-							$num = 0;
 							while ( have_posts() ) : the_post(); 
-							$num += 1;
 						?>
 							<div class="short-info">
 								<?php the_content(); ?>
@@ -28,11 +26,6 @@
 						<?php
 							endwhile;
 							wp_reset_query();
-
-							if($num == 0) {
-								
-							}
-							echo $num;
 						?>
 					</div>
 				</section>

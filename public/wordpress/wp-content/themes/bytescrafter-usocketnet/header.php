@@ -67,30 +67,43 @@
             <?php if(is_home() || !is_front_page() ) { ?>
 
                 <section class="header-section text-center" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2" 
-                    <?php 
-                        $defaultHeaderImage = get_template_directory_uri()."/assets/images/default-header.jpg";
-                        if( is_object($post) ) {
-                            if (has_post_thumbnail( $post->ID ) ) {
-                                $headerImageHeader = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'header-image' );
-                                $defaultHeaderImage = $headerImageHeader[0];
-                            } 
-                        }
-                    ?>
-                    style="background: url(<?php echo $defaultHeaderImage; ?>) no-repeat top center #008ecf;">
+                    style="background: url(
+                        <?php 
+                            global $post; 
+                            if( is_home() ) {
+                                $imageAttachment = wp_get_attachment_image_src(get_post_thumbnail_id(get_option('page_for_posts')),'full'); 
+                                if( !empty($imageAttachment) ) {
+                                    echo $imageAttachment[0];
+                                } else {
+                                    echo get_template_directory_uri()."/assets/images/default-header.jpg";
+                                }
+                            } else if(is_search() ) {
+                                getHeaderImageBg( 'search_image' );
+                            } else if(is_404()) {
+                                getHeaderImageBg( '404_image' );
+                            } else {
+                                getPostFeaturedImage($post->ID, 'header-image');
+                            }
+                            
+                        ?>) no-repeat top center">
                     <div class="header-section-bg">
                         <div class="container">
                             <div class="row">
                             <div class="col-md-12">
-                                <h2 class="section-title wow fadeInUp" style="color: white; font-size: 50px;">
+                                <h2 class="section-title wow fadeInUp">
                                     <?php 
                                         if( is_home() ) {
-                                            echo "STORIES BEHIND";
+                                            echo getThemeField('blog_header', 'Change this Blog Page name on your theme Customizer');
+                                        } else if(is_single()) {
+                                            echo getThemeField('single_header', 'Change this Single Page name on your theme Customizer');
+                                        } else if(is_search() ) {
+                                            echo getThemeField('search_header', 'Change this Search Page name on your theme Customizer');
+                                        } else if(is_404()) {
+                                            echo getThemeField('404_header', 'Change this 404 Page name on your theme Customizer');
+                                        } else if(is_category()) {
+                                            echo getThemeField('category_header', 'Change this Category Page name on your theme Customizer');
                                         } else {
-                                            if(is_search() || is_404()) {
-                                                echo "THANK YOU";
-                                            } else {
-                                                echo get_the_title(get_the_ID()); 
-                                            }
+                                            echo get_the_title(get_the_ID()); 
                                         }
                                     ?>
                                 </h2>
@@ -103,7 +116,7 @@
                 <div class="container" style="position: relative; top: -50px;">
                     <div class="row">
                         <div class="col-md-12">
-                            <ol class="breadcrumb" style="background-color: #efefef; box-shadow: 0px 2px #dadada; margin-bottom: 0;">
+                            <ol class="breadcrumb">
                                 <?php get_breadcrumbs(); ?>
                             </ol>
                         </div>	

@@ -12,3 +12,6 @@
 
     //Include theme core here.
     include_once( "script/theme_mod.php" );
+
+    //Include theme core here.
+    include_once( "script/dynamic_header.php" );

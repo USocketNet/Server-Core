@@ -174,6 +174,7 @@
         //adding setting facebook
         $wp_customize->add_setting('social_fb', array(
             'default'        => 'https://www.facebook.com',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('social_fb', array(
             'label'   => 'Facebook',
             'section' => 'social_links_section',
@@ -187,6 +188,7 @@
         //adding setting facebook
         $wp_customize->add_setting('social_tw', array(
             'default'        => 'https://www.twitter.com',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('social_tw', array(
             'label'   => 'Twitter',
             'section' => 'social_links_section',
@@ -200,6 +202,7 @@
         //adding setting facebook
         $wp_customize->add_setting('social_yt', array(
             'default'        => 'https://www.youtube.com',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('social_yt', array(
             'label'   => 'YouTube',
             'section' => 'social_links_section',
@@ -214,6 +217,7 @@
         //adding setting facebook
         $wp_customize->add_setting('social_gp', array(
             'default'        => 'https://www.googleplay.com',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('social_gp', array(
             'label'   => 'GooglePlay',
             'section' => 'social_links_section',
@@ -236,6 +240,7 @@
 
         $wp_customize->add_setting('welcome_subtitle', array(
             'default'        => 'WELCOME',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('welcome_subtitle', array(
             'label'   => 'SubTitle',
             'section' => 'welcome_links_section',
@@ -248,6 +253,7 @@
 
         $wp_customize->add_setting('welcome_title1', array(
             'default'        => 'HELLO',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('welcome_title1', array(
             'label'   => '1st Title',
             'section' => 'welcome_links_section',
@@ -260,6 +266,7 @@
 
         $wp_customize->add_setting('welcome_title2', array(
             'default'        => 'PRESS',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('welcome_title2', array(
             'label'   => '2nd Title',
             'section' => 'welcome_links_section',
@@ -272,6 +279,7 @@
 
         $wp_customize->add_setting('welcome_desc', array(
             'default'        => 'The Red Brown Fox Jump over the Lazy Dog.',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('welcome_desc', array(
             'label'   => '2nd Title',
             'section' => 'welcome_links_section',
@@ -293,6 +301,7 @@
 
         $wp_customize->add_setting('menua_name', array(
             'default'        => 'MENU A',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('menua_name', array(
             'label'   => '1ST MENU GROUP',
             'section' => 'menus_links_section',
@@ -302,21 +311,20 @@
                 'placeholder' => __( 'WELCOME', 'maname' ),
             )
         ));
-
         $wp_customize->add_setting('menua_target', array(
-            'default'        => 'menu-a',
+            'default'        => 'Choose Menu',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('menua_target', array(
-            'label'   => 'Target',
+            'label'   => '1ST Target',
             'section' => 'menus_links_section',
-            'type'    => 'text',
-            'description' => __('Put menu key here:', 'matarget' ),
-            'input_attrs' => array(
-                'placeholder' => __( 'WELCOME', 'matarget' ),
-            )
+            'type'    => 'select',
+            'description' => __('Choose menu key here:', 'matarget' ),
+            'choices' => get_list_of_menus()
         ));
 
         $wp_customize->add_setting('menub_name', array(
             'default'        => 'MENU B',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('menub_name', array(
             'label'   => '2ND MENU GROUP',
             'section' => 'menus_links_section',
@@ -326,21 +334,20 @@
                 'placeholder' => __( 'WELCOME', 'mbname' ),
             )
         ));
-
         $wp_customize->add_setting('menub_target', array(
-            'default'        => 'menu-b',
+            'default'        => 'Choose Menu',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('menub_target', array(
-            'label'   => 'Target',
+            'label'   => '2ND Target',
             'section' => 'menus_links_section',
-            'type'    => 'text',
-            'description' => __('Put menu key here:', 'mbtarget' ),
-            'input_attrs' => array(
-                'placeholder' => __( 'WELCOME', 'mbtarget' ),
-            )
+            'type'    => 'select',
+            'description' => __('Choose menu key here:', 'mbtarget' ),
+            'choices' => get_list_of_menus()
         ));
 
         $wp_customize->add_setting('menuc_name', array(
             'default'        => 'MENU C',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('menuc_name', array(
             'label'   => '3RD MENU GROUP',
             'section' => 'menus_links_section',
@@ -350,39 +357,24 @@
                 'placeholder' => __( 'WELCOME', 'mcname' ),
             )
         ));
-
         $wp_customize->add_setting('menuc_target', array(
-            'default'        => 'menu-c',
+            'default'        => 'Choose Menu',
+            'transport' => 'refresh',
         )); $wp_customize->add_control('menuc_target', array(
-            'label'   => 'Target',
-            'section' => 'menus_links_section',
-            'type'    => 'text',
-            'description' => __('Put menu key here:', 'mctarget' ),
-            'input_attrs' => array(
-                'placeholder' => __( 'WELCOME', 'mctarget' ),
-            )
-        ));
-
-
-        $wp_customize->add_setting('menuc_choices', array(
-            'default'        => '',
-        )); $wp_customize->add_control('menuc_choices', array(
-            'label'   => 'Target',
+            'label'   => '3RD Target',
             'section' => 'menus_links_section',
             'type'    => 'select',
-            'description' => __('Put menu key here:', 'mcctarget' ),
-            'input_attrs' => array(
-                'placeholder' => __( 'WELCOME', 'mcctarget' ),
-            ),
+            'description' => __('Choose menu key here:', 'mctarget' ),
             'choices' => get_list_of_menus()
         ));
 
     } add_action('customize_register', 'menus_link_customizer');
 
     function get_list_of_menus() {
-        return array(
-            'value1' => 'Choice 1',
-            'value2' => 'Choice 2',
-            'value3' => 'Choice 3',
-        );
+        $menus = wp_get_nav_menus();
+        $menuList = array();
+        foreach($menus as $menu) {
+            $menuList[$menu->slug] = $menu->name;
+        }
+        return $menuList;
     }

@@ -25,7 +25,9 @@
 									<a href="<?php echo get_home_url(); ?>">
 										<img src="<?php echo getThemeLogoUrl(); ?>" style="height: 70px; width: 70px;">
 									</a>
-									<h1 ><?php echo get_bloginfo('name'); ?></h1>
+									<a href="<?php echo get_home_url(); ?>">
+										<h1 ><?php echo get_bloginfo('name'); ?></h1>
+									</a>
 									<!-- <p>Realtime WebSocket Multiplayer Server for Indie Game Developers.</p> -->
 									<div class="social-icons">
 										<ul class="list-inline">

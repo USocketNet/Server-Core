@@ -12,7 +12,7 @@
     <section id="home" class="tt-fullHeight" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2" 
         <?php 
             global $post;
-            $defaultHeaderImage = get_template_directory_uri()."/assets/images/home-jumbutron.jpg";
+            $defaultHeaderImage = get_template_directory_uri()."/assets/images/default-header.jpg";
             if (has_post_thumbnail( $post->ID ) ) {
                 $headerImageHeader = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'header-image' );
                 $defaultHeaderImage = $headerImageHeader[0];

@@ -52,7 +52,7 @@ a > * {
 a:focus,
 a:hover {
     outline: none;
-    color: #333333;
+    color: #a7a7a7;
     text-decoration: none;
 }
 
@@ -97,7 +97,6 @@ a,
 h1, h2, h3, h4, h5, h6{
     font-weight: 700;
     margin:0;
-    text-transform: uppercase;
 }
 
 h1 {
@@ -259,7 +258,7 @@ ul.list-check li::before {
 
 /* === MAIN === */
 .section-padding {
-	padding: 30px 0 50px;
+	padding: 0;
 }
 
 
@@ -1505,15 +1504,16 @@ Icon for all respective meta
 }
 .header-section-bg {
     padding: 110px 0;
-    background: -webkit-linear-gradient(bottom,  #00afff99, rgba(255, 18, 138, 0.12)); /*Safari 5.1-6*/
-    background: -o-linear-gradient(top, #00afff99, rgba(255, 18, 138, 0.12)); /*Opera 11.1-12*/
-    background: -moz-linear-gradient(top,  #00afff99, rgba(255, 18, 138, 0.12)); /*Fx 3.6-15*/
-    background: linear-gradient(to top,  #00afff99, rgba(255, 18, 138, 0.12)); /*Standard*/
+    background: -webkit-linear-gradient(bottom,  #fdfdfd, rgba(0, 0, 0, 0.2)); /*Safari 5.1-6*/
+    background: -o-linear-gradient(top, #fdfdfd, rgba(0, 0, 0, 0.2)); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(top,  #fdfdfd, rgba(0, 0, 0, 0.2)); /*Fx 3.6-15*/
+    background: linear-gradient(to top,  #fdfdfd, rgba(0, 0, 0, 0.2)); /*Standard*/
 }
 
 .header-section h2 {
-    font-size: 36px;
-    margin-bottom: 40px;
+  color: #313131;
+  font-size: 50px;
+  text-shadow: 2px 2px #ffffff;
 }
 
 .header-section .btn {
@@ -5883,4 +5883,12 @@ Copyright (c) 2014 Daniel Eden
         position: relative;
         margin-top: 12px;
     }
+}
+
+.breadcrumb {
+  background-color: #fbfbfb;
+  box-shadow: 0px 2px #dadada;
+  margin-bottom: 0;
+  color: #2b2b2b;
+  font-weight: 500;
 }

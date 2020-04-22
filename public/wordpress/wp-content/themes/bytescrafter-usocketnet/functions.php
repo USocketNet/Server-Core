@@ -92,7 +92,7 @@
 
         // Check if the current page is a category, an archive or a single page. If so show the category or archive name.
         if (is_category() || is_single() ){
-            the_category('title_li=');
+            the_category(' > ');
         } elseif (is_archive() || is_single()){
             if ( is_day() ) {
                 printf( __( '%s', 'text_domain' ), get_the_date() );
