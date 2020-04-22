@@ -19,3 +19,13 @@
             return $tarField;
         }
     }
+
+    //Get url of logo image.
+    function getThemeLogoUrl() {
+        $theme_logo = get_site_icon_url();
+        if( empty($theme_logo) ) {
+            return get_template_directory_uri() . "/assets/images/default-logo.png";
+        } else {
+            return $theme_logo;
+        }
+    }

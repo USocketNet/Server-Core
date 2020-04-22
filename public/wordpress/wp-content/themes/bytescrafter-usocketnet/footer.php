@@ -23,16 +23,16 @@
 								<div class="footer-company">
 									<!-- <div class="intro-sub">Welcome!</div> -->
 									<a href="<?php echo get_home_url(); ?>">
-										<img src="<?php echo get_site_icon_url(); ?>" style="height: 70px; width: 70px;">
+										<img src="<?php echo getThemeLogoUrl(); ?>" style="height: 70px; width: 70px;">
 									</a>
 									<h1 ><?php echo get_bloginfo('name'); ?></h1>
 									<!-- <p>Realtime WebSocket Multiplayer Server for Indie Game Developers.</p> -->
 									<div class="social-icons">
 										<ul class="list-inline">
-											<li><a href="<?php echo get_theme_mod( 'social_gp' ); ?>" target="_blank"><i class="fa fa-android"></i></a></li>
-											<li><a href="<?php echo get_theme_mod( 'social_yt' ); ?>" target="_blank"><i class="fa fa-youtube"></i></a></li>
-											<li><a href="<?php echo get_theme_mod( 'social_tw' ); ?>"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="<?php echo get_theme_mod( 'social_fb' ); ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+											<li><a href="<?php echo getThemeField( 'social_gp', '#' ); ?>" target="_blank"><i class="fa fa-android"></i></a></li>
+											<li><a href="<?php echo getThemeField( 'social_yt', '#' ); ?>" target="_blank"><i class="fa fa-youtube"></i></a></li>
+											<li><a href="<?php echo getThemeField( 'social_tw', '#' ); ?>"><i class="fa fa-twitter"></i></a></li>
+											<li><a href="<?php echo getThemeField( 'social_fb', '#' ); ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
 										</ul>
 									</div>
 								</div>
