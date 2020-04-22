@@ -126,14 +126,13 @@
             <script>
                 console.log('Theme had been initialized!');
             </script>
-            <style>
-            </style>
         <?php
     }
     add_action('wp_head', 'hook_javascript');
 
     function my_filter_head() {
-        // show admin bar only for admins and editors. if admin only, use: manage_options
+        // show admin bar only for admins and editors. 
+        // if admin only, use: manage_options
         if (!current_user_can('edit_posts')) {
             add_filter('show_admin_bar', '__return_false');
             remove_action('wp_head', '_admin_bar_bump_cb');
@@ -238,36 +237,35 @@
         $menu_exists = wp_get_nav_menu_object( $menuname );
         if( !$menu_exists ) {
             $menu_id = wp_create_nav_menu($menuname);
+            wp_update_nav_menu_item($menu_id, 0, array(
+                'menu-item-title' =>  __('Home'),
+                'menu-item-object-id' => $home->ID,
+                'menu-item-object' => 'page', 
+                'menu-item-status' => 'publish',
+                'menu-item-type' => 'post_type'));
+    
+            wp_update_nav_menu_item($menu_id, 0, array(
+                'menu-item-title' =>  __('Blog'),
+                'menu-item-object-id' => $blog->ID,
+                'menu-item-object' => 'page', 
+                'menu-item-status' => 'publish',
+                'menu-item-type' => 'post_type'));
+    
+            wp_update_nav_menu_item($menu_id, 0, array(
+                'menu-item-title' =>  __('About'),
+                'menu-item-object-id' => $about->ID,
+                'menu-item-object' => 'page', 
+                'menu-item-status' => 'publish',
+                'menu-item-type' => 'post_type'));
+    
+            wp_update_nav_menu_item($menu_id, 0, array(
+                'menu-item-title' =>  __('Contact'),
+                'menu-item-object-id' => $contact->ID,
+                'menu-item-object' => 'page', 
+                'menu-item-status' => 'publish',
+                'menu-item-type' => 'post_type'));
         } else {
             $menu_id = $menu_exists->term_id;
         }
-
-        wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' =>  __('Home'),
-            'menu-item-object-id' => $home->ID,
-            'menu-item-object' => 'page', 
-            'menu-item-status' => 'publish',
-            'menu-item-type' => 'post_type'));
-
-        wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' =>  __('Blog'),
-            'menu-item-object-id' => $blog->ID,
-            'menu-item-object' => 'page', 
-            'menu-item-status' => 'publish',
-            'menu-item-type' => 'post_type'));
-
-        wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' =>  __('About'),
-            'menu-item-object-id' => $about->ID,
-            'menu-item-object' => 'page', 
-            'menu-item-status' => 'publish',
-            'menu-item-type' => 'post_type'));
-
-        wp_update_nav_menu_item($menu_id, 0, array(
-            'menu-item-title' =>  __('Contact'),
-            'menu-item-object-id' => $contact->ID,
-            'menu-item-object' => 'page', 
-            'menu-item-status' => 'publish',
-            'menu-item-type' => 'post_type'));
     }
     add_action( 'after_switch_theme', 'setupTheme' );
