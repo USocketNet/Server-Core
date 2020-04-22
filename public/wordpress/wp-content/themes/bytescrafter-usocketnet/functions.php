@@ -3,7 +3,7 @@
 	/**
 	 * Basically, all the logic happens here.
 	 *
-	 * @package bytescrafter-usocketnet
+	 * @package hellopress
 	 * @since 0.1.0
 	 */
 

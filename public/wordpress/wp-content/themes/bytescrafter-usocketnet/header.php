@@ -3,7 +3,7 @@
 	/**
 	* The template for displaying the header
 	*
-	* @package bytescrafter-usocketnet
+	* @package hellopress
 	* @since 0.1.0
 	*/
 

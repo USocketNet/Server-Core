@@ -3,7 +3,7 @@
 	/**
 	* The template for displaying archive pages.
 	*
-	* @package bytescrafter-usocketnet
+	* @package hellopress
 	* @since 0.1.0
 	*/
 

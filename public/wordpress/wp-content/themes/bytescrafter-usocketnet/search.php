@@ -3,7 +3,7 @@
 	/**
     * Displaying search result here.
 	*
-	* @package bytescrafter-usocketnet
+	* @package hellopress
 	* @since 0.1.0
 	*/
 ?>

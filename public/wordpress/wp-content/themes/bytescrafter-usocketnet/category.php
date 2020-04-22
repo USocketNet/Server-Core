@@ -3,7 +3,7 @@
 	/**
     * Rendering category archive index pages uses the following path in WordPress:
 	*
-	* @package bytescrafter-usocketnet
+	* @package hellopress
 	* @since 0.1.0
 	*/
 ?>

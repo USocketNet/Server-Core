@@ -3,7 +3,7 @@
         /**
         * Section for bloglist.
         *
-        * @package bytescrafter-usocketnet
+        * @package hellopress
         * @since 0.1.0
         */
     ?>

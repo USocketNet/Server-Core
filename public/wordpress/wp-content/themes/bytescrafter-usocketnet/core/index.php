@@ -3,7 +3,7 @@
         /**
         * Theme Core Index
         *
-        * @package bytescrafter-usocketnet
+        * @package hellopress
         * @since 0.1.0
         */
     ?>

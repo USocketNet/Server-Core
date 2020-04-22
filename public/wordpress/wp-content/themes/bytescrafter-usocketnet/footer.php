@@ -5,7 +5,7 @@
     *
     * Contains the closing of the #content div and all content after.
 	 *
-	 * @package bytescrafter-usocketnet
+	 * @package hellopress
 	 * @since 0.1.0
 	 */
 ?>

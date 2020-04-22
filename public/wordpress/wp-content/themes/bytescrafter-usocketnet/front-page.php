@@ -6,7 +6,7 @@
     * Additionally, WordPress will look for this file when the posts page 
     * is set in the front page displays section.
 	*
-	* @package bytescrafter-usocketnet
+	* @package hellopress
 	* @since 0.1.0
 	*/
 ?>
