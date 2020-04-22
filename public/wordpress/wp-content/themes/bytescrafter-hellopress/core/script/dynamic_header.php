@@ -30,7 +30,7 @@
         ));
 
         $wp_customize->add_setting('search_header', array(
-            'default'        => 'Single Page Text',
+            'default'        => 'Search Page Text',
         )); $wp_customize->add_control('search_header', array(
             'label'   => 'Search Page',
             'section' => 'dynamic_header_section',

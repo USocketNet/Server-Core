@@ -94,8 +94,6 @@
                                     <?php 
                                         if( is_home() ) {
                                             echo getThemeField('blog_header', 'Change this Blog Page name on your theme Customizer');
-                                        } else if(is_single()) {
-                                            echo getThemeField('single_header', 'Change this Single Page name on your theme Customizer');
                                         } else if(is_search() ) {
                                             echo getThemeField('search_header', 'Change this Search Page name on your theme Customizer');
                                         } else if(is_404()) {
