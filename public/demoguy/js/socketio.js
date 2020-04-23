@@ -9,6 +9,10 @@ class Demoguy {
             $(".msg_history").append("<div class='outgoing_msg'><div class='sent_msg'><p>"+ 
                 dat.message+"</p><span class='time_date' style='text-align: right;'> "+
                 dat.datestamp+" | Today</span></div> </div>");
+
+            //Reset scroll view.
+            var msgScroller = document.getElementById('messageContainer');
+            msgScroller.scrollTop = msgScroller.scrollHeight;
         } else {
             //<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> - replace fonst-awesome!
             $(".msg_history").append("<div class='incoming_msg'><div class='incoming_msg_img'><i class='fas fa-user-circle fa-2x'></i>"+
@@ -16,9 +20,11 @@ class Demoguy {
             dat.datestamp+" | Today</span></div></div></div>");
         }
 
-        //Reset scroll view.
-        var msgScroller = document.getElementById('specificDiv');
-        msgScroller.scrollTop = msgScroller.scrollHeight;
+        //Delete or resuse the last item index.
+        if($("#messageContainer").children().length > 60) {
+            $('#messageContainer').children().first().remove();
+            console.log("Message Count: " + $("#messageContainer").children().length);
+        }
     }
 
     verifyToken( userData ) {
