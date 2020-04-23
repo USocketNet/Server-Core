@@ -9,7 +9,6 @@
         */
     ?>
 
-    
     <form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
         <input class="form-control mr-sm-2" type="text" value="" name="s" id="s" placeholder="Search" aria-label="Search">
     </form>
