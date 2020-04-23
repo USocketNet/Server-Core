@@ -30,6 +30,9 @@
     //Theme customizer fields.
     include_once( "include/override/customizer.php" );
 
+    // Custom comment walker.
+    include_once("classes/class-hellopress-walker_comment.php");
+
     //Include scripts that is needed js and css.
     function hwp_plugin_frontend_enqueue()
     {    
