@@ -1403,6 +1403,9 @@ Resume Timeline
     height: 20rem;
 }
 .post-thumbnail img{
+    display: inline;
+    position: relative;
+    top: -25%;
     opacity: 0.8;
     -webkit-transition: all 0.5s linear;
     -moz-transition: all 0.5s linear;
