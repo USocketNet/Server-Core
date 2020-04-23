@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to yourtheme/docupress/global/wrap-start.php.
  *
- * @author  nK
+ * @author  BytesCrafter
  * @package docupress/Templates
  * @version 1.0.0
  */
@@ -12,6 +12,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+
 
 get_header( 'docs' );
 
@@ -26,5 +28,9 @@ if ( in_array( $current_theme, array( 'twentyseventeen', 'twentysixteen', 'twent
 // phpcs:enable
 
 ?>
-<div id="primary" class="content-area<?php echo esc_attr( $theme_class ); ?>">
-    <main id="main" class="site-main" role="main">
+
+
+<div class="container">
+	<div class="row">
+        <div id="primary" class="content-area<?php echo esc_attr( $theme_class ); ?>">
+            <main id="main" class="site-main" role="main">

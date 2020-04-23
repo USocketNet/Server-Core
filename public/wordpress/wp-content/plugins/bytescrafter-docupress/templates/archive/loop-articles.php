@@ -4,7 +4,7 @@
  *
  * This template can be overridden by copying it to yourtheme/docupress/archive/loop-articles.php.
  *
- * @author  nK
+ * @author  BytesCrafter
  * @package docupress/Templates
  * @version 1.0.0
  */
