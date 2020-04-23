@@ -203,10 +203,10 @@ class DocuPress_Admin {
 
         // Check to make sure we're on a docs admin page.
         if ( isset( $current_screen->id ) && apply_filters( 'docupress_display_admin_footer_text', in_array( $current_screen->id, $pages, true ) ) ) {
-            $footer_text .= ' ' . __( 'Thank you for using <strong>DocuPress</strong>.', 'docupress' );
+            $footer_text .= ' ' . __( '<strong>DocuPress</strong> also provide you with the classic ', 'docupress' );
 
             // translators: %s - docs page url.
-            $footer_text .= ' ' . sprintf( __( 'Use the <a href="%s">classic UI</a>.', 'docupress' ), admin_url( 'edit.php?post_type=docs' ) );
+            $footer_text .= ' ' . sprintf( __( '<a href="%s">POST LIST</a>.', 'docupress' ), admin_url( 'edit.php?post_type=docs' ) );
         }
 
         return $footer_text;
