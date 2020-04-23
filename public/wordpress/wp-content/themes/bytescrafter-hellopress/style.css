@@ -5927,3 +5927,11 @@ Copyright (c) 2014 Daniel Eden
   font-size: 15px;
   margin-top: 5px;
 }
+
+.hp-post-pagination {
+  text-align: center;;
+} 
+
+.page-numbers {
+  font-weight: 500;
+}

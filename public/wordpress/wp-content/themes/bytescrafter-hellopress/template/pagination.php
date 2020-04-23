@@ -4,55 +4,36 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package WordPress
- * @subpackage Twenty_Twenty
- * @since Twenty Twenty 1.0
+ * @package hellopress
  */
+	global $wp_query;
+    
+	$big = 999999999; // need an unlikely integer
 
-/**
- * Translators:
- * This text contains HTML to allow the text to be shorter on small screens.
- * The text inside the span with the class nav-short will be hidden on small screens.
- */
+	$post_links = paginate_links( array(
+			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var('paged') ),
+			'total' => $wp_query->max_num_pages,
+			'type'  => 'array',
+			'prev_next'   => true,
+			'prev_text'    => __('« Prev '),
+			'next_text'    => __(' Next »'),
+		)
+	);
 
-$prev_text = sprintf(
-	'%s <span class="nav-prev-text">%s</span>',
-	'<span aria-hidden="true">&larr;</span>',
-	__( 'Newer <span class="nav-short">Posts</span>', 'hellopress' )
-);
-$next_text = sprintf(
-	'<span class="nav-next-text">%s</span> %s',
-	__( 'Older <span class="nav-short">Posts</span>', 'hellopress' ),
-	'<span aria-hidden="true">&rarr;</span>'
-);
+	if( is_array( $post_links ) ) {
+		$paged = ( get_query_var('paged') == 0 ) ? 1 : get_query_var('paged');
 
-$posts_pagination = get_the_posts_pagination(
-	array(
-		'mid_size'  => 1,
-		'prev_text' => $prev_text,
-		'next_text' => $next_text,
-	)
-);
+		$pagination = '<div class="hp-post-pagination"><ul class="pagination">';
 
-// If we're not outputting the previous page link, prepend a placeholder with `visibility: hidden` to take its place.
-if ( strpos( $posts_pagination, 'prev page-numbers' ) === false ) {
-	$posts_pagination = str_replace( '<div class="nav-links">', '<div class="nav-links"><span class="prev page-numbers placeholder" aria-hidden="true">' . $prev_text . '</span>', $posts_pagination );
-}
+		foreach ( $post_links as $page ) {
+			$curpag = "<li>".$page."</li>";
+			if (strpos($page, 'current') !== false) {
+				$curpag = str_replace('<li>', '<li class="active">', $curpag);
+			}
+			$pagination .= $curpag;
+		}
 
-// If we're not outputting the next page link, append a placeholder with `visibility: hidden` to take its place.
-if ( strpos( $posts_pagination, 'next page-numbers' ) === false ) {
-	$posts_pagination = str_replace( '</div>', '<span class="next page-numbers placeholder" aria-hidden="true">' . $next_text . '</span></div>', $posts_pagination );
-}
-
-if ( $posts_pagination ) { ?>
-
-	<div class="pagination-wrapper section-inner">
-
-		<hr class="styled-separator pagination-separator is-style-wide" aria-hidden="true" />
-
-		<?php echo $posts_pagination; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- already escaped during generation. ?>
-
-	</div><!-- .pagination-wrapper -->
-
-	<?php
-}
+		echo $pagination.'</ul></div>';
+	}

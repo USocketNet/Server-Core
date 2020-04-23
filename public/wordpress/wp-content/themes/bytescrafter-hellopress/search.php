@@ -110,6 +110,7 @@
 			</div>
 			<!-- Content Section --> 
 	<!-- Content Section -->
-    
+	
+	<?php get_template_part( 'template/pagination' ); ?>
 
 <?php get_footer(); ?>

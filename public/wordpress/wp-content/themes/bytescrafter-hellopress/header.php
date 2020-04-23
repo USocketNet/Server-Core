@@ -9,12 +9,31 @@
 
 ?>
 
+<?php 
+    $page_subname = '';
+    if( is_home() ) {
+        $page_subname = getThemeField('blog_header', 'Change this Blog Page name on your theme Customizer');
+    } else if(is_single()) {
+        $page_subname = getThemeField('single_header', 'Change this Single Page name on your theme Customizer');
+    } else if(is_search() ) {
+        $page_subname = getThemeField('search_header', 'Change this Search Page name on your theme Customizer');
+    } else if(is_404()) {
+        $page_subname = getThemeField('404_header', 'Change this 404 Page name on your theme Customizer');
+    } else if(is_category()) {
+        $page_subname = getThemeField('category_header', 'Change this Category Page name on your theme Customizer');
+    } else if(is_docupress()) {
+        $page_subname = getThemeField('docupress_header', 'Change this Documentation Page name on your theme Customizer');
+    } else {
+        $page_subname = get_the_title(get_the_ID()); 
+    }
+?>
+
 <!doctype html>
 <html <?php language_attributes(); ?>>
     <head>
         <meta charset="<?php bloginfo( 'charset' ); ?>" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title><?php echo get_bloginfo( 'name' ); ?></title>
+        <title><?php echo get_bloginfo( 'name' ).' - '.$page_subname; ?></title>
         <?php wp_head(); ?>
     </head>
 
@@ -121,23 +140,7 @@
                             <div class="row">
                             <div class="col-md-12">
                                 <h2 class="section-title wow fadeInUp">
-                                    <?php 
-                                        if( is_home() ) {
-                                            echo getThemeField('blog_header', 'Change this Blog Page name on your theme Customizer');
-                                        } else if(is_single()) {
-                                            echo getThemeField('single_header', 'Change this Single Page name on your theme Customizer');
-                                        } else if(is_search() ) {
-                                            echo getThemeField('search_header', 'Change this Search Page name on your theme Customizer');
-                                        } else if(is_404()) {
-                                            echo getThemeField('404_header', 'Change this 404 Page name on your theme Customizer');
-                                        } else if(is_category()) {
-                                            echo getThemeField('category_header', 'Change this Category Page name on your theme Customizer');
-                                        } else if(is_docupress()) {
-                                            echo getThemeField('docupress_header', 'Change this Documentation Page name on your theme Customizer');
-                                        } else {
-                                            echo get_the_title(get_the_ID()); 
-                                        }
-                                    ?>
+                                    <?php echo $page_subname; ?>
                                 </h2>
                             </div>
                             </div>
