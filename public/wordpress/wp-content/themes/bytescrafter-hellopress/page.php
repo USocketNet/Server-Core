@@ -10,24 +10,16 @@
 
 <?php get_header(); ?>
 
-	<!-- Content Section -->
-    <section id="about" class="about-section section-padding">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 ">
-                <?php
-                    while ( have_posts() ) : the_post(); ?>
-                    <div class="short-info">
-                        <?php the_content(); ?>
-                    </div>
-                <?php
-                    endwhile;
-                    wp_reset_query();
-                ?>
+    <section class="section section-padding">
+        <?php
+            while ( have_posts() ) : the_post(); ?>
+            <div class="short-info">
+                <?php the_content(); ?>
             </div>
-          </div>
-        </div>
-      </section>
-    <!-- Content Section --> 
+        <?php
+            endwhile;
+            wp_reset_query();
+        ?>
+    </section>
 
 <?php get_footer(); ?>

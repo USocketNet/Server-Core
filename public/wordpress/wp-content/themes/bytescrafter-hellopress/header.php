@@ -13,8 +13,6 @@
     $page_subname = '';
     if( is_home() ) {
         $page_subname = getThemeField('blog_header', 'Change this Blog Page name on your theme Customizer');
-    } else if(is_single()) {
-        $page_subname = getThemeField('single_header', 'Change this Single Page name on your theme Customizer');
     } else if(is_search() ) {
         $page_subname = getThemeField('search_header', 'Change this Search Page name on your theme Customizer');
     } else if(is_404()) {
@@ -25,7 +23,7 @@
         $page_subname = getThemeField('docupress_header', 'Change this Documentation Page name on your theme Customizer');
     } else {
         $page_subname = get_the_title(get_the_ID()); 
-    }
+    } //add tag, date, category,. etc. then sidebar.
 ?>
 
 <!doctype html>
@@ -76,7 +74,6 @@
             </div>
         </div>
         
-        <!-- Navigation -->
         <header class="header">
             <nav class="navbar navbar-custom" role="navigation" style="margin-bottom: -4px;">
             <div class="container">
@@ -110,57 +107,54 @@
             </div>
             </nav>
         </header>
-        <!-- Navigation -->
 
-        <!-- Header Section -->
-            <?php if(is_home() || !is_front_page() ) { ?>
-                
-                <section class="header-section text-center" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2" 
-                    style="background: url(
-                        <?php 
-                            global $post; 
-                            if( is_home() ) {
-                                $imageAttachment = wp_get_attachment_image_src(get_post_thumbnail_id(get_option('page_for_posts')),'full'); 
-                                if( !empty($imageAttachment) ) {
-                                    echo $imageAttachment[0];
-                                } else {
-                                    echo get_template_directory_uri()."/assets/images/default-header.jpg";
-                                }
-                            } else if(is_search() ) {
-                                getHeaderImageBg( 'search_image' );
-                            } else if(is_404()) {
-                                getHeaderImageBg( '404_image' );
+        <?php if(is_home() || !is_front_page() ) { ?>
+            
+            <section class="header-section text-center" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2" 
+                style="background: url(
+                    <?php 
+                        global $post; 
+                        if( is_home() ) {
+                            $imageAttachment = wp_get_attachment_image_src(get_post_thumbnail_id(get_option('page_for_posts')),'full'); 
+                            if( !empty($imageAttachment) ) {
+                                echo $imageAttachment[0];
                             } else {
-                                getPostFeaturedImage($post->ID, 'header-image');
+                                echo get_template_directory_uri()."/assets/images/default-header.jpg";
                             }
-                            
-                        ?>) no-repeat top center">
-                    <div class="header-section-bg">
-                        <div class="container">
-                            <div class="row">
-                            <div class="col-md-12">
-                                <h2 class="section-title wow fadeInUp">
-                                    <?php echo $page_subname; ?>
-                                </h2>
-                            </div>
-                            </div>
+                        } else if(is_search() ) {
+                            getHeaderImageBg( 'search_image' );
+                        } else if(is_404()) {
+                            getHeaderImageBg( '404_image' );
+                        } else {
+                            getPostFeaturedImage($post->ID, 'header-image');
+                        }
+                        
+                    ?>) no-repeat top center">
+                <div class="header-section-bg">
+                    <div class="container">
+                        <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="section-title wow fadeInUp">
+                                <?php echo $page_subname; ?>
+                            </h2>
+                        </div>
                         </div>
                     </div>
-                </section>
-                <?php if( !is_home() && !is_search() && !is_404() && !is_docupress() ) { ?>
-                <div class="container" style="position: relative; top: -50px;">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <ol class="breadcrumb">
-                                <?php get_breadcrumbs(); ?>
-                            </ol>
-                        </div>	
-                    </div>
                 </div>
-                <?php } ?>
-
+            </section>
+            <?php if( !is_home() && !is_search() && !is_404() && !is_docupress() ) { ?>
+            <div class="container" style="position: relative; top: -50px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ol class="breadcrumb">
+                            <?php get_breadcrumbs(); ?>
+                        </ol>
+                    </div>	
+                </div>
+            </div>
             <?php } ?>
-        <!-- Header Section -->
+
+        <?php } ?>
 
         <?php 
             if( is_front_page()) { 

@@ -134,9 +134,9 @@
     // Sample hook for js or css.
     function hook_javascript() {
         ?>
-            <script>
+            <?php /* <script>
                 console.log('Theme had been initialized!');
-            </script>
+            </script> */ ?>
         <?php
     }
     add_action('wp_head', 'hook_javascript');
@@ -237,12 +237,7 @@
         update_option( 'show_on_front', 'page' );
         update_option( 'page_for_posts', $blog->ID );
         
-        ?>
-            <script>
-                console.log('Hello WPress had been activated!');
-            </script>
-        <?php
-
+        //auto creat and add menu item if not exist.
         $menu_id = '';
         $menuname = 'Primary';
         $menu_exists = wp_get_nav_menu_object( $menuname );

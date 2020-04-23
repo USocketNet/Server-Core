@@ -13,7 +13,6 @@
 
 <?php get_header(); ?>
 
-    <!-- Content Section -->
     <section id="content" class="section-padding">
         <div class="container">
           <div class="row">
@@ -30,7 +29,6 @@
             </div>
           </div>
         </div>
-      </section>
-    <!-- Content Section --> 
+    </section>
 
 <?php get_footer(); ?>

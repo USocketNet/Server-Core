@@ -2,7 +2,6 @@
 <?php
 	/**
     * The template file for displaying the comments and comment form for the
- 	* Twenty Twenty theme.
 	*
 	* @package hellopress
 	* @since 0.1.0
@@ -48,9 +47,8 @@ if ( $comments ) {
 			}
 
 			?>
-			</h2><!-- .comments-title -->
-
-		</div><!-- .comments-header -->
+			</h2>
+		</div>
 
 		
 		<div class="comments-inner section-inner thin max-percentage">
@@ -86,10 +84,8 @@ if ( $comments ) {
 				}
 
 ?>
-
-		</div><!-- .comments-inner -->
-
-	</div><!-- comments -->
+		</div>
+	</div>
 				
 <?php
 }
