@@ -276,7 +276,7 @@ ul.list-check li::before {
 
 .section-title::after {
     content: "";
-    background: url(../../assets/images/section-divider.png) no-repeat 0 0;
+    background: url(assets/images/section-divider.png) no-repeat 0 0;
     height: 15px;
     width: 113px;
     position: absolute;
@@ -1674,45 +1674,6 @@ Icon for all respective meta
 	30%  { top:10px; opacity: 1;}
 	100% { top:25px; opacity: 0;}
 }
-
-/* ---------------------------------------------- /*
- * Preloader
-/* ---------------------------------------------- */
-
-#tt-preloader {
-	background: #FFF;
-	bottom: 0;
-	left: 0;
-	position: fixed;
-	right: 0;
-	top: 0;
-	z-index: 9999;
-}
-
-#pre-status,
-.preload-placeholder {
-	background-image: url(../images/preloader.gif);
-	background-position: center;
-	background-repeat: no-repeat;
-	height: 200px;
-	left: 50%;
-	margin: -100px 0 0 -100px;
-	position: absolute;
-	top: 50%;
-	width: 200px;
-}
-
-.preload-placeholder {
-	background: none;
-	left: 0;
-	margin: 0;
-	text-align: center;
-	top: 65%;
-}
-
-
-
-
 
 /* === Home Page Two === */
 

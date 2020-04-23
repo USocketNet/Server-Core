@@ -7,7 +7,6 @@
 	* @since 0.1.0
 	*/
 
-	get_header();
 ?>
 
 <!doctype html>
@@ -21,12 +20,43 @@
 
     <body <?php body_class(); ?>>
 
+        <style>
+            #tt-preloader {
+                background: #FFF;
+                bottom: 0;
+                left: 0;
+                position: fixed;
+                right: 0;
+                top: 0;
+                z-index: 9999;
+            }
+
+            #pre-status,
+            .preload-placeholder {
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 200px;
+                left: 50%;
+                margin: -100px 0 0 -100px;
+                position: absolute;
+                top: 50%;
+                width: 200px;
+            }
+
+            .preload-placeholder {
+                left: 0;
+                margin: 0;
+                text-align: center;
+                top: 0%;
+            }
+        </style>
         <div id="tt-preloader">
             <div id="pre-status">
-                <div class="preload-placeholder"></div>
+				<div class="preload-placeholder" style="background-image: 
+					url(<?php echo get_template_directory_uri().'/assets/images/preloader.gif' ?>);"></div>
             </div>
         </div>
-
+        
         <!-- Navigation -->
         <header class="header">
             <nav class="navbar navbar-custom" role="navigation" style="margin-bottom: -4px;">

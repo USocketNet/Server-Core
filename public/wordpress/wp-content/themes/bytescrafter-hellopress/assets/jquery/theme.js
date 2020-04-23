@@ -25,11 +25,8 @@ jQuery(function ($) {
     /* ---------------------------------------------- */
     $(window).ready(function() {
         $('#pre-status').fadeOut();
-        $('#tt-preloader').delay(150).fadeOut('slow');
+        $('#tt-preloader').delay(250).fadeOut('slow');
     });
-
-
-
 
     // -------------------------------------------------------------
     // Animated scrolling / Scroll Up
