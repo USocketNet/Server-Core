@@ -78,11 +78,7 @@
             <nav class="navbar navbar-custom" role="navigation" style="margin-bottom: -4px;">
             <div class="container">
                 <div class="hp-nav-row">
-                    <form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
-                        <div>
-                            <input class="form-control mr-sm-2" type="text" value="" name="s" id="s" placeholder="Search" aria-label="Search">
-                        </div>
-                    </form>
+                    <?php get_search_form(); ?>
                 </div>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">

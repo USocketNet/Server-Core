@@ -275,3 +275,19 @@
         }
     }
     add_action( 'after_switch_theme', 'setupTheme' );
+
+
+    add_action( 'widgets_init', 'hp_register_sidebars' );
+    function hp_register_sidebars() {
+        register_sidebar(
+            array(
+                'id'            => 'primary',
+                'name'          => __( 'Primary Sidebar' ),
+                'description'   => __( 'Put all content that you want to show in this site wide sidebar.' ),
+                'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                'after_widget'  => '</div>',
+                'before_title'  => '<h3 class="widget-title">',
+                'after_title'   => '</h3>',
+            )
+        );
+    }

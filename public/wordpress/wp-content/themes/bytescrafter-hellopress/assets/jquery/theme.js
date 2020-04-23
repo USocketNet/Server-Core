@@ -244,17 +244,62 @@ jQuery(function ($) {
     // STICKY SIDEBAR
     // -------------------------------------------------------------
 
-    // var sidebar = new StickySidebar('#sidebar', {
-    //     containerSelector: '#main-content',
-    //     innerWrapperSelector: '.sidebar__inner',
-    //     topSpacing: 90,
-    //     bottomSpacing: 50
-    // });
+    let sidebar = '';
+    if($('#sidebar').length){
+        sidebar = new StickySidebar('#sidebar', {
+            topSpacing: 90,
+            bottomSpacing: 50
+        });
 
-    // $('#sidebar').stickySidebar({
-    //     topSpacing: 60,
-    //     bottomSpacing: 60
-    // });
+        $( window ).resize(function() {
+            sidebarHide($( window ).width());
+        });
+        $( document ).ready(function() {
+            sidebarHide($( window ).width());
+        });
+    }
 
-
+    function sidebarHide(windowSize) {
+        if ( windowSize > 975 ) { 
+            //console.log($( window ).width());
+            if(typeof sidebar !== 'undefined') {
+                var attr = $('#sidebar').attr('display');
+                if(attr != 'block') {
+                    $("#sidebar").css("display", "block");
+                    //Hide mobile sidebar.
+                }
+            }
+        } else {
+            if(typeof sidebar !== 'undefined') {
+                var attr = $('#sidebar').attr('display');
+                if(attr != 'none') {
+                    $("#sidebar").css({ "display": "none" });
+                    //Show mobile sidebar.
+                }
+            }
+        }
+    }
+    
 });
+
+        // var el = $('#sidebar');
+        // var stickyTop = $('#sidebar').offset().top; // returns number
+        // var stickyHeight = $('#sidebar').height();
+
+        // $(window).scroll(function(){ // scroll event
+        //     var limit = $('#img1').offset().top - stickyHeight - 15;
+
+        //     var windowTop = $(window).scrollTop(); // returns number
+
+        //     if (stickyTop < windowTop){
+        //         el.css({ position: 'fixed', top: 0 });
+        //     }
+        //     else {
+        //         el.css('position','static');
+        //     }
+
+        //     if (limit < windowTop) {
+        //         var diff = limit - windowTop;
+        //         el.css({top: diff});
+        //     }
+        // });

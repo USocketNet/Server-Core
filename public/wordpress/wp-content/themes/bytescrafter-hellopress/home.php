@@ -14,7 +14,8 @@
 <?php get_header(); ?>
 
 
-    <div class="col-md-12" id="content">
+    <div class="col-md-8 ">
+        <div class="row">
         <?php
             $counterPost = 0;
             while ( have_posts() ) : the_post(); 
@@ -83,15 +84,12 @@
             endwhile;
             wp_reset_query();
         ?>
+            </div>
+        <?php get_template_part( 'template/pagination' ); ?>
     </div>
 
-    <?php /* <div class="col-md-4" id="sidebar" >
-        <div class="sidebar__inner">
-            <p>This is sticky column</p>
-        </div>
-    </div> */ ?>
-
-    
-    <?php get_template_part( 'template/pagination' ); ?>
+    <div class="col-md-4" id="sidebar">
+        <?php get_sidebar( 'primary' );; ?>
+    </div>
 
 <?php get_footer(); ?>
