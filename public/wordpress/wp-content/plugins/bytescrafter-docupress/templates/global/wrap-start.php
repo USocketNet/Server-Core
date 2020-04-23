@@ -13,7 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-
+function docupress_headstart_check() {
+    return true;
+}
 
 get_header( 'docs' );
 
@@ -29,8 +31,5 @@ if ( in_array( $current_theme, array( 'twentyseventeen', 'twentysixteen', 'twent
 
 ?>
 
-
-<div class="container">
-	<div class="row">
-        <div id="primary" class="content-area<?php echo esc_attr( $theme_class ); ?>">
-            <main id="main" class="site-main" role="main">
+    <div id="primary" class="content-area<?php echo esc_attr( $theme_class ); ?>">
+        <main id="main" class="site-main" role="main">

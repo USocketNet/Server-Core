@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<header class="page-header">
+<header class="page-header" style="margin: 0;">
     <h1 class="page-title">
         <?php
         // phpcs:ignore

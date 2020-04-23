@@ -119,8 +119,8 @@ class DocuPress_Admin {
      */
     public function admin_menu() {
         add_menu_page(
-            __( 'DocuPress', 'docupress' ),
-            __( 'DocuPress', 'docupress' ),
+            __( 'Docuuments', 'docupress' ),
+            __( 'Docuuments', 'docupress' ),
             'publish_posts',
             'docupress',
             array( $this, 'page_index' ),
@@ -129,8 +129,8 @@ class DocuPress_Admin {
         );
         add_submenu_page(
             'docupress',
-            __( 'Documentations', 'docupress' ),
-            __( 'Documentations', 'docupress' ),
+            __( 'List of Docs', 'docupress' ),
+            __( 'List of Docs', 'docupress' ),
             'publish_posts',
             'docupress',
             array( $this, 'page_index' )

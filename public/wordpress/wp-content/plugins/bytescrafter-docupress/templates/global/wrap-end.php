@@ -16,8 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
             </main>
         </div>
-    </div>
-</div>
 <?php
 
 get_footer( 'docs' );

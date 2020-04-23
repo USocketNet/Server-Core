@@ -65,7 +65,7 @@
 
         <!-- Header Section -->
             <?php if(is_home() || !is_front_page() ) { ?>
-
+                
                 <section class="header-section text-center" data-stellar-vertical-offset="50" data-stellar-background-ratio="0.2" 
                     style="background: url(
                         <?php 
@@ -102,6 +102,8 @@
                                             echo getThemeField('404_header', 'Change this 404 Page name on your theme Customizer');
                                         } else if(is_category()) {
                                             echo getThemeField('category_header', 'Change this Category Page name on your theme Customizer');
+                                        } else if(is_docupress()) {
+                                            echo getThemeField('docupress_header', 'Change this Documentation Page name on your theme Customizer');
                                         } else {
                                             echo get_the_title(get_the_ID()); 
                                         }
@@ -112,7 +114,7 @@
                         </div>
                     </div>
                 </section>
-                <?php if( !is_home() && !is_search() && !is_404() ) { ?>
+                <?php if( !is_home() && !is_search() && !is_404() && !is_docupress() ) { ?>
                 <div class="container" style="position: relative; top: -50px;">
                     <div class="row">
                         <div class="col-md-12">
@@ -126,3 +128,13 @@
 
             <?php } ?>
         <!-- Header Section -->
+
+        <?php 
+            if( is_front_page()) { 
+                include_once("include/blocks/section-jtron.php"); 
+            } 
+        ?>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">

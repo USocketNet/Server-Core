@@ -33,6 +33,14 @@
     // Custom comment walker.
     include_once("classes/class-hellopress-walker_comment.php");
 
+    function is_docupress() {
+        if( function_exists("docupress_headstart_check") ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //Include scripts that is needed js and css.
     function hwp_plugin_frontend_enqueue()
     {    

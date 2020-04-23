@@ -20,7 +20,7 @@ if ( $comments ) {
 	<div class="comments" id="comments">
 
 		<?php
-		$comments_number = absint( get_comments_number() );
+			$comments_number = absint( get_comments_number() );
 		?>
 
 		<div class="comments-header section-inner small max-percentage">
@@ -52,78 +52,97 @@ if ( $comments ) {
 
 		</div><!-- .comments-header -->
 
+		
 		<div class="comments-inner section-inner thin max-percentage">
 
 			<?php
-			wp_list_comments(
-				array(
-					'walker'      => new HelloPress_WalkerComment(),
-					'avatar_size' => 120,
-					'style'       => 'div',
-				)
-			);
+				wp_list_comments(
+					array(
+						'walker'      => new HelloPress_WalkerComment(),
+						'avatar_size' => 60,
+						'style'       => 'div',
+						'max_depth'	  => 1,					
+					)
+				);
 
-			$comment_pagination = paginate_comments_links(
-				array(
-					'echo'      => false,
-					'end_size'  => 0,
-					'mid_size'  => 0,
-					'next_text' => __( 'Newer Comments', 'hellopress' ) . ' <span aria-hidden="true">&rarr;</span>',
-					'prev_text' => '<span aria-hidden="true">&larr;</span> ' . __( 'Older Comments', 'hellopress' ),
-				)
-			);
-
-			if ( $comment_pagination ) {
-				$pagination_classes = '';
-
-				// If we're only showing the "Next" link, add a class indicating so.
-				if ( false === strpos( $comment_pagination, 'prev page-numbers' ) ) {
-					$pagination_classes = ' only-next';
+				$comment_pagination =  paginate_comments_links( array( 'echo' => false, 'type' => 'array' ));
+		  
+				if( is_array( $comment_pagination ) ) {
+				  $output = '';
+				  foreach ($comment_pagination as $page) {
+						$page = "\n<li>$page</li>\n";
+						if (strpos($page, ' current') !== false) {
+							$page = str_replace([' current', '<li>'], ['', '<li class="active">'], $page);
+						}
+						$output .= $page;
+				  }
+				  ?>
+				  <nav aria-label="Comment navigation">
+					  <ul class="pagination">
+						  <?php echo $output; ?>
+					  </ul>
+				  </nav>
+<?php
 				}
-				?>
 
-				<nav class="comments-pagination pagination<?php echo $pagination_classes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static output ?>" aria-label="<?php esc_attr_e( 'Comments', 'hellopress' ); ?>">
-					<?php echo wp_kses_post( $comment_pagination ); ?>
-				</nav>
-
-				<?php
-			}
-			?>
+?>
 
 		</div><!-- .comments-inner -->
 
 	</div><!-- comments -->
-
-	<?php
+				
+<?php
 }
 
-if ( comments_open() || pings_open() ) {
+	// Remove the logout link in comment form
+	add_filter( 'comment_form_logged_in', '__return_empty_string' );
 
-	if ( $comments ) {
-		echo '<hr class="styled-separator is-style-wide" aria-hidden="true" />';
-	}
+	//#region COMMENT FORM HERE.
+		if ( comments_open() || pings_open() ) {
 
-	comment_form(
-		array(
-			'class_form'         => 'section-inner thin max-percentage',
-			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
-			'title_reply_after'  => '</h2>',
-		)
-	);
+			if ( $comments ) {
+				echo '<hr class="styled-separator is-style-wide" aria-hidden="true" />';
+			}
 
-} elseif ( is_single() ) {
+			if ( is_user_logged_in() ) {
+				comment_form(
+					array(
+						'class_form'         => 'section-inner thin max-percentage',
+						'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
+						'title_reply_after'  => '</h2>',
+						'comment_field'		 => '<textarea class="comment-textfield" placeholder="What do you want to say?" name="comment" id="comment" ></textarea>',
+						'label_submit'		 => 'SUBMIT COMMENT',
+						'submit_button'		 => '<input name="%1$s" type="submit" id="%2$s" class="comment-submit docupress-btn docupress-btn-md" value="%4$s">',
+					)
+				);
 
-	if ( $comments ) {
-		echo '<hr class="styled-separator is-style-wide" aria-hidden="true" />';
-	}
+			} else {
 
-	?>
+			?>
+				<div class="comment-respond" id="respond" style="text-align: center; color: red;">
+					<p class="comments-closed" style="font-weight: 400;">
+						<?php _e( 'You need to login first, anonymous users are not allowed.', 'hellopress' ); ?>
+						<a href="<?php echo wp_login_url(); ?>" style="font-weight: 500;"> SIGN NOW </a>
+					</p>
+				</div>
 
-	<div class="comment-respond" id="respond">
+			<?php
 
-		<p class="comments-closed"><?php _e( 'Comments are closed.', 'hellopress' ); ?></p>
+			}
 
-	</div><!-- #respond -->
+		} elseif ( is_single() ) {
 
-	<?php
-}
+			if ( $comments ) {
+				echo '<hr class="styled-separator is-style-wide" aria-hidden="true" />';
+			}
+
+			?>
+
+				<div class="comment-respond" id="respond" style="text-align: center; color: red;">
+					<p class="comments-closed"><?php _e( 'Comments are closed.', 'hellopress' ); ?></p>
+				</div>
+
+			<?php
+		}
+	//#endregion
+?>

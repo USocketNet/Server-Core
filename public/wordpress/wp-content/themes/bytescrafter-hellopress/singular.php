@@ -12,27 +12,35 @@
 <?php get_header(); ?>
 
 	<!-- Content Section -->
-    
-        <div class="container">
-          	<div class="row">
-				<section id="about" class="about-section section-padding">
-					<div class="col-md-12 ">
-						<?php
-							while ( have_posts() ) : the_post(); 
-						?>
-							<div class="short-info">
-								<?php the_content(); ?>
-							</div>
-						<?php
-							endwhile;
-							wp_reset_query();
-						?>
+
+		<section id="about" class="about-section section-padding">
+			<div class="col-md-12 ">
+				<?php
+					while ( have_posts() ) : the_post(); 
+				?>
+					<div class="short-info">
+						<?php the_content(); ?>
 					</div>
-				</section>
-          	</div>
-        </div>
+				<?php
+					endwhile;
+					wp_reset_query();
+				?>
+			</div>
+		</section>
+
+	<?php
+
+		if ( ( is_single() || is_page() ) && ( comments_open() || get_comments_number() ) && ! post_password_required() ) {
+	?>
+
+			<div class="comments-wrapper section-inner">
+				<?php comments_template(); ?>
+			</div>
+
+	<?php
+		}
+	?>
       
-    <!-- Content Section --> 
 
 <?php get_footer(); ?>
 

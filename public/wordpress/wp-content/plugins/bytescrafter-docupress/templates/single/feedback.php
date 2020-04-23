@@ -1,25 +1,28 @@
 <?php
-/**
- * Single docs feedback template
- *
- * This template can be overridden by copying it to yourtheme/docupress/single/feedback.php.
- *
- * @author  BytesCrafter
- * @package docupress/Templates
- * @version 1.0.0
- */
+    /**
+     * Single docs feedback template
+     *
+     * This template can be overridden by copying it to yourtheme/docupress/single/feedback.php.
+     *
+     * @author  BytesCrafter
+     * @package docupress/Templates
+     * @version 1.0.0
+     */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
 
-if ( ! docupress()->get_option( 'show_feedback_buttons', 'docupress_single', true ) ) {
-    return;
-}
+    if ( ! docupress()->get_option( 'show_feedback_buttons', 'docupress_single', true ) ) {
+        return;
+    }
 
-// phpcs:disable
-$show_counts = docupress()->get_option( 'show_feedback_buttons_likes', 'docupress_single', true );
+    // phpcs:disable
+    $show_counts = docupress()->get_option( 'show_feedback_buttons_likes', 'docupress_single', true );
 
+    if ( post_password_required() ) {
+        return;
+    }
 ?>
 
 <div class="docupress-single-feedback">

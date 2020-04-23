@@ -49,7 +49,7 @@
 								printf(
 									'<span class="fn">%1$s</span><span class="screen-reader-text says">%2$s</span>',
 									esc_html( $comment_author ),
-									__( 'says:', 'twentytwenty' )
+									__( 'says:', 'hellopress' )
 								);
 
 								if ( ! empty( $comment_author_url ) ) {
@@ -62,7 +62,7 @@
 								<a href="<?php echo esc_url( get_comment_link( $comment, $args ) ); ?>">
 									<?php
 									/* translators: 1: Comment date, 2: Comment time. */
-									$comment_timestamp = sprintf( __( '%1$s at %2$s', 'twentytwenty' ), get_comment_date( '', $comment ), get_comment_time() );
+									$comment_timestamp = sprintf( __( '%1$s at %2$s', 'hellopress' ), get_comment_date( '', $comment ), get_comment_time() );
 									?>
 									<time datetime="<?php comment_time( 'c' ); ?>" title="<?php echo esc_attr( $comment_timestamp ); ?>">
 										<?php echo esc_html( $comment_timestamp ); ?>
@@ -70,7 +70,7 @@
 								</a>
 								<?php
 								if ( get_edit_comment_link() ) {
-									echo ' <span aria-hidden="true">&bull;</span> <a class="comment-edit-link" href="' . esc_url( get_edit_comment_link() ) . '">' . __( 'Edit', 'twentytwenty' ) . '</a>';
+									echo ' <span aria-hidden="true">&bull;</span> <a class="comment-edit-link" href="' . esc_url( get_edit_comment_link() ) . '">' . __( 'Edit', 'hellopress' ) . '</a>';
 								}
 								?>
 							</div><!-- .comment-metadata -->
@@ -85,7 +85,7 @@
 
 							if ( '0' === $comment->comment_approved ) {
 								?>
-								<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'twentytwenty' ); ?></p>
+								<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'hellopress' ); ?></p>
 								<?php
 							}
 
@@ -108,7 +108,7 @@
 							)
 						);
 
-						$by_post_author = twentytwenty_is_comment_by_post_author( $comment );
+						$by_post_author = hellopress_is_comment_by_post_author( $comment );
 
 						if ( $comment_reply_link || $by_post_author ) {
 							?>
@@ -120,7 +120,7 @@
 									echo $comment_reply_link; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Link is escaped in https://developer.wordpress.org/reference/functions/get_comment_reply_link/
 								}
 								if ( $by_post_author ) {
-									echo '<span class="by-post-author">' . __( 'By Post Author', 'twentytwenty' ) . '</span>';
+									echo '<span class="by-post-author">' . __( 'By Post Author', 'hellopress' ) . '</span>';
 								}
 								?>
 
@@ -136,5 +136,36 @@
 			}
 		}
 	}
+
+	
+	function requiring_password_content() {
+		global $post;
+			$label = 'pwbox-' . ( empty( $post->ID ) ? rand() : $post->ID );
+			$output = 
+			'<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="post-password-form" '.
+				'method="post" style="text-align: center; padding-top: 7rem; padding-bottom: 5rem;">'. 
+				'<label class="pass-label" for="' . $label . '">' . esc_html__( '', 'text-domain' ) . ' </label>'.
+					'<input name="post_password" id="' . $label . '" type="password" size="20" placeholder="Post Password"/>'.
+					'<input type="submit" name="Submit" class="button docupress-btn docupress-btn-md" value="' . esc_attr__( 'Submit', 'text-domain' ) . '" >'.
+			'</form>'.
+			'<p class="text-below" style="text-align: center;">'.
+				esc_html__( 'This part of documentattion is protected by a password. Contact the admistrator of this project. ', 'text-domain' ).
+			'</p>';
+		return $output;
+	}
+	add_filter( 'the_password_form', 'requiring_password_content' );
+
+	// function additional_fields () {
+	// 	echo '<p class="comment-form-rating">'.'<span class="commentratingbox">';
+
+	// 		//Current rating scale is 1 to 5. If you want the scale to be 1 to 10, then set the value of $i to 10.
+	// 		for( $i=1; $i <= 5; $i++ )
+	// 		echo '<span class="commentrating"><input type="radio" name="rating" id="rating" value="'. $i .'"/>'. $i .'</span>';
+
+	// 	echo'</span></p>';
+
+	// }
+	// add_action( 'comment_form_logged_in_after', 'additional_fields' );
+	// add_action( 'comment_form_after_fields', 'additional_fields' );
 
 ?>

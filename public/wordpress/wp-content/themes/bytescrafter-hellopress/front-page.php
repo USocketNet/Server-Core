@@ -13,8 +13,6 @@
 
 <?php get_header(); ?>
 
-	<?php include_once("include/blocks/section-jtron.php"); ?>
-
     <!-- Content Section -->
     <section id="content" class="section-padding">
         <div class="container">

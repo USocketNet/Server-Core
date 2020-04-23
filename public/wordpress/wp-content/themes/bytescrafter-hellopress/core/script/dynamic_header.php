@@ -81,4 +81,16 @@
             )
         ));
 
+        $wp_customize->add_setting('docupress_header', array(
+            'default'        => 'DocuPress Page Text',
+        )); $wp_customize->add_control('docupress_header', array(
+            'label'   => 'DocuPress Page',
+            'section' => 'dynamic_header_section',
+            'type'    => 'text',
+            'description' => __('Header center text on DocuPress page:', 'docupress_head' ),
+            'input_attrs' => array(
+                'placeholder' => __( 'My DocuPress Page Text', 'docupress_head' ),
+            )
+        ));
+
     } add_action('customize_register', 'dynamic_header_customizer');

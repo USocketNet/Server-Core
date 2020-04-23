@@ -1,1 +1,909 @@
-.docupress-btn{display:inline-block;padding:8px 20px;font-size:.8em;font-weight:600;line-height:1.3;color:#2f3035;text-align:center;letter-spacing:.05em;white-space:nowrap;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:#fff;border:1px solid #e7e7e7;border-radius:2px;transition:.1s}.docupress-btn,.docupress-btn:hover,.docupress-btn.hover,.docupress-btn:active,.docupress-btn.active,.docupress-btn:focus{text-decoration:none}.docupress-btn:hover,.docupress-btn.hover{color:#fff;background-color:#474850;border-color:#474850}.docupress-btn:active,.docupress-btn.active,.docupress-btn:focus{color:#fff;background-color:#42444b;border-color:#42444b}.docupress-btn .badge{float:right;min-width:14px;height:14px;padding:0 4px;margin-right:-5px;margin-left:5px;font-size:9px;line-height:1.6;color:#fff;text-align:center;background-color:#cecece;border-radius:7px}.docupress-btn .icon{position:relative;top:-2px;font-family:monospace}.docupress-btn-md{padding:10px 25px;font-size:.85em}.docupress-btn-lg{padding:12px 30px;font-size:.9em}body.single.single-docs .content-area{width:100%}.docupress-sr-only{position:absolute !important;width:1px;height:1px;overflow:hidden;clip:rect(1px, 1px, 1px, 1px)}.docupress-single{position:relative;display:flex;flex-wrap:wrap}.docupress-single.hentry{padding-top:0;box-shadow:none}.docupress-single .docupress-single-sidebar{position:relative;flex:1;min-width:250px;padding-bottom:40px;border-right:1px solid #eee}.docupress-single .docupress-single-sidebar h3.widget-title{padding:40px 30px;margin:0;font-weight:600}.docupress-single .docupress-single-sidebar h3.widget-title+.docupress-nav-list{padding-top:0;margin-top:-10px}.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap{position:-webkit-sticky;position:sticky;top:20px;max-height:calc(100vh - 40px);overflow-y:auto;-webkit-overflow-scrolling:touch}body.admin-bar .docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap{top:calc(20px + 32px);max-height:calc(100vh - 40px - 32px)}@media screen and (max-width: 782px){body.admin-bar .docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap{top:calc(20px + 42px);max-height:calc(100vh - 40px - 42px)}}@media screen and (max-width: 600px){body.admin-bar .docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap{top:20px;max-height:calc(100vh - 40px)}}.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap::-webkit-scrollbar{width:4px}.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap::-webkit-scrollbar-thumb{background:transparent;border-radius:4px}.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap:hover::-webkit-scrollbar-thumb{background:rgba(135,135,135,0.4)}.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap:hover::-webkit-scrollbar-track{background:rgba(135,135,135,0.1)}.docupress-single .docupress-single-sidebar .docupress-nav-list{padding:10px;padding-right:1px;margin:0;font-size:.85em;color:#47484a;list-style:none}.docupress-single .docupress-single-sidebar .docupress-nav-list li a{display:block;padding:3px 20px;padding-left:0;font-weight:600;color:inherit;text-decoration:none}.docupress-single .docupress-single-sidebar .docupress-nav-list li a:hover{color:#069dfd}.docupress-single .docupress-single-sidebar .docupress-nav-list li ul.children{display:none;padding:0;padding-bottom:10px;margin-left:15px;list-style:none}.docupress-single .docupress-single-sidebar .docupress-nav-list li ul.children a{font-weight:400}.docupress-single .docupress-single-sidebar .docupress-nav-list.docupress-nav-list-show-childs li ul.children{display:block}.docupress-single .docupress-single-sidebar .docupress-nav-list>li>a{padding-top:7px;padding-bottom:7px}.docupress-single .docupress-single-sidebar .docupress-nav-list>li li.current_page_item>a,.docupress-single .docupress-single-sidebar .docupress-nav-list li.current_page_item>a{font-weight:600;color:#069dfd}.docupress-single .docupress-single-sidebar .docupress-nav-list>li.current_page_parent ul.children,.docupress-single .docupress-single-sidebar .docupress-nav-list>li.current_page_item ul.children,.docupress-single .docupress-single-sidebar .docupress-nav-list>li.current_page_ancestor ul.children{display:block}.docupress-single .docupress-single-content{position:relative;flex:3;min-width:400px;padding:40px;padding-bottom:0}.docupress-single .docupress-single-content .entry-header,.docupress-single .docupress-single-content .entry-content{padding:0}.docupress-single .docupress-single-content .entry-content{display:block;float:none !important;width:100% !important;margin-bottom:40px}.docupress-single .docupress-single-content .entry-footer{display:block;float:none;width:100%;padding:0;margin-bottom:40px;font-size:.85em;text-align:right;background-color:transparent}body:not(.search-results) .docupress-single .docupress-single-content .entry-footer{float:none;width:100%}.docupress-single .docupress-single-content .entry-footer time{font-size:.9em;font-style:italic;font-weight:400;color:#a7a7a7}.docupress-single .anchorjs-link{transition:.15s opacity ease-in-out}.docupress-single .anchorjs-link,.docupress-single .anchorjs-link:hover,.docupress-single .anchorjs-link:focus,.docupress-single .anchorjs-link:active{text-decoration:none;box-shadow:none}.docupress-single .comments-area{padding:40px;margin-top:0;margin-right:-39px;margin-left:-39px;border:none;border-top:1px solid #eee;box-shadow:none}@media screen and (max-width: 800px){.docupress-single .docupress-single-sidebar,.docupress-single .docupress-single-content{min-width:100%;max-width:100%}}.docupress-single.docupress-single-ajax-loading .docupress-single-sidebar>*,.docupress-single.docupress-single-ajax-loading .docupress-single-content>*{opacity:.15}.docupress-single.docupress-single-ajax-loading .docupress-single-content>.docupress-preloader{opacity:1}.docupress-search-form{margin-bottom:30px;font-size:.85em}.docupress-search-form .docupress-search-field{width:100%;padding:10px;font-size:inherit;background:none;border:none;border-bottom:1px solid #eee;border-radius:0;transition:.15s border-color ease-in-out}.docupress-search-form .docupress-search-field:focus{border-bottom-color:#c8c8c8}.docupress-search-form .docupress-search-field::-webkit-input-placeholder{color:#a7a7a7}.docupress-search-form .docupress-search-field::-moz-placeholder{color:#a7a7a7}.docupress-search-form .docupress-search-field:-ms-input-placeholder{color:#a7a7a7}.docupress-search-form .docupress-search-field::-ms-input-placeholder{color:#a7a7a7}.docupress-search-form .docupress-search-field::placeholder{color:#a7a7a7}.docupress-search-form-result{margin-bottom:30px}.docupress-search-form-result:empty{display:none}.docupress-search-form+.docupress-search-form-result{margin-top:-30px}.docupress-search-form-result mark{font-weight:600;color:#069dfd;background:none}.docupress-search-form-result .docupress-search-list{padding:0;margin:0;list-style:0}.docupress-search-form-result .docupress-search-list-item>a{display:block;padding:10px;font-size:.85em;color:inherit;text-decoration:none;border-bottom:1px solid #eee;transition:.15s color ease-in-out}.docupress-search-form-result .docupress-search-list-item>a:hover{color:#069dfd}.docupress-search-form-result .docupress-search-list-item-title{display:block;font-weight:600}.docupress-search-form-result .docupress-search-list-item-excerpt{display:block;margin-top:5px;font-size:.85em}.docupress-search-form-result .docupress-search-list-item-excerpt:empty{display:none}.docupress-single-breadcrumbs{padding-top:10px;padding-right:39px;padding-bottom:10px;padding-left:39px;margin-top:-40px;margin-right:-39px;margin-bottom:10px;margin-left:-39px;font-size:.75em;color:#47484a;list-style:none}.docupress-single-breadcrumbs li{display:inline;margin-right:5px;margin-left:5px}.docupress-single-breadcrumbs .delimiter{opacity:.2}.docupress-single-breadcrumbs .delimiter:last-child{display:none}.docupress-single-breadcrumbs a{color:inherit}.docupress-single-breadcrumbs a:hover,.docupress-single-breadcrumbs a:focus,.docupress-single-breadcrumbs a:active{color:#069dfd}.docupress-single-adjacent-nav{display:flex;flex-wrap:wrap;padding:25px 39px;margin:0 -39px;border-top:1px solid #eee}.docupress-single-adjacent-nav>*{flex:1}.docupress-single-adjacent-nav .nav-previous{text-align:left}.docupress-single-adjacent-nav .nav-next{text-align:right}.docupress-single-feedback{position:relative;display:flex;flex-wrap:wrap;align-items:center;padding:15px 29px;margin:0 -39px;border-top:1px solid #eee}.docupress-single-feedback>*{flex:1;padding:10px}.docupress-single-feedback .docupress-single-feedback-vote{flex:none;text-align:right}.docupress-single-feedback.docupress-single-feedback-loading>*{opacity:.15}.docupress-single-feedback.docupress-single-feedback-loading>.docupress-preloader{opacity:1}@media screen and (max-width: 768px){.docupress-single-feedback>*,.docupress-single-feedback .docupress-single-feedback-vote{flex:0 0 100%;text-align:center}}.docupress-single-feedback-suggestion{position:relative;padding:15px 29px;margin:0 -39px;border-top:1px solid #eee}.docupress-single-feedback-suggestion>*{padding:10px}.docupress-single-feedback-suggestion textarea,.docupress-single-feedback-suggestion input{display:block;width:100%;margin-bottom:15px}.docupress-single-feedback-suggestion.docupress-single-feedback-suggestion-loading>*{opacity:.15}.docupress-single-feedback-suggestion.docupress-single-feedback-suggestion-loading>.docupress-preloader{opacity:1}.docupress-single-articles ul{padding-left:0;margin-left:0;list-style:none}.docupress-single-articles ul ul{margin-left:16px}.docupress-single-articles ul li{font-size:.85em}.docupress-single-articles ul li>a{position:relative;display:block;padding:2px 0;padding-left:15px;transition:.1s}.docupress-single-articles ul li>a::before{content:"";position:absolute;display:block;top:50%;left:0;width:4px;height:4px;margin-top:-2px;background-color:currentColor;border-radius:2px}.docupress-single-articles ul li>a:hover{color:#069dfd}.docupress-archive-description+.docupress-archive{margin-top:30px}.docupress-archive .docupress-archive-list{display:flex;flex-wrap:wrap;width:100%;padding:0;margin:0 -15px;list-style:none}.docupress-archive .docupress-archive-list>li{padding:0 15px;margin:0;margin-bottom:10px}.docupress-archive .docupress-archive-list .docupress-archive-list-category{flex:100%;min-width:100%;max-width:100%;margin-bottom:10px;font-size:1.2em;font-weight:600}.docupress-archive .docupress-archive-list li+.docupress-archive-list-category{margin-top:20px}.docupress-archive .docupress-archive-list>.docupress-archive-list-item{position:relative;flex:1 0 33.33%;min-width:33.33%;max-width:33.33%}@media screen and (max-width: 991px){.docupress-archive .docupress-archive-list>.docupress-archive-list-item{flex:1 0 50%;min-width:50%;max-width:50%}}@media screen and (max-width: 576px){.docupress-archive .docupress-archive-list>.docupress-archive-list-item{flex:1 0 100%;min-width:100%;max-width:100%}}.docupress-archive .docupress-archive-list>.docupress-archive-list-item a{text-decoration:none;transition:.1s}.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul{margin:0;color:#a7a7a7;list-style:none}.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul a:hover{color:#069dfd}.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li{position:relative;font-size:.85em}.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li>a{display:block;padding:2px 0;padding-left:15px}.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li>a::before{content:"";position:absolute;display:block;top:50%;left:0;width:4px;height:4px;margin-top:-2px;background-color:currentColor;border-radius:2px}.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li.more a::before{content:none}.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li.more a{color:#a7a7a7}.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li.more a:hover{color:#47484a}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title{display:flex;align-items:center;min-height:65px;padding:15px 0;margin:0;line-height:1.4}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title h2{padding:0;margin:0}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title::before,.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title::after{content:"";display:block;clear:both}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title img{float:left;width:40px;height:auto;margin-right:15px;border-radius:4px}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title img+span{max-width:calc(100% - 55px)}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span{position:relative;flex:1;max-width:100%}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span h2,.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span span,.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span strong{position:relative;display:block;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span span{position:absolute;top:50%;font-size:.7em;opacity:0;transition:.1s color, .2s;transform:translateY(-50%)}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span h2{top:0;font-size:1em;transition:.1s color, .2s}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title:hover>span span{margin-top:-10px;opacity:1}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title:hover>span h2{top:8px;color:#069dfd}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item{min-height:60px;padding:15px;margin-left:20px;list-style-type:disc}.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item li{margin:0}.docupress-preloader{position:absolute;display:flex;align-items:center;justify-content:center;top:0;left:0;width:100%;height:100%;max-height:350px;opacity:1}.docupress-preloader>span{position:relative;display:block;width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 3px rgba(71,72,74,0.3)}.docupress-preloader>span>span{position:absolute;display:block;width:10.5px;height:10.5px;overflow:hidden;transform-origin:15px 15px;-webkit-animation:docupress-spinner .7s infinite linear;animation:docupress-spinner .7s infinite linear}.docupress-preloader>span>span::after{content:"";display:block;width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 3px #47484a}@-webkit-keyframes docupress-spinner{100%{transform:rotate(360deg)}}@keyframes docupress-spinner{100%{transform:rotate(360deg)}}.docupress_theme_twentyseventeen{float:none !important;width:100% !important;max-width:700px;padding-right:2em;padding-left:2em;margin-right:auto;margin-left:auto}@media screen and (min-width: 48em){.docupress_theme_twentyseventeen{max-width:1000px;padding-right:3em;padding-left:3em}}.docupress_theme_twentyseventeen .docupress-single-content .entry-footer{border:none}.docupress_theme_twentyseventeen .docupress-single-content .docupress-single-articles a,.docupress_theme_twentyseventeen .docupress-archive-list>.docupress-archive-list-item a,.docupress_theme_twentyseventeen .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title img{box-shadow:none}.docupress_theme_twentysixteen .site-main{margin-right:7.6923%;margin-left:7.6923%}@media screen and (min-width: 56.875em){.docupress_theme_twentysixteen .site-main{margin-right:0;margin-left:0}}.docupress_theme_twentysixteen .site-main .entry-header,.docupress_theme_twentysixteen .site-main .post-thumbnail,.docupress_theme_twentysixteen .site-main .entry-content,.docupress_theme_twentysixteen .site-main .entry-summary,.docupress_theme_twentysixteen .site-main .entry-footer,.docupress_theme_twentysixteen .site-main .comments-area,.docupress_theme_twentysixteen .site-main .image-navigation,.docupress_theme_twentysixteen .site-main .post-navigation,.docupress_theme_twentysixteen .site-main .page-header,.docupress_theme_twentysixteen .site-main .page-content,.docupress_theme_twentysixteen .site-main .content-bottom-widgets{margin-right:0;margin-left:0}.docupress_theme_twentysixteen .docupress-single-content .docupress-single-articles a,.docupress_theme_twentysixteen .docupress-archive-list>.docupress-archive-list-item a,.docupress_theme_twentysixteen .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title img{box-shadow:none}.docupress_theme_twentysixteen .docupress-single-content .docupress-single-articles a:not(:hover),.docupress_theme_twentysixteen .docupress-archive-list>.docupress-archive-list-item a:not(:hover){color:inherit}.docupress_theme_twentyfifteen .docupress-single-content,.docupress_theme_twentyfifteen .docupress-single-sidebar-wrap{padding:7%}@media screen and (min-width: 38.75em){.docupress_theme_twentyfifteen .docupress-single-content,.docupress_theme_twentyfifteen .docupress-single-sidebar-wrap{padding:6%}}@media screen and (min-width: 59.6875em){.docupress_theme_twentyfifteen .docupress-single-content,.docupress_theme_twentyfifteen .docupress-single-sidebar-wrap{padding:5%}}.docupress_theme_twentyfifteen .docupress-single-breadcrumbs{margin-top:0}.docupress-single-sidebar .docupress-nav-list a,.docupress-single .docupress-single-articles a,.docupress-archive .docupress-archive-list a{border-bottom:none}
+.docupress-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    font-size: .8em;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #2f3035;
+    text-align: center;
+    letter-spacing: .05em;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #fff;
+    border: 1px solid #e7e7e7;
+    border-radius: 2px;
+    transition: .1s
+}
+
+.docupress-btn,
+.docupress-btn:hover,
+.docupress-btn.hover,
+.docupress-btn:active,
+.docupress-btn.active,
+.docupress-btn:focus {
+    text-decoration: none
+}
+
+.docupress-btn:hover,
+.docupress-btn.hover {
+    color: #fff;
+    background-color: #474850;
+    border-color: #474850
+}
+
+.docupress-btn:active,
+.docupress-btn.active,
+.docupress-btn:focus {
+    color: #fff;
+    background-color: #42444b;
+    border-color: #42444b
+}
+
+.docupress-btn .badge {
+    float: right;
+    min-width: 14px;
+    height: 14px;
+    padding: 0 4px;
+    margin-right: -5px;
+    margin-left: 5px;
+    font-size: 9px;
+    line-height: 1.6;
+    color: #fff;
+    text-align: center;
+    background-color: #cecece;
+    border-radius: 7px
+}
+
+.docupress-btn .icon {
+    position: relative;
+    top: -2px;
+    font-family: monospace
+}
+
+.docupress-btn-md {
+    padding: 10px 25px;
+    font-size: .85em
+}
+
+.docupress-btn-lg {
+    padding: 12px 30px;
+    font-size: .9em
+}
+
+body.single.single-docs .content-area {
+    width: 100%
+}
+
+.docupress-sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px)
+}
+
+.docupress-single {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.docupress-single.hentry {
+    padding-top: 0;
+    box-shadow: none
+}
+
+.docupress-single .docupress-single-sidebar {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+    padding-bottom: 40px;
+    border-right: 1px solid #eee
+}
+
+.docupress-single .docupress-single-sidebar h3.widget-title {
+    padding: 40px 30px;
+    margin: 0;
+    font-weight: 600
+}
+
+.docupress-single .docupress-single-sidebar h3.widget-title+.docupress-nav-list {
+    padding-top: 0;
+    margin-top: -10px
+}
+
+.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch
+}
+
+body.admin-bar .docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap {
+    top: calc(20px + 32px);
+    max-height: calc(100vh - 40px - 32px)
+}
+
+@media screen and (max-width: 782px) {
+    body.admin-bar .docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap {
+        top: calc(20px + 42px);
+        max-height: calc(100vh - 40px - 42px)
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body.admin-bar .docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap {
+        top: 20px;
+        max-height: calc(100vh - 40px)
+    }
+}
+
+.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap::-webkit-scrollbar {
+    width: 4px
+}
+
+.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px
+}
+
+.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap:hover::-webkit-scrollbar-thumb {
+    background: rgba(135, 135, 135, 0.4)
+}
+
+.docupress-single .docupress-single-sidebar .docupress-single-sidebar-wrap:hover::-webkit-scrollbar-track {
+    background: rgba(135, 135, 135, 0.1)
+}
+
+.docupress-single .docupress-single-sidebar .docupress-nav-list {
+    padding: 10px;
+    padding-right: 1px;
+    margin: 0;
+    font-size: .85em;
+    color: #47484a;
+    list-style: none
+}
+
+.docupress-single .docupress-single-sidebar .docupress-nav-list li a {
+    display: block;
+    padding: 3px 20px;
+    padding-left: 0;
+    font-weight: 600;
+    color: inherit;
+    text-decoration: none
+}
+
+.docupress-single .docupress-single-sidebar .docupress-nav-list li a:hover {
+    color: #069dfd
+}
+
+.docupress-single .docupress-single-sidebar .docupress-nav-list li ul.children {
+    display: none;
+    padding: 0;
+    padding-bottom: 10px;
+    margin-left: 15px;
+    list-style: none
+}
+
+.docupress-single .docupress-single-sidebar .docupress-nav-list li ul.children a {
+    font-weight: 400
+}
+
+.docupress-single .docupress-single-sidebar .docupress-nav-list.docupress-nav-list-show-childs li ul.children {
+    display: block
+}
+
+.docupress-single .docupress-single-sidebar .docupress-nav-list>li>a {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.docupress-single .docupress-single-sidebar .docupress-nav-list>li li.current_page_item>a,
+.docupress-single .docupress-single-sidebar .docupress-nav-list li.current_page_item>a {
+    font-weight: 600;
+    color: #069dfd
+}
+
+.docupress-single .docupress-single-sidebar .docupress-nav-list>li.current_page_parent ul.children,
+.docupress-single .docupress-single-sidebar .docupress-nav-list>li.current_page_item ul.children,
+.docupress-single .docupress-single-sidebar .docupress-nav-list>li.current_page_ancestor ul.children {
+    display: block
+}
+
+.docupress-single .docupress-single-content {
+    position: relative;
+    flex: 3;
+    min-width: 400px;
+    padding: 40px;
+    padding-bottom: 0
+}
+
+.docupress-single .docupress-single-content .entry-header,
+.docupress-single .docupress-single-content .entry-content {
+    padding: 0
+}
+
+.docupress-single .docupress-single-content .entry-content {
+    display: block;
+    float: none !important;
+    width: 100% !important;
+    margin-bottom: 40px
+}
+
+.docupress-single .docupress-single-content .entry-footer {
+    display: block;
+    float: none;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 40px;
+    font-size: .85em;
+    text-align: right;
+    background-color: transparent
+}
+
+body:not(.search-results) .docupress-single .docupress-single-content .entry-footer {
+    float: none;
+    width: 100%
+}
+
+.docupress-single .docupress-single-content .entry-footer time {
+    font-size: .9em;
+    font-style: italic;
+    font-weight: 400;
+    color: #a7a7a7
+}
+
+.docupress-single .anchorjs-link {
+    transition: .15s opacity ease-in-out
+}
+
+.docupress-single .anchorjs-link,
+.docupress-single .anchorjs-link:hover,
+.docupress-single .anchorjs-link:focus,
+.docupress-single .anchorjs-link:active {
+    text-decoration: none;
+    box-shadow: none
+}
+
+.docupress-single .comments-area {
+    padding: 40px;
+    margin-top: 0;
+    margin-right: -39px;
+    margin-left: -39px;
+    border: none;
+    border-top: 1px solid #eee;
+    box-shadow: none
+}
+
+@media screen and (max-width: 800px) {
+
+    .docupress-single .docupress-single-sidebar,
+    .docupress-single .docupress-single-content {
+        min-width: 100%;
+        max-width: 100%
+    }
+}
+
+.docupress-single.docupress-single-ajax-loading .docupress-single-sidebar>*,
+.docupress-single.docupress-single-ajax-loading .docupress-single-content>* {
+    opacity: .15
+}
+
+.docupress-single.docupress-single-ajax-loading .docupress-single-content>.docupress-preloader {
+    opacity: 1
+}
+
+.docupress-search-form {
+    margin-bottom: 30px;
+    font-size: .85em
+}
+
+.docupress-search-form .docupress-search-field {
+    width: 100%;
+    padding: 10px;
+    font-size: inherit;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+    transition: .15s border-color ease-in-out
+}
+
+.docupress-search-form .docupress-search-field:focus {
+    border-bottom-color: #c8c8c8
+}
+
+.docupress-search-form .docupress-search-field::-webkit-input-placeholder {
+    color: #a7a7a7
+}
+
+.docupress-search-form .docupress-search-field::-moz-placeholder {
+    color: #a7a7a7
+}
+
+.docupress-search-form .docupress-search-field:-ms-input-placeholder {
+    color: #a7a7a7
+}
+
+.docupress-search-form .docupress-search-field::-ms-input-placeholder {
+    color: #a7a7a7
+}
+
+.docupress-search-form .docupress-search-field::placeholder {
+    color: #a7a7a7
+}
+
+.docupress-search-form-result {
+    margin-bottom: 30px
+}
+
+.docupress-search-form-result:empty {
+    display: none
+}
+
+.docupress-search-form+.docupress-search-form-result {
+    margin-top: -30px
+}
+
+.docupress-search-form-result mark {
+    font-weight: 600;
+    color: #069dfd;
+    background: none
+}
+
+.docupress-search-form-result .docupress-search-list {
+    padding: 0;
+    margin: 0;
+    list-style: 0
+}
+
+.docupress-search-form-result .docupress-search-list-item>a {
+    display: block;
+    padding: 10px;
+    font-size: .85em;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    transition: .15s color ease-in-out
+}
+
+.docupress-search-form-result .docupress-search-list-item>a:hover {
+    color: #069dfd
+}
+
+.docupress-search-form-result .docupress-search-list-item-title {
+    display: block;
+    font-weight: 600
+}
+
+.docupress-search-form-result .docupress-search-list-item-excerpt {
+    display: block;
+    margin-top: 5px;
+    font-size: .85em
+}
+
+.docupress-search-form-result .docupress-search-list-item-excerpt:empty {
+    display: none
+}
+
+.docupress-single-breadcrumbs {
+    padding-top: 10px;
+    padding-right: 39px;
+    padding-bottom: 10px;
+    padding-left: 39px;
+    margin-top: -40px;
+    margin-right: -39px;
+    margin-bottom: 10px;
+    margin-left: -39px;
+    font-size: .75em;
+    color: #47484a;
+    list-style: none
+}
+
+.docupress-single-breadcrumbs li {
+    display: inline;
+    margin-right: 5px;
+    margin-left: 5px
+}
+
+.docupress-single-breadcrumbs .delimiter {
+    opacity: .2
+}
+
+.docupress-single-breadcrumbs .delimiter:last-child {
+    display: none
+}
+
+.docupress-single-breadcrumbs a {
+    color: inherit
+}
+
+.docupress-single-breadcrumbs a:hover,
+.docupress-single-breadcrumbs a:focus,
+.docupress-single-breadcrumbs a:active {
+    color: #069dfd
+}
+
+.docupress-single-adjacent-nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px 39px;
+    margin: 0 -39px;
+    border-top: 1px solid #eee
+}
+
+.docupress-single-adjacent-nav>* {
+    flex: 1
+}
+
+.docupress-single-adjacent-nav .nav-previous {
+    text-align: left
+}
+
+.docupress-single-adjacent-nav .nav-next {
+    text-align: right
+}
+
+.docupress-single-feedback {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 15px 29px;
+    margin: 0 -39px;
+    background-color: #008ecf;
+    font-weight: 500;
+    font-size: 18px;
+    color: #f1f1f1;
+}
+
+.docupress-single-feedback>* {
+    flex: 1;
+    padding: 10px
+}
+
+.docupress-single-feedback .docupress-single-feedback-vote {
+    flex: none;
+    text-align: right
+}
+
+.docupress-single-feedback.docupress-single-feedback-loading>* {
+    opacity: .15
+}
+
+.docupress-single-feedback.docupress-single-feedback-loading>.docupress-preloader {
+    opacity: 1
+}
+
+@media screen and (max-width: 768px) {
+
+    .docupress-single-feedback>*,
+    .docupress-single-feedback .docupress-single-feedback-vote {
+        flex: 0 0 100%;
+        text-align: center
+    }
+}
+
+.docupress-single-feedback-suggestion {
+    position: relative;
+    padding: 15px 29px;
+    margin: 0 -39px;
+    border-top: 1px solid #eee
+}
+
+.docupress-single-feedback-suggestion>* {
+    padding: 10px
+}
+
+.docupress-single-feedback-suggestion textarea,
+.docupress-single-feedback-suggestion input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px
+}
+
+.docupress-single-feedback-suggestion.docupress-single-feedback-suggestion-loading>* {
+    opacity: .15
+}
+
+.docupress-single-feedback-suggestion.docupress-single-feedback-suggestion-loading>.docupress-preloader {
+    opacity: 1
+}
+
+.docupress-single-articles ul {
+    padding-left: 0;
+    margin-left: 0;
+    list-style: none
+}
+
+.docupress-single-articles ul ul {
+    margin-left: 16px
+}
+
+.docupress-single-articles ul li {
+    font-size: .85em
+}
+
+.docupress-single-articles ul li>a {
+    position: relative;
+    display: block;
+    padding: 2px 0;
+    padding-left: 15px;
+    transition: .1s
+}
+
+.docupress-single-articles ul li>a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    margin-top: -2px;
+    background-color: currentColor;
+    border-radius: 2px
+}
+
+.docupress-single-articles ul li>a:hover {
+    color: #069dfd
+}
+
+.docupress-archive-description+.docupress-archive {
+    margin-top: 30px
+}
+
+.docupress-archive .docupress-archive-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    margin: 0 50px;
+    list-style: none
+}
+
+.docupress-archive .docupress-archive-list>li {
+    padding: 0 15px;
+    margin: 0;
+    margin-bottom: 10px
+}
+
+.docupress-archive .docupress-archive-list .docupress-archive-list-category {
+    flex: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: 600
+}
+
+.docupress-archive .docupress-archive-list li+.docupress-archive-list-category {
+    margin-top: 20px
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item {
+    position: relative;
+    flex: 1 0 33.33%;
+    min-width: 33.33%;
+    max-width: 33.33%
+}
+
+@media screen and (max-width: 991px) {
+    .docupress-archive .docupress-archive-list>.docupress-archive-list-item {
+        flex: 1 0 50%;
+        min-width: 50%;
+        max-width: 50%
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .docupress-archive .docupress-archive-list>.docupress-archive-list-item {
+        flex: 1 0 100%;
+        min-width: 100%;
+        max-width: 100%
+    }
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item a {
+    text-decoration: none;
+    transition: .1s
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul {
+    margin: 0;
+    color: #a7a7a7;
+    list-style: none;
+    line-height: 22px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul a:hover {
+    color: #069dfd
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li {
+    position: relative;
+    font-size: .85em
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li>a {
+    display: block;
+    padding: 2px 0;
+    padding-left: 15px
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li>a::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    margin-top: -2px;
+    background-color: currentColor;
+    border-radius: 2px
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li.more a::before {
+    content: none
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li.more a {
+    color: #a7a7a7
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item>ul li.more a:hover {
+    color: #47484a
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title {
+    display: flex;
+    align-items: center;
+    min-height: 65px;
+    padding: 15px 0;
+    margin: 0;
+    line-height: 1.4
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title h2 {
+    padding: 0;
+    margin: 0
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title::before,
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title::after {
+    content: "";
+    display: block;
+    clear: both
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title img {
+    float: left;
+    width: 40px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 4px
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title img+span {
+    max-width: calc(100% - 55px)
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span {
+    position: relative;
+    flex: 1;
+    max-width: 100%
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span h2,
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span span,
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span strong {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span span {
+    position: absolute;
+    top: 50%;
+    font-size: .7em;
+    opacity: 0;
+    transition: .1s color, .2s;
+    transform: translateY(-50%)
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title>span h2 {
+    top: 0;
+    font-size: 17px;
+    transition: .1s color, .2s
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title:hover>span span {
+    margin-top: -10px;
+    opacity: 1
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title:hover>span h2 {
+    top: 8px;
+    color: #069dfd
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item {
+    min-height: 60px;
+    padding: 15px;
+    margin-left: 20px;
+    list-style-type: disc
+}
+
+.docupress-archive .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item li {
+    margin: 0
+}
+
+.docupress-preloader {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 350px;
+    opacity: 1
+}
+
+.docupress-preloader>span {
+    position: relative;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 3px rgba(71, 72, 74, 0.3)
+}
+
+.docupress-preloader>span>span {
+    position: absolute;
+    display: block;
+    width: 10.5px;
+    height: 10.5px;
+    overflow: hidden;
+    transform-origin: 15px 15px;
+    -webkit-animation: docupress-spinner .7s infinite linear;
+    animation: docupress-spinner .7s infinite linear
+}
+
+.docupress-preloader>span>span::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 3px #47484a
+}
+
+@-webkit-keyframes docupress-spinner {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes docupress-spinner {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.docupress_theme_twentyseventeen {
+    float: none !important;
+    width: 100% !important;
+    max-width: 700px;
+    padding-right: 2em;
+    padding-left: 2em;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media screen and (min-width: 48em) {
+    .docupress_theme_twentyseventeen {
+        max-width: 1000px;
+        padding-right: 3em;
+        padding-left: 3em
+    }
+}
+
+.docupress_theme_twentyseventeen .docupress-single-content .entry-footer {
+    border: none
+}
+
+.docupress_theme_twentyseventeen .docupress-single-content .docupress-single-articles a,
+.docupress_theme_twentyseventeen .docupress-archive-list>.docupress-archive-list-item a,
+.docupress_theme_twentyseventeen .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title img {
+    box-shadow: none
+}
+
+.docupress_theme_twentysixteen .site-main {
+    margin-right: 7.6923%;
+    margin-left: 7.6923%
+}
+
+@media screen and (min-width: 56.875em) {
+    .docupress_theme_twentysixteen .site-main {
+        margin-right: 0;
+        margin-left: 0
+    }
+}
+
+.docupress_theme_twentysixteen .site-main .entry-header,
+.docupress_theme_twentysixteen .site-main .post-thumbnail,
+.docupress_theme_twentysixteen .site-main .entry-content,
+.docupress_theme_twentysixteen .site-main .entry-summary,
+.docupress_theme_twentysixteen .site-main .entry-footer,
+.docupress_theme_twentysixteen .site-main .comments-area,
+.docupress_theme_twentysixteen .site-main .image-navigation,
+.docupress_theme_twentysixteen .site-main .post-navigation,
+.docupress_theme_twentysixteen .site-main .page-header,
+.docupress_theme_twentysixteen .site-main .page-content,
+.docupress_theme_twentysixteen .site-main .content-bottom-widgets {
+    margin-right: 0;
+    margin-left: 0
+}
+
+.docupress_theme_twentysixteen .docupress-single-content .docupress-single-articles a,
+.docupress_theme_twentysixteen .docupress-archive-list>.docupress-archive-list-item a,
+.docupress_theme_twentysixteen .docupress-archive-list>.docupress-archive-list-item .docupress-archive-list-item-title img {
+    box-shadow: none
+}
+
+.docupress_theme_twentysixteen .docupress-single-content .docupress-single-articles a:not(:hover),
+.docupress_theme_twentysixteen .docupress-archive-list>.docupress-archive-list-item a:not(:hover) {
+    color: inherit
+}
+
+.docupress_theme_twentyfifteen .docupress-single-content,
+.docupress_theme_twentyfifteen .docupress-single-sidebar-wrap {
+    padding: 7%
+}
+
+@media screen and (min-width: 38.75em) {
+
+    .docupress_theme_twentyfifteen .docupress-single-content,
+    .docupress_theme_twentyfifteen .docupress-single-sidebar-wrap {
+        padding: 6%
+    }
+}
+
+@media screen and (min-width: 59.6875em) {
+
+    .docupress_theme_twentyfifteen .docupress-single-content,
+    .docupress_theme_twentyfifteen .docupress-single-sidebar-wrap {
+        padding: 5%
+    }
+}
+
+.docupress_theme_twentyfifteen .docupress-single-breadcrumbs {
+    margin-top: 0
+}
+
+.docupress-single-sidebar .docupress-nav-list a,
+.docupress-single .docupress-single-articles a,
+.docupress-archive .docupress-archive-list a {
+    border-bottom: none
+}
+
+.page-title {
+    display: none;
+}

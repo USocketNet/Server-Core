@@ -19,7 +19,7 @@ docupress()->get_template_part( 'global/wrap-start' );
 $keys = implode( '|', explode( ' ', get_search_query() ) );
 
 ?>
-<header class="page-header">
+<header class="page-header" style="margin: 0;">
     <h1 class="page-title">
         <?php
         // translators: %s search query.

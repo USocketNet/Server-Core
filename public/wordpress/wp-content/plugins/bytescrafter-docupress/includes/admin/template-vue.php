@@ -9,12 +9,15 @@
 <div class="wrap" id="docupress-app">
     <h1>
         <?php
-        echo esc_html__( 'Documentations', 'docupress' );
+        echo esc_html__( 'List of Documents', 'docupress' );
         ?>
         <a class="page-title-action" href="#" v-on:click.prevent="addDoc">
             <?php echo esc_html__( 'Add Doc', 'docupress' ); ?>
         </a>
     </h1>
+    <p>
+        <strong>MESSAGE:</strong> Each of this group can represent one project or a part of the project. 
+    </p>
 
     <!-- <pre>{{ $data | json }}</pre> -->
 
@@ -82,7 +85,7 @@
 
                     <div class="docupress-actions">
                         <a class="button" href="#" v-on:click.prevent="cloneDoc(doc)"><?php echo esc_html__( 'Clone', 'docupress' ); ?></a>
-                        <a class="button" href="#" v-on:click.prevent="exportDoc(doc)"><?php echo esc_html__( 'Export as HTML', 'docupress' ); ?></a>
+                        <a class="button disabled" href="#" v-on:click.prevent="exportDoc(doc)"><?php echo esc_html__( 'Export as HTML (Soon!)', 'docupress' ); ?></a>
                     </div>
                 </li>
             </ul>
