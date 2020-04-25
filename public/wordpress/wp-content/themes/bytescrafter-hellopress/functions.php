@@ -233,9 +233,20 @@
         $about = get_page_by_title( 'About' );
         $contact = get_page_by_title( 'Contact' );
 
-        update_option( 'page_on_front', $home->ID );
-        update_option( 'show_on_front', 'page' );
-        update_option( 'page_for_posts', $blog->ID );
+        $home_option_exist = get_option( 'page_on_front' );
+        if( $home_option_exist == false ) {
+            update_option( 'page_on_front', $home->ID );
+        }
+
+        $hometype_option_exist = get_option( 'show_on_front' );
+        if( $hometype_option_exist == false ) {
+            update_option( 'show_on_front', 'page' );
+        }
+        
+        $blog_option_exist = get_option( 'page_for_posts' );
+        if( $blog_option_exist == false ) {
+            update_option( 'page_for_posts', $blog->ID );
+        }
         
         //auto creat and add menu item if not exist.
         $menu_id = '';
