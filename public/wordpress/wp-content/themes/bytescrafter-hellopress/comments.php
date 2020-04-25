@@ -52,14 +52,13 @@ if ( $comments ) {
 
 		
 		<div class="comments-inner section-inner thin max-percentage">
-
 			<?php
 				wp_list_comments(
 					array(
 						'walker'      => new HelloPress_WalkerComment(),
 						'avatar_size' => 60,
 						'style'       => 'div',
-						'max_depth'	  => 1,					
+						'reply_text'        => 'COMMENT',				
 					)
 				);
 
@@ -73,6 +72,7 @@ if ( $comments ) {
 							$page = str_replace([' current', '<li>'], ['', '<li class="active">'], $page);
 						}
 						$output .= $page;
+						//print_r($page);
 				  }
 				  ?>
 				  <nav aria-label="Comment navigation">
@@ -109,6 +109,7 @@ if ( $comments ) {
 						'comment_field'		 => '<textarea class="comment-textfield" placeholder="What do you want to say?" name="comment" id="comment" ></textarea>',
 						'label_submit'		 => 'SUBMIT COMMENT',
 						'submit_button'		 => '<input name="%1$s" type="submit" id="%2$s" class="comment-submit" value="%4$s">',
+						'cancel_reply_link'	 => 'CANCEL'
 					)
 				);
 
