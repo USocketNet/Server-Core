@@ -27,7 +27,7 @@
                 'slug'         => 'bytescrafter-usocketnet', // Whatever you want, as long as it's not on WordPress.org
                 'new_version'  => '1.0.0', // The newest version and must be greater.
                 'url'          => 'https://usocketnet.bytescrafter.net/', // Informational
-                'package'      => 'https://usocketnet.bytescrafter.ne/bytescrafter-usocketnet.zip', //File url or expiring url with this host.
+                'package'      => 'https://usocketnet.bytescrafter.net/bytescrafter-usocketnet.zip', //File url or expiring url with this host.
             );
         }
 
