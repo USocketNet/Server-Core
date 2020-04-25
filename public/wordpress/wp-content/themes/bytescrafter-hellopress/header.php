@@ -77,9 +77,6 @@
         <header class="header">
             <nav class="navbar navbar-custom" role="navigation" style="margin-bottom: -4px;">
             <div class="container">
-                <div class="hp-nav-row">
-                    <?php get_search_form(); ?>
-                </div>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#custom-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -90,8 +87,9 @@
                     <div class="navbar-brand">
                         <a href="<?php echo get_home_url(); ?>">
                             <img src="<?php echo getThemeLogoUrl(); ?>">
-                            <?php echo get_bloginfo('name'); ?>
+                            <?php //echo get_bloginfo('name'); ?>
                         </a>
+                        <?php get_search_form(); ?>
                     </div>
                 </div>
 
