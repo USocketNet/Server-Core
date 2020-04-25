@@ -108,7 +108,7 @@ if ( $comments ) {
 						'title_reply_after'  => '</h2>',
 						'comment_field'		 => '<textarea class="comment-textfield" placeholder="What do you want to say?" name="comment" id="comment" ></textarea>',
 						'label_submit'		 => 'SUBMIT COMMENT',
-						'submit_button'		 => '<input name="%1$s" type="submit" id="%2$s" class="comment-submit docupress-btn docupress-btn-md" value="%4$s">',
+						'submit_button'		 => '<input name="%1$s" type="submit" id="%2$s" class="comment-submit" value="%4$s">',
 					)
 				);
 
