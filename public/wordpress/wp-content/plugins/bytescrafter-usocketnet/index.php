@@ -4,7 +4,7 @@
         Plugin Name: USocketNet Backend
         Plugin URI: http://www.bytescrafter.net/projects/usocketnet
         Description: USocketNet backend using the WordPress framework.
-        Version: 0.1.0
+        Version: 0.2.0
         Author: Bytes Crafter
         Author URI:   https://www.bytescrafter.net/about-us
         Text Domain:  bytescrafter-usocketnet-backend
@@ -13,7 +13,7 @@
         * @author       Bytes Crafter
 
         * @copyright    2020 Bytes Crafter
-        * @version      0.1.0
+        * @version      0.2.0
 
         * @wordpress-plugin
         * WC requires at least: 2.5.0
@@ -29,6 +29,7 @@
     #endregion
 
     include_once ( plugin_dir_path( __FILE__ ) . '/config.php' );
+    include_once ( plugin_dir_path( __FILE__ ) . '/update.php' );
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/hook.php' );
 
     #region Include assets like scripts, styles, etc.
