@@ -27,13 +27,13 @@ if ( is_singular() ) {
 			 *
 			 * @param bool   Whether to show the categories in header, Default true.
 			 */
-		$show_categories = apply_filters( 'twentytwenty_show_categories_in_entry_header', true );
+		$show_categories = apply_filters( 'hellopress_show_categories_in_entry_header', true );
 
 		if ( true === $show_categories && has_category() ) {
 			?>
 
 			<div class="entry-categories">
-				<span class="screen-reader-text"><?php _e( 'Categories', 'twentytwenty' ); ?></span>
+				<span class="screen-reader-text"><?php _e( 'Categories', 'hellopress' ); ?></span>
 				<div class="entry-categories-inner">
 					<?php the_category( ' ' ); ?>
 				</div><!-- .entry-categories-inner -->
@@ -67,7 +67,7 @@ if ( is_singular() ) {
 		}
 
 		// Default to displaying the post meta.
-		twentytwenty_the_post_meta( get_the_ID(), 'single-top' );
+		hellopress_the_post_meta( get_the_ID(), 'single-top' );
 		?>
 
 	</div><!-- .entry-header-inner -->

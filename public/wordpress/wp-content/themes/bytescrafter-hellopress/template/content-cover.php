@@ -18,7 +18,7 @@
 	$color_overlay_style   = '';
 	$color_overlay_classes = '';
 
-	$image_url = ! post_password_required() ? get_the_post_thumbnail_url( get_the_ID(), 'twentytwenty-fullscreen' ) : '';
+	$image_url = ! post_password_required() ? get_the_post_thumbnail_url( get_the_ID(), 'hellopress-fullscreen' ) : '';
 
 	if ( $image_url ) {
 		$cover_header_style   = ' style="background-image: url( ' . esc_url( $image_url ) . ' );"';
@@ -61,13 +61,13 @@
 							 *
 							 * @param bool Whether to show the categories in article header, Default true.
 							 */
-							$show_categories = apply_filters( 'twentytwenty_show_categories_in_entry_header', true );
+							$show_categories = apply_filters( 'hellopress_show_categories_in_entry_header', true );
 
 							if ( true === $show_categories && has_category() ) {
 								?>
 
 								<div class="entry-categories">
-									<span class="screen-reader-text"><?php _e( 'Categories', 'twentytwenty' ); ?></span>
+									<span class="screen-reader-text"><?php _e( 'Categories', 'hellopress' ); ?></span>
 									<div class="entry-categories-inner">
 										<?php the_category( ' ' ); ?>
 									</div><!-- .entry-categories-inner -->
@@ -84,8 +84,8 @@
 								<div class="to-the-content-wrapper">
 
 									<a href="#post-inner" class="to-the-content fill-children-current-color">
-										<?php twentytwenty_the_theme_svg( 'arrow-down' ); ?>
-										<div class="screen-reader-text"><?php _e( 'Scroll Down', 'twentytwenty' ); ?></div>
+										<?php hellopress_the_theme_svg( 'arrow-down' ); ?>
+										<div class="screen-reader-text"><?php _e( 'Scroll Down', 'hellopress' ); ?></div>
 									</a><!-- .to-the-content -->
 
 								</div><!-- .to-the-content-wrapper -->
@@ -111,7 +111,7 @@
 									<?php
 								}
 
-								twentytwenty_the_post_meta( get_the_ID(), 'single-top' );
+								hellopress_the_post_meta( get_the_ID(), 'single-top' );
 
 							}
 							?>
@@ -135,7 +135,7 @@
 		<?php
 		wp_link_pages(
 			array(
-				'before'      => '<nav class="post-nav-links bg-light-background" aria-label="' . esc_attr__( 'Page', 'twentytwenty' ) . '"><span class="label">' . __( 'Pages:', 'twentytwenty' ) . '</span>',
+				'before'      => '<nav class="post-nav-links bg-light-background" aria-label="' . esc_attr__( 'Page', 'hellopress' ) . '"><span class="label">' . __( 'Pages:', 'hellopress' ) . '</span>',
 				'after'       => '</nav>',
 				'link_before' => '<span class="page-number">',
 				'link_after'  => '</span>',
@@ -144,7 +144,7 @@
 
 		edit_post_link();
 		// Single bottom post meta.
-		twentytwenty_the_post_meta( get_the_ID(), 'single-bottom' );
+		hellopress_the_post_meta( get_the_ID(), 'single-bottom' );
 
 		if ( is_single() ) {
 

@@ -13,9 +13,6 @@
 
 <?php get_header(); ?>
 
-	<?php include_once("include/blocks/section-jtron.php"); ?>
-
-    <!-- Content Section -->
     <section id="content" class="section-padding">
         <div class="container">
           <div class="row">
@@ -32,7 +29,6 @@
             </div>
           </div>
         </div>
-      </section>
-    <!-- Content Section --> 
+    </section>
 
 <?php get_footer(); ?>
