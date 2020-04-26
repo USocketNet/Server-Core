@@ -43,10 +43,9 @@ class usn_socketio {
                 data.apid = packet.handshake.query.apid;
                 packet.wpid = data.wpid;
      
-                core.restapi.verify(data, (result) => {
-                    if( result.status === 'success' ) {
+                core.restapi.verify(data, (respo) => {
+                    if( respo.status === 'success' ) {
                         let redis = core.redis.select(0);
-                        let respo = JSON.parse( result.data );
                         
                         if( respo.status === 'success' ) {
                             switch( nsp ) {
@@ -72,9 +71,9 @@ class usn_socketio {
                             return next( new Error(respo.message) );
                         }
                     } else {
-                        core.debug.log('RestApi-Request-Error', result.message, 'yellow', 'connect')
+                        core.debug.log('RestApi-Request-Error', respo.message, 'yellow', 'connect')
                         packet.disconnect(true);
-                        return next( new Error(result.message) );
+                        return next( new Error(respo.message) );
                     }
                 });
             }
