@@ -1,5 +1,5 @@
 
-const debug = require('./base/debug')();
+const usn = require('usn-utils');
 const core = require('./base/core');
 const instance = require('./base/socketio')( 'message' );
   const conn = instance.connect( 'message' );
@@ -7,7 +7,7 @@ const instance = require('./base/socketio')( 'message' );
   instance.sio.on('connection', (socket) => {
   
     //Server logging about the connection on message Server.
-    debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
+    usn.debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
   
     socket.join('msg-pub', () => {});
 
@@ -52,7 +52,7 @@ const instance = require('./base/socketio')( 'message' );
     //Listens for any server-client disconnectio
     socket.on('disconnect', () => {
       //Server logging about the disconnection on message Server.
-      debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
+      usn.debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
 
       // let redis = core.redis.select(0);
       // let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'message' };

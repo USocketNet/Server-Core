@@ -30,10 +30,6 @@ exports.configof = function(servertype) {
     }
 }
 
-//Require logging via console and file.
-const debug = require('./debug');
-    exports.debug = debug();
-
 //Declare and initialized http as our rest api instance.
 const restapi = require('./restapi')( config.server.wpress.host );
     exports.restapi = restapi;

@@ -7,14 +7,14 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const process = require('process');
-const debug = require('./server/base/debug')();
+const usn = require('usn-utils');
 const argv = require('minimist')(process.argv.slice(2));
 
 if( typeof argv.name === 'undefined' || typeof argv.master === 'undefined' || typeof argv.message === 'undefined' || typeof argv.match === 'undefined' ) {
-    debug.log('USocketNet-Check-Error', 'Detected no arument for --name, --master, --message, and --match.', 'red', 'usocketnet');
+    usn.debug.log('USocketNet-Check-Error', 'Detected no arument for --name, --master, --message, and --match.', 'red', 'usocketnet');
     process.exit(1);
 } else {
-    debug.log('USocketNet-Check-Success', 'Executing the required server libraries for: ' + argv.name, 'green', 'usocketnet');
+    usn.debug.log('USocketNet-Check-Success', 'Executing the required server libraries for: ' + argv.name, 'green', 'usocketnet');
     require('./server/master');
     require('./server/message');
     require('./server/match');

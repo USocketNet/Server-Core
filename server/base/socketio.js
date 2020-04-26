@@ -1,4 +1,5 @@
 
+const usn = require('usn-utils');
 const core = require('./core');
 const process = require('process');
 const argv = require('minimist')(process.argv.slice(2));
@@ -33,7 +34,7 @@ class usn_socketio {
 
             if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' || typeof packet.handshake.query.apid === 'undefined' ) {
                 let msg = 'The client for ' + nsp + ' did not submit required arguments.';
-                    core.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
+                    usn.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
                     packet.disconnect(true);
                     return next( new Error(msg) );
             } else {
@@ -66,12 +67,12 @@ class usn_socketio {
                             packet.nme = respo.user.uname;
                             return next();
                         } else {
-                            core.debug.log('WPress-Connect-Refused', respo.message, 'yellow', 'connect')
+                            usn.debug.log('WPress-Connect-Refused', respo.message, 'yellow', 'connect')
                             packet.disconnect(true);
                             return next( new Error(respo.message) );
                         }
                     } else {
-                        core.debug.log('RestApi-Request-Error', respo.message, 'yellow', 'connect')
+                        usn.debug.log('RestApi-Request-Error', respo.message, 'yellow', 'connect')
                         packet.disconnect(true);
                         return next( new Error(respo.message) );
                     }
@@ -109,11 +110,11 @@ class usn_socketio {
         return this.instance.http.listen( port, '0.0.0.0', function(err) {
             let sType = type.charAt(0).toUpperCase() + type.slice(1);
             if (err) {
-                core.debug.log('USocketNet-' + sType + '-Stop', 'This server failed to run @ localhost:' + port + '.', 'red', config.type);
+                usn.debug.log('USocketNet-' + sType + '-Stop', 'This server failed to run @ localhost:' + port + '.', 'red', config.type);
                 // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT
                 process.exit(1);
             } else {
-                core.debug.log('USocketNet-' + sType + '-Init', 'This server is now listening @ localhost:' + port + '.', 'green', config.type);
+                usn.debug.log('USocketNet-' + sType + '-Init', 'This server is now listening @ localhost:' + port + '.', 'green', config.type);
             }
         });
     }

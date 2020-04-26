@@ -1,14 +1,9 @@
 
 const fs = require('fs');
 
-//For testing, copy this.
 //debug.log('This is a title!', 'The red brown fox jump over the lazy dog.', 'white', 'test');
-
-module.exports = () => {
-	return new usn_debug();
-}
-
 class usn_debug {
+	
 	constructor () {
 		return this;
 	}
@@ -65,4 +60,8 @@ class usn_debug {
 			console.log(logColor, ' [ ' + curLogDate.toLocaleString() + ' ] ' + title + ' - ' + detail);
 		}
 	}
+}
+
+module.exports.init = () => {
+	return new usn_debug();
 }

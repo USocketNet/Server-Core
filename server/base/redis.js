@@ -1,6 +1,6 @@
 
 const redis = require('ioredis');
-const debug = require('./debug')();
+const usn = require('usn-utils');
 
 //#region Helper function for redis script.
     //Check if js obj is empty or not.
@@ -72,10 +72,10 @@ class usn_redis {
     ping () {
         redis.createClient( this.config ).ping( (err, result) => {
             if( err ) {
-                debug.log('Redis-Server-Error', 'Redis connection check return error. Please check redis-server.', 'red', 'redis');
+                usn.debug.log('Redis-Server-Error', 'Redis connection check return error. Please check redis-server.', 'red', 'redis');
                 process.exit(1);
             } else {
-                debug.log('Redis-Server-Success', 'Redis connection check was successful with healthy response.', 'green', 'redis');
+                usn.debug.log('Redis-Server-Success', 'Redis connection check was successful with healthy response.', 'green', 'redis');
             }
         });
     }

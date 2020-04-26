@@ -22,11 +22,11 @@ class usn_restapi {
             }
         };
 
-        request.post(options, (error, response, body) => {
-                if (!error && response.statusCode == 200) {
+        request.post(options, (err, res, body) => {
+                if (!err && res.statusCode == 200) {
                     cback( body );
                 } else {
-                    if( typeof response === 'undefined' ) {
+                    if( typeof res === 'undefined' ) {
                         cback({ 
                             status: 'notfound', 
                             message: 'RestApi that you provide refused to to accept the connection.' 
@@ -34,9 +34,7 @@ class usn_restapi {
                     } else {
                         cback({ 
                             status: 'error',
-                            message: 'RestApi response a status of ' + res.statusCode + 
-                                ' from hostname ' + res.request.uri.hostname + ':' + 
-                                res.request.port + '.' 
+                            message: 'RestApi response a status of ' + res.statusCode + ' from hostname ' + res.request.uri.hostname + ':' + res.request.port + '.' 
                         });
                     }
                 }
