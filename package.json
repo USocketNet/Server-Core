@@ -1,7 +1,7 @@
 {
   "name": "@bytescrafter/usocketnet-on-nodejs",
   "version": "v0.9.5",
-  "description": "www.bytescrafter.net",
+  "description": "Self-Host Realtime Multiplayer Server for your Game or Chat Application.",
   "main": "usocketnet.js",
   "scripts": {
     "start": "node usocketnet.js",
@@ -16,5 +16,8 @@
   },
   "publishConfig": { 
     "registry": "https://npm.pkg.github.com/" 
+  },
+  "repository": {
+    "url": "https://github.com/BytesCrafter/USocketNet-on-NodeJS.git"
   }
 }
