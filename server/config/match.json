@@ -1,8 +1,0 @@
-{
-    "type": "match",
-    "host": "localhost",
-    "port": 9091,
-    "redis": {
-        "db": 2
-    }
-}

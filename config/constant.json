@@ -1,0 +1,13 @@
+{
+    "master.host": "localhost",
+    "master.port": 19091,
+    "master.redis.db": 1,
+    
+    "message.host": "localhost",
+    "message.port": 6061,
+    "message.redis.db": 2,
+
+    "game.host": "localhost",
+    "game.port": 9091,
+    "game.redis.db": 3
+}

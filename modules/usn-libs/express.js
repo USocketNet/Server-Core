@@ -1,8 +1,4 @@
 
-module.exports = () => {
-    return new usn_express();
-};
-
 class usn_express {
 
     constructor () {
@@ -20,3 +16,7 @@ class usn_express {
             return require('http').Server(instance); //init web protocol with var intance. 
     }
 }
+
+module.exports.init = () => {
+    return new usn_express();
+};

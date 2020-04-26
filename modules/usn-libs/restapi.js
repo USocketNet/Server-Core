@@ -1,11 +1,8 @@
 
 const request = require('request');
 
-module.exports = ( url ) => {
-    return new usn_restapi( url );
-};
-
 class usn_restapi {
+    
     constructor ( url ) {
         this.wpress_url = url;
     }
@@ -42,3 +39,7 @@ class usn_restapi {
         );
     }
 }
+
+module.exports.init = ( url ) => {
+    return new usn_restapi( url );
+};

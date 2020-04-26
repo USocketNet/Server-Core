@@ -1,12 +1,15 @@
 {
-  "name": "usn-utils",
+  "name": "usn-libs",
   "version": "1.0.0",
-  "description": "Global utilities for USocketNet project.",
+  "description": "Helper for USocketNet core.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bytes Crafter",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "socket.io": "^2.3.0",
+    "socket.io-redis": "^5.2.0"
+  }
 }

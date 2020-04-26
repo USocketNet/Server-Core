@@ -1,8 +1,0 @@
-{
-    "type": "message",
-    "host": "localhost",
-    "port": 6061,
-    "redis": {
-        "db": 1
-    }
-}

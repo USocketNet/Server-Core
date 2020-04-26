@@ -10,14 +10,8 @@
   "author": "Bytes Crafter",
   "license": "ISC",
   "dependencies": {
-    "usn-utils": "file:modules/usn-utils",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "ioredis": "^4.16.1",
-    "minimist": "^1.2.5",
-    "request": "^2.88.2",
-    "socket.io": "^2.3.0",
-    "socket.io-redis": "^5.2.0"
+    "usn-core": "file:modules/usn-core",
+    "usn-libs": "file:modules/usn-libs",
+    "usn-utils": "file:modules/usn-utils"
   }
 }

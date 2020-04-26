@@ -1,40 +1,37 @@
 
-const usn = require('usn-utils');
-const core = require('./core');
+const libs = require('usn-libs');
 const process = require('process');
 const argv = require('minimist')(process.argv.slice(2));
 
-module.exports = ( nsp ) => {
-    return new usn_socketio( nsp );
-};
-
-class usn_socketio {    
+class usn_socketio {  
+    
+    //Only call this once.  
     constructor ( nsp ) {
-        const server = require('./express')();
-        const socketio = require('socket.io')(server, {
+
+        //Choose redis database.
+        this.redis = libs.redis.select(0);
+
+        //Create instance for this.
+        this.instance = this;
+
+        //get instance of express for this new server.
+        this.instance.http = libs.express.init();
+
+        //Requiring socket.io module and passing express.
+        const socketio = require('socket.io')(this.instance.http, {
             pingInterval: 10000,
             pingTimeout: 5000,
         });
-            const redisAdapter = require('socket.io-redis');
-            socketio.adapter( redisAdapter({ host: core.config.server.redis.host, port: 6379 }) );
-            //socketio.origins(['http://localhost:19090','http://localhost:6060','http://localhost:9090']);
-            // socketio.origins((origin, callback) => {
-            //     console.log(origin);
-            //     if (origin !== 'http://localhost') {
-            //       return callback('origin not allowed', false);
-            //     }
-            //     callback(null, true);
-            //   });
 
-            //const namespace = socketio.of( '/' + nsp );
+        //Requiring socket-io-redis as adapter
+        const redisAdapter = require('socket.io-redis');
+            socketio.adapter( redisAdapter( libs.utils.config.redis() ) );
 
         //Prevent client socket connection if condition is not met.
         socketio.use((packet, next) => {
-            //packet.disconnect(true);
-
             if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' || typeof packet.handshake.query.apid === 'undefined' ) {
                 let msg = 'The client for ' + nsp + ' did not submit required arguments.';
-                    usn.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
+                    libs.utils.debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
                     packet.disconnect(true);
                     return next( new Error(msg) );
             } else {
@@ -44,9 +41,8 @@ class usn_socketio {
                 data.apid = packet.handshake.query.apid;
                 packet.wpid = data.wpid;
      
-                core.restapi.verify(data, (respo) => {
+                libs.request.verify(data, (respo) => {
                     if( respo.status === 'success' ) {
-                        let redis = core.redis.select(0);
                         
                         if( respo.status === 'success' ) {
                             switch( nsp ) {
@@ -61,18 +57,18 @@ class usn_socketio {
                                 default:
                             }
     
-                            let sock = { wpid: data.wpid, sid: packet.id, nsp: nsp };
+                            //let sock = { wpid: data.wpid, sid: packet.id, nsp: nsp };
                             //redis.socketConnect(sock, (res) => {});
     
                             packet.nme = respo.user.uname;
                             return next();
                         } else {
-                            usn.debug.log('WPress-Connect-Refused', respo.message, 'yellow', 'connect')
+                            libs.utils.debug.log('WPress-Connect-Refused', respo.message, 'yellow', 'connect')
                             packet.disconnect(true);
                             return next( new Error(respo.message) );
                         }
                     } else {
-                        usn.debug.log('RestApi-Request-Error', respo.message, 'yellow', 'connect')
+                        libs.utils.debug.log('RestApi-Request-Error', respo.message, 'yellow', 'connect')
                         packet.disconnect(true);
                         return next( new Error(respo.message) );
                     }
@@ -80,42 +76,27 @@ class usn_socketio {
             }
         });
 
-        this.instance = this;
         this.instance.sio = socketio;
-        //this.instance.sio = socketio.of( '/' + nsp );
-        this.instance.http = server;
-
         return this.instance;
     }
 
     connect ( type ) {
 
-        let config = core.configof(type);
-            config.package = core.config.package;
+        let conf = libs.utils.config.server( type, argv );
 
-        let port = process.env.PORT || config.port;
-        switch ( type ) {
-            case 'master':
-                port = argv.master;
-                break;
-            case 'chat':
-                port = argv.chat;
-                break;
-            case 'game':
-                port = argv.game;
-                break;
-            default:
-        }
-
-        return this.instance.http.listen( port, '0.0.0.0', function(err) {
+        return this.instance.http.listen( conf.port, '0.0.0.0', function(err) {
             let sType = type.charAt(0).toUpperCase() + type.slice(1);
             if (err) {
-                usn.debug.log('USocketNet-' + sType + '-Stop', 'This server failed to run @ localhost:' + port + '.', 'red', config.type);
+                libs.utils.debug.log('USocketNet-' + sType + '-Stop', 'Connection Refused @ localhost:' + conf.port + '.', 'red', type);
                 // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT
                 process.exit(1);
             } else {
-                usn.debug.log('USocketNet-' + sType + '-Init', 'This server is now listening @ localhost:' + port + '.', 'green', config.type);
+                libs.utils.debug.log('USocketNet-' + sType + '-Start', 'Server is now listening @ localhost:' + conf.port + '.', 'green', type);
             }
         });
     }
 }
+
+module.exports.init = ( nsp ) => {
+    return new usn_socketio( nsp );
+};
