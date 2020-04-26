@@ -4,13 +4,13 @@
     "allowedDomain": ["localhost"],
 
     "wpress": {
-        "host": "localhost/wordpress"
+        "host": "http://localhost/wordpress"
     },
 
     "redis": {
         "host": "127.0.0.1",
         "port": 6379,
-        "password": null,
+        "password": "undefined",
         "database": {
             "server": 0,
             "user": 1,

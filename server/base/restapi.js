@@ -12,14 +12,14 @@ class usn_restapi {
 
     verify ( cred, cback ) {
         request.post(
-            'http://' + this.wpress_url + '/wp-json/usocketnet/v1/token',
+            this.wpress_url + '/wp-json/usocketnet/v1/token',
             { form: { wpid: cred.wpid, snid: cred.snid, apid: cred.apid } },
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     cback( { status: 'success', data: body } );
                 } else {
                     if( typeof response === 'undefined' ) {
-                        cback( { status: 'error', message: 'USocketNet reach the hostname that you provide for wpress.' } );
+                        cback( { status: 'error', message: 'RestApi that you provide for return with no response.' } );
                     } else {
                         cback( { status: 'error', message: 'RestApi response a status of ' + response.statusCode + ' from hostname ' 
                             + response.request.uri.hostname + ':' + response.request.port + '.' } );
