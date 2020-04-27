@@ -10,7 +10,6 @@
   <script src="./assets/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/css/fontawesome.min.css">
-  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 
   <script type="text/javascript">
     var pname = 'home';
@@ -121,36 +120,40 @@
 
 <body class="text-center">
 
-  <form class="form-signin" id="login_form" onsubmit="onLoginNow()" action="#" role="form">
-    <img class="mb-4" src="./img/logo.png" alt="" width="220" height="220">
-    <div class="alert alert-primary" role="alert">
-      PROJECT DEMO
+  <div class="container">
+    <div class="row">
+      <form class="form-signin" id="login_form" onsubmit="onLoginNow()" action="#" role="form">
+        <img class="mb-4" src="./assets/img/logo.png" alt="" width="220" height="220">
+        <div class="alert alert-primary" role="alert">
+          PROJECT DEMO
+        </div>
+        <div class="form-group text-center">
+          <div class="alert alert-success" id="signin-success-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>Success! </strong> You are now authenticated.
+          </div>
+          <div class="alert alert-danger" id="signin-error-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>Error! </strong> Something went wrong!
+          </div>
+        </div>
+        <br>
+        <label for="signin-apid" class="sr-only">AppSecret</label>
+        <input type="text" id="signin-apid" class="form-control" placeholder="AppSecret" required="" autofocus="">
+        <label for="signin-uname" class="sr-only">Email address</label>
+        <input type="text" id="signin-uname" class="form-control" placeholder="Username" required="" autofocus="">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="signin-pword" class="form-control" placeholder="Password" required="">
+        <div class="checkbox mb-3">
+          <!-- <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label> -->
+        </div>
+        <button id="signin-submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">usocketnet.bytescrafter.net</p>
+      </form>
     </div>
-    <div class="form-group text-center">
-      <div class="alert alert-success" id="signin-success-alert">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <strong>Success! </strong> You are now authenticated.
-      </div>
-      <div class="alert alert-danger" id="signin-error-alert">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <strong>Error! </strong> Something went wrong!
-      </div>
-    </div>
-    <br>
-    <label for="signin-apid" class="sr-only">AppSecret</label>
-    <input type="text" id="signin-apid" class="form-control" placeholder="AppSecret" required="" autofocus="">
-    <label for="signin-uname" class="sr-only">Email address</label>
-    <input type="text" id="signin-uname" class="form-control" placeholder="Username" required="" autofocus="">
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="signin-pword" class="form-control" placeholder="Password" required="">
-    <div class="checkbox mb-3">
-      <!-- <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label> -->
-    </div>
-    <button id="signin-submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">usocketnet.bytescrafter.net</p>
-  </form>
+  </div>
 
 </body>
 

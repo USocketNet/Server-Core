@@ -12,8 +12,8 @@ config:
       snid: "p6uddd9yzLGwMmOlue0bffLJayknesi4I2KIYieuFq4"
       apid: "svr-status"
   phases:
-    - duration: 120 # how many seconds to create every seconds.
-      arrivalRate: 10 # create virtual users per seconds.
+    - duration: 30 # how many seconds to create every seconds.
+      arrivalRate: 5 # create virtual users per seconds.
 scenarios:
   - engine: "socketio"
     flow:
@@ -26,5 +26,5 @@ scenarios:
               data: #make an object of emit.
                 m: "The message is {{ $randomString() }}!"
           - think: 1 #second before the next send emit.
-        count: 30 #how many times this commit be done.
-      - think: 70 #time before virtual user disconnect
+        count: 5 #how many times this commit be done.
+      - think: 10 #time before virtual user disconnect
