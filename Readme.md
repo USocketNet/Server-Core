@@ -116,8 +116,8 @@ This are the required config for NGIX server for load balance. By default
     // You can run by yourself each server type instance.
     $ CODE: pm2 start modules/master.js -- --master 19091
     $ CODE: pm2 start modules/message.js -- --master 6061
-    $ CODE: pm2 start modules/match.js -- --master 4531
-    $ CODE: pm2 start modules/game.js -- --master 9091
+    $ CODE: pm2 start modules/match.js -- --match 4531
+    $ CODE: pm2 start modules/game.js -- --game 9091
     // To run all instance, master, message, match, and game server: run the following command.
     $ CODE: pm2 start usocketnet.js --name svr-1 -- --name svr1 --master 19091 --message 6061 --match 4531 --game 9091
     // pm2 : Call or use the global dependency of pm2 npm package.
