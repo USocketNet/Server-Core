@@ -7,10 +7,11 @@ module.exports.json = json.init();
 const debug = require('./debug');
 module.exports.debug = debug.init();
 
-const procs = require('./process');
-module.exports.procs = procs.init(this.debug);
-
 //Global configurations.
 const config = require('./config');
 module.exports.config = config.init(this.json);
 
+const procs = require('./process');
+if(this.config.safe('production', false)) {
+    module.exports.procs = procs.init(this.debug);
+}
