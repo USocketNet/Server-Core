@@ -20,11 +20,10 @@
         $appsTable = USN_APPTAB;
 
         //SELECT ALL ENTRY on bc_apps
-        $rows = $wpdb->get_results( "SELECT aid, uid, api, asta, aname, ainfo, aurl, acap, regdate, wp_users.user_login 
-            FROM $appsTable, wp_users WHERE wp_users.ID = uid");
+        $appList = $wpdb->get_results( "SELECT bc_usn_apps.ID, app_owner, app_secret, app_status, app_name, app_info, app_website, max_connect, date_created, wp_users.user_login FROM $appsTable, wp_users WHERE wp_users.ID = app_owner");
 
-        if( $rows !== FALSE ) {
-            echo json_encode( array( 'status'=>'success', 'message'=>$rows ) );
+        if( $appList !== FALSE ) {
+            echo json_encode( array( 'status'=>'success', 'message'=> $appList ) );
         } else {
             echo json_encode( array('status'=>'failed', 'message'=>'There was a problem on loading applications.') );
         }

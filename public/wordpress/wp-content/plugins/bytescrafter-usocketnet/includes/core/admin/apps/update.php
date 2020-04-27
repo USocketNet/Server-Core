@@ -37,10 +37,9 @@
         global $wpdb; //Reference to wp mysql conn.
         $appsTable = USN_APPTAB;
 
-        $rows = $wpdb->get_results( "UPDATE $appsTable SET aname = '$appname', ainfo = '$appdesc', aurl = '$appurl', asta = '$appsta', acap = '$appcap' 
-            WHERE aid = '$appid'" );
+        $updates = $wpdb->get_results( "UPDATE $appsTable SET app_name = '$appname', app_info = '$appdesc', app_website = '$appurl', app_status = '$appsta', max_connect = '$appcap' WHERE ID = '$appid'" );
 
-        if( $rows !== FALSE ) {
+        if( $updates !== FALSE ) {
             echo json_encode( array('message'=>'The application has been updated successfully.') );
         } else {
             echo json_encode( array('message'=>'There was a problem on updating this application.') );

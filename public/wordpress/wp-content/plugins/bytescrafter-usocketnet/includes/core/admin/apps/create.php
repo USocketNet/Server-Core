@@ -36,15 +36,14 @@
         global $wpdb; //Reference to wp mysql conn.
         $appsTable = USN_APPTAB;
 
-        $checkName = $wpdb->get_results("SELECT uid, wp_users.user_login FROM $appsTable, wp_users 
-            WHERE aname = '$appname'");
+        $appCheck = $wpdb->get_results("SELECT app_owner, wp_users.user_login FROM $appsTable, wp_users WHERE app_name = '$appname'");
 
-        if( count($checkName) >= 1 )
+        if( count($appCheck) >= 1 )
         {
             echo json_encode( 
                 array( 
                     'status'=>'danger',
-                    'message'=>'Name of the application already exist owned by: ' . $checkName[0]->user_login
+                    'message'=>'Name of the application already exist owned by: ' . $appCheck[0]->user_login
                 ) 
             );
             wp_die();
@@ -52,13 +51,13 @@
 
         $generatedKey = wp_hash( wp_get_current_user()->ID . date("Y-m-d H:i:s u") );
         $data_array = array(
-            'uid' => wp_get_current_user()->ID,
-            'api' => $generatedKey,
-            'asta' => $appsta,
-            'aname' => $appname,
-            'ainfo' => $appdesc,
-            'aurl' => $appurl,
-            'acap' => $appcap,
+            'app_owner' => wp_get_current_user()->ID,
+            'app_secret' => $generatedKey,
+            'app_status' => $appsta,
+            'app_name' => $appname,
+            'app_info' => $appdesc,
+            'app_website' => $appurl,
+            'max_connect' => $appcap,
         );
         $result = $wpdb->insert($appsTable, $data_array, $format=NULL);
 

@@ -20,17 +20,17 @@
             $usn_app_tab = USN_APPTAB;
             if($wpdb->get_var( "SHOW TABLES LIKE '$usn_app_tab'" ) != $usn_app_tab) {
                 $sql = "CREATE TABLE `".$usn_app_tab."` (";
-                    $sql .= "`aid` bigint(20) NOT NULL AUTO_INCREMENT, ";
-                    $sql .= "`api` varchar(49) NOT NULL, ";
-                    $sql .= "`uid` bigint(20) NOT NULL, ";
-                    $sql .= "`asta` enum('Active','Inactive') NOT NULL DEFAULT 'Active', ";
-                    $sql .= "`aname` varchar(120) NOT NULL, ";
-                    $sql .= "`ainfo` varchar(255) NOT NULL, ";
-                    $sql .= "`aurl` varchar(255) NOT NULL, ";
-                    $sql .= "`acap` int(4) NOT NULL DEFAULT '1000', ";
-                    $sql .= "`regdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, ";
-                    $sql .= "PRIMARY KEY (`aid`), ";
-                    $sql .= "UNIQUE  (`aname`) ";
+                    $sql .= "`ID` bigint(20) NOT NULL AUTO_INCREMENT, ";
+                    $sql .= "`app_secret` varchar(49) NOT NULL, ";
+                    $sql .= "`app_owner` bigint(20) NOT NULL, ";
+                    $sql .= "`app_status` enum('Active','Inactive') NOT NULL DEFAULT 'Active', ";
+                    $sql .= "`app_name` varchar(120) NOT NULL, ";
+                    $sql .= "`app_info` varchar(255) NOT NULL, ";
+                    $sql .= "`app_website` varchar(255) NOT NULL, ";
+                    $sql .= "`max_connect` int(4) NOT NULL DEFAULT '1000', ";
+                    $sql .= "`date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, ";
+                    $sql .= "PRIMARY KEY (`ID`), ";
+                    $sql .= "UNIQUE  (`app_name`) ";
                     $sql .= ") ENGINE = InnoDB; ";
                 $result = $wpdb->get_results($sql);
                 

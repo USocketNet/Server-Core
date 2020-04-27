@@ -60,15 +60,7 @@ jQuery(document).ready( function ( $ )
                     url: 'admin-ajax.php',
                     success : function( data )
                     {
-                        var appList = [];
-                        for(var i = 0; i < data.message.length; i++) {
-                            data.message[i].appid = 'ID#' + data.message[i].aid;
-                            data.message[i].uname = data.message[i].user_login;
-                            delete data.message[i].user_login;
-                            appList.push( data.message[i] );
-                        }
-
-                        displayingLoadedApps( appList );
+                        displayingLoadedApps( data.message );
                         if( !$('#apps-notification').hasClass('usn-display-hide') )
                         {
                             $('#apps-notification').addClass('usn-display-hide');
@@ -77,7 +69,7 @@ jQuery(document).ready( function ( $ )
                     error : function(jqXHR, textStatus, errorThrown) 
                     {
                         //$('#apps-notification').text = "";
-                        console.log("" + jqXHR + " :: " + textStatus + " :: " + errorThrown);
+                        console.log("" + JSON.stringify(jqXHR) + " :: " + textStatus + " :: " + errorThrown);
                     }
                 });
             }
@@ -88,13 +80,13 @@ jQuery(document).ready( function ( $ )
         {
             //Set table column header.
             var columns = [
-                { "sTitle": "IDENTITY",   "mData": "appid" },
-                { "sTitle": "OWNER",   "mData": "uname" },
-                { "sTitle": "NAME",   "mData": "aname" },
-                { "sTitle": "DESCRIPTION",   "mData": "ainfo" },
-                { "sTitle": "CAPACITY",   "mData": "acap" },
-                { "sTitle": "STATUS",   "mData": "asta" },
-                {"sTitle": "Action", "mRender": function(data, type, full)
+                { "sTitle": "IDENTITY",   "mData": "ID" },
+                { "sTitle": "OWNER",   "mData": "user_login" },
+                { "sTitle": "NAME",   "mData": "app_name" },
+                { "sTitle": "DESCRIPTION",   "mData": "app_info" },
+                { "sTitle": "CAPACITY",   "mData": "max_connect" },
+                { "sTitle": "STATUS",   "mData": "app_status" },
+                {"sTitle": "Action", "mRender": function(data, type, item)
                     {
                         return '' + 
 
@@ -103,21 +95,21 @@ jQuery(document).ready( function ( $ )
                                 '<button type="button" class="btn btn-primary btn-sm"' +
                                     ' data-toggle="modal" data-target="#EditAppOption"' +
                                     ' title="Clicking this will show options for the game that can be modified."' +
-                                    ' data-aid="' + full.aid + '"' +  
-                                    ' data-aname="' + full.aname + '"' +  
-                                    ' data-ainfo="' + full.ainfo + '"' +  
-                                    ' data-aurl="' + full.aurl + '"' +  
-                                    ' data-asta="' + full.asta + '"' +  
-                                    ' data-acap="' + full.acap + '"' +
+                                    ' data-aid="' + item.ID + '"' +  
+                                    ' data-aname="' + item.app_name + '"' +  
+                                    ' data-ainfo="' + item.app_info + '"' +  
+                                    ' data-aurl="' + item.app_website + '"' +  
+                                    ' data-asta="' + item.app_status + '"' +  
+                                    ' data-acap="' + item.max_connect + '"' +
                                     ' >Options</button>' +
 
                                 '<button type="button" class="btn btn-info btn-sm"' +
                                     ' title="Clicking this will show realtime statistics and current state of the game."' + 
                                     ' disabled>View Stats</button>' +
 
-                                '<button type="button" class="btn btn-dark btn-sm appkey-' + full.aid + '"' +
-                                    ' data-clipboard-text="' + full.api + '"' +
-                                    ' onclick="copyFromId(\'appkey-' + full.aid + '\')" ' +
+                                '<button type="button" class="btn btn-dark btn-sm appkey-' + item.ID + '"' +
+                                    ' data-clipboard-text="' + item.app_secret + '"' +
+                                    ' onclick="copyFromId(\'appkey-' + item.ID + '\')" ' +
                                     ' title="Click this button to copy the game apikey to your clipboard."' +
                                     '>Copy Key</button>' +            
                                     
@@ -234,7 +226,7 @@ jQuery(document).ready( function ( $ )
                         $('#CNAMessage').addClass('usn-display-hide');
                         activeTimeout = undefined;
                     }, 7000);
-                    console.log("" + jqXHR + " :: " + textStatus + " :: " + errorThrown);
+                    console.log("" + JSON.stringify(jqXHR) + " :: " + textStatus + " :: " + errorThrown);
                 }
             });
         }

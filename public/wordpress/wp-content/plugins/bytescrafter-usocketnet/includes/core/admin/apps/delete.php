@@ -30,7 +30,7 @@
         global $wpdb; //Reference to wp mysql conn.
         $appsTable = USN_APPTAB;
 
-        $rows = $wpdb->get_results( "DELETE FROM $appsTable WHERE aid = ".$_POST['appid_edit']);
+        $rows = $wpdb->get_results( "DELETE FROM $appsTable WHERE ID = ".$_POST['appid_edit']);
 
         if( $rows !== FALSE ) {
             echo json_encode( array('message'=>'The application has been removed successfully.') );

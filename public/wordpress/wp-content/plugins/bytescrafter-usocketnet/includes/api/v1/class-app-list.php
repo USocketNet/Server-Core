@@ -49,12 +49,12 @@
 			// STEP 3 - Verify the AppKey Secret if valid.
 			global $wpdb; 
 			$appsTable = USN_APPTAB;
-			$checkName = $wpdb->get_results("SELECT api, asta, aname, ainfo, aurl, acap FROM $appsTable");
+			$checkName = $wpdb->get_results("SELECT app_name, app_info, app_website, app_status, max_connect FROM $appsTable");
 
 			if( count($checkName) >= 1 ) {
 				$applist = array();
 				foreach($checkName as $app) {
-					if( $app->asta == "Active" ) { } 
+					if( $app->app_status == "Active" ) { } 
 					$applist[] = $app;
 				}
 				return rest_ensure_response( 
