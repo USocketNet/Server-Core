@@ -35,24 +35,18 @@ class usn_config {
     }
 
     server( type, argv ) {
-
-        let port = process.env.PORT || 3000;
         switch ( type ) {
             case 'master':
-                port = argv.master;
-                break;
+                return { port: argv.master };
             case 'message':
-                port = argv.message;
-                break;
+                return { port: argv.message };
             case 'match':
-                port = argv.match;
-                break;
+                return { port: argv.match };
             case 'game':
-                port = argv.game;
-                break;
+                return { port: argv.game };
             default:
+                return '3000';
         }
-        return { name: argv.name, port: port };
     }
 
     redis () {
