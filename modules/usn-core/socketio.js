@@ -7,7 +7,7 @@ const argv = require('minimist')(process.argv.slice(2));
 class usn_socketio {  
     
     //Only call this once.  
-    constructor ( nsp ) {
+    constructor ( stype ) {
         //Create instance for this.
         this.instance = this;
 
@@ -25,15 +25,18 @@ class usn_socketio {
             socketio.adapter( redisAdapter( config.redis() ) );
 
         this.instance.sio = socketio;
+
         return this.instance;
     }
 
     connect ( type ) {
-
         let conf = config.server( type, argv );
+        let sType = type.charAt(0).toUpperCase() + type.slice(1);
+
+        const worker_redis = require('./worker/redis');
+            worker_redis.init(this.instance.sio, sType, conf.port );
 
         return this.instance.http.listen( conf.port, '0.0.0.0', function(err) {
-            let sType = type.charAt(0).toUpperCase() + type.slice(1);
             if (err) {
                 debug.log('USocketNet-' + sType + '-Stop', 'Connection Refused @ localhost:' + conf.port + '.', 'red', type);
                 // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT

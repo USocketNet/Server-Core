@@ -4,20 +4,8 @@ const redis = require('ioredis');
 
 //#region Helper function for redis script.
     //Make a default socket key.
-    function getSockKey( wpid, nsp ) {
-        switch(nsp) {
-            case 'master':
-                nsp = 'mid';
-                break;
-            case 'chat':
-                nsp = 'cid';
-                break;
-            case 'game':
-                nsp = 'gid';
-                break;
-            default:
-        }
-        return 'user:' + wpid + ':' + nsp;
+    function getSockKey( wpid, stype ) {
+        return 'user:' + wpid + ':' + stype;
     }
 
     //Make a default user key.
@@ -130,10 +118,9 @@ class usn_redis {
 
     socketConnect ( socket, cback ) { // { wpid: 1, sid: 'hash', nsp: 'master' }
         if(this.database !== 'undefined') {
-            let sid = socket.sid;
-            let curSocket = { [sid]: new Date() };
+            let curSocket = { [socket.id]: new Date() };
 
-            this.database.hset( getSockKey( socket.wpid, socket.nsp ), curSocket, (err, res) => {
+            this.database.hset( getSockKey( socket.wpid, socket.stype ), curSocket, (err, res) => {
                 if( err ) {
                     cback( { status: 'failed', data: null } );
                 } else {
@@ -148,7 +135,7 @@ class usn_redis {
 
     socketDisconnect ( socket ) { // { wpid: 1, sid: 'hash', nsp: 'master' }
         if(this.database !== 'undefined') {
-            this.database.hdel(getSockKey( socket.wpid, socket.nsp ), socket.sid);
+            this.database.hdel(getSockKey( socket.wpid, socket.stype ), socket.id);
         } else {
             utils.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
         }

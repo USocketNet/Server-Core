@@ -1,15 +1,16 @@
 
-//Prepare socketio core.
+// Prepare socketio core.
 const socketio = require('./socketio');
 module.exports.socketio = socketio;
 
-//Prepare related libraries.
-module.exports.libs = socketio.libs;
+// Prepare related libraries.
+const libraries = require('usn-libs');
+module.exports.redis = libraries.redis;
 
-//Include utils in the core.
+// Include utils in the core.
 const utils = require('usn-utils');
-module.exports.utils = utils;
+module.exports.debug = utils.debug;
 
-//Include the syntry mode.
+// Include the syntry mode.
 const syntry = require('./adapter/syntry');
 module.exports.syntry = syntry.init();
