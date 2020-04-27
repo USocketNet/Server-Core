@@ -1,9 +1,10 @@
 
 const process = require('process');
+const debug = require('./debug');
 
 class usn_process {
 
-    constructor ( debug ) {
+    constructor () {
         // Server process debugging. Show a warning about the uncaught exceptions.
         process.on('uncaughtException', function (uerror) {
             debug.log( 'UncaughtException', + uerror.stack + ' @ ' + uerror, 'red', 'process' );
@@ -18,6 +19,6 @@ class usn_process {
     }
 }
 
-module.exports.init = ( debug ) => {
-	return new usn_process( debug );
+module.exports.init = () => {
+	return new usn_process();
 }

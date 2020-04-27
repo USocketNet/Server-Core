@@ -1,17 +1,20 @@
 
 //JSon related function.
-const json = require('./json');
-module.exports.json = json.init();
+const refjson = require('./json');
 
 //Debugging utility.
-const debug = require('./debug');
-module.exports.debug = debug.init();
+const refdebug = require('./debug');
 
 //Global configurations.
-const config = require('./config');
-module.exports.config = config.init(this.json);
+const refconfig = require('./config');
 
+//Include process for some reason.
 const procs = require('./process');
-if(this.config.safe('production', false)) {
-    module.exports.procs = procs.init(this.debug);
-}
+
+module.exports = {
+    json: refjson.init(),
+    debug: refdebug.init(),
+    config: refconfig.init(),
+    procs: procs.init(),
+};
+

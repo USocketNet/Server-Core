@@ -1,8 +1,10 @@
 
-const libs = require('usn-libs');
 const core = require('usn-core');
 const instance = core.socketio.init( 'master' );
   const conn = instance.connect( 'master' );
+
+//Prevent client socket connection if condition is not met.
+instance.sio.use( core.syntry.verification );
 
   // const machine = [];
   // setInterval(() => {
@@ -38,7 +40,7 @@ instance.sio.on('connection', (socket) => {
   //require('./model/svr-status')(machine, socket);
   
   //Server logging about the connection on Master Server.
-  libs.utils.debug.log('MASTER SERVER', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
+  core.utils.debug.log('MASTER SERVER', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
 
     //Called by client that its connected.
     socket.on('connects', (data, cback) => {
@@ -57,7 +59,7 @@ instance.sio.on('connection', (socket) => {
       transport close	                Client Side	    Client stopped sending data
     */
     //Server logging about the disconnection on Master Server.
-    libs.utils.debug.log('MASTER SERVER', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id + ' - ' + reason, 'white', 'disconnect');
+    core.utils.debug.log('MASTER SERVER', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id + ' - ' + reason, 'white', 'disconnect');
 
     // let redis = core.redis.select(0);
     // let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'master' };
@@ -65,6 +67,6 @@ instance.sio.on('connection', (socket) => {
   });
 
   socket.on('error', (error) => {
-    libs.utils.debug.log('MASTER SERVER', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id + ' - ' + error, 'white', 'disconnect');
+    core.utils.debug.log('MASTER SERVER', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id + ' - ' + error, 'white', 'disconnect');
   });
 });

@@ -2,7 +2,7 @@
 class usn_json {
 
     constructor () {
-        return this;
+        
     }
 
     // Combine two jsons.

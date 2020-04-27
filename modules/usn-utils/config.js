@@ -2,10 +2,11 @@
 const pckgConf = require('../../package.json');
 const constConf = require('../../config/constant.json');
 const defltConf = require('../../config/default.json');
+const json = require('./json').init();
 
 class usn_config {
 
-    constructor ( json ) {
+    constructor () {
         let appPkg = json.extend({}, constConf, defltConf)
         let mainPkg = {
            name: pckgConf.name, 
@@ -72,6 +73,6 @@ class usn_config {
     }
 }
 
-module.exports.init = (json) => {
-	return new usn_config(json);
+module.exports.init = () => {
+	return new usn_config();
 }

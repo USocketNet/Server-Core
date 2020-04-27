@@ -1,13 +1,15 @@
 
-const libs = require('usn-libs');
 const core = require('usn-core');
 const instance = core.socketio.init( 'message' );
   const conn = instance.connect( 'message' );
 
+//Prevent client socket connection if condition is not met.
+instance.sio.use( core.syntry.verification );
+
   instance.sio.on('connection', (socket) => {
   
     //Server logging about the connection on message Server.
-    libs.utils.debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
+    core.utils.debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' connect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'connect');
   
     socket.join('msg-pub', () => {});
 
@@ -52,7 +54,7 @@ const instance = core.socketio.init( 'message' );
     //Listens for any server-client disconnectio
     socket.on('disconnect', () => {
       //Server logging about the disconnection on message Server.
-      libs.utils.debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
+      core.utils.debug.log('MESSAGE SERVER', 'User #' + socket.wpid + ' disconnect @ port ' + conn.address().port + ' with sid of ' + socket.id, 'white', 'disconnect');
 
       // let redis = core.redis.select(0);
       // let sock = { wpid: socket.wpid, sid: socket.id, nsp: 'message' };
