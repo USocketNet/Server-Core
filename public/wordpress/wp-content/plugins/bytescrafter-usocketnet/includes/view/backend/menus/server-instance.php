@@ -23,10 +23,10 @@
 	<div class="usn-panel-body">
 		<div class="row">
             <ul id="usn-container-instance" >
-                <?php include_once( plugin_dir_path( __FILE__ ) . "instance/_core.php" ); ?>
-                <?php include_once( plugin_dir_path( __FILE__ ) . "instance/cpu.php" ); ?>
-                <?php include_once( plugin_dir_path( __FILE__ ) . "instance/ram.php" ); ?>
-                <?php include_once( plugin_dir_path( __FILE__ ) . "instance/net.php" ); ?>
+                <?php include_once( plugin_dir_path( __FILE__ ) . "/server-instance/_core.php" ); ?>
+                <?php include_once( plugin_dir_path( __FILE__ ) . "/server-instance/cpu.php" ); ?>
+                <?php include_once( plugin_dir_path( __FILE__ ) . "/server-instance/ram.php" ); ?>
+                <?php include_once( plugin_dir_path( __FILE__ ) . "/server-instance/net.php" ); ?>
                 
                 <li id="usn-server-instance" class="col-sm-12">
                     <div class="row">

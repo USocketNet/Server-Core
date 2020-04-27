@@ -30,6 +30,8 @@
 
     include_once ( plugin_dir_path( __FILE__ ) . '/config.php' );
     include_once ( plugin_dir_path( __FILE__ ) . '/update.php' );
+
+    //Make sure to create required mysql tables.
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/hook.php' );
 
     #region Include assets like scripts, styles, etc.
@@ -63,16 +65,22 @@
                 wp_enqueue_script( 'usn_core_script', plugin_dir_url( __FILE__ ) . 'assets/usocketnet/usocketnet.js' ); 
 
                 wp_enqueue_style( 'usn_admin_style', plugin_dir_url( __FILE__ ) . 'assets/custom/styles.css' );
-                wp_enqueue_script( 'usn_admin_script', plugin_dir_url( __FILE__ ) . 'assets/custom/backend.js', array('jquery'), '1.0', true );
+                wp_enqueue_script( 'usn_admin_script', plugin_dir_url( __FILE__ ) . 'assets/usocketnet/backend.js', array('jquery'), '1.0', true );
                 wp_localize_script( 'usn_admin_script', 'ajaxurl', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
             }
             add_action( 'admin_enqueue_scripts', 'usn_plugin_admin_enqueue' );
         }
     #endregion
 
-    // //Rendering Backend.
-    include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/index.php' );
-
     //Include the REST API of USocketNet to be accessible.
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/api/index.php' );
+
+    //Display menu on WP Backend.
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/view/backend/menus.php' );
+
+	//AJAX LISTENER for Apps
+	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/reload.php' );
+	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/create.php' );
+	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/update.php' );
+	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/delete.php' );
 ?>

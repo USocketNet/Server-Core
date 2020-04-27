@@ -16,7 +16,6 @@
     const curUser = {
         wpid: '<?php echo get_current_user_id(); ?>',
         snid: '<?php echo wp_get_session_token(); ?>',
-        apid: 'svr-status'
     };
 
     const master = new USocketNet('master', '<?php echo USN_HOST; ?>', curUser);
@@ -24,10 +23,12 @@
         master.connect();
 
         master.on('svr-connect', ( data ) => {
+            console.log(data);
             document.getElementById('status-1').textContent = 'ONLINE';
         });
 
         master.on('svr-reconnect', ( data ) => {
+            console.log(data);
             document.getElementById('status-1').textContent = 'ONLINE';
         });
 

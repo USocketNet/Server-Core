@@ -42,32 +42,32 @@
 
         function usocketnet_gettingstarted_page_callback()
         {
-            include_once( plugin_dir_path( __FILE__ ) . '../../page/admin/getting-started.php' );
+            include_once( plugin_dir_path( __FILE__ ) . '/menus/getting-started.php' );
         }
 
         function usocketnet_onlineusers_page_callback()
         {
-            include_once( plugin_dir_path( __FILE__ ) . '../../page/admin/online-users.php' );
+            include_once( plugin_dir_path( __FILE__ ) . '/menus/online-users.php' );
         }
 
         function usocketnet_activechannels_page_callback()
         {
-            include_once( plugin_dir_path( __FILE__ ) . '../../page/admin/active-channels.php' );
+            include_once( plugin_dir_path( __FILE__ ) . '/menus/active-channels.php' );
         }
 
         function usocketnet_applications_page_callback()
         {
-            include_once( plugin_dir_path( __FILE__ ) . '../../page/admin/applications.php' );
+            include_once( plugin_dir_path( __FILE__ ) . '/menus/applications.php' );
         }
 
         function usocketnet_serverinstance_page_callback()
         {
-            include_once( plugin_dir_path( __FILE__ ) . '../../page/admin/server-instance.php' );
+            include_once( plugin_dir_path( __FILE__ ) . '/menus/server-instance.php' );
         }
 
         function usocketnet_setting_page_callback()
         {
-            include_once( plugin_dir_path( __FILE__ ) . '../../page/admin/settings.php' );
+            include_once( plugin_dir_path( __FILE__ ) . '/menus/settings.php' );
         }
     #endregion
 ?>
