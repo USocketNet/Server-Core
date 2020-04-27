@@ -19,7 +19,7 @@ instance.sio.on('connection', (socket) => {
     });
     
       socket.on('pub', (data, cback) => {
-        socket.to('msg-pub').emit('pub', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+        socket.to('msg-pub').emit('pub', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
         if(typeof cback === 'function') {
           // 0 = success, 1 = failed
           cback({ status: 0, d: new Date().toLocaleString() });
@@ -29,7 +29,7 @@ instance.sio.on('connection', (socket) => {
       socket.on('app', (data, cback) => {
         //If the app secret is found on redis server.
         if(data.aks === 'undefined') {
-          socket.broadcast.emit('app', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+          socket.broadcast.emit('app', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
           cback({ status: 'success' });
         } else {
           cback({ status: 'failed' });
@@ -38,13 +38,13 @@ instance.sio.on('connection', (socket) => {
 
       socket.on('rom', (data, cback) => {
         //Check on redis if there is a room created like same of this id.
-        socket.to(data.rom).emit('rom', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+        socket.to(data.rom).emit('rom', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
         cback({ status: 'success' });
       });
 
       socket.on('pri', (data, cback) => {
         //Get from redis using wpid and Check if online or not.
-        socket.to(data.rcv).emit('pri', { u: socket.nme, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+        socket.to(data.rcv).emit('pri', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
         cback({ status: 'success' });
       });
 
