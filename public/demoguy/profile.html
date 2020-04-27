@@ -4,13 +4,13 @@
     <title>USocketNet - Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/popper.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/fontawesome.min.css">
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript">
       var pname = 'signin';
     </script>
@@ -21,7 +21,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
       <a class="navbar-brand" href="#">
-        <img src="./img/logo.png" width="32" height="32" alt="">
+        <img src="./assets/img/logo.png" width="32" height="32" alt="">
         USocketNet
       </a>
       <div class="navmenu col-xs-12">
@@ -51,7 +51,7 @@
     <div id="serverStatus" class="container">
       <div class="row">
         
-        <div class="col-md-4 shadow-sm" style="text-align: center; margin: 50px 0;">
+        <div class="col-md-3 shadow-sm" style="text-align: center; margin: 50px 0;">
           <svg class=" rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
           <h2 style="margin: 20px;">MASTER SERVER</h2>
           <p id="masterCon"></p>
@@ -60,7 +60,7 @@
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>OFFLINE</a></p>
         </div>
 
-        <div class="col-md-4 shadow-sm" style="text-align: center; margin: 50px 0;">
+        <div class="col-md-3 shadow-sm" style="text-align: center; margin: 50px 0;">
           <svg class="bd-placeholder-img rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
           <h2 style="margin: 20px;">CHAT SERVER</h2>
           <p id="chatCon"></p>
@@ -69,7 +69,16 @@
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>OFFLINE</a></p>
         </div>
 
-        <div class="col-md-4 shadow-sm" style="text-align: center; margin: 50px 0;">
+        <div class="col-md-3 shadow-sm" style="text-align: center; margin: 50px 0;">
+          <svg class="bd-placeholder-img rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+          <h2 style="margin: 20px;">MATCH SERVER</h2>
+          <p id="matchCon"></p>
+          <h5 style="margin-bottom: 1.5rem;">PING: <strong id="matchping" style="color:#33b364;">0</strong> ms</h5>
+          <p><a id="matchConStat" class="btn btn-secondary disabled" href="#" role="button" >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>OFFLINE</a></p>
+        </div>
+
+        <div class="col-md-3 shadow-sm" style="text-align: center; margin: 50px 0;">
           <svg class="bd-placeholder-img rounded-circle" width="75" height="75" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
           <h2 style="margin: 20px;">GAME SERVER</h2>
           <p id="gameCon"></p>
@@ -226,11 +235,11 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="./js/socket.io.js"></script>
-    <script type="text/javascript" src="./js/usocketnet.js"></script>
+    <script type="text/javascript" src="./script/socket.io.js"></script>
+    <script type="text/javascript" src="./script/usocketnet.js"></script>
 
-    <script type="text/javascript" src="./js/socketio.js"></script>
-    <script type="text/javascript" src="./js/script.js"></script>
+    <script type="text/javascript" src="./script/demoguy.js"></script>
+    <script type="text/javascript" src="./script/script.js"></script>
 
   </body>
 </html>

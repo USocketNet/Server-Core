@@ -7,7 +7,11 @@
     "message.port": 6061,
     "message.redis.db": 2,
 
+    "match.host": "localhost",
+    "match.port": 4530,
+    "match.redis.db": 3,
+
     "game.host": "localhost",
     "game.port": 9091,
-    "game.redis.db": 3
+    "game.redis.db": 4
 }

@@ -76,6 +76,7 @@ class Demoguy {
                 usnList.push(new USocketNet('master', window.location.host, authToken)); 
                 usnList.push(new USocketNet('message', window.location.host, authToken)); 
                 usnList.push(new USocketNet('match', window.location.host, authToken)); 
+                usnList.push(new USocketNet('game', window.location.host, authToken)); 
 
             //Connect all USocketNet instance.
             usnList.forEach(curUsn => {
@@ -107,6 +108,11 @@ class Demoguy {
                         $('#chatConStat').addClass('btn-success');
                         targ = 'chatCon';
                     } else if(data.serverType == 'match') {
+                        $('#matchConStat').html( 'ONLINE' );
+                        $('#matchConStat').removeClass('btn-secondary');
+                        $('#matchConStat').addClass('btn-success');
+                        targ = 'matchCon';
+                    } else if(data.serverType == 'game') {
                         $('#gameConStat').html( 'ONLINE' );
                         $('#gameConStat').removeClass('btn-secondary');
                         $('#gameConStat').addClass('btn-success');

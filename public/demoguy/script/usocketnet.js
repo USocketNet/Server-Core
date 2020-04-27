@@ -9,13 +9,12 @@ class USocketNet {
         switch(stype) {
             case 'master':
                 return '19090';
-                break;
             case 'message':
                 return '6060';
-                break;
             case 'match':
+                return '4530';
+            case 'game':
                 return '9090';
-                break;
             default:
                 return 'undefined';
                 

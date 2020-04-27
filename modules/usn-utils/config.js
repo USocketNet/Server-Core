@@ -47,6 +47,9 @@ class usn_config {
             case 'match':
                 port = argv.match;
                 break;
+            case 'game':
+                port = argv.game;
+                break;
             default:
         }
         return { name: argv.name, port: port };
