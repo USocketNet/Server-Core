@@ -14,7 +14,7 @@
     "usn-libs": "file:modules/usn-libs",
     "usn-utils": "file:modules/usn-utils"
   },
-  "publishConfig": { 
-    "registry": "https://npm.pkg.github.com/" 
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

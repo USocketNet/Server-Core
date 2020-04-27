@@ -15,9 +15,9 @@ if( typeof argv.name === 'undefined' || typeof argv.master === 'undefined' || ty
     process.exit(1);
 } else {
     usn.debug.log('USocketNet-Check-Success', 'Executing the required server libraries for: ' + argv.name, 'green', 'usocketnet');
-    require('./server/master');
-    require('./server/message');
-    require('./server/match');
+    require('./modules/master');
+    require('./modules/message');
+    require('./modules/match');
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
