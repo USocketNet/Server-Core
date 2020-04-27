@@ -72,7 +72,7 @@ class Demoguy {
             $("#usersess").html( curUser.session );
 
             //Declaration of 3 different type of server.
-            let usnList = []; const authToken = { wpid: curUser.wpid, snid: curUser.snid, apid: curUser.apid };
+            let usnList = []; const authToken = { wpid: curUser.wpid, snid: curUser.snid };
                 usnList.push(new USocketNet('master', window.location.host, authToken)); 
                 usnList.push(new USocketNet('message', window.location.host, authToken)); 
                 usnList.push(new USocketNet('match', window.location.host, authToken)); 

@@ -10,7 +10,7 @@ class usn_restapi {
     verify ( cred, cback ) {
 
         let options = {
-            uri: this.wpress_url + '/wp-json/usocketnet/v1/token',
+            uri: this.wpress_url + '/wp-json/usocketnet/v1/verify',
             json: true,
             form: { 
                 wpid: cred.wpid, 

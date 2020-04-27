@@ -11,7 +11,7 @@
 
 <?php
 
-	class BC_USocketNet_WP {
+	class BC_USN_Authenticate {
 
 		//Get the user session token string and if nothing, create and return one.
 		public static function bc_usn_get_session( $user_id ) {
@@ -26,7 +26,7 @@
 		}
 
 		//Authenticate user via Rest Api.
-		public static function bc_usn_authenticate() {
+		public static function initialize() {
 		
 			// Check that we're trying to authenticate
 			if (!isset($_POST["UN"]) || !isset($_POST["PW"])) {
@@ -49,7 +49,7 @@
 			if ( is_wp_error($user) ) {
 				return rest_ensure_response( 
 					array(
-						"code" => "unknown",
+						"code" => "error",
 						"message" => $user->get_error_message(),
 					)
 				);
@@ -58,9 +58,9 @@
 			return rest_ensure_response( 
 				array(
 					"code" => "success",
-					"message" => "<strong>Success</strong>: Welcome to USocketNet Rest Api powered by WordPress.",
+					"message" => "<strong>Success</strong>: Welcome to USocketNet RestAPI.",
 					"data" => array(
-						"snid" => BC_USocketNet_WP::bc_usn_get_session($user->ID), 
+						"snid" => BC_USN_Authenticate::bc_usn_get_session($user->ID), 
 						"wpid" => $user->ID,
 						"uname" => $user->data->user_login,
 						"dname" => $user->data->display_name,
