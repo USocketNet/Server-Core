@@ -1,6 +1,6 @@
 
 const debug = require('usn-utils').debug;
-const libs = require('usn-libs');
+const request = require('usn-libs').request;
 
 class confilter {
 
@@ -21,7 +21,7 @@ class confilter {
             data.apid = packet.handshake.query.apid;
             packet.wpid = data.wpid;
  
-            libs.request.verify(data, (response) => {
+            request.verify(data, (response) => {
                 if( response.status === 'success' ) {
                     
                     if( response.status === 'success' ) {

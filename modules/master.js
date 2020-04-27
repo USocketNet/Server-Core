@@ -35,7 +35,6 @@ instance.sio.use( core.syntry.verification );
   //   return { used: Math.round( ramUse.heapUsed/1024/1024 ), total: Math.round( ramUse.heapTotal/1024/1024 ) };
   // }
 
-
 instance.sio.on('connection', (socket) => {
   //require('./model/svr-status')(machine, socket);
   

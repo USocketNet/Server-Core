@@ -1,22 +1,18 @@
 
 const config = require('usn-utils').config;
 const debug = require('usn-utils').debug;
-const libs = require('usn-libs');
-const process = require('process');
+const express = require('usn-libs').express;
 const argv = require('minimist')(process.argv.slice(2));
 
 class usn_socketio {  
     
     //Only call this once.  
     constructor ( nsp ) {
-        //Choose redis database.
-        this.redis = libs.redis.select(0);
-
         //Create instance for this.
         this.instance = this;
 
         //get instance of express for this new server.
-        this.instance.http = libs.express.init();
+        this.instance.http = express.init();
 
         //Requiring socket.io module and passing express.
         const socketio = require('socket.io')(this.instance.http, {
@@ -51,8 +47,4 @@ class usn_socketio {
 
 module.exports.init = ( nsp ) => {
     return new usn_socketio( nsp );
-};
-
-module.exports.libs = () => {
-    return libs;
 };

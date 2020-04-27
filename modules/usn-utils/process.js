@@ -1,5 +1,4 @@
 
-const process = require('process');
 const debug = require('./debug').init();
 
 class usn_process {
