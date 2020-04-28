@@ -45,17 +45,15 @@ class Demoguy {
 //#region SERVER CONNECTION
 
     $(function () {
-        //Set the target host.
-        const usn_server = 'localhost';
 
-        //Class for performing USocketNet demo.
-        const demoguy = new Demoguy();
+         //Set the target host.
+         const usn_server = 'localhost';
 
-        //Check if localStorage is set then continue else redirect back to home.
-        if( demoguy.verifyToken(localStorage) ) { 
+         //Class for performing USocketNet demo.
+         const demoguy = new Demoguy();
 
+        if(demoguy.verifyToken(localStorage) && page == 'settings') {
             const curUser = JSON.parse(localStorage['user']);
-            let serverStatus = [];
 
             $("#userdname").html("Your content here...");
             $("#useremail").html("Your content here...");
@@ -72,6 +70,14 @@ class Demoguy {
             $("#useremail").html( curUser.email );
             $("#userwpid").html( 'WordPress ID: '+curUser.wpid );
             $("#usersess").html( curUser.session );
+        }
+
+        //Check if localStorage is set then continue else redirect back to home.
+        if( demoguy.verifyToken(localStorage) && page != 'settings' ) { 
+            
+            const curUser = JSON.parse(localStorage['user']);
+            let serverStatus = [];
+            $("#userphoto").attr("src", curUser.avatar);
 
             //Declaration of 3 different type of server.
             let usnList = []; const authToken = { wpid: curUser.wpid, snid: curUser.snid };
@@ -98,54 +104,63 @@ class Demoguy {
                     })
                 }
                 curUsn.on('svr-connect', ( data ) => {
-                    let targ = 'undefined';
-                    if(data.serverType == 'master') {
-                        $('#masterConStat').html( 'ONLINE' );
-                        $('#masterConStat').removeClass('btn-secondary');
-                        $('#masterConStat').addClass('btn-success');
-                        targ = 'masterCon';
-                    } else if(data.serverType == 'message') {
-                        $('#chatConStat').html( 'ONLINE' );
-                        $('#chatConStat').removeClass('btn-secondary');
-                        $('#chatConStat').addClass('btn-success');
-                        targ = 'chatCon';
-                    } else if(data.serverType == 'match') {
-                        $('#matchConStat').html( 'ONLINE' );
-                        $('#matchConStat').removeClass('btn-secondary');
-                        $('#matchConStat').addClass('btn-success');
-                        targ = 'matchCon';
-                    } else if(data.serverType == 'game') {
-                        $('#gameConStat').html( 'ONLINE' );
-                        $('#gameConStat').removeClass('btn-secondary');
-                        $('#gameConStat').addClass('btn-success');
-                        targ = 'gameCon';
+                    if( page === 'dashboard') {
+                        let targ = 'undefined';
+                        if(data.serverType == 'master') {
+                            $('#masterConStat').html( 'ONLINE' );
+                            $('#masterConStat').removeClass('btn-secondary');
+                            $('#masterConStat').addClass('btn-success');
+                            targ = 'masterCon';
+                        } else if(data.serverType == 'message') {
+                            $('#chatConStat').html( 'ONLINE' );
+                            $('#chatConStat').removeClass('btn-secondary');
+                            $('#chatConStat').addClass('btn-success');
+                            targ = 'chatCon';
+                        } else if(data.serverType == 'match') {
+                            $('#matchConStat').html( 'ONLINE' );
+                            $('#matchConStat').removeClass('btn-secondary');
+                            $('#matchConStat').addClass('btn-success');
+                            targ = 'matchCon';
+                        } else if(data.serverType == 'game') {
+                            $('#gameConStat').html( 'ONLINE' );
+                            $('#gameConStat').removeClass('btn-secondary');
+                            $('#gameConStat').addClass('btn-success');
+                            targ = 'gameCon';
+                        }
+                        document.getElementById(targ).innerHTML = data.socketid+ '<br><strong>Socket ID</strong> <br><br>' + data.port + '<br><strong>Port Forwarded</strong>';
                     }
     
                     console.log(' Connected @ ' +data.serverType+ '.');
-                    document.getElementById(targ).innerHTML = data.socketid+ '<br><strong>Socket ID</strong> <br><br>' + data.port + '<br><strong>Port Forwarded</strong>';
                 });
 
                 curUsn.on('svr-reconnect', ( data ) => {
-                    let targ = 'undefined';
-                    if(data.serverType == 'master') {
-                        $('#masterConStat').html( 'ONLINE' );
-                        $('#masterConStat').removeClass('btn-secondary');
-                        $('#masterConStat').addClass('btn-success');
-                        targ = 'masterCon';
-                    } else if(data.serverType == 'message') {
-                        $('#chatConStat').html( 'ONLINE' );
-                        $('#chatConStat').removeClass('btn-secondary');
-                        $('#chatConStat').addClass('btn-success');
-                        targ = 'chatCon';
-                    } else if(data.serverType == 'match') {
-                        $('#gameConStat').html( 'ONLINE' );
-                        $('#gameConStat').removeClass('btn-secondary');
-                        $('#gameConStat').addClass('btn-success');
-                        targ = 'gameCon';
+                    if( page === 'dashboard') {
+                        let targ = 'undefined';
+                        if(data.serverType == 'master') {
+                            $('#masterConStat').html( 'ONLINE' );
+                            $('#masterConStat').removeClass('btn-secondary');
+                            $('#masterConStat').addClass('btn-success');
+                            targ = 'masterCon';
+                        } else if(data.serverType == 'message') {
+                            $('#chatConStat').html( 'ONLINE' );
+                            $('#chatConStat').removeClass('btn-secondary');
+                            $('#chatConStat').addClass('btn-success');
+                            targ = 'chatCon';
+                        } else if(data.serverType == 'match') {
+                            $('#matchConStat').html( 'ONLINE' );
+                            $('#matchConStat').removeClass('btn-secondary');
+                            $('#matchConStat').addClass('btn-success');
+                            targ = 'matchCon';
+                        } else if(data.serverType == 'game') {
+                            $('#gameConStat').html( 'ONLINE' );
+                            $('#gameConStat').removeClass('btn-secondary');
+                            $('#gameConStat').addClass('btn-success');
+                            targ = 'gameCon';
+                        }
+                        document.getElementById(targ).innerHTML = data.socketid+ '<br><strong>Socket ID</strong> <br><br>' + data.port + '<br><strong>Port Forwarded</strong>';
                     }
     
                     console.log(' Reconnected @ ' +data.serverType+ '.');
-                    document.getElementById(targ).innerHTML = data.socketid+ '<br><strong>Socket ID</strong> <br><br>' + data.port + '<br><strong>Port Forwarded</strong>';
                 });
     
                 curUsn.on('svr-ping', ( data ) => {
@@ -183,12 +198,14 @@ class Demoguy {
             
             //Automatically send public message if document.getElementById('enableChatBot').checked is true.
             setInterval(() => {
-                if(document.getElementById('chatbot_status').checked) {
-                    usnList[1].sendMessage(demoguy.getRandomString(20), (res) => {
-                        if(res.status === 'success') {
-                            demoguy.showMessage(true, res);
-                        }
-                    });
+                if( page === 'message') {
+                    if(document.getElementById('chatbot_status').checked) {
+                        usnList[1].sendMessage(demoguy.getRandomString(20), (res) => {
+                            if(res.status === 'success') {
+                                demoguy.showMessage(true, res);
+                            }
+                        });
+                    }
                 }
             }, 1000);
             
@@ -211,9 +228,6 @@ class Demoguy {
                 } return false;
             });
         
-        } else {
-            //Redirect to this demo homepage.
-            window.location.replace("http://"+window.location.host+"/demoguy");
         }
         
     });

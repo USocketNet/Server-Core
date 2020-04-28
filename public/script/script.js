@@ -6,12 +6,12 @@ $(document).ready(function() {
 
     //Checking and Redirection.
     if(localStorage.getItem('user') === null) {
-        if( pname != 'home') {
+        if( page != 'home') {
             window.location.href = site_url;
         }
     } else {
-        if( pname != 'signin') {
-            window.location.href = site_url + '/profile.html';
+        if( page == 'home') {
+            window.location.href = site_url + '/dashboard.html';
         } 
     }
 
@@ -44,7 +44,6 @@ function onLoginNow() {
 
     //Instead of using this: $('#login_form').serialize()
     //We try to get element value by id to create new object.
-    var signinAppId = document.getElementById('signin-apid').value;
     var signinUname = document.getElementById('signin-uname').value;
     var signinPword = document.getElementById('signin-pword').value;
     var signinData = { "UN": signinUname, "PW": signinPword };
@@ -70,9 +69,8 @@ function onLoginNow() {
             });
 
             const userData = data.data;
-                userData.apid = signinAppId;
             localStorage['user'] = JSON.stringify(userData);
-            window.location.replace(site_url + '/profile.html');
+            window.location.replace(site_url + '/dashboard.html');
           } else {
             $("#signin-error-alert").fadeTo(5000, 500).slideUp(500, function() {
                 $("#signin-error-alert").slideUp(500);

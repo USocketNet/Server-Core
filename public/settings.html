@@ -1,0 +1,358 @@
+<!doctype html>
+<html>
+  <head>
+    <title>USocketNet - Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/fontawesome.min.css">
+
+    <script type="text/javascript">
+      var page = 'settings';
+    </script>
+
+    <style>
+      /* #region Toggle */
+      .material-switch > input[type="checkbox"] {
+        display: none;   
+      }
+      .material-switch > label {
+        cursor: pointer;
+        height: 0px;
+        position: relative; 
+        width: 40px;  
+      }
+      .material-switch > label::before {
+        background: rgb(0, 0, 0);
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        content: '';
+        height: 16px;
+        margin-top: -8px;
+        position:absolute;
+        opacity: 0.3;
+        transition: all 0.4s ease-in-out;
+        width: 40px;
+      }
+      .material-switch > label::after {
+        background: rgb(255, 255, 255);
+        border-radius: 16px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        content: '';
+        height: 24px;
+        left: -4px;
+        margin-top: -8px;
+        position: absolute;
+        top: -4px;
+        transition: all 0.3s ease-in-out;
+        width: 24px;
+      }
+      .material-switch > input[type="checkbox"]:checked + label::before {
+        background: inherit;
+        opacity: 0.5;
+      }
+      .material-switch > input[type="checkbox"]:checked + label::after {
+        background: inherit;
+        left: 20px;
+      }
+
+      /* #endregion */
+
+      /* #region Chat Window */
+      .container{max-width:1170px; margin:auto;}
+      img{ max-width:100%;}
+      .inbox_people {
+        background: #f8f8f8 none repeat scroll 0 0;
+        float: left;
+        overflow: hidden;
+        width: 40%; border-right:1px solid #c4c4c4;
+      }
+      .inbox_msg {
+        border: 1px solid #c4c4c4;
+        clear: both;
+        overflow: hidden;
+      }
+      .top_spac{ margin: 20px 0 0;}
+
+
+      .recent_heading {float: left; width:40%;}
+      .srch_bar {
+        display: inline-block;
+        text-align: right;
+        width: 60%; padding:
+      }
+      .headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+
+      .recent_heading h4 {
+        color: #05728f;
+        font-size: 21px;
+        margin: auto;
+      }
+      .srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;}
+      .srch_bar .input-group-addon button {
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+        border: medium none;
+        padding: 0;
+        color: #707070;
+        font-size: 18px;
+      }
+      .srch_bar .input-group-addon { margin: 0 0 0 -27px;}
+
+      .chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
+      .chat_ib h5 span{ font-size:13px; float:right;}
+      .chat_ib p{ font-size:14px; color:#989898; margin:auto}
+      .chat_img {
+        float: left;
+        width: 11%;
+      }
+      .chat_ib {
+        float: left;
+        padding: 0 0 0 15px;
+        width: 88%;
+      }
+
+      .chat_people{ overflow:hidden; clear:both;}
+      .chat_list {
+        border-bottom: 1px solid #c4c4c4;
+        margin: 0;
+        padding: 18px 16px 10px;
+      }
+      .inbox_chat { height: 550px; overflow-y: scroll;}
+
+      .active_chat{ background:#ebebeb;}
+
+      .incoming_msg_img {
+        display: inline-block;
+        width: 6%;
+      }
+      .incoming_msg {
+        margin: 12px 0 26px;
+      }
+      .received_msg {
+        display: inline-block;
+        padding: 0 0 0 10px;
+        vertical-align: top;
+        width: 92%;
+      }
+      .received_withd_msg p {
+        background: #ebebeb none repeat scroll 0 0;
+        border-radius: 3px;
+        color: #646464;
+        font-size: 14px;
+        margin: 0;
+        padding: 5px 10px 5px 12px;
+        width: 100%;
+      }
+      .time_date {
+        color: #747474;
+        display: block;
+        font-size: 12px;
+        margin: 8px 0 0;
+      }
+      .received_withd_msg { width: 57%;}
+      .mesgs {
+        float: left;
+        padding: 30px 15px 0 25px;
+        width: 60%;
+      }
+
+      .sent_msg p {
+        background: #31aaff none repeat scroll 0 0;
+        border-radius: 3px;
+        font-size: 14px;
+        margin: 0; color:#fff;
+        padding: 5px 10px 5px 12px;
+        width:100%;
+      }
+      .outgoing_msg{ overflow:hidden; margin:12px 0 26px;}
+      .sent_msg {
+        float: right;
+        width: 46%;
+      }
+      .input_msg_write input {
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+        border: medium none;
+        color: #4c4c4c;
+        font-size: 15px;
+        min-height: 48px;
+        width: 93%;
+        padding-left: 10px;
+      }
+
+      .type_msg {border-top: 1px solid #c4c4c4;position: relative;}
+      .msg_send_btn {
+        background: #0893f5 none repeat scroll 0 0;
+        border: medium none;
+        border-radius: 50%;
+        color: #fff;
+        cursor: pointer;
+        font-size: 17px;
+        height: 33px;
+        position: absolute;
+        right: 0;
+        top: 11px;
+        width: 33px;
+      }
+      .messaging { padding: 40px 0 20px 0; }
+      .msg_history {
+        height: 516px;
+        overflow-y: auto;
+      }
+      form {
+        display: contents;
+      }
+
+      /* #endregion */
+
+      .custom-control-label::before {
+        background-color: #dc3545;
+        border: #bd2130 solid 1px;
+      }
+      .custom-control-input:checked~.custom-control-label::before {
+        border-color: #169433;
+        background-color: #5dd029;
+      }
+
+      body {
+        margin-top: 100px;
+      }
+
+      .navmenu {
+        flex: auto;
+        margin-right: 100px;
+      }
+
+      .navbar-dark .navbar-brand {
+        margin-left: 100px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="./assets/img/logo.png" width="32" height="32" alt="">
+        USocketNet
+      </a>
+      <div class="navmenu col-xs-12">
+        <ul class="navbar-nav" style="float: right;">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="#serverStatus">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#userInfo">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#messageArea">Messages</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img id="userphoto" src="#" style="width:25px; border-radius: 50%;">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="dashboard.html">Dashboard</a>
+              <a class="dropdown-item" href="message.html">Message</a>
+              <a class="dropdown-item disabled" href="#">Settings</a>
+              <a class="dropdown-item" href="#" onclick="onLogout()">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="userInfo" class="container">
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Current User Information</h6>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="userdname" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span id="useruname" class="d-block"></span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="userroles" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span id="useremail" class="d-block"></span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="userwpid" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span id="usersess" class="d-block"></span>
+              </div>
+            </div>
+            <small class="d-block text-right mt-3">
+              <a href="#">Learn More</a>
+            </small>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Current Application Data</h6>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="appname" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span class="d-block">NAME OF PROJECT</span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="appdesc" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span class="d-block">DESCRIPTION</span>
+              </div>
+            </div>
+            <div class="media text-muted pt-3">
+              <i class="fas fa-info-circle fa-2x mr-2" style="color: #54b0ff;"></i>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong id="appurl" class="text-gray-dark"></strong>
+                  <!-- <a href="#">Follow</a> -->
+                </div>
+                <span class="d-block">URL AND CAPACITY</span>
+              </div>
+            </div>
+            <small class="d-block text-right mt-3">
+              <a href="#">Learn More</a>
+            </small>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    
+    <script type="text/javascript" src="./script/demoguy.js"></script>
+    <script type="text/javascript" src="./script/script.js"></script>
+
+  </body>
+</html>
