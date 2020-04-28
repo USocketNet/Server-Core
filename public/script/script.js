@@ -1,5 +1,5 @@
 const site_url = 'http://'+window.location.host;
-const wp_url = 'http://'+window.location.host;
+const wp_url = 'http://usn.mshome.net';
 
 //#region JQuery Mechanism
 $(document).ready(function() {

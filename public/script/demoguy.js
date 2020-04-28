@@ -45,6 +45,8 @@ class Demoguy {
 //#region SERVER CONNECTION
 
     $(function () {
+        //Set the target host.
+        const usn_server = 'localhost';
 
         //Class for performing USocketNet demo.
         const demoguy = new Demoguy();
@@ -73,10 +75,10 @@ class Demoguy {
 
             //Declaration of 3 different type of server.
             let usnList = []; const authToken = { wpid: curUser.wpid, snid: curUser.snid };
-                usnList.push(new USocketNet('master', 'http://usn.mshome.net', authToken)); 
-                usnList.push(new USocketNet('message', 'http://usn.mshome.net', authToken)); 
-                usnList.push(new USocketNet('match', 'http://usn.mshome.net', authToken)); 
-                usnList.push(new USocketNet('game', 'http://usn.mshome.net', authToken)); 
+                usnList.push(new USocketNet('master', usn_server, authToken)); 
+                usnList.push(new USocketNet('message', usn_server, authToken)); 
+                usnList.push(new USocketNet('match', usn_server, authToken)); 
+                usnList.push(new USocketNet('game', usn_server, authToken)); 
 
             //Connect all USocketNet instance.
             usnList.forEach(curUsn => {

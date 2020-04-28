@@ -12,7 +12,7 @@ class usn_socketio {
         this.instance = this;
 
         //get instance of express for this new server.
-        this.instance.http = express.init();
+        this.instance.http = express.init().server;
 
         //Requiring socket.io module and passing express.
         const socketio = require('socket.io')(this.instance.http, {
