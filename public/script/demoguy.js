@@ -99,9 +99,11 @@ class Demoguy {
                         }
                     })
                 } else if(curUsn.serverType == 'message') {
-                    curUsn.on('msg-public', ( dat ) => {
-                        demoguy.showMessage(curUser.wpid == dat.sender ? true : false, dat);
-                    })
+                    if(page == 'message') {
+                        curUsn.on('msg-public', ( dat ) => {
+                            demoguy.showMessage(curUser.wpid == dat.sender ? true : false, dat);
+                        })
+                    }
                 }
                 curUsn.on('svr-connect', ( data ) => {
                     if( page === 'dashboard') {
