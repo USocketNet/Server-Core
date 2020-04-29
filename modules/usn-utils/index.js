@@ -29,7 +29,7 @@ const refjson = require('./json');
 const refconfig = require('./config');
 
 module.exports = {
-    refsProcs: procs.init(),
+    procs: refsProcs.init(),
     json: refjson.init(),
     debug: refdebug.init(),
     config: refconfig.init(),

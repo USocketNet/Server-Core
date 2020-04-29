@@ -12,7 +12,7 @@
 class usn_json {
 
     /**
-     * During instantiation of usn_restapi class, a constructor is 
+     * During instantiation of usn_json class, a constructor is 
      * invoked which needs 0 parameter.
      */
     constructor () {

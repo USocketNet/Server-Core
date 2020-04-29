@@ -1,5 +1,8 @@
 {    
     "production": false,
+
+    "logging.file": true,
+    "logging.console": true,
     
     "restapi.url": "http://usn.mshome.net",
 
