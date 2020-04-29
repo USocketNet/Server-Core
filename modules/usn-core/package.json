@@ -12,6 +12,7 @@
     "socket.io": "^2.3.0",
     "socket.io-redis": "^5.2.0",
     "minimist": "^1.2.5",
+    "pm2": "^4.4.0",
     "usn-libs": "file:../usn-libs",
     "usn-utils": "file:../usn-utils"
   }

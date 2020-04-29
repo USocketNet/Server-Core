@@ -9,10 +9,9 @@ config:
     transports: ["websocket", "polling"] #transport layer.
     query:  # pass query here!
       wpid: "1"
-      snid: "p6uddd9yzLGwMmOlue0bffLJayknesi4I2KIYieuFq4"
-      apid: "svr-status"
+      snid: "PUT_SESSION_HASH_HERE"
   phases:
-    - duration: 30 # how many seconds to create every seconds.
+    - duration: 10 # how many seconds to create every seconds.
       arrivalRate: 5 # create virtual users per seconds.
 scenarios:
   - engine: "socketio"
