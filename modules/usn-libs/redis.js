@@ -13,19 +13,22 @@
 //#region Helper function for redis script.
     //Make a default socket key.
     function getSockKey( wpid, stype ) {
-        return 'user:' + wpid + ':' + stype;
+        return 'user:' + wpid + ':' + stype.toLowerCase();
+    }
+
+    //Make a default user key.
+    function getServKey( stype ) {
+        return stype.toLowerCase() + ':user';
     }
 
     //Make a default user key.
     function getUserKey( wpid ) {
         return 'user:' + wpid;
     }
-
-    //Make a default message key.
-    function getMsgKey( wpid ) {
-        return 'msg:' + wpid;
-    }
 //#endregion
+
+//Require usn-utils->all on global.
+const utils = require('usn-utils');
 
 class usn_redis {
 
@@ -35,9 +38,6 @@ class usn_redis {
      * format: { host, port, password{if any} }.
      */
     constructor ( conf ) {
-        //Require usn-utils->all.
-        const utils = require('usn-utils');
-
         //Get utils usn_debug class.
         this.debug = utils.debug;
 
@@ -131,14 +131,17 @@ class usn_redis {
         }
     }
 
-    //TEMPORARY
-    masterInit( user, cback ) {
+    getUserSids( wpid, stype, cback ) {
         if(this.database !== 'undefined') {
-            this.database.hmset( getUserKey( user.wpid ), user, (err, res) => {
+            this.database.hkeys( getSockKey( wpid, stype ), function (err, obj) {
                 if( err ) {
-                    cback( { status: 'failed', data: null } );
+                    cback( { status: 'error', info: 'Error finding user: ' + err } );
                 } else {
-                    cback( { status: 'success', data: res} );
+                    if( utils.json.isObjectEmpty(obj) ) {
+                        cback( { status: 'notfound' } );
+                    } else {
+                        cback( { status: 'success', data: obj } );
+                    }
                 }
             });
         } else {
@@ -156,13 +159,18 @@ class usn_redis {
      */
     socketConnect ( socket, cback ) {
         if(this.database !== 'undefined') {
-            let curSocket = { [socket.id]: new Date() };
 
-            this.database.hset( getSockKey( socket.wpid, socket.stype ), curSocket, (err, res) => {
+            // let serverCache = { [socket.id]: socket.wpid };
+            // this.database.hset( getServKey( socket.stype ), serverCache, (err, res) => {
+            //     if( err ) {
+            //         cback( { status: 'failed', data: null } );
+            //     }
+            // });
+
+            let userCache = { [socket.id]: new Date().toLocaleString() };
+            this.database.hset( getSockKey( socket.wpid, socket.stype ), userCache, (err, res) => {
                 if( err ) {
                     cback( { status: 'failed', data: null } );
-                } else {
-                    cback( { status: 'success', data: res} );
                 }
             });
         } else {
@@ -179,6 +187,7 @@ class usn_redis {
      */
     socketDisconnect ( socket ) { // { wpid: 1, sid: 'hash', nsp: 'master' }
         if(this.database !== 'undefined') {
+            // this.database.hdel(getServKey( socket.stype ), socket.id);
             this.database.hdel(getSockKey( socket.wpid, socket.stype ), socket.id);
         } else {
             this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');

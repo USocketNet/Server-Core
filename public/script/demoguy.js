@@ -4,7 +4,7 @@ class Demoguy {
 
     }
 
-    showMessage( isLocal, dat ) {
+    showMessage( isLocal, mtype, dat ) {
         if(isLocal) {
             $(".msg_history").append("<div class='outgoing_msg'><div class='sent_msg'><p>"+ 
                 dat.message+"</p><span class='time_date' style='text-align: right;'> "+
@@ -16,7 +16,7 @@ class Demoguy {
         } else {
             //<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> - replace fonst-awesome!
             $(".msg_history").append("<div class='incoming_msg'><div class='incoming_msg_img'><i class='fas fa-user-circle fa-2x'></i>"+
-            "</div><div class='received_msg'><div class='received_withd_msg'><p>"+dat.username+" [PUBLIC]: "+dat.message+"</p><span class='time_date' style='text-align: left;'> "+
+            "</div><div class='received_msg'><div class='received_withd_msg'><p>"+dat.username+" ["+mtype+"]: "+dat.message+"</p><span class='time_date' style='text-align: left;'> "+
             dat.datestamp+" | Today</span></div></div></div>");
         }
 
@@ -101,8 +101,12 @@ class Demoguy {
                 } else if(curUsn.serverType == 'message') {
                     if(page == 'message') {
                         curUsn.on('msg-public', ( dat ) => {
-                            demoguy.showMessage(curUser.wpid == dat.sender ? true : false, dat);
-                        })
+                            demoguy.showMessage(curUser.wpid == dat.sender ? true : false, 'SERVER WIDE', dat);
+                        });
+
+                        curUsn.on('msg-private', ( dat ) => {
+                            demoguy.showMessage(curUser.wpid == dat.sender ? true : false, 'PRIVATE ONLY', dat);
+                        });
                     }
                 }
                 curUsn.on('svr-connect', ( data ) => {
@@ -204,7 +208,7 @@ class Demoguy {
                     if(document.getElementById('chatbot_status').checked) {
                         usnList[1].sendMessage(demoguy.getRandomString(20), (res) => {
                             if(res.status === 'success') {
-                                demoguy.showMessage(true, res);
+                                demoguy.showMessage(true, 'LOCAL', res);
                             }
                         });
                     }
@@ -216,15 +220,25 @@ class Demoguy {
                 e.preventDefault(); //prevents page reloading.
                 if( $('#m').val() == 'logout' ) {
                     localStorage.clear();
-                    window.location.replace("http://"+window.location.host+"/demoguy");
+                    window.location.replace("http://"+window.location.host);
                     $('#m').val('');
                 } else if( $('#m').val() ) {
-                    usnList[1].sendMessage($('#m').val(), (res) => {
-                        if(res.status === 'success') {
-                            demoguy.showMessage(true, res);
-                        }
-                    });
-                    $('#m').val('');
+                    let rcv = document.getElementById('wpid-rcvr').value;
+                    if( rcv.length > 0 ) { //
+                        usnList[1].privateMessage($('#m').val(), rcv, (res) => {
+                            if(res.status === 'success') {
+                                demoguy.showMessage(true, 'LOCAL', res);
+                                $('#m').val('');
+                            }
+                        });
+                    } else {
+                        usnList[1].sendMessage($('#m').val(), (res) => {
+                            if(res.status === 'success') {
+                                demoguy.showMessage(true, 'LOCAL', res);
+                                $('#m').val('');
+                            }
+                        });
+                    }
                 } else {
                     console.log( 'Input value is not in the list of conditions.' );
                 } return false;

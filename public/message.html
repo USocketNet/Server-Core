@@ -64,16 +64,10 @@
       /* #region Chat Window */
       .container{max-width:1170px; margin:auto;}
       img{ max-width:100%;}
-      .inbox_people {
-        background: #f8f8f8 none repeat scroll 0 0;
-        float: left;
-        overflow: hidden;
-        width: 40%; border-right:1px solid #c4c4c4;
-      }
       .inbox_msg {
-        border: 1px solid #c4c4c4;
         clear: both;
         overflow: hidden;
+        margin: 0 1rem;
       }
       .top_spac{ margin: 20px 0 0;}
 
@@ -84,7 +78,12 @@
         text-align: right;
         width: 60%; padding:
       }
-      .headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+      .headind_srch{ 
+        padding:10px 29px 10px 20px; 
+        overflow:hidden; 
+        border-bottom:1px solid #c4c4c4;
+        margin: 20px 10px;
+      }
 
       .recent_heading h4 {
         color: #05728f;
@@ -120,7 +119,7 @@
         margin: 0;
         padding: 18px 16px 10px;
       }
-      .inbox_chat { height: 550px; overflow-y: scroll;}
+      .inbox_chat { height: 550px; overflow-y: auto;}
 
       .active_chat{ background:#ebebeb;}
 
@@ -153,14 +152,9 @@
         margin: 8px 0 0;
       }
       .received_withd_msg { width: 57%;}
-      .mesgs {
-        float: left;
-        padding: 30px 15px 0 25px;
-        width: 60%;
-      }
 
       .sent_msg p {
-        background: #31aaff none repeat scroll 0 0;
+        background: #545454  none repeat scroll 0 0;
         border-radius: 3px;
         font-size: 14px;
         margin: 0; color:#fff;
@@ -175,7 +169,7 @@
       .input_msg_write input {
         background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
         border: medium none;
-        color: #4c4c4c;
+        color: #b7b7b7;
         font-size: 15px;
         min-height: 48px;
         width: 93%;
@@ -218,6 +212,7 @@
 
       body {
         margin-top: 100px;
+        background-color: #c3c3c3;
       }
 
       .navmenu {
@@ -228,6 +223,54 @@
       .navbar-dark .navbar-brand {
         margin-left: 100px;
       }
+
+      .upper-message {
+        padding: 25px 10px;
+        padding-bottom: 0;
+        margin-bottom: 15px;
+        background-color: #1d1d1d;
+      }
+
+      .message-box {
+        background: #2d2d2d;
+        color: #fff;
+      }
+      
+      #wpid-rcvr {
+        background-color: #545454;
+        color: #cacaca;
+        border-color: #7b7b7b;
+      }
+      
+      #wpid-rcvr-id {
+        background-color: #404040;
+        color: #fff;
+        border-color: #4c4c4c;
+      }
+
+      .message-people {
+        border: 2px #1d1d1d;
+        border-style: solid;
+      }
+
+      /* Scrollbar */
+      html {
+        scrollbar-face-color: #646464;
+        scrollbar-base-color: #646464;
+        scrollbar-3dlight-color: #646464;
+        scrollbar-highlight-color: #646464;
+        scrollbar-track-color: #000;
+        scrollbar-arrow-color: #000;
+        scrollbar-shadow-color: #646464;
+      }
+      ::-webkit-scrollbar { width: 8px; height: 3px;}
+      ::-webkit-scrollbar-button {  background-color: #666; }
+      ::-webkit-scrollbar-track {  background-color: #646464;}
+      ::-webkit-scrollbar-track-piece { background-color: #000;}
+      ::-webkit-scrollbar-thumb { height: 50px; background-color: #666; border-radius: 3px;}
+      ::-webkit-scrollbar-corner { background-color: #646464;}}
+      ::-webkit-resizer { background-color: #666;}
+
     </style>
 
   </head>
@@ -265,11 +308,11 @@
       </div>
     </nav>
 
-    <div id="messageArea" class="container">
-      <div class="messaging">
-        <div class="inbox_msg">
+    <div id="messageArea">
+      <div class="messaging container">
+        <div class="inbox_msg row">
 
-          <div class="inbox_people">
+          <div class="message-people col-md-5">
             <div class="headind_srch">
               <div class="recent_heading">
                 <h4>Online Users</h4>
@@ -301,11 +344,26 @@
             </div>
           </div>
 
-          <div class="mesgs">
-            <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="chatbot_status">
-              <label class="custom-control-label" for="chatbot_status">Enable Chat Bot</label>
+          <div class="message-box col-md-7">
+            <div class="upper-message row">
+
+              <div class="col-sm-6">
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="chatbot_status">
+                  <label class="custom-control-label" for="chatbot_status">Chat Bot</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="wpid-rcvr-id">WPID</span>
+                  </div>
+                  <input id="wpid-rcvr" type="text" class="form-control" aria-label="Default" aria-describedby="wpid-rcvr-id">
+                </div>
+              </div>
+              
             </div>
+            
             <div id="messageContainer" class="msg_history"></div>
             <div class="type_msg">
               <div class="input_msg_write">

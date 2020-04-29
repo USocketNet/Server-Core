@@ -17,7 +17,6 @@ class USocketNet {
                 return '9090';
             default:
                 return 'undefined';
-                
         }
     }
 
@@ -163,6 +162,14 @@ class USocketNet {
                     cbs.forEach(cb => cb( { username: msg.u, sender: msg.s, message: msg.m, datestamp: msg.d } ))
                 }
             });
+
+            this.conn.on('pri', function( msg ) {
+
+                let cbs = cbList['msg-private'];
+                if(cbs) {
+                    cbs.forEach(cb => cb( { username: msg.u, sender: msg.s, message: msg.m, datestamp: msg.d } ))
+                }
+            });
         }
 
         this.conn.on('disconnect', (reason) => {
@@ -188,6 +195,16 @@ class USocketNet {
 
     sendMessage(msg, cback) {
         this.conn.emit('pub', { m: msg }, (res) => {
+            if(res.status == 0) {
+                cback( { status: 'success', message: msg, datestamp: res.d } );
+            } else {
+                cback( { status: 'failed' } );
+            }
+        });
+    }
+
+    privateMessage(msg, wpid, cback) {
+        this.conn.emit('pri', { m: msg, r: wpid }, (res) => {
             if(res.status == 0) {
                 cback( { status: 'success', message: msg, datestamp: res.d } );
             } else {

@@ -35,7 +35,7 @@ class usn_worker_redis {
             this.debug.log(stype + ' Server', socket.uname + ' #' + socket.wpid + ' connect @ port ' + port + ' with sid of ' + socket.id, 'white', 'connect');
 
             //Register user socket instance to redis.
-            this.redis.socketConnect(socket, () => {});
+            this.redis.socketConnect(socket, (err) => {});
 
             //Listens for any server-client disconnection
             socket.on('disconnect', (reason) => {

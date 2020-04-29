@@ -30,6 +30,6 @@ const syntry = require('./adapter/syntry');
 module.exports = {
     socketio: socketio,
     redis: libraries.redis,
-    redis: utils.debug,
+    debug: utils.debug,
     syntry: syntry.init()
 };
