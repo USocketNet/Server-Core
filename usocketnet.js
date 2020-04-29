@@ -1,10 +1,13 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//																																//
-// 		                 		Property of Bytes Crafter : Website - "usocketnet.bytescrafter.net"    							//
-// 		                 		This script is subjected to Copyrights Law. All rights Reserved. 								//
-// 		                   		Project Involved: USocketNet v1.0.0 Server  for Unity of 2020.  								//
-//																																//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+    * Package: USocketNet
+    * Description: Self-Host Realtime Multiplayer Server 
+    *       for your Game or Chat Application.
+    * Package-Website: https://usocketnet.bytescrafter.net
+    * 
+    * Author: Bytes Crafter
+    * Author-Website:: https://www.bytescrafter.net/about-us
+    * License: Copyright (C) Bytes Crafter - All rights Reserved. 
+*/
 
 const usn = require('usn-utils');
 const argv = require('minimist')(process.argv.slice(2));
@@ -19,11 +22,3 @@ if( typeof argv.master === 'undefined' || typeof argv.message === 'undefined' ||
     require('./modules/match');
     require('./modules/game');
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//																																//
-// 		                 		Property of Bytes Crafter : Website - "usocketnet.bytescrafter.net"    							//
-// 		                 		This script is subjected to Copyrights Law. All rights Reserved. 								//
-// 		                   		Project Involved: USocketNet v1.0.0 Server  for Unity of 2020.  								//
-//																																//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
