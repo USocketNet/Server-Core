@@ -1,7 +1,7 @@
 {
-  "name": "usn-libs",
+  "name": "usn-core",
   "version": "1.0.0",
-  "description": "Helper for USocketNet core.",
+  "description": "USocketNet core.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,8 @@
   "dependencies": {
     "socket.io": "^2.3.0",
     "socket.io-redis": "^5.2.0",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "usn-libs": "file:../usn-libs",
+    "usn-utils": "file:../usn-utils"
   }
 }
