@@ -1,6 +1,14 @@
 
-const utils = require('usn-utils');
-const redis = require('ioredis');
+/*
+    * Package: USocketNet
+    * Description: Self-Host Realtime Multiplayer Server 
+    *       for your Game or Chat Application.
+    * Package-Website: https://usocketnet.bytescrafter.net
+    * 
+    * Author: Bytes Crafter
+    * Author-Website:: https://www.bytescrafter.net/about-us
+    * License: Copyright (C) Bytes Crafter - All rights Reserved. 
+*/
 
 //#region Helper function for redis script.
     //Make a default socket key.
@@ -21,37 +29,57 @@ const redis = require('ioredis');
 
 class usn_redis {
 
-    //Initialized instance of redis.
+    /**
+     * During instantiation of usn_express class, a constructor is 
+     * invoked which needs 1 parameter. Redis config in standard 
+     * format: { host, port, password{if any} }.
+     */
     constructor ( conf ) {
+        //Require usn-utils->all.
+        const utils = require('usn-utils');
+
+        //Get utils usn_debug class.
+        this.debug = utils.debug;
+
+        //Get utils usn_json class and clone config json object.
         this.config = utils.json.cloneJson( conf );
-        return this;
+
+        //Require npm ioredis package.
+        this.redis = require('ioredis');
     }
 
-    //Create a client to connect to redis.
+    /**
+     * Create redis client and select target database.
+     * @param  {} db
+     */
     select( db ) {
 
         if( typeof this.config !== 'undefined') {
             let conf = this.config;
                 conf.db = db;
-            this.database = redis.createClient( conf );
+            this.database = this.redis.createClient( conf );
         } else {
-            utils.debug.log('Redis-Server-Warning', 'Redis database selection was failed.', 'red', 'redis');
+            this.debug.log('Redis-Server-Warning', 'Redis database selection was failed.', 'red', 'redis');
             process.exit(1);
         }
     }
-
-    //Initially check redis server.
+    
+    /**
+     * Call this function and it will return if redis server is alive else false 
+     * if the redis-server cant be reach or actually unreachable.
+     */
     ping () {
-        redis.createClient( this.config ).ping( (err, res) => {
+        this.redis.createClient( this.config ).ping( (err, res) => {
             if( err ) {
-                usn.debug.log('Redis-Server-Error', 'Redis connection check return error.', 'red', 'redis');
+                this.debug.log('Redis-Server-Error', 'Redis connection check return error.', 'red', 'redis');
                 process.exit(1);
             } else {
-                usn.debug.log('Redis-Server-Success', 'Redis connection check was a success.', 'green', 'redis');
+                this.debug.log('Redis-Server-Success', 'Redis connection check was a success.', 'green', 'redis');
             }
         });
     }
 
+    //TEMPORARY
     getUser( wpid, cback ) {
         if(this.database !== 'undefined') {
             this.database.hgetall( getUserKey(wpid), function (err, obj) {
@@ -67,10 +95,11 @@ class usn_redis {
             });
         } else {
             cback( { status: 'noredisdb' } );
-            utils.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
+            this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
         }
     }
 
+    //TEMPORARY
     addUser( user, cback ) {
         if(this.database !== 'undefined') {
             this.database.hmset( getUserKey(user.wpid), user, function (err, res) {
@@ -82,10 +111,11 @@ class usn_redis {
             });
         } else {
             cback( { status: 'noredisdb' } );
-            utils.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
+            this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
         }
     }
 
+    //TEMPORARY
     updateUser( user, cback ) {
         if(this.database !== 'undefined') {
             this.database.hmset( getUserKey(user.wpid), user, function (err, res) {
@@ -97,10 +127,11 @@ class usn_redis {
             });
         } else {
             cback( { status: 'noredisdb' } );
-            utils.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
+            this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
         }
     }
 
+    //TEMPORARY
     masterInit( user, cback ) {
         if(this.database !== 'undefined') {
             this.database.hmset( getUserKey( user.wpid ), user, (err, res) => {
@@ -112,11 +143,18 @@ class usn_redis {
             });
         } else {
             cback( { status: 'noredisdb' } );
-            utils.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
+            this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
         }
     }
-
-    socketConnect ( socket, cback ) { // { wpid: 1, sid: 'hash', nsp: 'master' }
+    
+    /**
+     * Must be called when USocketNet user is connected to any server.
+     * This function insert user data to redis server. The socket param 
+     * must be in { wpid: 1, sid: 'hash', nsp: 'master' } structure.
+     * @param  {} socket
+     * @param  {} cback
+     */
+    socketConnect ( socket, cback ) {
         if(this.database !== 'undefined') {
             let curSocket = { [socket.id]: new Date() };
 
@@ -129,19 +167,29 @@ class usn_redis {
             });
         } else {
             cback( { status: 'noredisdb' } );
-            utils.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
+            this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
         }
     }
 
+    /**
+     * Must be called when USocketNet user is disconnected to any server.
+     * This function delete user data to redis server. The socket param 
+     * must be in { wpid: 1, sid: 'hash', nsp: 'master' } structure.
+     * @param  {} socket
+     */
     socketDisconnect ( socket ) { // { wpid: 1, sid: 'hash', nsp: 'master' }
         if(this.database !== 'undefined') {
             this.database.hdel(getSockKey( socket.wpid, socket.stype ), socket.id);
         } else {
-            utils.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
+            this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
         }
     }
 }
 
+/**
+ * Initialized USN usn_redis class.
+ * @param  {} config
+ */
 module.exports.init = ( config ) => {
     return new usn_redis( config );
 };

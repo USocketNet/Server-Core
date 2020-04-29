@@ -1,6 +1,6 @@
 
 const debug = require('usn-utils').debug;
-const request = require('usn-libs').request;
+const request = require('usn-libs').restapi;
 
 class confilter {
 
