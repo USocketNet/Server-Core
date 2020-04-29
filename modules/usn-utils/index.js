@@ -1,20 +1,36 @@
 
-//JSon related function.
-const refjson = require('./json');
+/*
+    * Package: USocketNet
+    * Description: Self-Host Realtime Multiplayer Server 
+    *       for your Game or Chat Application.
+    * Package-Website: https://usocketnet.bytescrafter.net
+    * 
+    * Author: Bytes Crafter
+    * Author-Website:: https://www.bytescrafter.net/about-us
+    * License: Copyright (C) Bytes Crafter - All rights Reserved. 
+*/
 
-//Debugging utility.
+/* 
+ *  ABOUT THE PACKAGE: Focused on providing time common functions
+ *  that gives the developer an easy access to basics and most used 
+ *  data processing and any related programming logics.
+*/
+
+//Includes NodeJS process event handler.
+const refsProcs = require('./process');
+
+//Debuging or Logging class.
 const refdebug = require('./debug');
 
-//Global configurations.
+//JSON Processing class.
+const refjson = require('./json');
+
+//Global Configurations handler.
 const refconfig = require('./config');
 
-//Include process for some reason.
-const procs = require('./process');
-
 module.exports = {
+    refsProcs: procs.init(),
     json: refjson.init(),
     debug: refdebug.init(),
     config: refconfig.init(),
-    procs: procs.init(),
 };
-
