@@ -1,16 +1,35 @@
 
+/*
+    * Package: USocketNet
+    * Description: Self-Host Realtime Multiplayer Server 
+    *       for your Game or Chat Application.
+    * Package-Website: https://usocketnet.bytescrafter.net
+    * 
+    * Author: Bytes Crafter
+    * Author-Website:: https://www.bytescrafter.net/about-us
+    * License: Copyright (C) Bytes Crafter - All rights Reserved. 
+*/
+
+/* 
+ *  ABOUT THE PACKAGE: The package include mainly the core of 
+ *      USocketNet like match making and character synchronization.
+*/
+
 // Prepare socketio core.
 const socketio = require('./socketio');
-module.exports.socketio = socketio;
 
 // Prepare related libraries.
 const libraries = require('usn-libs');
-module.exports.redis = libraries.redis;
 
 // Include utils in the core.
 const utils = require('usn-utils');
-module.exports.debug = utils.debug;
 
 // Include the syntry mode.
 const syntry = require('./adapter/syntry');
-module.exports.syntry = syntry.init();
+
+module.exports = {
+    socketio: socketio,
+    redis: libraries.redis,
+    redis: utils.debug,
+    syntry: syntry.init()
+};
