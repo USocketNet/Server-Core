@@ -22,28 +22,20 @@ class usn_restapi {
         //Declare the one and only restapi.
         this.wpress_url = url;
 
+        //Include server config class.
+        this.config = require('usn-utils').config;
+
         //Include the npm request module.
         this.request = require('request');
     }
 
     /**
-     * Verify cred { wpid, snid } to the initialized restapi url provided.
-     * Then callback an object response, { status: 'success', data: object }.
-     * @param  {} cred
+     * RestApi post request functiion that expecting for option in this format: 
+     * { uri, json: true, form: { query1, query2 }} to return json object.
+     * @param  {} options
      * @param  {} cback
      */
-    verify ( cred, cback ) {
-
-        //Prepare credential data to used during restapi verification.
-        let options = {
-            uri: this.wpress_url + '/wp-json/usocketnet/v1/verify',
-            json: true,
-            form: { 
-                wpid: cred.wpid, 
-                snid: cred.snid,
-            }
-        };
-
+    post ( options, cback ) {
         //Make a post request to the initialized reatapi url.
         this.request.post(options, (err, res, data) => {
                 //Check if the restapi normally response.
@@ -75,6 +67,42 @@ class usn_restapi {
                 }
             }
         );
+    }
+
+    /**
+     * Verify cred { wpid, snid } to the initialized restapi url provided.
+     * Then callback an object response, { status: 'success', data: object }.
+     * @param  {} cred
+     * @param  {} cback
+     */
+    verify ( cred, cback ) {
+
+        //Prepare credential data to used during restapi verification.
+        let options = {
+            uri: this.wpress_url + '/wp-json/usocketnet/v1/verify',
+            json: true,
+            form: { 
+                wpid: cred.wpid, 
+                snid: cred.snid,
+            }
+        };
+        this.post(options, cback);
+    }
+
+    /**
+     * Initially check restapi provided and run cluster server and will return 
+     * a console and file log whether the restapi is reachable or not.
+     */
+    check( cback ) {
+        //Prepare credential data to used during restapi checking.
+        let options = {
+            uri: this.wpress_url + '/wp-json/usocketnet/v1/check',
+            json: true,
+            form: { 
+                securekey: this.config.safe('restapi.key', ''), 
+            }
+        };
+        this.post(options, cback);
     }
 }
 

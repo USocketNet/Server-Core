@@ -69,6 +69,8 @@ class usn_config {
      */
     server( type, argv ) {
         switch ( type ) {
+            case 'cluster':
+                return { port: argv.cluster };
             case 'master':
                 return { port: argv.master };
             case 'message':

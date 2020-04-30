@@ -1,4 +1,8 @@
 {
+    "cluster.host": "localhost",
+    "cluster.port": 8080,
+    "cluster.redis.db": 0,
+
     "master.host": "localhost",
     "master.port": 19091,
     "master.redis.db": 1,

@@ -17,10 +17,9 @@ class usn_socketio {
     
     /**
      * During instantiation of usn_express class, a constructor is 
-     * invoked which needs 1 parameter. The stype is the server type 
-     * name like master or match.
+     * invoked which needs 0 parameter.
      */  
-    constructor ( stype ) {
+    constructor () {
         //Create instance for this.
         this.instance = this;
 
@@ -81,6 +80,6 @@ class usn_socketio {
  * Initialized USN usn_socketio class.
  * @param  {} nsp
  */
-module.exports.init = ( nsp ) => {
-    return new usn_socketio( nsp );
+module.exports.init = () => {
+    return new usn_socketio();
 };
