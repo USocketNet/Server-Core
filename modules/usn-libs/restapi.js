@@ -96,7 +96,7 @@ class usn_restapi {
     check( cback ) {
         //Prepare credential data to used during restapi checking.
         let options = {
-            uri: this.wpress_url + '/wp-json/usocketnet/v1/check',
+            uri: this.wpress_url + '/wp-json/usocketnet/v1/cluster/verify',
             json: true,
             form: { 
                 securekey: this.config.safe('restapi.key', ''), 
