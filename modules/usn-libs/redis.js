@@ -193,6 +193,42 @@ class usn_redis {
             this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
         }
     }
+
+    /**
+     * Push pm2 process list into redis database without any callback.
+     * @param  {} data
+     * @param  {} cback
+     */
+    pushSummaryStats( data, cback ) {
+        let summaryStats = [ JSON.stringify(data) ];
+        this.database.lpush('status:summary', summaryStats);
+        this.database.ltrim('status:summary', '0', '9', (err, reply) => {
+            if(err) {
+                //console.log(err);
+            }
+            cback();
+        });
+    }
+    
+    /**
+     * Return a callback with a parsed JSON of summary status of all the 
+     * pm2 processes, either online or offline.
+     * @param  {} cback
+     */
+    getSummaryStats(cback) {
+        this.database.lrange('status:summary', '0', '0', (err, reply) => {
+            if( err ) {
+                cback( { success: 0, data: 'undefined' } );
+            } else {
+                if(reply.length > 0) {
+                    cback( { success: 1, data: JSON.parse(reply) } );
+                } else {
+                    cback( { success: 1, data: [] } );
+                }
+            }
+            
+        });
+    }
 }
 
 /**

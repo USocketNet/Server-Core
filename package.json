@@ -5,7 +5,9 @@
   "main": "usocketnet.js",
   "scripts": {
     "start": "pm2 start usocketnet.js --name svr-1 -- --name svr1 --master 19091 --message 6061 --match 4531 --game 9091",
-    "test": "pm2 start modules/cluster.js --name cluster -- --cluster 8081"
+    "test": "pm2 start modules/cluster.js --name cluster -- --cluster 8081",
+    "pretest": "echo Starting USocketNet cluster manager.",
+    "posttest": "pm2 start demoguy.js"
   },
   "author": "Bytes Crafter",
   "license": "ISC",

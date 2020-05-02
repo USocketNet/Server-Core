@@ -27,9 +27,13 @@ const utils = require('usn-utils');
 // Include the syntry mode.
 const syntry = require('./adapter/syntry');
 
+// Include usn_pm2 for process management.
+const cluster = require('./cluster/pm2');
+
 module.exports = {
     socketio: socketio,
     redis: libraries.redis,
     debug: utils.debug,
-    syntry: syntry.init()
+    syntry: syntry.init(),
+    cluster: cluster.init()
 };
