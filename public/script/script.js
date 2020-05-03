@@ -63,7 +63,7 @@ function onLoginNow() {
         dataType: 'json',
         success: function(data) {            
             $("#signin-submit").prop('disabled', false);
-          if( data.code === 'success' ) {
+          if( data.status == 'success' ) {
             $("#signin-success-alert").fadeTo(5000, 500).slideUp(500, function() {
                 $("#signin-success-alert").slideUp(500);
             });
@@ -72,6 +72,7 @@ function onLoginNow() {
             localStorage['user'] = JSON.stringify(userData);
             window.location.replace(site_url + '/dashboard.html');
           } else {
+            $('#auth-error-message').text( data.message );
             $("#signin-error-alert").fadeTo(5000, 500).slideUp(500, function() {
                 $("#signin-error-alert").slideUp(500);
             });
@@ -79,6 +80,7 @@ function onLoginNow() {
         },
         error: function(xmlHttpReq, textStatus, errorThrown) {
             $("#signin-submit").prop('disabled', false);
+            $('#auth-error-message').text( textStatus + ": " + errorThrown );
             $("#signin-error-alert").fadeTo(5000, 500).slideUp(500, function() {
                 $("#signin-error-alert").slideUp(500);
             });

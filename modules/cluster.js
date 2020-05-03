@@ -18,11 +18,11 @@ const restapi = require('usn-libs').restapi;
 const debug = require('usn-utils').debug;
 
     //Check and verify restapi secret key.
-    restapi.check( (res) => {
+    restapi.cluster_verify( (res) => {
         if(res.status == 'success') {
-            debug.log('USocketNet-Cluster-RestApi', 'The RestApi respond successfully and able to respond to our request.', 'green', 'cluster');
+            debug.log('USocketNet-Cluster-RestApi', res.message, 'green', 'cluster');
         } else {
-            debug.log('USocketNet-Cluster-RestApi', 'The RestApi was not able to respond properly or completely unreachable.', 'red', 'cluster');
+            debug.log('USocketNet-Cluster-RestApi', res.message, 'red', 'cluster');
         }
     });
 

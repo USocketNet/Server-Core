@@ -42,7 +42,17 @@ class usn_restapi {
                 if (!err && res.statusCode == 200) {
                     //RestAPI response follow our format. so return data!
                     if(typeof data.status != 'undefined') {
-                        return cback( data );
+                        if(data.status == 'success') {
+                            return cback({ 
+                                status: 'success', 
+                                data: data
+                            });
+                        } else {
+                            return cback({ 
+                                status: 'failed', 
+                                message: 'RestApi request failed response: ' + data.message,
+                            });
+                        }
                     } else {
                         //else! then notify requester that data is not valid.
                         return cback({ 
@@ -75,7 +85,7 @@ class usn_restapi {
      * @param  {} cred
      * @param  {} cback
      */
-    verify ( cred, cback ) {
+    user_verify ( cred, cback ) {
 
         //Prepare credential data to used during restapi verification.
         let options = {
@@ -93,7 +103,7 @@ class usn_restapi {
      * Initially check restapi provided and run cluster server and will return 
      * a console and file log whether the restapi is reachable or not.
      */
-    check( cback ) {
+    cluster_verify( cback ) {
         //Prepare credential data to used during restapi checking.
         let options = {
             uri: this.wpress_url + '/wp-json/usocketnet/v1/cluster/verify',

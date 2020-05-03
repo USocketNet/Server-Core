@@ -51,10 +51,10 @@ class usn_syntry {
         };
 
         //Verify the user through our USocketNet WordPress API plugin.
-        restapi.verify(credential, (response) => {
-            if( response.status === 'success' ) {
+        restapi.user_verify(credential, (response) => {
+            if( response.status == 'success' ) {
                 packet.wpid = credential.wpid;
-                packet.uname = response.user.uname;
+                packet.uname = response.data.uname;
                 return next();
             } else {
                 debug.log('RestApi-Request-Error', response.message, 'yellow', 'connect')
