@@ -32,7 +32,6 @@ const restapi = require('usn-libs').restapi.init( config.safe('restapi.url', 'ht
 const redis = require('usn-libs').redis.init( config.redis() );
     redis.select(0);
 
-
     core.cluster.hostinfo( (data) => {
         redis.pushHostinfo(data, (res) => {
             let donePush = true;
@@ -74,6 +73,12 @@ instance.sio.on('connection', (socket) => {
         redis.getSummaryStats( (reply) => {
             cback(reply);
         });
+    });
+
+    //Restart process by id or name.
+    socket.on('process_restart', (pid, cback) => {
+        //Problem on same call with redis summary query.
+        //core.cluster.restart(pid, cback);
     });
 
 });

@@ -22,19 +22,46 @@ class usn_pm2 {
         //Reserve!
     }
 
+    restart( pid, cback ) {
+      pm2.connect(function(err) {
+        if (err) {
+            console.error(err)        
+        }
+
+        pm2.restart( pid+'', (errs,psc) => {
+          if(errs) {
+            cback({ status: 'success' });
+          } else {
+            cback({ status: 'failed' });
+          }
+          pm2.disconnect();
+        });
+
+        // pm2.restart( pid, (errs, proc) => {
+        //   if(errs) {
+        //     cback({ status: 'success' });
+        //   } else {
+        //     cback({ status: 'failed' });
+        //   }
+        //   console.log('err2' + errs);
+        //   pm2.disconnect();
+        // });
+      });
+    }
+
     //This summary will return callback with instance cpu, mem, etc.
     summary( cback ) {
         pm2.connect(function(err) {
-            if (err) {
-                console.error(err)        
+          if (err) {
+              console.error(err)        
+          }
+  
+          pm2.list( (error, processDescriptionList) => {
+            if(error) {
+              console.log("List: " + error);
             }
-    
-            pm2.list( (error, processDescriptionList) => {
-              if(error) {
-                console.log("List: " + error);
-              }
 
-              const metrics = processDescriptionList.map((p) => {
+            const metrics = processDescriptionList.map((p) => {
                 return {
                   pid: p.pm_id, //
                   name: p.name, //
@@ -53,7 +80,7 @@ class usn_pm2 {
                   heap_percent_used: p.pm2_env.axm_monitor['Heap Usage'], //s
                 };
             });
-  
+
             pm2.disconnect();
 
             //console.log(data[0].latency.value);
@@ -81,7 +108,7 @@ class usn_pm2 {
             
             cback(metrics);
           });
-      });
+        });
     }
 
     //Returns a callback that usually composed of machine related info.
@@ -180,10 +207,7 @@ class usn_pm2 {
       });
     }
 
-    /**
-     * Return a complete information based on developer standard.
-     * @param  {} cback
-     */
+    //Return a complete information based on developer standard.
     complete( cback ) {
       pm2.connect(function(err) {
           if (err) {

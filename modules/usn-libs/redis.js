@@ -200,7 +200,7 @@ class usn_redis {
      * @param  {} cback
      */
     pushSummary( data, cback ) {
-        let summaryStats = [ JSON.stringify(data) ];
+        var summaryStats = [ JSON.stringify(data) ];
         this.database.lpush('status:summary', summaryStats);
         this.database.ltrim('status:summary', '0', '9', (err, reply) => {
             if(err) {
