@@ -85,7 +85,7 @@ class usn_pm2 {
     }
 
     //Returns a callback that usually composed of machine related info.
-    machine( cback ) {
+    hostinfo( cback ) {
         pm2.connect(function(err) {
             if (err) {
                 console.error(err)        
@@ -98,12 +98,13 @@ class usn_pm2 {
 
               const metrics = processDescriptionList.map((p) => {
                 return {
-                    machine_hostname: os.hostname(),
-                    machine_system: os.platform(),
-                    machine_uptime: os.uptime(),
-                    machine_cpu: os.cpus().length,
-                    machine_free_mem: os.freemem(),
-                    machine_total_mem: os.totalmem()
+                    hostname: os.hostname(),
+                    system: os.platform(),
+                    uptime: Math.floor(os.uptime() - 1000),
+                    cpu: os.cpus()[0].model + ' x' + os.cpus().length,
+                    arch: os.arch(),
+                    free_mem: os.freemem(),
+                    total_mem: os.totalmem()
                 };
             });
   
@@ -203,12 +204,12 @@ class usn_pm2 {
                 cpu: p.monit.cpu / 100, //s
                 ram: p.monit.memory, //s
                 
-                machine_hostname: os.hostname(),
-                machine_system: os.platform(),
-                machine_uptime: os.uptime(),
-                machine_cpu: os.cpus()[0].model + ' x' + os.cpus().length,
-                machine_free_mem: os.freemem(),
-                machine_total_mem: os.totalmem(),
+                machine_hostname: os.hostname(), //h
+                machine_system: os.platform(), //h
+                machine_uptime: os.uptime(), //h
+                machine_cpu: os.cpus()[0].model + ' x' + os.cpus().length, //h
+                machine_free_mem: os.freemem(), //h
+                machine_total_mem: os.totalmem(), //h
 
                 heap_percent_used: p.pm2_env.axm_monitor['Heap Usage'], //s
                 heap_size_used: p.pm2_env.axm_monitor['Used Heap Size'],

@@ -13,10 +13,9 @@
 const server_type = 'master';
 const core = require('usn-core');
 const instance = core.socketio.init();
+  //Prevent client socket connection if condition is not met.
+  instance.sio.use( core.syntry.verification );
   const conn = instance.connect( server_type );
-
-//Prevent client socket connection if condition is not met.
-instance.sio.use( core.syntry.verification );
 
 instance.sio.on('connection', (socket) => {
   //require('./model/svr-status')(machine, socket);

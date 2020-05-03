@@ -13,6 +13,9 @@
 //Include usn-utils->usn_debug class as global.
 const debug = require('usn-utils').debug;
 
+//Make sure to include config used for socketio.
+const config = require('usn-utils').config;
+
 class usn_socketio {  
     
     /**
@@ -22,9 +25,6 @@ class usn_socketio {
     constructor () {
         //Create instance for this.
         this.instance = this;
-
-        //Make sure to include config used for socketio.
-        this.config = require('usn-utils').config;
 
         //Include express subpackage module by USocketNet
         this.express = require('usn-libs').express;
@@ -43,7 +43,7 @@ class usn_socketio {
 
         //Requiring socket-io-redis as adapter
         const redisAdapter = require('socket.io-redis');
-            socketio.adapter( redisAdapter( this.config.redis() ) );
+            socketio.adapter( redisAdapter( config.redis() ) );
 
         //Referencing the socketio instance in this class.
         this.instance.sio = socketio;
@@ -57,7 +57,7 @@ class usn_socketio {
      */
     connect ( type ) {
         //Process the parameter to be used for server instancing.
-        let conf = this.config.server( type, this.argv );
+        let conf = config.server( type, this.argv );
         let sType = type.charAt(0).toUpperCase() + type.slice(1);
 
         //Include redis worker to check on user connection status.

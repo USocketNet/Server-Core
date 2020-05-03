@@ -16,9 +16,6 @@
  *      communicating with other server and databases in any kind.
 */
 
-//Reference for usn-utils->usn_config.
-const config = require('usn-utils').config;
-
 //Reference usn_restapi class.
 const restapi = require('./restapi');
 
@@ -29,7 +26,7 @@ const redis = require('./redis');
 const express = require('./express');
 
 module.exports = {
-    restapi: restapi.init( config.safe('restapi.url', 'http://localhost') ),
-    redis: redis.init( config.redis() ),
+    restapi: restapi,
+    redis: redis,
     express: express,
 };

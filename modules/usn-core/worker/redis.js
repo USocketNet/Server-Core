@@ -21,11 +21,12 @@ class usn_worker_redis {
         //Include USocketNet logging system.
         this.debug = require('usn-utils').debug;
 
-        //Include USocketNet libraries.
-        this.redis = require('usn-libs').redis;
+        //Include USocketNet debug system.
+        this.config = require('usn-utils').config;
 
-        //Select databsae for this server.
-        this.redis.select(0);
+        //Include USocketNet libraries & Select databsae for this server.
+        this.redis = require('usn-libs').redis.init(this.config.redis());
+            this.redis.select(0);        
 
         socketio.on('connection', (socket) => {
             //Set server type were in.
@@ -43,7 +44,7 @@ class usn_worker_redis {
                 this.redis.socketDisconnect( socket );
                 
                 //Server logging about the disconnection on Master Server.
-                this.debug.log(stype + ' Server', 'User #' + socket.wpid + ' disconnect @ port ' + port + ' with sid of ' + socket.id + ' - ' + reason, 'white', 'disconnect');
+                this.debug.log(stype + ' Server', socket.uname + ' #' + socket.wpid + ' disconnect @ port ' + port + ' with sid of ' + socket.id + ' - ' + reason, 'white', 'disconnect');
             });
 
             socket.on('error', (error) => {
@@ -51,7 +52,7 @@ class usn_worker_redis {
                 this.redis.socketDisconnect( socket );
 
                 //Server logging about the Socket Error on Master Server.
-                this.debug.log(stype + ' Server', 'User #' + socket.wpid + ' disconnect @ port ' + port + ' with sid of ' + socket.id + ' - ' + error, 'white', 'disconnect');
+                this.debug.log(stype + ' Server', socket.uname + ' #' + socket.wpid + ' disconnect @ port ' + port + ' with sid of ' + socket.id + ' - ' + error, 'white', 'disconnect');
             });
         });
     }

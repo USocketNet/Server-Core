@@ -12,9 +12,10 @@
 
 //Include usn-utils->usn_debug class as global.
 const debug = require('usn-utils').debug;
+const config = require('usn-utils').config;
 
  //Include the usn-libs->usn_restapi class.
-const restapi = require('usn-libs').restapi;
+const restapi = require('usn-libs').restapi.init( config.safe('restapi.url', 'http://localhost') )
 
 class usn_syntry {
 

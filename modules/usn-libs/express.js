@@ -46,7 +46,7 @@ class usn_express {
 
         //Run the http server from the port that was provided.
         this.instance.listen(port, () => {
-            this.debug.log('USocketNet-Demoguy', 'Demo site for this project is now serving at http://localhost:' + port, 'green', 'demoguy')
+            this.debug.log('USocketNet-Demoguy', 'Demoguy site  is now serving at http://localhost:' + port, 'green', 'demoguy')
         });;
     }
 }

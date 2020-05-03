@@ -37,24 +37,24 @@ class usn_restapi {
      */
     post ( options, cback ) {
         //Make a post request to the initialized reatapi url.
-        this.request.post(options, (err, res, data) => {
+        this.request.post(options, (err, res, reply) => {
                 //Check if the restapi normally response.
                 if (!err && res.statusCode == 200) {
-                    //RestAPI response follow our format. so return data!
-                    if(typeof data.status != 'undefined') {
-                        if(data.status == 'success') {
+                    //RestAPI response follow our format. so return reply!
+                    if(typeof reply.status != 'undefined') {
+                        if(reply.status == 'success') {
                             return cback({ 
                                 status: 'success', 
-                                data: data
+                                data: reply.data
                             });
                         } else {
                             return cback({ 
                                 status: 'failed', 
-                                message: 'RestApi request failed response: ' + data.message,
+                                message: 'RestApi request failed response: ' + reply.message,
                             });
                         }
                     } else {
-                        //else! then notify requester that data is not valid.
+                        //else! then notify requester that reply is not valid.
                         return cback({ 
                             status: 'unknown', 
                             message: 'RestApi response does not conform with the standards.' 

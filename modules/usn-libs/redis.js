@@ -199,7 +199,7 @@ class usn_redis {
      * @param  {} data
      * @param  {} cback
      */
-    pushSummaryStats( data, cback ) {
+    pushSummary( data, cback ) {
         let summaryStats = [ JSON.stringify(data) ];
         this.database.lpush('status:summary', summaryStats);
         this.database.ltrim('status:summary', '0', '9', (err, reply) => {
@@ -209,7 +209,7 @@ class usn_redis {
             cback();
         });
     }
-    
+
     /**
      * Return a callback with a parsed JSON of summary status of all the 
      * pm2 processes, either online or offline.
@@ -217,6 +217,42 @@ class usn_redis {
      */
     getSummaryStats(cback) {
         this.database.lrange('status:summary', '0', '0', (err, reply) => {
+            if( err ) {
+                cback( { success: 0, data: 'undefined' } );
+            } else {
+                if(reply.length > 0) {
+                    cback( { success: 1, data: JSON.parse(reply) } );
+                } else {
+                    cback( { success: 1, data: [] } );
+                }
+            }
+            
+        });
+    }
+
+    /**
+     * Push pm2 hostinfo into redis database without any callback.
+     * @param  {} data
+     * @param  {} cback
+     */
+    pushHostinfo( data, cback ) {
+        let hostStats = data.length > 0 ? JSON.stringify(data[0]) : '';
+        this.database.lpush('status:hostinfo', [hostStats]);
+        this.database.ltrim('status:hostinfo', '0', '0', (err, reply) => {
+            if(err) {
+                //console.log(err);
+            }
+            cback();
+        });
+    }
+    
+    /**
+     * Return a callback with a parsed JSON of host status of all the 
+     * pm2 processes, either online or offline.
+     * @param  {} cback
+     */
+    getHostStats(cback) {
+        this.database.lrange('status:hostinfo', '0', '0', (err, reply) => {
             if( err ) {
                 cback( { success: 0, data: 'undefined' } );
             } else {

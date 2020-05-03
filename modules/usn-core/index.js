@@ -18,9 +18,6 @@
 // Prepare socketio core.
 const socketio = require('./socketio');
 
-// Prepare related libraries.
-const libraries = require('usn-libs');
-
 // Include utils in the core.
 const utils = require('usn-utils');
 
@@ -32,7 +29,6 @@ const cluster = require('./cluster/pm2');
 
 module.exports = {
     socketio: socketio,
-    redis: libraries.redis,
     debug: utils.debug,
     syntry: syntry.init(),
     cluster: cluster.init()

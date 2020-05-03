@@ -13,10 +13,9 @@
 const server_type = 'match';
 const core = require('usn-core');
 const instance = core.socketio.init();
-  const conn = instance.connect( server_type );
-  
   //Prevent client socket connection if condition is not met.
   instance.sio.use( core.syntry.verification );
+  const conn = instance.connect( server_type );
 
 instance.sio.on('connection', (socket) => {
 
