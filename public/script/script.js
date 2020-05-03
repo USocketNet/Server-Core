@@ -1,5 +1,5 @@
 const site_url = 'http://'+window.location.host;
-const wp_url = 'http://usn.mshome.net';
+const wp_url = 'http://localhost:81';
 
 //#region JQuery Mechanism
 $(document).ready(function() {
@@ -58,7 +58,7 @@ function onLoginNow() {
     //We make use 
     $.ajax({
         type: "POST",
-        url: wp_url + '/wp-json/usocketnet/v1/auth',
+        url: wp_url + '/wp-json/usocketnet/v1/user/auth',
         data: signinData,
         dataType: 'json',
         success: function(data) {            

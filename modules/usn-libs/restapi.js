@@ -79,7 +79,7 @@ class usn_restapi {
 
         //Prepare credential data to used during restapi verification.
         let options = {
-            uri: this.wpress_url + '/wp-json/usocketnet/v1/verify',
+            uri: this.wpress_url + '/wp-json/usocketnet/v1/user/verify',
             json: true,
             form: { 
                 wpid: cred.wpid, 
