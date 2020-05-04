@@ -103,6 +103,21 @@ class usn_restapi {
         this.post(options, cback);
     }
 
+    project_verify ( cred, cback ) {
+
+        //Prepare credential data to used during restapi verification.
+        let options = {
+            uri: this.wpress_url + '/wp-json/usocketnet/v1/project/verify',
+            json: true,
+            form: { 
+                wpid: cred.wpid, 
+                snid: cred.snid,
+                pkey: cred.pkey,
+            }
+        };
+        this.post(options, cback);
+    }
+
     /**
      * Initially check restapi provided and run cluster server and will return 
      * a console and file log whether the restapi is reachable or not.

@@ -35,7 +35,7 @@ class usn_syntry {
         //If the connection did not submit wpid and snid to verify user. Refuse connection!
         if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' ) {
             //Composed a message for this unknownn connection.
-            let msg = 'The client for ' + nsp + ' did not submit required arguments.';
+            let msg = 'The client did not submit required arguments.';
 
             //Sending message to USocketNet logging system. 
             debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
@@ -64,11 +64,47 @@ class usn_syntry {
             }
         });
     }
+
+    match_verify( socketio ) {
+        socketio.use( ( packet, next ) => {
+            //If the connection did not submit wpid and snid to verify user. Refuse connection!
+            if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' || typeof packet.handshake.query.pkey === 'undefined' ) {
+                //Composed a message for this unknownn connection.
+                let msg = 'The client for did not submit required arguments.';
+    
+                //Sending message to USocketNet logging system. 
+                debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
+    
+                //Disconnect socket connection and return error message.
+                packet.disconnect(true);
+                return next( new Error(msg) );
+            }
+    
+            //Prepare a credential object for rest.
+            let credential = {
+                wpid: packet.handshake.query.wpid,
+                snid: packet.handshake.query.snid,
+                pkey: packet.handshake.query.pkey
+            };
+    
+            //Verify the user through our USocketNet WordPress API plugin.
+            restapi.project_verify(credential, (response) => {
+                if( response.status == 'success' ) {
+                    packet.wpid = credential.wpid;
+                    packet.uname = packet.handshake.query.uname;
+                    return next();
+                } else {
+                    debug.log('RestApi-Request-Error', response.message, 'yellow', 'connect')
+                    packet.disconnect(true);
+                    return next( new Error(response.message) );
+                }
+            });
+        });
+    }
 }
 
 /**
  * Initialized USN usn_syntry class.
- * @param  {} nsp
  */
 module.exports.init = () => {
     return new usn_syntry();

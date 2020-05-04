@@ -83,8 +83,8 @@ class Demoguy {
             let usnList = []; const authToken = { wpid: curUser.wpid, snid: curUser.snid };
                 usnList.push(new USocketNet('master', usn_server, authToken)); 
                 usnList.push(new USocketNet('message', usn_server, authToken)); 
-                usnList.push(new USocketNet('match', usn_server, authToken)); 
-                usnList.push(new USocketNet('game', usn_server, authToken)); 
+                //usnList.push(new USocketNet('match', usn_server, authToken)); 
+                //usnList.push(new USocketNet('game', usn_server, authToken)); 
 
             //Connect all USocketNet instance.
             usnList.forEach(curUsn => {
