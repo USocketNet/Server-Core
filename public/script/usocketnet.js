@@ -155,7 +155,7 @@ class USocketNet {
         });
 
         if(this.serverType === 'message') {
-            this.conn.on('pub', function( msg ) {
+            this.conn.on('svr', function( msg ) {
 
                 let cbs = cbList['msg-public'];
                 if(cbs) {
@@ -194,7 +194,7 @@ class USocketNet {
     }
 
     sendMessage(msg, cback) {
-        this.conn.emit('pub', { m: msg }, (res) => {
+        this.conn.emit('svr', { m: msg }, (res) => {
             if(res.status == 0) {
                 cback( { status: 'success', message: msg, datestamp: res.d } );
             } else {

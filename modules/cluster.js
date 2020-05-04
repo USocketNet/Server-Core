@@ -17,20 +17,22 @@ const instance = core.socketio.init();
 const debug = require('usn-utils').debug;
 const config = require('usn-utils').config;
 
+//Include USocketNet redis & Select databsae for this server.
+const redis = require('usn-libs').redis.init( config.redis() );
+    redis.select(0);
+
 const restapi = require('usn-libs').restapi.init( config.safe('restapi.url', 'http://localhost') );
 
     //Check and verify restapi secret key.
     restapi.cluster_verify( (res) => {
         if(res.status == 'success') {
             debug.log('USocketNet-Cluster-Verify', 'RestAPI and Realt-time server are now Ready.', 'green', 'cluster');
+            let cluster = res.data;
+            debug.log('USocketNet-Cluster-Info', cluster.name + ' cluster can accept ' + cluster.capacity + ' clients.', 'green', 'cluster');           
         } else {
             debug.log('USocketNet-Cluster-Verify', res.message, 'red', 'cluster');
         }
     });
-
-//Include USocketNet redis & Select databsae for this server.
-const redis = require('usn-libs').redis.init( config.redis() );
-    redis.select(0);
 
     core.cluster.hostinfo( (data) => {
         redis.pushHostinfo(data, (res) => {

@@ -10,6 +10,13 @@
     * License: Copyright (C) Bytes Crafter - All rights Reserved. 
 */
 
+//Include server config class.
+const config = require('usn-utils').config;
+
+//Include redis instance.
+const redis = require('./redis').init(config.redis());
+    redis.select(0);
+
 class usn_restapi {
     
     /**
@@ -21,9 +28,6 @@ class usn_restapi {
     constructor ( url ) {
         //Declare the one and only restapi.
         this.wpress_url = url;
-
-        //Include server config class.
-        this.config = require('usn-utils').config;
 
         //Include the npm request module.
         this.request = require('request');
@@ -109,10 +113,16 @@ class usn_restapi {
             uri: this.wpress_url + '/wp-json/usocketnet/v1/cluster/verify',
             json: true,
             form: { 
-                securekey: this.config.safe('restapi.key', ''), 
+                securekey: config.safe('cluster.key', ''), 
             }
         };
-        this.post(options, cback);
+        this.post(options, (reply) => {
+            //push to redis the information of this cluster.
+            if(reply.status == 'success') {
+                redis.pushClusterInfo(reply.data, (reply) => {})
+            }
+            cback(reply);
+        });
     }
 }
 

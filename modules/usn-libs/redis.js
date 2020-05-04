@@ -30,6 +30,9 @@
 //Require usn-utils->all on global.
 const utils = require('usn-utils');
 
+//Get utils usn_config class.
+const config = require('usn-utils').config;
+
 class usn_redis {
 
     /**
@@ -264,6 +267,42 @@ class usn_redis {
             }
             
         });
+    }
+
+    pushClusterInfo ( cluster, cback ) {
+        if(this.database !== 'undefined') {
+            let cacheKey = config.safe('cluster.key', '');
+            let serverCache = { [cacheKey]: JSON.stringify(cluster) };
+            this.database.hset( 'svr:cluster', serverCache, (err, res) => {
+                if( err ) {
+                    cback( { status: 'failed', data: null } );
+                }
+            });
+        } else {
+            cback( { status: 'noredisdb' } );
+            this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
+        }
+    }
+
+    getClusterInfo(cback) {
+        if(this.database !== 'undefined') {
+            let cacheKey = config.safe('cluster.key', '');
+            this.database.hget('svr:cluster', cacheKey, (err, reply) => {
+                if( err ) {
+                    cback( { success: 0, data: 'undefined' } );
+                } else {
+                    if(reply.length > 0) {
+                        cback( { success: 1, data: JSON.parse(reply) } );
+                    } else {
+                        cback( { success: 1, data: [] } );
+                    }
+                }
+                
+            });
+        } else {
+            cback( { status: 'noredisdb' } );
+            this.debug.log('Redis-Server-Warning', 'Redis database is not set yet.', 'yellow', 'redis');
+        }
     }
 }
 
