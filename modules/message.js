@@ -32,9 +32,7 @@ const instance = core.socketio.init();
   let serverWideMsgEvent = 'svr-'+curCluster.clid;
 
 instance.sio.on('connection', (socket) => {
-  //Automatically join server wide message.
-  socket.join(serverWideMsgEvent, () => {});
-
+  
   //Called by client that its connected.
   socket.on('connects', (data, cback) => {
     //console.log(JSON.stringify(data));
@@ -43,15 +41,58 @@ instance.sio.on('connection', (socket) => {
     }
   });
 
-  // socket.on('svr', (data, cback) => {
-  //   socket.to(serverWideMsgEvent).emit('svr', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
-  //   if(typeof cback === 'function') {
-  //     cback({ status: 0, d: new Date().toLocaleString() }); // 0 = success, 1 = failed
-  //   }
-  // });
-    
+  //Automatically join server wide message.
+  socket.join(serverWideMsgEvent, () => {});
   socket.on('svr', (data, cback) => {
     socket.to(serverWideMsgEvent).emit('svr', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+    if(typeof cback === 'function') {
+      cback({ status: 0, d: new Date().toLocaleString() }); // 0 = success, 1 = failed
+    }
+  });
+    
+  //ONGOING
+  socket.on('prj-join', (data, cback) => {
+    socket.join('prj-'+data.pjid, () => {});
+    cback({ status: 0 }); // 0 = success, 1 = failed
+  });
+  socket.on('prj-', (data, cback) => {
+    socket.to(serverWideMsgEvent).emit('prj', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+    if(typeof cback === 'function') {
+      cback({ status: 0, d: new Date().toLocaleString() }); // 0 = success, 1 = failed
+    }
+  });
+
+  //ONGOING
+  socket.on('var-join', (data, cback) => {
+    socket.join('var-'+data.var, () => {});
+    cback({ status: 0 }); // 0 = success, 1 = failed
+  });
+  socket.on('var-', (data, cback) => {
+    socket.to(serverWideMsgEvent).emit('var', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+    if(typeof cback === 'function') {
+      cback({ status: 0, d: new Date().toLocaleString() }); // 0 = success, 1 = failed
+    }
+  });
+
+  //ONGOING
+  socket.on('mat-join', (data, cback) => {
+    socket.join('mat-'+data.mat, () => {});
+    cback({ status: 0 }); // 0 = success, 1 = failed
+  });
+  socket.on('mat-', (data, cback) => {
+    socket.to(serverWideMsgEvent).emit('mat', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
+    if(typeof cback === 'function') {
+      cback({ status: 0, d: new Date().toLocaleString() }); // 0 = success, 1 = failed
+    }
+  });
+
+  //ONGOING
+  socket.on('grp-join', (data, cback) => {
+    socket.join('grp-'+data.grp, () => {});
+    cback({ status: 0 }); // 0 = success, 1 = failed
+  });
+  socket.on('grp-', (data, cback) => {
+    socket.to(serverWideMsgEvent).emit('grp', { u: socket.uname, s: socket.wpid,  m: data.m, d: new Date().toLocaleString() });
     if(typeof cback === 'function') {
       cback({ status: 0, d: new Date().toLocaleString() }); // 0 = success, 1 = failed
     }
