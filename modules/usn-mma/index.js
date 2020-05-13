@@ -10,11 +10,9 @@
     * License: Copyright (C) Bytes Crafter - All rights Reserved. 
 */
 
-const mms = require('./types/mms');
-
-const mmr = require('./types/mmr');
+//Just for demo.
+const mmd = require('./types/mmd');
 
 module.exports = {
-  simple: mms.init(),
-  rank: mmr.init()
+  demo: mmd.init()
 }
