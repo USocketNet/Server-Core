@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "usn-core": "file:modules/usn-core",
+    "usn-mma": "file:modules/usn-mma",
     "usn-libs": "file:modules/usn-libs",
     "usn-utils": "file:modules/usn-utils"
   },
