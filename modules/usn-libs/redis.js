@@ -60,7 +60,8 @@ class usn_redis {
         if( typeof this.config !== 'undefined') {
             let conf = this.config;
                 conf.db = db;
-            return this.redis.createClient( conf );
+            this.database = this.redis.createClient( conf );
+            return this.database;
         } else {
             this.debug.log('Redis-Server-Warning', 'Redis database selection was failed.', 'red', 'redis');
             process.exit(1);
