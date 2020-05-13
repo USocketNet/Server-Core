@@ -13,11 +13,11 @@
 //Require our custom Express.
 const express = require('usn-libs').express;
 const usn_express = express.init();
+const config = require('usn-utils').config;
 
 //Set and serve static files.
 usn_express.set_static('/', 'public/static')
 
-//Serve the actual html file.
 usn_express.instance.get('/', function (req, res, next) {
     res.sendFile('./public/view/index.html', { root: __dirname })
 })
@@ -34,5 +34,8 @@ usn_express.instance.get('/settings', function (req, res, next) {
     res.sendFile('./public/view/settings.html', { root: __dirname })
 })
 
-//Serve the Demoguy site.
-usn_express.serve(80);
+usn_express.instance.use(function (req, res, next) {
+    res.status(200).sendFile('./public/view/error.html', { root: __dirname })
+})
+
+usn_express.serve( config.safe('demoguy.port', '3000') );
