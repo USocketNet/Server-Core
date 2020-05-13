@@ -16,7 +16,11 @@ const mmd = require('./types/mmd');
 //Problem: Race condition.
 const mmr = require('./types/mmr');
 
+//Problem: Race condition.
+const mmc = require('./types/mmc');
+
 module.exports = {
   demo: mmd.init(),
-  rank: mmr.init()
+  rank: mmr.init(),
+  cond: mmc.init()
 }

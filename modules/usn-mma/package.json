@@ -9,6 +9,7 @@
   "author": "Bytes Crafter",
   "license": "ISC",
   "dependencies": {
+    "lodash": "^4.17.15",
     "shortid": "^2.2.6",
     "usn-libs": "file:../usn-libs",
     "usn-utils": "file:../usn-utils"
