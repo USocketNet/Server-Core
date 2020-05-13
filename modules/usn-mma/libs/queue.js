@@ -18,6 +18,30 @@ class usn_mmr_queue {
     constructor(redisClient) {
         this.redis = redisClient;
     }
+
+    add = async (curUser) => {
+        
+        return new Promise( async (resolve, reject) => {
+
+            var userStr = JSON.stringify(curUser); //convert to string.
+            //console.log("EXISTING: " + await this.exist(curUser.wpid));
+
+            //CHECK IF USER IS ON MATCH MAKING OR ACTIVE IN MATCH.
+            await this.redis.database.lpush('match:queue:'+curUser.pjid, [userStr], async (err, res) => {
+                if(!err) {
+                    //console.log('User request to be queue: ' + res); //return N of success.
+
+                    resolve(true);
+                    
+                } else {
+                    reject('Failed to push this user to queuing.');
+                }
+            });
+                
+        })
+
+    }
+
     
     /**
      * Add this user to the topmost list of queuing users.
