@@ -37,13 +37,19 @@ class usn_express {
     }
 
     /**
+     * Add express static files before running.
+     * @param  {} port
+     */
+    set_static(rootUri, filePath) {
+        //Used the package.json of the script executed as a root directory and resolve or find public folder.
+        this.instance.use(rootUri, this.express.static( this.path.resolve(filePath) ) )
+    }
+
+    /**
      * Run the instance as http server and embed to this class.
      * @param  {} port
      */
-    serve_public(port) {
-        //Used the package.json of the script executed as a root directory and resolve or find public folder.
-        this.instance.use( this.express.static( this.path.resolve('public') ) );
-
+    serve(port) {
         //Run the http server from the port that was provided.
         this.instance.listen(port, () => {
             this.debug.log('USocketNet-Demoguy', 'Demoguy site  is now serving at http://localhost:' + port, 'green', 'demoguy')

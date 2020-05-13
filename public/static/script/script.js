@@ -11,7 +11,7 @@ $(document).ready(function() {
         }
     } else {
         if( page == 'home') {
-            window.location.href = site_url + '/dashboard.html';
+            window.location.href = site_url + '/dashboard';
         } 
     }
 
@@ -70,7 +70,7 @@ function onLoginNow() {
 
             const userData = data.data;
             localStorage['user'] = JSON.stringify(userData);
-            window.location.replace(site_url + '/dashboard.html');
+            window.location.replace(site_url + '/dashboard');
           } else {
             $('#auth-error-message').text( data.message );
             $("#signin-error-alert").fadeTo(5000, 500).slideUp(500, function() {
