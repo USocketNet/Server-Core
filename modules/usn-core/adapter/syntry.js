@@ -70,7 +70,7 @@ class usn_syntry {
             //If the connection did not submit wpid and snid to verify user. Refuse connection!
             if( typeof packet.handshake.query.wpid === 'undefined' || typeof packet.handshake.query.snid === 'undefined' || typeof packet.handshake.query.pkey === 'undefined' ) {
                 //Composed a message for this unknownn connection.
-                let msg = 'The client for did not submit required arguments.';
+                let msg = 'The client for did not submit required arguments.'; console.log(packet.handshake.query);
     
                 //Sending message to USocketNet logging system. 
                 debug.log('Socket-Connect-Refused', msg, 'yellow', 'connect')
@@ -91,7 +91,8 @@ class usn_syntry {
             restapi.project_verify(credential, (response) => {
                 if( response.status == 'success' ) {
                     packet.wpid = credential.wpid;
-                    packet.uname = packet.handshake.query.uname;
+                    packet.uname = 'user#' + credential.wpid;
+                    packet.pkey = credential.pkey;
                     return next();
                 } else {
                     debug.log('RestApi-Request-Error', response.message, 'yellow', 'connect')

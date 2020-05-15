@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+  <head>
+    <title>USocketNet - Matching</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/fontawesome.min.css">
+
+    <script type="text/javascript">
+      var page = 'matching';
+    </script>
+
+    <style>
+
+      /* #region Toggle */
+      .material-switch > input[type="checkbox"] {
+        display: none;   
+      }
+      .material-switch > label {
+        cursor: pointer;
+        height: 0px;
+        position: relative; 
+        width: 40px;  
+      }
+      .material-switch > label::before {
+        background: rgb(0, 0, 0);
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        content: '';
+        height: 16px;
+        margin-top: -8px;
+        position:absolute;
+        opacity: 0.3;
+        transition: all 0.4s ease-in-out;
+        width: 40px;
+      }
+      .material-switch > label::after {
+        background: rgb(255, 255, 255);
+        border-radius: 16px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        content: '';
+        height: 24px;
+        left: -4px;
+        margin-top: -8px;
+        position: absolute;
+        top: -4px;
+        transition: all 0.3s ease-in-out;
+        width: 24px;
+      }
+      .material-switch > input[type="checkbox"]:checked + label::before {
+        background: inherit;
+        opacity: 0.5;
+      }
+      .material-switch > input[type="checkbox"]:checked + label::after {
+        background: inherit;
+        left: 20px;
+      }
+
+      /* #endregion */
+
+      /* #region Global */
+
+      .custom-control-label::before {
+        background-color: #dc3545;
+        border: #bd2130 solid 1px;
+      }
+      .custom-control-input:checked~.custom-control-label::before {
+        border-color: #169433;
+        background-color: #5dd029;
+      }
+
+      body {
+        margin-top: 100px;
+        background-color: #c3c3c3;
+      }
+
+      .navmenu {
+        flex: auto;
+        margin-right: 100px;
+      }
+
+      .navbar-dark .navbar-brand {
+        margin-left: 100px;
+      }
+
+      /* #endregion */
+
+        /* #region Test */
+            .contents {
+                height: 100%;
+                background-color: #ceffda80;
+            }
+
+            .sidebar {
+                height: 100%;
+                background-color: #a8dfff83;
+            }
+
+            .projects-get {
+                margin: 20px auto;
+                
+            }
+
+            .create {
+                margin: 20px auto;
+            }
+            
+        /* #endregion */
+
+        /* #region Test */
+            .center-elem {
+                margin: auto;
+                margin-top: 20px;
+            }
+            .display-hide {
+                display: none;
+            }
+            .match-action {
+                display: -webkit-inline-box;
+                margin: auto;
+            }
+            .text-align-center {
+                text-align: center;
+            }
+        /* #endregion */
+    </style>
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="./assets/img/logo.png" width="32" height="32" alt="">
+        USocketNet
+      </a>
+      <div class="navmenu col-xs-12">
+        <ul class="navbar-nav" style="float: right;">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="#serverStatus">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#userInfo">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#messageArea">Messages</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img id="userphoto" src="#" style="width:25px; border-radius: 50%;">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="dashboard">Dashboard</a>
+              <a class="dropdown-item disabled" href="#">Matching</a>
+              <a class="dropdown-item" href="message">Message</a>
+              <a class="dropdown-item" href="settings">Settings</a>
+              <a class="dropdown-item" href="#" onclick="onLogout()">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 contents">
+
+            </div>
+            <div class="col-lg-4 sidebar">
+
+                <div id="conn-status" class="alert alert-secondary display-hide" role="alert">
+                  SOCKET ID: <strong id="socket-id"></strong>
+                </div>
+
+                <form id="connect-server-pkey" class="projects-get" action="">
+                    <div class="input-group">
+                        <input id="match-pkey" name="pkey" type="text" class="form-control" placeholder="Project Key">
+                    </div>
+                    <div class="input-group">
+                        <button id="connect-match" type="submit" class="btn btn-secondary center-elem">CONNECT TO MATCH</button>
+                    </div>
+                </form>
+
+                <div id="connect-display" class="display-hide text-align-center">
+                    <form id="match-pending" class="match-action" action="">
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-secondary center-elem">PENDING</button>
+                        </div>
+                    </form>
+                    <form id="match-active" class="match-action" action="">
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-secondary center-elem">ACTIVE</button>
+                        </div>
+                    </form>
+                    <form id="match-auto" class="match-action" action="">
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-secondary center-elem">AUTO</button>
+                        </div>
+                    </form>
+                    <form id="match-create" class="match-action" action="">
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-secondary center-elem">CREATE</button>
+                        </div>
+                    </form>
+                    <form class="match-join" action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Match ID" 
+                                aria-label="" aria-describedby="button-addon4">
+                            <div class="input-group-append" id="button-addon4">
+                              <button class="btn btn-primary" type="submit">JOIN</button>
+                              <button class="btn btn-danger" type="submit">LEAVE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="./script/socket.io.js"></script>
+    <script type="text/javascript" src="./script/usocketnet.js"></script>
+    <script type="text/javascript">
+        const curUser = JSON.parse(localStorage['user']);
+        const usn_server = 'localhost';
+        const authToken = { wpid: curUser.wpid, snid: curUser.snid };
+        let match = 'undefined';
+
+        $('#connect-server-pkey').submit(function(e) {
+            e.preventDefault(); //prevents page reloading.
+
+            authToken.pkey = $('#match-pkey').val();
+            match = new USocketNet('match', usn_server, authToken);
+            match.connect();
+
+                match.on('svr-connect', ( conn ) => {
+                    //CONSOLE.LOG THIS SOCKET.ID
+                    console.log( 'Connected with id: ' + conn.socketid );
+
+                    //
+                    $('#conn-status').removeClass('display-hide');
+                    $('#connect-server-pkey').addClass('display-hide');
+                    $('#socket-id').html(conn.socketid);
+
+                    $('#connect-match').removeClass('btn-secondary');
+                    $('#connect-match').addClass('btn-success');
+                    $('#connect-match').html('CONNECTED');
+                    $('#connect-match').addClass('disabled');
+
+                    //SHOW MATCH INTERFACE
+                    $('#connect-display').removeClass('display-hide');
+                })
+
+        });
+
+        $('#match-pending').submit(function(e) {
+            e.preventDefault(); //prevents page reloading.
+            console.log('match-pending');
+            if(typeof match !== 'undefined') {
+                
+            }
+        });
+
+        $('#match-active').submit(function(e) {
+            e.preventDefault(); //prevents page reloading.
+            console.log('match-active');
+            if(typeof match !== 'undefined') {
+                
+            }
+        });
+
+        $('#match-auto').submit(function(e) {
+            e.preventDefault(); //prevents page reloading.
+            console.log('match-auto');
+            if(typeof match !== 'undefined') {
+
+            }
+        });
+
+        $('#match-create').submit(function(e) {
+            e.preventDefault(); //prevents page reloading.
+            console.log('match-create');
+            if(typeof match !== 'undefined') {
+                match.matchCreate( { autoCreate: true }, (minfo) => {
+                  console.log('Callback match-create: ' + JSON.stringify(minfo));
+                });
+            }
+        });
+
+        $('#match-join').submit(function(e) {
+            e.preventDefault(); //prevents page reloading.
+            console.log('match-join');
+            if(typeof match !== 'undefined') {
+
+            }
+        });
+        
+    </script>
+
+  </body>
+</html>

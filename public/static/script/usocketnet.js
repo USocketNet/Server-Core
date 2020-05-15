@@ -38,13 +38,13 @@ class USocketNet {
      * @param  {} serverHost
      * @param  {} curUser
      */
-    constructor(serverType, serverHost, curUser) {
+    constructor(serverType, serverHost, userCreds) {
         this.serverType = serverType;
-        this.curUser = curUser;
+        this.curUser = userCreds;
         this.callbacks = {};
         const servType = this.getServerTypePort(serverType);
 
-        if(typeof servType !== 'undefined' && typeof serverHost !== 'undefined' && typeof curUser !== 'undefined') {
+        if(typeof servType !== 'undefined' && typeof serverHost !== 'undefined' && typeof userCreds !== 'undefined') {
             this.conn = io(
                 'ws://'+serverHost+':'+this.getServerTypePort(serverType), 
                 { 
@@ -55,16 +55,12 @@ class USocketNet {
                     timeout: 10000, //connection timeout before a connect_error and connect_timeout events are emitted
                     forceNew: true, // (Boolean) whether to reuse an existing connection
                     transports: ['websocket', 'polling'], //a list of transports to try (in order). Engine always attempts to connect directly with the first one.
-                    query: {
-                        wpid: curUser.wpid,
-                        snid: curUser.snid,
-                        apid: curUser.apid
-                    }
+                    query: userCreds
                 }
             ); 
 
             this.conn.on('reconnect', (attemptNumber) => {
-                this.conn.emit( 'connects', curUser, (res) => {
+                this.conn.emit( 'connects', userCreds, (res) => {
                     this.emit('svr-reconnect', { serverType: this.serverType, port: res, socketid: this.conn.id } );
                 });
             });
@@ -191,6 +187,33 @@ class USocketNet {
         if(cbs) {
             cbs.forEach(cb => cb(data))
         }
+    }
+
+    matchPending() {
+
+    }
+
+    matchActive() {
+
+    }
+
+    matchAuto() {
+
+    }
+
+    matchCreate( data, cback ) {
+        console.log('USN match-create');
+        this.conn.emit('match-create', data, (reply) => {
+            cback(reply);
+        });
+    }
+
+    matchJoin() {
+
+    }
+
+    matchLeave() {
+
     }
 
     sendMessage(msg, cback) {

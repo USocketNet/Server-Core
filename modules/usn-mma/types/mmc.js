@@ -13,7 +13,10 @@ const _ = require('lodash')
 const shortid = require('shortid');
 const installLuaScripts = require('../libs/redis')
 
-const config = require('usn-utils').config;
+const utils = require('usn-utils');
+const json = utils.json;
+const config = utils.config;
+
 const redisMaster = require('usn-libs').redis.init(config.redis())
 const redis = redisMaster.select(1);
 
@@ -22,12 +25,17 @@ const activeKey  = 'events/active'
 
 class usn_mmc {
 
+    hasMatch( matchInfo ) {
+      return !json.isObjectEmpty(matchInfo.pending) || !json.isObjectEmpty(matchInfo.active);
+    }
+
     constructor() {
         //Config Container.
         installLuaScripts(redis);
     }
 
-    createEvent(args) {
+    createMatch(args) {
+        //console.log(args);
         const userId = args.userId
         const userAlias = args.userAlias
         if (_.isUndefined(userId) || _.isUndefined(userAlias))
@@ -57,11 +65,13 @@ class usn_mmc {
           userIds: [userId],
           aliases: [userAlias]
         }
+
+        let cancelingMatch = this.cancelMatch;
       
         return redis.createEvent(`events/${event.id}`, pendingKey, JSON.stringify(event)).then(() => {
           const timeout = event.capacity * perUserTimeoutSec * 1000
-          setTimeout(function autoCancelEvent() {
-            cancelEvent(userId, event.id).catch(err => {
+          setTimeout(function autoCancelMatch() {
+            cancelingMatch(userId, event.id).catch(err => {
               // Just eat this error since it's an automatic cancellation or expiration;
               // not a user action.
               //
@@ -71,8 +81,13 @@ class usn_mmc {
           return event
         })
     }
+
+    joinMatch(userId, userAlias, eventId) {
+      return redis.joinEvent(`events/${eventId}`, pendingKey, activeKey,
+        userId, userAlias, _.now() / 1000 | 0).then(JSON.parse)
+    }
       
-    autojoinEvent(args) {
+    autoMatch(args) {
         const userId = args.userId
         const userAlias = args.userAlias
         if (_.isUndefined(userId) || _.isUndefined(userAlias))
@@ -95,29 +110,25 @@ class usn_mmc {
         .then(json => !json ? null : JSON.parse(json))
     }
       
-    cancelEvent(userId, eventId) {
+    cancelMatch(userId, eventId) {
         return redis.cancelEvent(`events/${eventId}`, pendingKey, userId)
     }
       
-    getEventsFor(userId) {
+    getMatch(userId) {
+      var pendingEvents = 'undefined'; 
         return redis.getPendingEventsFor(pendingKey, userId).then(function (json) {
-          this.pendingEvents = JSON.parse(json)
+          pendingEvents = JSON.parse(json)
           return redis.getActiveEventsFor(activeKey, userId)
         }).then(function (json) {
           return {
-            pending: this.pendingEvents,
+            pending: pendingEvents,
             active: JSON.parse(json)
           }
         })
-    }
-      
-    joinEvent(userId, userAlias, eventId) {
-        return redis.joinEvent(`events/${eventId}`, pendingKey, activeKey,
-          userId, userAlias, _.now() / 1000 | 0).then(JSON.parse)
     }
 
 }
 
 module.exports.init = () => {
-    return new usn_mmc();
+  return new usn_mmc();
 }

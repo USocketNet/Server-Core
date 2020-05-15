@@ -26,6 +26,10 @@ usn_express.instance.get('/dashboard', function (req, res, next) {
     res.sendFile('./public/view/dashboard.html', { root: __dirname })
 })
 
+usn_express.instance.get('/matching', function (req, res, next) {
+    res.sendFile('./public/view/matching.html', { root: __dirname })
+})
+
 usn_express.instance.get('/message', function (req, res, next) {
     res.sendFile('./public/view/message.html', { root: __dirname })
 })
