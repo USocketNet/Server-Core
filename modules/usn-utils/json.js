@@ -55,6 +55,10 @@ class usn_json {
         var string = JSON.stringify(json);
         return JSON.parse(string);
     }
+
+    isFunction( cback ) {
+        return typeof cback === 'function' ? true : false;
+    }
 }
 
 /**
