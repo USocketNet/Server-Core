@@ -213,6 +213,21 @@ module.exports = function (redis) {
         return cjson.encode(events)
       `
     })
+
+    redis.defineCommand('getMatchById', {
+      numberOfKeys: 1,
+      lua: `
+        local eventKey = KEYS[1]
+        local args1 = ARGV[1]
+
+        local eventJSON = redis.call('get', eventKey)
+        if eventJSON == false then
+          return redis.error_reply('not found')
+        end
+
+        return cjson.encode(eventJSON)
+      `
+    })
   
     redis.defineCommand('joinEvent', {
       numberOfKeys: 3,
