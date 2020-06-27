@@ -1,5 +1,5 @@
 const site_url = 'http://'+window.location.host;
-const wp_url = 'http://localhost:81';
+const wp_url = 'http://'+window.location.hostname;
 
 //#region JQuery Mechanism
 $(document).ready(function() {
