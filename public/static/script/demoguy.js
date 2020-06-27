@@ -47,7 +47,7 @@ class Demoguy {
     $(function () {
 
          //Set the target host.
-         const usn_server = 'localhost';
+         const usn_server = window.location.hostname;
 
          //Class for performing USocketNet demo.
          const demoguy = new Demoguy();
