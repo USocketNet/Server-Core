@@ -6,8 +6,8 @@
     "logging.file": true,
     "logging.console": true,
     
-    "restapi.url": "http://localhost:81",
-    "cluster.key": "f8f975817803f08d27af7d2982f3f1e9",
+    "restapi.url": "http://localhost",
+    "cluster.key": "e3560b864baf9a5b6f0f7f83bef73aea",
 
     "redis.host": "127.0.0.1",
     "redis.port": "6379",
