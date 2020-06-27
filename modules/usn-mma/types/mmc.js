@@ -58,6 +58,7 @@ class usn_mmc {
       
         const event = {
           id: shortid(),
+          
           capacity,
           params: _.trim(params),
           whitelist,
@@ -110,11 +111,19 @@ class usn_mmc {
         .then(json => !json ? null : JSON.parse(json))
     }
       
-    cancelMatch(userId, eventId) {
-        return redis.cancelEvent(`events/${eventId}`, pendingKey, userId)
+    leaveMatch(userId, eventId) {
+      return redis.cancelEvent(`events/${eventId}`, pendingKey, userId)
+    }
+
+    getMatchById(mtid) {
+        return redis.getMatchById(`events/${mtid}`, 'test-args')
+          .then(function (json) {
+            var test = JSON.parse(json)
+            return test;
+          })
     }
       
-    getMatch(userId) {
+    getMatchFor(userId) {
       var pendingEvents = 'undefined'; 
         return redis.getPendingEventsFor(pendingKey, userId).then(function (json) {
           pendingEvents = JSON.parse(json)
