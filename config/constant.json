@@ -1,6 +1,6 @@
 {
     "cluster.host": "localhost",
-    "cluster.port": 8080,
+    "cluster.port": 8081,
     "cluster.redis.db": 0,
 
     "master.host": "localhost",
@@ -12,7 +12,7 @@
     "message.redis.db": 2,
 
     "match.host": "localhost",
-    "match.port": 4530,
+    "match.port": 4531,
     "match.redis.db": 3,
 
     "game.host": "localhost",
