@@ -30,7 +30,7 @@ const restapi = require('usn-libs').restapi.init( config.safe('restapi.url', 'ht
             let cluster = res.data;
             debug.log('USocketNet-Cluster-Info', cluster.name + ' cluster can accept ' + cluster.capacity + ' clients.', 'green', 'cluster');           
         } else {
-            debug.log('USocketNet-Cluster-Verify', res.message, 'red', 'cluster');
+            debug.log('USocketNet-Cluster-Error', res.message, 'red', 'cluster');
         }
     });
 
