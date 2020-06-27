@@ -1,7 +1,7 @@
 {    
     "production": false,
 
-    "demoguy.port": "80",
+    "demoguy.port": "3000",
 
     "logging.file": true,
     "logging.console": true,
