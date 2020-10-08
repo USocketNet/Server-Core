@@ -81,18 +81,20 @@ This are the required config for NGIX server for load balance. By default
 
 *AVAILABLE PORT TO USED PER SERVER TYPE:
 
+  - CLUSTER INTANCE - (8081-8089)
   - MASTER INTANCE - (19091-19099)
   - MESSAGE INTANCE - (6061-6069)
-  - MATCH INTANCE - (4530-4539)
+  - MATCH INTANCE - (4531-4539)
   - GAME INTANCE - (9091-9099)
 
 ##### ADDING NEW INSTANCE OF THE SERVER.
   ```
-    // You can run by yourself each server type instance.
-    $ CODE: pm2 start modules/master.js -- --master 19092
-    $ CODE: pm2 start modules/message.js -- --message 6062
-    $ CODE: pm2 start modules/match.js -- --match 4532
-    $ CODE: pm2 start modules/game.js -- --game 9092
+    // Running USocketNet module without Nginx Load Balancer
+    $ CODE: pm2 start modules/cluster.js -- --cluster 8080
+    $ CODE: pm2 start modules/master.js -- --master 19090
+    $ CODE: pm2 start modules/message.js -- --message 6060
+    $ CODE: pm2 start modules/match.js -- --match 4530
+    $ CODE: pm2 start modules/game.js -- --game 9090
 
     // To run all instance, master, message, match, and game server: run the following command.
     $ CODE: pm2 start usocketnet.js --name svr-1 -- --name svr1 --master 19091 --message 6061 --match 4531 --game 9091
