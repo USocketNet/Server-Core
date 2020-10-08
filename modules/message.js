@@ -101,6 +101,11 @@ instance.sio.on('connection', (socket) => {
   //#region PRIVATE MESSAGE - WORKING! Need Optimization.
   socket.on('pri', (data, cback) => {
 
+    //Check if data is an Object.
+    if( typeof data !== "object" ) {
+      data = JSON.parse(data);
+    }
+
     //Get all message client SID form this data.r(receiver.wpid) from redis.
     redis.getUserSids(data.r, 'message', (sids) => {
       if(typeof sids.data != 'undefined' ) {
@@ -121,7 +126,7 @@ instance.sio.on('connection', (socket) => {
       }
     });
 
-    cback( { status: 0, d: new Date().toLocaleString() } ); // 0 = success, 1 = failed
+    cback( { status: 1, d: new Date().toLocaleString() } ); // 1 = success, 0 = failed
   });
   //#endregion PRIVATE MESSAGE
 
