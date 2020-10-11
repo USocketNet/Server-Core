@@ -71,21 +71,19 @@ have no critical issue.
 Prepare your LEMP stack with WordPress for your RestApi. Used the configuration file 
 found on docs/nginx.conf. Paste the different upstream to your nginx default config.
 
-This are the required config for NGIX server for load balance. By default
-
-- MASTER INTANCE - PORT 19090 (19091-19099)
-- CHAT INTANCE - PORT 6060 (6061-6069)
-- GAME INTANCE - PORT 9090 (9091-9099)
-
 #### STEP 2 - LAUNCH THE INSTANCES.
 
-*AVAILABLE PORT TO USED PER SERVER TYPE:
+This are the required config for NGIX server for load balance. By default
 
-  - CLUSTER INTANCE - (8081-8089)
-  - MASTER INTANCE - (19091-19099)
-  - MESSAGE INTANCE - (6061-6069)
-  - MATCH INTANCE - (4531-4539)
-  - GAME INTANCE - (9091-9099)
+- CLUSTER INTANCE - PORT 8080 (8081-8089)
+- MASTER INTANCE - PORT 19090 (19091-19099)
+- MESSAGE INTANCE - PORT 6060 (6061-6069)
+- MATCH INTANCE - PORT 4530 (4531-4539)
+- GAME INTANCE - PORT 9090 (9091-9099)
+- DELIVERY INTANCE - PORT 5050 (5051-5059)
+
+Optionaly! You can run pm2 start demoguy.js which will run a test web page for testing 
+all USocketNet server if currently running!
 
 ##### ADDING NEW INSTANCE OF THE SERVER.
   ```
@@ -95,6 +93,7 @@ This are the required config for NGIX server for load balance. By default
     $ CODE: pm2 start modules/message.js -- --message 6060
     $ CODE: pm2 start modules/match.js -- --match 4530
     $ CODE: pm2 start modules/game.js -- --game 9090
+    $ CODE: pm2 start modules/delivery.js -- --delivery 5050
 
     // To run all instance, master, message, match, and game server: run the following command.
     $ CODE: pm2 start usocketnet.js --name svr-1 -- --name svr1 --master 19091 --message 6061 --match 4531 --game 9091

@@ -17,5 +17,9 @@
 
     "game.host": "localhost",
     "game.port": 9091,
-    "game.redis.db": 4
+    "game.redis.db": 4,
+
+    "delivery.host": "localhost",
+    "delivery.port": 5051,
+    "delivery.redis.db": 5
 }
