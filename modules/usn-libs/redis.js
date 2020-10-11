@@ -1,8 +1,8 @@
 
 /*
     * Package: USocketNet
-    * Description: Self-Host Realtime Multiplayer Server 
-    *       for your Game or Chat Application.
+    * Description: Multipurpose Realtime Server for your 
+    *   Multiplayer Game, Chat App, or Delivery App.
     * Package-Website: https://usocketnet.bytescrafter.net
     * 
     * Author: Bytes Crafter
