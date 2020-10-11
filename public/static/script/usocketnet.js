@@ -15,6 +15,10 @@ class USocketNet {
                 return '4530';
             case 'game':
                 return '9090';
+            case 'cluster':
+                return '8080';
+            case 'delivery':
+                return '5050';
             default:
                 return 'undefined';
         }

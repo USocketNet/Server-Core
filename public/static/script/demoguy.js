@@ -85,6 +85,8 @@ class Demoguy {
                 usnList.push(new USocketNet('message', usn_server, authToken)); 
                 //usnList.push(new USocketNet('match', usn_server, authToken)); 
                 //usnList.push(new USocketNet('game', usn_server, authToken)); 
+                usnList.push(new USocketNet('cluster', usn_server, authToken)); 
+                usnList.push(new USocketNet('delivery', usn_server, authToken)); 
 
             //Connect all USocketNet instance.
             usnList.forEach(curUsn => {
@@ -132,6 +134,16 @@ class Demoguy {
                             $('#gameConStat').removeClass('btn-secondary');
                             $('#gameConStat').addClass('btn-success');
                             targ = 'gameCon';
+                        } else if(data.serverType == 'cluster') {
+                            $('#clusterConStat').html( 'ONLINE' );
+                            $('#clusterConStat').removeClass('btn-secondary');
+                            $('#clusterConStat').addClass('btn-success');
+                            targ = 'clusterCon';
+                        } else if(data.serverType == 'delivery') {
+                            $('#deliveryConStat').html( 'ONLINE' );
+                            $('#deliveryConStat').removeClass('btn-secondary');
+                            $('#deliveryConStat').addClass('btn-success');
+                            targ = 'deliveryCon';
                         }
                         document.getElementById(targ).innerHTML = data.socketid+ '<br><strong>Socket ID</strong> <br><br>' + data.port + '<br><strong>Port Forwarded</strong>';
                     }

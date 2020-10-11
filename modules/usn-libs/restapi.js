@@ -54,7 +54,7 @@ class usn_restapi {
                         } else {
                             return cback({ 
                                 status: 'failed', 
-                                message: 'RestApi request failed response: ' + reply.message,
+                                message: 'RestApi request failed response for ID# ' +options.form.wpid+ ': ' + reply.message,
                             });
                         }
                     } else {

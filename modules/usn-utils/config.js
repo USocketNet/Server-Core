@@ -70,15 +70,17 @@ class usn_config {
     server( type, argv ) {
         switch ( type ) {
             case 'cluster':
-                return { port: argv.cluster };
+                return typeof argv.cluster === 'undefined' ? { port: 8080 } : { port: argv.cluster };
             case 'master':
-                return { port: argv.master };
+                return typeof argv.master === 'undefined' ? { port: 19090 } : { port: argv.master };
             case 'message':
-                return { port: argv.message };
+                return typeof argv.message === 'undefined' ? { port: 6060 } : { port: argv.message };
             case 'match':
-                return { port: argv.match };
+                return typeof argv.match === 'undefined' ? { port: 4530 } : { port: argv.match };
             case 'game':
-                return { port: argv.game };
+                return typeof argv.game === 'undefined' ? { port: 9090 } : { port: argv.game };
+            case 'delivery':
+                return typeof argv.delivery === 'undefined' ? { port: 5050 } : { port: argv.delivery };
             default:
                 return '3000';
         }
