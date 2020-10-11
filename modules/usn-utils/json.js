@@ -47,6 +47,22 @@ class usn_json {
     }
 
     /**
+     * Check if the param is a valid object format. Example: {}
+     * @param  {} obj
+     */
+    isObjectValid(obj) {
+        return typeof obj !== "object";
+    }
+
+    /**
+     * Check if the param is a valid array format. Example: []
+     * @param  {} arr
+     */
+    isArrayValid(arr) {
+        return typeof arr !== "array";
+    }
+
+    /**
      * Because assigning JSON object to another JSON object will only 
      * do referencing, use this to have independent copy of that object.
      * @param  {} json
