@@ -27,13 +27,13 @@ class usn_process {
         // If enabled, filter process event and log on console. 
         if(this.config.safe('production', false)) {
 
+            //Instead of exiting or close server, resume before actually exiting.
+            process.stdin.resume();
+
             //Invoked when nodejs instance experience error.
             process.on('uncaughtException', function (uerror) {
                 this.debug.log( 'UncaughtException', + uerror.stack + ' @ ' + uerror, 'red', 'process' );
             });
-
-            //Instead of exiting or close server, resume before actually exiting.
-            process.stdin.resume();
 
             //Invoked before exit of application.
             process.on("beforeExit", () => 

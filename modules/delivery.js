@@ -17,10 +17,11 @@ const instance = core.socketio.init();
   instance.sio.use( core.syntry.verification );
   const conn = instance.connect( server_type );
 
-  const config = require('usn-utils').config;
+  //Reference utility scripts.
+  const utils = require('usn-utils');
 
   //Include USocketNet redis & Select databsae for this server.
-  const redis = require('usn-libs').redis.init( config.redis() );
+  const redis = require('usn-libs').redis.init( utils.config.redis() );
     redis.select(0);
 
   let curCluster = '';
