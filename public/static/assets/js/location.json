@@ -1,0 +1,230 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.075268, 14.327190]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "10am - 6pm",
+                "description": "Modern twists on classic pastries. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Mayfair",
+                "phone": "+44 20 1234 5678",
+                "storeid": "01"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.072581,14.310811]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "10am - 6pm",
+                "description": "Come and try our award-winning cakes and pastries. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Bristol",
+                "phone": "+44 117 121 2121",
+                "storeid": "02"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.042287,14.321521]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "10am - 6pm",
+                "description": "Whatever the occasion, whether it's a birthday or a wedding, Josie's foods has the perfect treat for you. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Norwich",
+                "phone": "+44 1603 123456",
+                "storeid": "03"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.019897, 14.312487]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "10am - 6pm",
+                "description": "A gourmet foods that will delight your senses. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Wimborne",
+                "phone": "+44 1202 343434",
+                "storeid": "04"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.071683,14.341649]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "10am - 6pm",
+                "description": "Spoil yourself or someone special with our classic pastries. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Liverpool",
+                "phone": "+44 151 444 4444",
+                "storeid": "05"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.050462,14.331626]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "10am - 6pm",
+                "description": "Come and feast your eyes and tastebuds on our delicious pastries and cakes. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Tamworth",
+                "phone": "+44 5555 55555",
+                "storeid": "06"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.015394,14.344148]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "10am - 6pm",
+                "description": "Josie's foods is family-owned, and our delectable pastries, cakes, and great coffee are renowed. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Cardiff",
+                "phone": "+44 29 6666 6666",
+                "storeid": "07"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.034964,14.297108]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "8am - 9:30pm",
+                "description": "Oakham's favorite spot for fresh coffee and delicious cakes. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Oakham",
+                "phone": "+44 7777 777777",
+                "storeid": "08"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.049782,14.297076]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "8am - 9:30pm",
+                "description": "Enjoy freshly brewed coffe, and home baked cakes in our homely foods. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Blackburn",
+                "phone": "+44 8888 88888",
+                "storeid": "09"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.061303,14.302979]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "8am - 9:30pm",
+                "description": "A delicious array of pastries with many flavours, and fresh coffee in an snug foods. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Crawley",
+                "phone": "+44 1010 101010",
+                "storeid": "10"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.019468,14.327461]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "8am - 9:30pm",
+                "description": "A delicious array of pastries with many flavours, and fresh coffee in an snug foods. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods De Castro",
+                "phone": "+44 1010 101010",
+                "storeid": "11"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.010704,14.322461]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "8am - 9:30pm",
+                "description": "A delicious array of pastries with many flavours, and fresh coffee in an snug foods. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Crawley",
+                "phone": "+44 1010 101010",
+                "storeid": "12"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.053273,14.349714]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "8am - 9:30pm",
+                "description": "A delicious array of pastries with many flavours, and fresh coffee in an snug foods. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Martin",
+                "phone": "+44 1010 101010",
+                "storeid": "13"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.034040,14.335591]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "8am - 9:30pm",
+                "description": "A delicious array of pastries with many flavours, and fresh coffee in an snug foods. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods Jesa",
+                "phone": "+44 1010 101010",
+                "storeid": "14"
+            }
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.045970,14.356044]
+            },
+            "type": "Feature",
+            "properties": {
+                "category": "foods",
+                "hours": "8am - 9:30pm",
+                "description": "A delicious array of pastries with many flavours, and fresh coffee in an snug foods. We're part of a larger chain of foodss and foodss.",
+                "name": "Josie's foods De Rosa",
+                "phone": "+44 1010 101010",
+                "storeid": "15"
+            }
+        }
+    ]
+}

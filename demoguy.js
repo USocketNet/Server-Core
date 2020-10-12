@@ -38,6 +38,10 @@ usn_express.instance.get('/settings', function (req, res, next) {
     res.sendFile('./public/view/settings.html', { root: __dirname })
 })
 
+usn_express.instance.get('/locator', function (req, res, next) {
+    res.sendFile('./public/view/locator.html', { root: __dirname })
+})
+
 usn_express.instance.use(function (req, res, next) {
     res.status(200).sendFile('./public/view/error.html', { root: __dirname })
 })
