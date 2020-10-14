@@ -103,6 +103,9 @@ class usn_restapi {
         this.post(options, cback);
     }
 
+    /**
+     * Verify the project if currently existing and  valid.
+     */
     project_verify ( cred, cback ) {
 
         //Prepare credential data to used during restapi verification.
@@ -138,6 +141,20 @@ class usn_restapi {
             }
             cback(reply);
         });
+    }
+
+    /**
+     * Submit a post request declaring url and cback for result.
+     */
+    external_request ( url, form, cback ) {
+
+        //Prepare credential data to used during restapi verification.
+        let options = {
+            uri: url,
+            json: true,
+            form: form
+        };
+        this.post(options, cback);
     }
 }
 
