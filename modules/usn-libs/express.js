@@ -26,11 +26,19 @@ class usn_express {
         //Require and embed express to this class.
         this.express = require('express');
 
+        //Require body parser but optionally init.
+        this.bodyParser = require('body-parser')
+
         //Initialized the express into instance.
         this.instance = this.express();
 
         //Parse the body respond by this instance.
-        this.instance.use(this.express.json());
+        this.instance.use(this.bodyParser.json());
+
+        // to support URL-encoded bodies
+        this.instance.use( this.bodyParser.urlencoded({
+            extended: true
+        })); 
         
         //Build an http server with this express object.
         this.server = require('http').Server(this.instance);
@@ -49,11 +57,11 @@ class usn_express {
      * Run the instance as http server and embed to this class.
      * @param  {} port
      */
-    serve(port) {
+    serve(site, port) {
         //Run the http server from the port that was provided.
         this.instance.listen(port, () => {
-            this.debug.log('USocketNet-Demoguy', 'Demoguy site  is now serving at http://localhost:' + port, 'green', 'demoguy')
-        });;
+            this.debug.log('USocketNet-RestAPI', site + ' is now serving at http://localhost:' + port, 'green', 'demoguy')
+        })
     }
 }
 

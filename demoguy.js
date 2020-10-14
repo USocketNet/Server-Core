@@ -46,4 +46,4 @@ usn_express.instance.use(function (req, res, next) {
     res.status(200).sendFile('./public/view/error.html', { root: __dirname })
 })
 
-usn_express.serve( config.safe('demoguy.port', '3000') );
+usn_express.serve( "Demoguy", config.safe('demoguy.port', '3000') );
