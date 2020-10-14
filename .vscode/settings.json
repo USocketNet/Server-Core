@@ -1,9 +1,7 @@
 {
     "favorites.resources": [
-        "public\\wordpress\\wp-content\\plugins\\bytescrafter-usocketnet",
         "docs\\nginx.conf",
         "public\\demoguy",
-        "server"
     ],
     "files.exclude": {
         "**/.git": true,
@@ -12,13 +10,5 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/node_modules": true,
-        "**/nginx/contrib": true,
-        "**/nginx/docs": true,
-        "**/nginx/logs": true,
-        "**/nginx/mysql": true,
-        "**/nginx/php": true,
-        "**/nginx/temp": true,
-        "**/nginx/tmp": true,
-        "**/nginx/tools": true
     }
 }
