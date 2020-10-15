@@ -27,16 +27,19 @@ class usn_socketio {
         this.instance = this;
 
         //Include express subpackage module by USocketNet
-        this.express = require('usn-libs').express;
+        this.express = require('usn-libs').express.init();
 
         //Listens for nodejs arguments.
         this.argv = require('minimist')(process.argv.slice(2));
 
         //get instance of express for this new server.
-        this.instance.http = this.express.init().server;
+        this.server = this.express.server;
+
+        //get instance of intialze express.
+        this.http = this.express.instance;
 
         //Requiring socket.io module and passing express.
-        const socketio = require('socket.io')(this.instance.http, {
+        const socketio = require('socket.io')(this.server, {
             pingInterval: 10000,
             pingTimeout: 5000,
         });
@@ -65,7 +68,7 @@ class usn_socketio {
             worker_redis.init(this.instance.sio, sType, conf.port );
 
         //Make a log about server init status, whether it failed or success.
-        return this.instance.http.listen( conf.port, '0.0.0.0', function(err) {
+        return this.server.listen( conf.port, '0.0.0.0', function(err) {
             if (err) {
                 debug.log('USocketNet-' + sType + '-Stop', 'Connection Refused @ localhost:' + conf.port + '.', 'red', type);
                 process.exit(1); // INTERUPT THE WHOLE SERVER EXECUTION. !IMPORTANT

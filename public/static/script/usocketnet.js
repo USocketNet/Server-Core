@@ -176,6 +176,12 @@ class USocketNet {
             this.emit('svr-disconnect', { reason: reason, socketid: this.conn.id, serverType: this.serverType } );
         });
 
+        if(this.serverType === 'delivery') {
+            this.conn.on('notify', (reason) => {
+                this.emit('notify', reason );
+            });
+        }
+
         return this;
     }
 
@@ -218,6 +224,16 @@ class USocketNet {
 
     matchLeave() {
 
+    }
+
+    customEmit(event, data, cback) {
+        this.conn.emit(event, data, (res) => {
+            if(res.status == 0) {
+                cback( { status: 'success', data: res } );
+            } else {
+                cback( { status: 'failed' } );
+            }
+        });
     }
 
     sendMessage(msg, cback) {

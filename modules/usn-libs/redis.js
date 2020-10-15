@@ -293,9 +293,14 @@ class usn_redis {
                 if( err ) {
                     cback( { success: 0, data: 'undefined' } );
                 } else {
-                    if(reply.length > 0) {
-                        cback( { success: 1, data: JSON.parse(reply) } );
-                    } else {
+                    if(reply != null) {
+                        if(reply.length > 0) {
+                            cback( { success: 1, data: JSON.parse(reply) } );
+                        } else {
+                            cback( { success: 1, data: [] } );
+                        }
+                    }
+                    else {
                         cback( { success: 1, data: [] } );
                     }
                 }

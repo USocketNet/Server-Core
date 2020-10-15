@@ -278,17 +278,24 @@
       </div>
     </nav>
 
-    <div id="userInfo" class="container">
+    <div id="userInfo" class="container" style="margin-top: 100px;">
 
       <div class="row">
 
         <div class="col-md-9">
-            <!-- The div to hold the map -->
-            <div id="map"></div>
+            <h3>Hello World!</h3>
+            <p>The Red Brown Fox Jump over the Lazy Dog</p>
         </div>
 
-        <div class="col-md-3">
-          
+        <div class="col-md-3" >
+          <h4>Send Event</h4>
+          <div class="alert alert-primary" role="alert">
+            Enter event that server will listen.
+          </div>
+          <div class="input-group" style="margin-bottom: 12px;">
+            <input id="inputText" type="text" placeholder="Event key..." class="form-control">
+          </div>
+          <button onclick="sendSomething()" type="button" class="btn btn-secondary btn-lg btn-block">Send Message</button>
         </div>
 
       </div>
@@ -298,6 +305,7 @@
     <script type="text/javascript" src="./script/socket.io.js"></script>
     <script type="text/javascript" src="./script/usocketnet.js"></script>
     <script type="text/javascript">
+
         const usn_server = window.location.hostname;
         const curUser = JSON.parse(localStorage['user']);
             $("#userphoto").attr("src", curUser.avatar);
@@ -305,6 +313,27 @@
             //Declaration of 3 different type of server.
             let delivery = new USocketNet('delivery', usn_server, curUser);
             delivery.connect();
+
+            delivery.on('svr-connect', ( data ) => {
+              console.log('Connected!');
+            })
+
+            delivery.on('svr-reconnect', ( data ) => {
+              console.log('Reconnected!');
+            })
+
+            delivery.on('svr-disconnect', ( data ) => {
+              console.log('Disconnected!');
+            })
+
+            delivery.on('notify', ( dat ) => {
+              console.log('Notify: ' + dat);
+            })
+
+            function sendSomething() {
+              delivery.customEmit('notify', { msg: document.getElementById('inputText').value })
+              document.getElementById('inputText').value = ''
+            }
     </script>
 
   </body>
