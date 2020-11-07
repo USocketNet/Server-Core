@@ -5,9 +5,9 @@
 
     "logging.file": true,
     "logging.console": true,
-    
-    "restapi.url": "http://localhost",
-    "cluster.key": "2c075794f769bd19d442a29d6176cbaf",
+
+    "restapi.url": "https://pasabuy.app",
+    "cluster.key": "ea8a8d904fa4bf8e33e19d8e8a88e286",
 
     "redis.host": "127.0.0.1",
     "redis.port": "6379",
