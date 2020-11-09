@@ -37,7 +37,6 @@ const instance = core.socketio.init();
   });
   let serverWideMsgEvent = 'svr-'+curCluster.clid;
 
-
   //Send event to USocketNet
   function sendEvent(form, cback)
   {
@@ -51,6 +50,22 @@ const instance = core.socketio.init();
           cback('success');
         } else {
           cback('notfound');
+        }
+      } else {
+        cback('failed');
+      }
+    });
+  }
+
+  function isOnline(form, cback)
+  {
+    //Get all delivert client SID form this delivery user from redis.
+    redis.getUserSids(form.wpid, 'delivery', (sids) => {
+      if(typeof sids.data !== 'undefined' && typeof sids.data !== 'array' ) {
+        if(sids.data.length != 0) {
+          cback('success');
+        } else {
+          cback('offline');
         }
       } else {
         cback('failed');
@@ -74,22 +89,6 @@ instance.http.get('/notify', (req, res) => {
   //Emit event to specific wpid socket.io
   //instance.sio.sockets.emit('demoguy', form);
 })
-
-function isOnline(form, cback)
-{
-  //Get all delivert client SID form this delivery user from redis.
-  redis.getUserSids(form.wpid, 'delivery', (sids) => {
-    if(typeof sids.data !== 'undefined' && typeof sids.data !== 'array' ) {
-      if(sids.data.length != 0) {
-        cback('success');
-      } else {
-        cback('offline');
-      }
-    } else {
-      cback('failed');
-    }
-  });
-}
 
 instance.http.get('/online', (req, res) => {
   //Get the body parameter.

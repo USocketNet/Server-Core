@@ -156,6 +156,17 @@ class usn_restapi {
         };
         this.post(options, cback);
     }
+
+    /**
+     * Used for WP Crons.
+     */
+    wp_crons( path, cback ) {
+        //Prepare credential data to used during restapi checking.
+        let options = {
+            json: true
+        }
+        this.request.get(this.wpress_url + path, options, cback);
+    }
 }
 
 /**
