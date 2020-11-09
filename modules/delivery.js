@@ -59,12 +59,44 @@ const instance = core.socketio.init();
   }
 
 //Module server RestAPI
-instance.http.post('/notify', (req, res) => {
+instance.http.get('/notify', (req, res) => {
   //Get the body parameter.
-  let form = req.body;
+  let form = req.query; //POST: body, GET: query
 
   //Send event to target wpid device.
   sendEvent(form, (result) => {
+    res.send(result);
+  });
+
+  //Just a test!
+  //console.log( 'Body: ' + JSON.stringify(form) );
+
+  //Emit event to specific wpid socket.io
+  //instance.sio.sockets.emit('demoguy', form);
+})
+
+function isOnline(form, cback)
+{
+  //Get all delivert client SID form this delivery user from redis.
+  redis.getUserSids(form.wpid, 'delivery', (sids) => {
+    if(typeof sids.data !== 'undefined' && typeof sids.data !== 'array' ) {
+      if(sids.data.length != 0) {
+        cback('success');
+      } else {
+        cback('offline');
+      }
+    } else {
+      cback('failed');
+    }
+  });
+}
+
+instance.http.get('/online', (req, res) => {
+  //Get the body parameter.
+  let form = req.query; //POST: body, GET: query
+
+  //Send event to target wpid device.
+  isOnline(form, (result) => {
     res.send(result);
   });
 
