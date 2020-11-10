@@ -19,11 +19,20 @@ const restapi = require('usn-libs').restapi.init( config.safe('restapi.url', 'ht
 // Crons
 setInterval( function(){ 
     restapi.wp_crons( '/wp-json/hatidpress/v2/deliveries/queuing/process', (response) => {
-        // var currentdate = new Date(); 
-        // var datetime = "Last Sync: "
-        //         + currentdate.getHours() + ":"  
-        //         + currentdate.getMinutes() + ":" 
-        //         + currentdate.getSeconds();
-        // console.log( 'Called @ ' + datetime + ' - ' + JSON.stringify(response) ); 
+        var currentdate = new Date(); 
+        var datetime = "Last Sync: "
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        console.log( 'Queuing Order @ ' + datetime + ' - ' + JSON.stringify(response) ); 
+    });
+    restapi.wp_crons( '/wp-json/hatidpress/v2/navigation/nearest/rider', (response) => {
+        var currentdate = new Date(); 
+        var datetime = "Last Sync: "
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        console.log( 'Finding Rider @ ' + datetime + ' - ' + JSON.stringify(response) ); 
     });
 }, 1000)
+
