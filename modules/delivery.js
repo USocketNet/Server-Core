@@ -82,12 +82,6 @@ instance.http.get('/notify', (req, res) => {
   sendEvent(form, (result) => {
     res.send(result);
   });
-
-  //Just a test!
-  //console.log( 'Body: ' + JSON.stringify(form) );
-
-  //Emit event to specific wpid socket.io
-  //instance.sio.sockets.emit('demoguy', form);
 })
 
 instance.http.get('/online', (req, res) => {
@@ -98,18 +92,12 @@ instance.http.get('/online', (req, res) => {
   isOnline(form, (result) => {
     res.send(result);
   });
-
-  //Just a test!
-  //console.log( 'Body: ' + JSON.stringify(form) );
-
-  //Emit event to specific wpid socket.io
-  //instance.sio.sockets.emit('demoguy', form);
 })
 
 //Socket.IO Client Instance.
 instance.sio.on('connection', (socket) => {
 
-  //Called by client that its connected.
+  // Called by client that its connected.
   socket.on('connects', (data, cback) => {
     //console.log(JSON.stringify(data));
     if(typeof cback === 'function') {
@@ -117,10 +105,24 @@ instance.sio.on('connection', (socket) => {
     }
   });
 
-  //Notify wpid device, data.wpid is required.
+  // Join the Order Channel.
+  socket.on('join', function(orderKey, cback) {
+    socket.join(orderKey);
+    //console.log('Joined: ' + orderKey);
+    cback({ status: 'status' });
+  });
+
+  // Send message to the Order Room.
+  socket.on('status', function(order, cback) {
+    socket.to(order.key).emit('status', order);
+    //console.log('Status: ' + order);
+    cback({ status: 'status' });
+  });
+
+  // Notify wpid device, data.wpid is required.
   socket.on('notify', (form) => {
     sendEvent(form, (result) => {
-      console.log('Notify Result: ' + result);
+      //console.log('Notify Result: ' + result);
     });
   });
 });

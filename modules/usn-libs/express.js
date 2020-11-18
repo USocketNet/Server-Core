@@ -59,7 +59,7 @@ class usn_express {
      */
     serve(site, port) {
         //Run the http server from the port that was provided.
-        this.instance.listen(port, () => {
+        this.instance.listen(port, "0.0.0.0", () => {
             this.debug.log('USocketNet-RestAPI', site + ' is now serving at http://localhost:' + port, 'green', 'demoguy')
         })
     }

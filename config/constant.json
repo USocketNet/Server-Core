@@ -1,25 +1,25 @@
 {
-    "cluster.host": "localhost",
+    "cluster.host": "0.0.0.0",
     "cluster.port": 8081,
     "cluster.redis.db": 0,
 
-    "master.host": "localhost",
+    "master.host": "0.0.0.0",
     "master.port": 19091,
     "master.redis.db": 1,
     
-    "message.host": "localhost",
+    "message.host": "0.0.0.0",
     "message.port": 6061,
     "message.redis.db": 2,
 
-    "match.host": "localhost",
+    "match.host": "0.0.0.0",
     "match.port": 4531,
     "match.redis.db": 3,
 
-    "game.host": "localhost",
+    "game.host": "0.0.0.0",
     "game.port": 9091,
     "game.redis.db": 4,
 
-    "delivery.host": "localhost",
+    "delivery.host": "0.0.0.0",
     "delivery.port": 5051,
     "delivery.redis.db": 5
 }
